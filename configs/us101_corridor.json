@@ -1,0 +1,14 @@
+{
+  "name": "US-101 northbound: SR-237 to Page Mill Road",
+  "bounding_box": {
+    "north": 37.45,
+    "south": 37.36,
+    "west": -122.1,
+    "east": -122.0
+  },
+  "osm_source_path": "data/osm/us101_corridor.osm.xml",
+  "notes": [
+    "This is an initial extraction boundary from the design document.",
+    "Audit every interchange, ramp connection, lane count, and permitted movement before calibration."
+  ]
+}

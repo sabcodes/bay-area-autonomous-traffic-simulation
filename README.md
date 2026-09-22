@@ -99,6 +99,19 @@ files and reports stay under
 `compare-toy` prints the individual results plus their mean and sample spread.
 That is the beginning of reporting uncertainty: we do not rely on only one run.
 
+## Real-corridor network import
+
+The US-101 boundary is saved in [configs/us101_corridor.json](configs/us101_corridor.json).
+Put a timestamped OSM XML extract at `data/osm/us101_corridor.osm.xml`, then run:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim import-us101-osm
+```
+
+The imported network appears under `outputs/us101_corridor/`. It is only a
+draft until every interchange, ramp, lane count, and allowed movement is
+manually audited.
+
 ## Status
 
 **Phase 1 - runnable toy corridor.** The human-like and CACC sensitivity
