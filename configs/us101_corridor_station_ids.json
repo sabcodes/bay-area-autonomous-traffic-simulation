@@ -1,6 +1,6 @@
 {
   "corridor": "US-101 northbound: SR-237 to Page Mill Road",
-  "status": "Candidate geographic selection; manual audit pending",
+  "status": "Partial manual audit complete; two stations require follow-up",
   "selection_rule": "District 4, US-101 northbound mainline stations inside configs/us101_corridor.json",
   "metadata_sources": [
     {
@@ -26,5 +26,18 @@
     402372,
     404522,
     425892
-  ]
+  ],
+  "provisionally_reviewed_station_ids": [
+    401507,
+    401949,
+    401996,
+    401997,
+    401998,
+    402370,
+    402372,
+    404522,
+    425892
+  ],
+  "requires_follow_up_station_ids": [401534, 401948],
+  "manual_audit_note": "402370 appears consistent with the Moffett-area sensors. The two follow-up stations are retained as candidates but are not fully verified."
 }
