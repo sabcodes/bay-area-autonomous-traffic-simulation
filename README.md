@@ -116,6 +116,22 @@ lane count, and allowed movement is manually audited.
 Use the [US-101 network audit checklist](docs/us101-network-audit.md) to make
 that review repeatable.
 
+## First PeMS calibration target
+
+Put the PeMS `d04_text_station_5min_*.txt.gz` downloads under `data/pems/`,
+then create an auditable summary of the weekday morning peak:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim summarize-pems
+```
+
+It reads 07:00–08:59 local time from District 4, northbound US-101 mainline
+detectors, rejects observations below 90% coverage, and writes its filter and
+results to `outputs/pems_calibration/us101_northbound_d4_morning_peak.json`.
+The downloaded files alone still span all of District 4's US-101. Download
+**Station Metadata** next; we will use it to identify only the detector IDs
+between SR-237 and Page Mill Road before using the data to tune the corridor.
+
 ## Status
 
 **Phase 1 - runnable toy corridor.** The human-like and CACC sensitivity

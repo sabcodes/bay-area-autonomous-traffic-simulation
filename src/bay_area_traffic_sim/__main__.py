@@ -8,6 +8,7 @@ from pathlib import Path
 
 from bay_area_traffic_sim.experiments import repeat
 from bay_area_traffic_sim.osm_import import download_osm, import_osm
+from bay_area_traffic_sim.pems import PemsFilter, summarize_station_files
 from bay_area_traffic_sim.toy_corridor import (
     build_network,
     metrics_as_dict,
@@ -56,6 +57,31 @@ def main() -> None:
         default="configs/us101_corridor.json",
         help="Corridor import configuration (default: configs/us101_corridor.json).",
     )
+    calibrate = subcommands.add_parser(
+        "summarize-pems",
+        help="Summarize PeMS observations as an auditable, initial calibration target.",
+    )
+    calibrate.add_argument(
+        "--input-glob",
+        default="data/pems/d04_text_station_5min_*.txt.gz",
+        help=(
+            "PeMS Station 5-Minute input files "
+            "(default: data/pems/d04_text_station_5min_*.txt.gz)."
+        ),
+    )
+    calibrate.add_argument("--start-hour", type=int, default=7, help="Inclusive local hour.")
+    calibrate.add_argument("--end-hour", type=int, default=9, help="Exclusive local hour.")
+    calibrate.add_argument(
+        "--minimum-observed-percent",
+        type=float,
+        default=90.0,
+        help="Discard rows below this detector-observation percentage (default: 90).",
+    )
+    calibrate.add_argument(
+        "--output",
+        default="outputs/pems_calibration/us101_northbound_d4_morning_peak.json",
+        help="JSON report path.",
+    )
     args = parser.parse_args()
 
     if args.command == "build-toy-network":
@@ -88,6 +114,33 @@ def main() -> None:
     elif args.command == "download-us101-osm":
         source, provenance = download_osm(Path(args.config))
         print(json.dumps({"osm_source": str(source), "provenance": str(provenance)}, indent=2))
+    elif args.command == "summarize-pems":
+        criteria = PemsFilter(
+            start_hour=args.start_hour,
+            end_hour=args.end_hour,
+            minimum_observed_percent=args.minimum_observed_percent,
+        )
+        summary = summarize_station_files(sorted(Path().glob(args.input_glob)), criteria)
+        output = Path(args.output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        report = {
+            "filter": {
+                "district": criteria.district,
+                "freeway": criteria.freeway,
+                "direction": criteria.direction,
+                "lane_type": criteria.lane_type,
+                "start_hour": criteria.start_hour,
+                "end_hour": criteria.end_hour,
+                "minimum_observed_percent": criteria.minimum_observed_percent,
+            },
+            "summary": summary.as_dict(),
+            "limitation": (
+                "This is district-wide US-101 northbound data. Add PeMS station metadata "
+                "before treating it as the SR-237 to Page Mill Road corridor."
+            ),
+        }
+        output.write_text(json.dumps(report, indent=2) + "\n")
+        print(json.dumps(report, indent=2))
 
 
 if __name__ == "__main__":
