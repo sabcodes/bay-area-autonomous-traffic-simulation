@@ -176,9 +176,12 @@ to resolve the remaining locations before treating this as a final calibration t
 
 ## Draft real-corridor human baseline
 
-The first H0 scenario converts that provisional five-minute PeMS profile into
-mainline passenger-car demand on the corrected SR-237-to-Oregon-Expressway
-network. Prepare the generated route and its assumption manifest with:
+The first H0 scenario converts five-minute PeMS station profiles into
+passenger-car demand on the corrected SR-237-to-Oregon-Expressway network.
+Station 402370 supplies the upstream flow, the measured Mathilda exit is split
+from it, and the audited Mathilda, Moffett, and San Antonio on-ramp profiles are
+injected at their mapped SUMO edges. Prepare the generated routes and their
+assumption manifest with:
 
 ```bash
 .venv/bin/python -m bay_area_traffic_sim prepare-us101-human-baseline
@@ -193,9 +196,10 @@ Then run the two-hour morning profile plus warmup and network-clearance time:
 The route is forced through ordered, detector-matched freeway checkpoints so
 SUMO cannot choose a one-lane ramp as a geometric shortcut. This is a runnable
 calibration draft, not the finished human baseline. It has human-like
-stochastic following, but currently has only mainline passenger-car demand.
-Ramp demand, vehicle mix, held-out-day validation, and manual network
-corrections still belong to M3.
+stochastic following and the four measured, audited ramp movements currently
+inside the study boundary. Eight missing ramp profiles, vehicle mix,
+held-out-day validation, driver calibration, and remaining manual network
+review still belong to M3.
 
 Generate separate observed profiles for the six on-ramp and seven off-ramp
 PeMS candidates with:
@@ -204,10 +208,11 @@ PeMS candidates with:
 .venv/bin/python -m bay_area_traffic_sim summarize-pems-stations
 ```
 
-These profiles are demand targets only until each candidate is matched to the
-correct SUMO ramp edge. Human-baseline runs now also install lane-level virtual
-induction loops at the nine provisionally reviewed mainline PeMS stations and
-write a five-minute station summary beside the other run outputs.
+Only mappings accepted in the [ramp audit](docs/us101-ramp-audit.md) become
+SUMO demand; missing observations are not interpreted as zero. Human-baseline
+runs also install lane-level virtual induction loops at the nine provisionally
+reviewed mainline PeMS stations and write a five-minute station summary beside
+the other run outputs.
 
 After generating the observed mainline station profiles and running seed 42,
 create the direct five-minute comparison with:

@@ -40,6 +40,18 @@ class DemandPoint:
 
 
 @dataclass(frozen=True)
+class RampDemand:
+    """One visually audited ramp route and its observed demand profile."""
+
+    station_id: int
+    lane_type: str
+    name: str
+    route_id: str
+    route_edge_ids: list[str]
+    demand_profile: list[DemandPoint]
+
+
+@dataclass(frozen=True)
 class PreparedBaseline:
     """Files and assumptions needed to reproduce one draft baseline."""
 
@@ -53,6 +65,7 @@ class PreparedBaseline:
     expected_input_vehicles: float
     simulation_end_seconds: int
     demand_profile: list[DemandPoint]
+    ramp_demands: list[RampDemand]
     virtual_detectors: list[VirtualDetectorSpec]
     assumptions: list[str]
 
@@ -60,16 +73,33 @@ class PreparedBaseline:
         return asdict(self)
 
 
-def demand_points_from_report(report: dict[str, Any], warmup_seconds: int) -> list[DemandPoint]:
+def demand_points_from_report(
+    report: dict[str, Any], warmup_seconds: int, station_id: int | None = None
+) -> list[DemandPoint]:
     """Convert station flow per five minutes into a two-hour SUMO demand profile."""
 
-    raw_profile = report.get("summary", {}).get("time_profile")
+    summary = report.get("summary", {})
+    if station_id is None:
+        raw_profile = summary.get("time_profile")
+    else:
+        station_profile = next(
+            (
+                profile
+                for profile in summary.get("profiles", [])
+                if profile.get("station_id") == station_id
+            ),
+            None,
+        )
+        raw_profile = station_profile.get("time_profile") if station_profile else None
     if not isinstance(raw_profile, list) or not raw_profile:
         raise ValueError("The PeMS report does not contain a non-empty time profile.")
 
     points: list[DemandPoint] = []
     for index, raw_point in enumerate(raw_profile):
-        flow = raw_point.get("mean_flow_vehicles_per_5_minutes_per_station")
+        flow = raw_point.get(
+            "mean_flow_vehicles_per_5_minutes_per_station",
+            raw_point.get("mean_flow_vehicles_per_5_minutes"),
+        )
         observed_time = raw_point.get("time")
         observed_speed = raw_point.get("mean_speed_mph")
         if not isinstance(flow, (int, float)) or not isinstance(observed_time, str):
@@ -82,9 +112,7 @@ def demand_points_from_report(report: dict[str, Any], warmup_seconds: int) -> li
                 end_seconds=begin + SECONDS_PER_PROFILE_INTERVAL,
                 vehicles_per_hour=float(flow) * FIVE_MINUTE_INTERVALS_PER_HOUR,
                 observed_speed_mph=(
-                    float(observed_speed)
-                    if isinstance(observed_speed, (int, float))
-                    else None
+                    float(observed_speed) if isinstance(observed_speed, (int, float)) else None
                 ),
             )
         )
@@ -116,6 +144,7 @@ def write_route_file(
     route_edge_ids: list[str],
     demand_points: list[DemandPoint],
     warmup_seconds: int,
+    ramp_demands: list[RampDemand] | None = None,
 ) -> None:
     """Write a transparent SUMO route file for human passenger traffic."""
 
@@ -127,7 +156,7 @@ def write_route_file(
     root = ElementTree.Element("routes")
     root.append(
         ElementTree.Comment(
-            "Draft human baseline: mainline passenger demand only; not yet fully calibrated."
+            "Draft human baseline: measured mainline and audited ramp passenger demand."
         )
     )
     ElementTree.SubElement(
@@ -148,23 +177,33 @@ def write_route_file(
             "speedDev": "0.1",
         },
     )
+    for ramp in ramp_demands or []:
+        ElementTree.SubElement(
+            root,
+            "route",
+            {"id": ramp.route_id, "edges": " ".join(ramp.route_edge_ids)},
+        )
     ElementTree.SubElement(
         root,
         "route",
         {"id": "us101_northbound", "edges": " ".join(route_edge_ids)},
     )
 
-    first_rate = demand_points[0].vehicles_per_hour
-    if warmup_seconds:
-        _add_flow(root, "warmup", 0, warmup_seconds, first_rate)
-    for point in demand_points:
-        _add_flow(
+    _add_profile_flows(root, "mainline", "us101_northbound", demand_points, warmup_seconds)
+    for ramp in ramp_demands or []:
+        _add_profile_flows(
             root,
-            f"observed_{point.observed_time.replace(':', '')}",
-            point.begin_seconds,
-            point.end_seconds,
-            point.vehicles_per_hour,
+            f"ramp_{ramp.station_id}",
+            ramp.route_id,
+            ramp.demand_profile,
+            warmup_seconds,
         )
+
+    flows = root.findall("flow")
+    for flow in flows:
+        root.remove(flow)
+    for flow in sorted(flows, key=lambda item: int(item.attrib["begin"])):
+        root.append(flow)
 
     destination.parent.mkdir(parents=True, exist_ok=True)
     tree = ElementTree.ElementTree(root)
@@ -178,6 +217,7 @@ def _add_flow(
     begin_seconds: int,
     end_seconds: int,
     vehicles_per_hour: float,
+    route_id: str = "us101_northbound",
 ) -> None:
     ElementTree.SubElement(
         root,
@@ -185,7 +225,7 @@ def _add_flow(
         {
             "id": flow_id,
             "type": "human_passenger",
-            "route": "us101_northbound",
+            "route": route_id,
             "begin": str(begin_seconds),
             "end": str(end_seconds),
             "vehsPerHour": f"{vehicles_per_hour:.2f}",
@@ -195,6 +235,131 @@ def _add_flow(
     )
 
 
+def _add_profile_flows(
+    root: ElementTree.Element,
+    flow_prefix: str,
+    route_id: str,
+    demand_points: list[DemandPoint],
+    warmup_seconds: int,
+) -> None:
+    if warmup_seconds:
+        _add_flow(
+            root,
+            f"{flow_prefix}_warmup",
+            0,
+            warmup_seconds,
+            demand_points[0].vehicles_per_hour,
+            route_id,
+        )
+    for point in demand_points:
+        _add_flow(
+            root,
+            f"{flow_prefix}_{point.observed_time.replace(':', '')}",
+            point.begin_seconds,
+            point.end_seconds,
+            point.vehicles_per_hour,
+            route_id,
+        )
+
+
+def _subtract_demand_profiles(
+    minuend: list[DemandPoint], subtrahends: list[list[DemandPoint]]
+) -> list[DemandPoint]:
+    """Remove measured off-ramp flows from upstream mainline through demand."""
+
+    by_time = [{point.observed_time: point for point in profile} for profile in subtrahends]
+    result: list[DemandPoint] = []
+    for point in minuend:
+        removed = sum(
+            profile[point.observed_time].vehicles_per_hour
+            for profile in by_time
+            if point.observed_time in profile
+        )
+        remaining = point.vehicles_per_hour - removed
+        if remaining < 0:
+            raise ValueError(f"Off-ramp demand exceeds mainline demand at {point.observed_time}.")
+        result.append(
+            DemandPoint(
+                observed_time=point.observed_time,
+                begin_seconds=point.begin_seconds,
+                end_seconds=point.end_seconds,
+                vehicles_per_hour=remaining,
+                observed_speed_mph=point.observed_speed_mph,
+            )
+        )
+    return result
+
+
+def _shortest_route_edge_ids(network: Any, start_edge_id: str, end_edge_id: str) -> list[str]:
+    """Return one connected SUMO route between two audited edge IDs."""
+
+    try:
+        start_edge = network.getEdge(start_edge_id)
+        end_edge = network.getEdge(end_edge_id)
+    except KeyError as error:
+        raise ValueError(f"Configured ramp edge is missing: {error}") from error
+    route, _ = network.getShortestPath(start_edge, end_edge)
+    if not route:
+        raise ValueError(f"No route connects {start_edge_id} to {end_edge_id}.")
+    return [edge.getID() for edge in route]
+
+
+def _build_ramp_demands(
+    network_file: Path,
+    mainline_edge_ids: list[str],
+    mappings: list[dict[str, Any]],
+    ramp_report: dict[str, Any],
+    warmup_seconds: int,
+) -> list[RampDemand]:
+    """Join measured ramp profiles to their visually and topologically audited routes."""
+
+    network = sumolib.net.readNet(str(network_file))
+    demands: list[RampDemand] = []
+    for mapping in mappings:
+        station_id = int(mapping["station_id"])
+        lane_type = str(mapping["lane_type"])
+        ramp_edge_id = str(mapping["sumo_edge_id"])
+        if lane_type == "FR":
+            route_edge_ids = _shortest_route_edge_ids(network, mainline_edge_ids[0], ramp_edge_id)
+        elif lane_type == "OR":
+            merge_edge_id = str(mapping["merge_edge_id"])
+            try:
+                merge_index = mainline_edge_ids.index(merge_edge_id)
+            except ValueError as error:
+                raise ValueError(
+                    f"On-ramp merge edge {merge_edge_id} is not on the mainline route."
+                ) from error
+            ramp_segment = _shortest_route_edge_ids(network, ramp_edge_id, merge_edge_id)
+            route_edge_ids = ramp_segment + mainline_edge_ids[merge_index + 1 :]
+        else:
+            raise ValueError(f"Ramp station {station_id} has unsupported lane type {lane_type}.")
+        demands.append(
+            RampDemand(
+                station_id=station_id,
+                lane_type=lane_type,
+                name=str(mapping["name"]),
+                route_id=f"ramp_{station_id}_{lane_type.lower()}",
+                route_edge_ids=route_edge_ids,
+                demand_profile=demand_points_from_report(ramp_report, warmup_seconds, station_id),
+            )
+        )
+    return demands
+
+
+def _expected_profile_input(
+    profiles: list[list[DemandPoint]], warmup_seconds: int
+) -> tuple[float, float]:
+    """Return total and warmup vehicle inputs across all demand profiles."""
+
+    warmup_input = sum(profile[0].vehicles_per_hour * warmup_seconds / 3600 for profile in profiles)
+    observed_input = sum(
+        point.vehicles_per_hour * (point.end_seconds - point.begin_seconds) / 3600
+        for profile in profiles
+        for point in profile
+    )
+    return warmup_input + observed_input, warmup_input
+
+
 def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
     """Build a route and provenance manifest from the corrected network and PeMS report."""
 
@@ -202,28 +367,43 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
     raw = json.loads(config_path.read_text())
     network_file = root / raw["network_file"]
     pems_report_file = root / raw["pems_report"]
+    ramp_profile_file = root / raw["ramp_profile_file"]
     route_file = root / raw["route_file"]
     manifest_file = root / raw["manifest_file"]
-    for required_file in (network_file, pems_report_file):
+    for required_file in (network_file, pems_report_file, ramp_profile_file):
         if not required_file.is_file():
             raise FileNotFoundError(f"Required baseline input not found: {required_file}")
 
     warmup_seconds = int(raw["warmup_seconds"])
     clearance_seconds = int(raw["clearance_seconds"])
     report = json.loads(pems_report_file.read_text())
-    demand_points = demand_points_from_report(report, warmup_seconds)
+    mainline_entry_points = demand_points_from_report(
+        report, warmup_seconds, int(raw["mainline_entry_station_id"])
+    )
+    ramp_report = json.loads(ramp_profile_file.read_text())
     route_edges = _route_edges(network_file, raw["checkpoint_edge_ids"])
     route_edge_ids = [edge.getID() for edge in route_edges]
     route_length = sum(edge.getLength() for edge in route_edges)
-    write_route_file(route_file, route_edge_ids, demand_points, warmup_seconds)
-
-    first_interval_input = demand_points[0].vehicles_per_hour * warmup_seconds / 3600
-    expected_input = first_interval_input
-    expected_input += sum(
-        point.vehicles_per_hour * (point.end_seconds - point.begin_seconds) / 3600
-        for point in demand_points
+    ramp_demands = _build_ramp_demands(
+        network_file,
+        route_edge_ids,
+        raw["active_ramp_mappings"],
+        ramp_report,
+        warmup_seconds,
     )
-    simulation_end = demand_points[-1].end_seconds + clearance_seconds
+    off_ramp_profiles = [ramp.demand_profile for ramp in ramp_demands if ramp.lane_type == "FR"]
+    mainline_through_points = _subtract_demand_profiles(mainline_entry_points, off_ramp_profiles)
+    write_route_file(
+        route_file,
+        route_edge_ids,
+        mainline_through_points,
+        warmup_seconds,
+        ramp_demands,
+    )
+
+    all_profiles = [mainline_through_points] + [ramp.demand_profile for ramp in ramp_demands]
+    expected_input, warmup_input = _expected_profile_input(all_profiles, warmup_seconds)
+    simulation_end = mainline_through_points[-1].end_seconds + clearance_seconds
     corridor = load_corridor_config(root / raw["corridor_config"])
     detector_station_ids = load_station_ids(
         root / raw["virtual_detector_station_ids_file"],
@@ -245,11 +425,12 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
         minimum_lane_count=min(edge.getLaneNumber() for edge in route_edges),
         expected_input_vehicles=expected_input,
         simulation_end_seconds=simulation_end,
-        demand_profile=demand_points,
+        demand_profile=mainline_through_points,
+        ramp_demands=ramp_demands,
         virtual_detectors=detector_specs,
         assumptions=[
             *raw["assumptions"],
-            f"Warmup contributes approximately {first_interval_input:.1f} input vehicles.",
+            f"Warmup contributes approximately {warmup_input:.1f} input vehicles.",
         ],
     )
     manifest_file.parent.mkdir(parents=True, exist_ok=True)
@@ -269,9 +450,7 @@ def run_human_baseline(
     raw = json.loads(config_path.read_text())
     detector_file = repository_root() / raw["detector_file_template"].format(seed=seed)
     detector_output_file = repository_root() / raw["detector_output_template"].format(seed=seed)
-    detector_summary_file = (
-        repository_root() / raw["detector_summary_template"].format(seed=seed)
-    )
+    detector_summary_file = repository_root() / raw["detector_summary_template"].format(seed=seed)
     write_virtual_detector_file(
         detector_file,
         detector_output_file,

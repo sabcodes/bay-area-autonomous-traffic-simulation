@@ -2,7 +2,12 @@ import json
 from pathlib import Path
 from xml.etree import ElementTree
 
-from bay_area_traffic_sim.real_corridor import demand_points_from_report, write_route_file
+from bay_area_traffic_sim.real_corridor import (
+    RampDemand,
+    _subtract_demand_profiles,
+    demand_points_from_report,
+    write_route_file,
+)
 
 
 def _report() -> dict[str, object]:
@@ -45,9 +50,9 @@ def test_write_route_file_includes_warmup_and_observed_flows(tmp_path: Path) -> 
     assert root.find("route").attrib["edges"] == "start middle end"
     flows = root.findall("flow")
     assert [flow.attrib["id"] for flow in flows] == [
-        "warmup",
-        "observed_0700",
-        "observed_0705",
+        "mainline_warmup",
+        "mainline_0700",
+        "mainline_0705",
     ]
     assert flows[0].attrib["vehsPerHour"] == "4800.00"
     assert flows[-1].attrib["begin"] == "1200"
@@ -60,3 +65,72 @@ def test_demand_points_require_a_profile() -> None:
         assert "time profile" in str(error)
     else:
         raise AssertionError("Expected a helpful error for a missing time profile.")
+
+
+def test_demand_points_select_one_station_profile() -> None:
+    report = {
+        "summary": {
+            "profiles": [
+                {
+                    "station_id": 123,
+                    "time_profile": [
+                        {
+                            "time": "07:00",
+                            "mean_flow_vehicles_per_5_minutes": 10.0,
+                            "mean_speed_mph": None,
+                        }
+                    ],
+                }
+            ]
+        }
+    }
+
+    points = demand_points_from_report(report, warmup_seconds=900, station_id=123)
+
+    assert points[0].vehicles_per_hour == 120
+    assert points[0].observed_speed_mph is None
+
+
+def test_subtract_demand_profiles_preserves_time_and_removes_flow() -> None:
+    mainline = demand_points_from_report(_report(), warmup_seconds=900)
+    off_ramp_report = _report()
+    off_ramp_report["summary"]["time_profile"][0][
+        "mean_flow_vehicles_per_5_minutes_per_station"
+    ] = 25.0
+    off_ramp_report["summary"]["time_profile"][1][
+        "mean_flow_vehicles_per_5_minutes_per_station"
+    ] = 50.0
+    off_ramp = demand_points_from_report(off_ramp_report, warmup_seconds=900)
+
+    result = _subtract_demand_profiles(mainline, [off_ramp])
+
+    assert [point.vehicles_per_hour for point in result] == [4500, 4800]
+    assert [point.observed_time for point in result] == ["07:00", "07:05"]
+
+
+def test_write_route_file_includes_audited_ramp_demand(tmp_path: Path) -> None:
+    points = demand_points_from_report(_report(), warmup_seconds=900)
+    ramp = RampDemand(
+        station_id=123,
+        lane_type="OR",
+        name="Test on-ramp",
+        route_id="ramp_123_or",
+        route_edge_ids=["ramp", "merge", "end"],
+        demand_profile=points,
+    )
+    destination = tmp_path / "human.rou.xml"
+
+    write_route_file(destination, ["start", "merge", "end"], points, 900, [ramp])
+
+    root = ElementTree.parse(destination).getroot()
+    routes = {route.attrib["id"]: route.attrib["edges"] for route in root.findall("route")}
+    assert routes["ramp_123_or"] == "ramp merge end"
+    assert root.find("flow[@id='ramp_123_warmup']").attrib["route"] == "ramp_123_or"
+    assert [int(flow.attrib["begin"]) for flow in root.findall("flow")] == [
+        0,
+        0,
+        900,
+        900,
+        1200,
+        1200,
+    ]

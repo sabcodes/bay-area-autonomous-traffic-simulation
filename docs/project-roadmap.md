@@ -32,16 +32,20 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 - M2 is active. The imported network now reaches the Oregon Expressway/Page
   Mill connection. The H0 route is constrained through detector-matched
   mainline checkpoints and never falls below four lanes.
-- M3 has a runnable draft. Seed 42 completed 11,372 vehicles without teleport
-  warnings, but its 59.7 mph average trip speed is substantially above the
-  provisional 48.7 mph observed detector target. Nine PeMS-aligned virtual
-  stations now report 40 lane loops in five-minute intervals. Six reporting
-  stations have direct flow/speed comparisons: flow error ranges from 3.8% to
-  22.9%, and speed error ranges from 6.3 to 12.4 mph.
-- Ramp-demand preparation is active. Thirteen ramp sensors were identified;
-  five have qualifying October morning profiles. Injection remains gated on
-  the [ramp detector audit](us101-ramp-audit.md). Vehicle mix, missing-ramp
-  estimation, network corrections, and held-out validation are still required.
+- M3 has a runnable ramp-aware draft. Seed 42 completed 12,457 vehicles without
+  SUMO route, teleport, or emergency-braking warnings. Its 59.4 mph average
+  trip speed remains too high. Nine PeMS-aligned virtual stations report 40
+  lane loops in five-minute intervals. At the entry station, simulated mean
+  flow is 4,657 vehicles/hour versus 4,646 observed (0.4% interval MAPE); a
+  second station is within 0.9%. Across the six comparable stations, flow MAPE
+  ranges from 0.4% to 32.1% and speed MAE from 6.9 to 13.3 mph.
+- Thirteen ramp sensors were identified and five have qualifying October
+  morning profiles. Four were visually and topologically audited: one measured
+  Mathilda exit is split from upstream demand, and the Mathilda, Moffett, and
+  San Antonio entries are injected. The reporting Embarcadero entry lies past
+  the endpoint. Vehicle mix, eight missing-ramp estimates, driver calibration,
+  remaining network review, and held-out validation are still required. See
+  the [ramp detector audit](us101-ramp-audit.md).
 
 ## Guardrails
 

@@ -1,7 +1,9 @@
 {
   "scenario": "H0 draft human-only US-101 northbound baseline",
   "network_file": "outputs/us101_corridor/us101_corridor.net.xml",
-  "pems_report": "outputs/pems_calibration/us101_corridor_provisional_morning_peak.json",
+  "pems_report": "outputs/pems_calibration/us101_mainline_station_profiles.json",
+  "mainline_entry_station_id": 402370,
+  "ramp_profile_file": "outputs/pems_calibration/us101_ramp_station_profiles.json",
   "route_file": "outputs/us101_corridor/h0_human_baseline.rou.xml",
   "manifest_file": "outputs/us101_corridor/h0_human_baseline_manifest.json",
   "corridor_config": "configs/us101_corridor.json",
@@ -11,6 +13,41 @@
   "detector_file_template": "outputs/us101_corridor/h0_virtual_detectors_seed_{seed}.add.xml",
   "detector_output_template": "outputs/us101_corridor/h0_virtual_detectors_seed_{seed}.xml",
   "detector_summary_template": "outputs/us101_corridor/h0_virtual_detectors_seed_{seed}.json",
+  "active_ramp_mappings": [
+    {
+      "station_id": 428588,
+      "lane_type": "FR",
+      "name": "Mathilda Ave off-ramp",
+      "sumo_edge_id": "9080606"
+    },
+    {
+      "station_id": 428589,
+      "lane_type": "OR",
+      "name": "Mathilda Ave northbound loop on-ramp",
+      "sumo_edge_id": "509747339",
+      "merge_edge_id": "509747346"
+    },
+    {
+      "station_id": 402919,
+      "lane_type": "OR",
+      "name": "Moffett Blvd northbound loop on-ramp",
+      "sumo_edge_id": "847214392#0",
+      "merge_edge_id": "1047818462"
+    },
+    {
+      "station_id": 425546,
+      "lane_type": "OR",
+      "name": "San Antonio Rd northbound on-ramp",
+      "sumo_edge_id": "9739842#1",
+      "merge_edge_id": "700010299"
+    }
+  ],
+  "excluded_reporting_ramps": [
+    {
+      "station_id": 425897,
+      "reason": "The Embarcadero on-ramp merges beyond the corridor analysis endpoint."
+    }
+  ],
   "checkpoint_edge_ids": [
     "509747302",
     "509747310-AddedOnRampEdge",
@@ -32,7 +69,9 @@
   "assumptions": [
     "Simulation time 00:15 corresponds to observed time 07:00 after a 15-minute warmup.",
     "PeMS total five-minute station flow is converted to vehicles per hour by multiplying by 12.",
-    "This first runnable baseline uses mainline passenger-car demand only; ramp demand and vehicle mix are not calibrated yet.",
+    "Mainline entry demand uses station 402370; measured Mathilda off-ramp demand is removed from the through flow.",
+    "Measured Mathilda, Moffett, and San Antonio northbound on-ramp flows are injected on visually audited SUMO edges.",
+    "Eight missing ramp profiles and the Embarcadero boundary ramp remain excluded; vehicle mix is not calibrated yet.",
     "Observed PeMS speed is a validation target, not a commanded vehicle speed.",
     "The mainline route passes through ordered detector-matched checkpoints so shortest-path routing cannot leave US-101 for a ramp shortcut.",
     "Human behavior uses SUMO's stochastic Krauss following model and default lane-changing model."
