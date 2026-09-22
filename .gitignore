@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# SUMO runtime files and generated results
+*.sumocfg
+*.sumo.cfg
+*.sumo.log
+*.tripinfo.xml
+*.fcd.xml
+*.queue.xml
+*.emissions.xml
+*.netstate.xml
+*.rou.alt.xml
+
+# Downloaded or generated scenario inputs (keep manifests and scripts in Git)
+data/raw/
+data/processed/
+data/osm/
+data/pems/
+data/mtc/
+outputs/
+
+# macOS and editors
+.DS_Store
+.idea/
+.vscode/
