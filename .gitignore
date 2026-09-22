@@ -10,8 +10,6 @@ htmlcov/
 venv/
 
 # SUMO runtime files and generated results
-*.sumocfg
-*.sumo.cfg
 *.sumo.log
 *.tripinfo.xml
 *.fcd.xml

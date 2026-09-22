@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edges>
+    <edge id="main_in" from="main_source" to="merge" numLanes="2" speed="30"/>
+    <edge id="main_out" from="merge" to="main_sink" numLanes="2" speed="30"/>
+    <edge id="on_ramp" from="ramp_source" to="merge" numLanes="1" speed="20"/>
+</edges>

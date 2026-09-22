@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    <!-- A deliberately simple human-like baseline. It is not calibrated yet. -->
+    <vType id="human" carFollowModel="IDM" accel="2.6" decel="4.5" sigma="0.5"
+           length="5.0" minGap="2.5" tau="1.4"/>
+
+    <route id="mainline" edges="main_in main_out"/>
+    <route id="ramp_to_mainline" edges="on_ramp main_out"/>
+
+    <flow id="mainline_humans" type="human" route="mainline" begin="0" end="600"
+          vehsPerHour="1800" departLane="best" departSpeed="max"/>
+    <flow id="ramp_humans" type="human" route="ramp_to_mainline" begin="0" end="600"
+          vehsPerHour="300" departLane="best" departSpeed="max"/>
+</routes>

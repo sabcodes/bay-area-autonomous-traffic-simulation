@@ -45,7 +45,7 @@ research/      Source-backed feasibility notes
 - Python 3.11 or newer.
 - Later phases may add PyTorch. Reinforcement learning is deliberately not a prerequisite for the first experiment.
 
-We will add an installation script after agreeing on the first scenario definition so the setup is tested rather than merely documented.
+The project ships with a first tested SUMO setup in its virtual environment.
 
 ## Python environment
 
@@ -73,8 +73,23 @@ Or activate it for an interactive terminal:
 source .venv/bin/activate
 ```
 
-`SUMO` is a native simulator installed separately from Python. Its Python
-bindings will be installed into `.venv` when we set up the first scenario.
+The official `eclipse-sumo`, `traci`, and `sumolib` packages are installed into
+`.venv`; this project does not depend on a machine-wide SUMO installation.
+
+## First runnable experiment
+
+The first runnable experiment is a tiny two-lane freeway with one on-ramp. It
+exists only to prove that the tools, metrics, and workflow work together. Its
+traffic values are illustrative and are **not** a model of US-101.
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim build-toy-network
+.venv/bin/python -m bay_area_traffic_sim run-toy-baseline --seed 42
+```
+
+The second command prints completed-trip count, average travel time, waiting
+time, and SUMO time loss. Generated network files and reports stay under
+`outputs/` and are intentionally not committed.
 
 ## Status
 

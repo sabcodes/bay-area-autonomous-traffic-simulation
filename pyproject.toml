@@ -11,7 +11,10 @@ requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "Bay Area Autonomous Traffic Simulation contributors" }]
 dependencies = [
+  "eclipse-sumo>=1.27,<1.28",
   "numpy>=2.0,<3.0",
+  "sumolib>=1.27,<1.28",
+  "traci>=1.27,<1.28",
 ]
 
 [project.optional-dependencies]

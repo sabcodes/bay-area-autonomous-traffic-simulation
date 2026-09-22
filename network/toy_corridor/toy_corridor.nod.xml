@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nodes>
+    <node id="main_source" x="0" y="0" type="priority"/>
+    <node id="merge" x="500" y="0" type="priority"/>
+    <node id="main_sink" x="2500" y="0" type="priority"/>
+    <node id="ramp_source" x="250" y="-250" type="priority"/>
+</nodes>
