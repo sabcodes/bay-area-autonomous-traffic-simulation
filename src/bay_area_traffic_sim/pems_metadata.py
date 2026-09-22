@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import json
 from collections.abc import Iterable, Mapping
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -60,9 +61,25 @@ def select_corridor_stations(
     )
 
 
+def load_station_ids(selection_path: Path) -> set[int]:
+    """Load candidate detector IDs from a committed selection config or report."""
+
+    raw = json.loads(selection_path.read_text())
+    values = raw.get("station_ids", raw.get("selection", {}).get("station_ids"))
+    if not isinstance(values, list) or not all(isinstance(value, int) for value in values):
+        raise ValueError(f"Station ID list is missing or invalid: {selection_path}")
+    return set(values)
+
+
 def _read_metadata_file(source: Path) -> list[MetadataStation]:
     with source.open(newline="") as raw_file:
-        reader = csv.DictReader(raw_file)
+        sample = raw_file.read(4096)
+        raw_file.seek(0)
+        try:
+            dialect = csv.Sniffer().sniff(sample, delimiters=",\t")
+        except csv.Error:
+            dialect = csv.excel
+        reader = csv.DictReader(raw_file, dialect=dialect)
         if reader.fieldnames is None:
             raise ValueError(f"Station Metadata file has no header: {source}")
         missing = {"ID", "Fwy", "Dir", "District", "Latitude", "Longitude", "Type"} - set(

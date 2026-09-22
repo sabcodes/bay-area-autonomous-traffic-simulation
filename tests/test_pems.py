@@ -85,6 +85,24 @@ def test_summary_requires_at_least_one_source_file() -> None:
         raise AssertionError("Expected a helpful error for an empty file list.")
 
 
+def test_summary_can_retain_only_selected_station_ids(tmp_path: Path) -> None:
+    source = tmp_path / "d04_text_station_5min_2025_10_08.txt.gz"
+    rows = [
+        _row("10/08/2025 07:00:00", 400001, flow=100),
+        _row("10/08/2025 07:00:00", 400002, flow=200),
+    ]
+    with gzip.open(source, "wt", newline="") as destination:
+        destination.write("\n".join(rows))
+
+    summary = summarize_station_files(
+        [source], PemsFilter(start_hour=7, end_hour=8, station_ids={400001})
+    )
+
+    assert summary.station_count == 1
+    assert summary.matching_rows == 1
+    assert summary.mean_flow_vehicles_per_5_minutes_per_station == 100
+
+
 def test_summary_keeps_a_flow_when_pems_omits_its_speed(tmp_path: Path) -> None:
     source = tmp_path / "d04_text_station_5min_2025_10_08.txt.gz"
     source_row = _row("10/08/2025 07:00:00", 400001, flow=125, speed=60)

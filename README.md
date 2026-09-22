@@ -145,6 +145,16 @@ coordinates, and source metadata files to
 `outputs/pems_calibration/us101_corridor_station_selection.json`. The list
 still needs the short visual map audit described above.
 
+The current candidate IDs are stored in
+`configs/us101_corridor_station_ids.json`. Use them for a corridor-specific
+morning-peak summary:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim summarize-pems \
+  --station-ids-file configs/us101_corridor_station_ids.json \
+  --output outputs/pems_calibration/us101_corridor_morning_peak.json
+```
+
 ## Status
 
 **Phase 1 - runnable toy corridor.** The human-like and CACC sensitivity

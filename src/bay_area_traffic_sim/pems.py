@@ -5,7 +5,7 @@ from __future__ import annotations
 import csv
 import gzip
 from collections import defaultdict
-from collections.abc import Iterable
+from collections.abc import Iterable, Set
 from dataclasses import asdict, dataclass
 from datetime import datetime
 from pathlib import Path
@@ -44,6 +44,7 @@ class PemsFilter:
     start_hour: int = 7
     end_hour: int = 9
     minimum_observed_percent: float = 90.0
+    station_ids: Set[int] | None = None
 
     def matches(self, observation: StationObservation) -> bool:
         return (
@@ -51,6 +52,7 @@ class PemsFilter:
             and observation.freeway == self.freeway
             and observation.direction == self.direction
             and observation.lane_type == self.lane_type
+            and (self.station_ids is None or observation.station_id in self.station_ids)
             and self.start_hour <= observation.timestamp.hour < self.end_hour
             and observation.has_aggregate_measurement
             and observation.observed_percent is not None

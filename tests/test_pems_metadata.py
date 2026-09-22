@@ -1,7 +1,7 @@
 import csv
 from pathlib import Path
 
-from bay_area_traffic_sim.pems_metadata import select_corridor_stations
+from bay_area_traffic_sim.pems_metadata import load_station_ids, select_corridor_stations
 
 
 def _write_metadata(source: Path) -> None:
@@ -13,7 +13,7 @@ def _write_metadata(source: Path) -> None:
         ["400004", "101", "N", "4", "37.40", "-122.05", "OR", "1", "On-ramp"],
     ]
     with source.open("w", newline="") as destination:
-        csv.writer(destination).writerows(rows)
+        csv.writer(destination, delimiter="\t").writerows(rows)
 
 
 def test_select_corridor_stations_uses_location_and_mainline_direction(tmp_path: Path) -> None:
@@ -37,3 +37,10 @@ def test_select_corridor_stations_requires_a_metadata_file() -> None:
         assert "No Station Metadata" in str(error)
     else:
         raise AssertionError("Expected a helpful error for empty metadata input.")
+
+
+def test_load_station_ids_accepts_a_committed_selection_config(tmp_path: Path) -> None:
+    selection = tmp_path / "station_ids.json"
+    selection.write_text('{"station_ids": [400001, 400002]}')
+
+    assert load_station_ids(selection) == {400001, 400002}

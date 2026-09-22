@@ -9,7 +9,7 @@ from pathlib import Path
 from bay_area_traffic_sim.experiments import repeat
 from bay_area_traffic_sim.osm_import import download_osm, import_osm, load_corridor_config
 from bay_area_traffic_sim.pems import PemsFilter, summarize_station_files
-from bay_area_traffic_sim.pems_metadata import select_corridor_stations
+from bay_area_traffic_sim.pems_metadata import load_station_ids, select_corridor_stations
 from bay_area_traffic_sim.toy_corridor import (
     build_network,
     metrics_as_dict,
@@ -83,14 +83,18 @@ def main() -> None:
         default="outputs/pems_calibration/us101_northbound_d4_morning_peak.json",
         help="JSON report path.",
     )
+    calibrate.add_argument(
+        "--station-ids-file",
+        help="Optional JSON config/report containing the PeMS station_ids to retain.",
+    )
     select_stations = subcommands.add_parser(
         "select-us101-stations",
         help="Select US-101 northbound mainline PeMS stations inside the study boundary.",
     )
     select_stations.add_argument(
         "--metadata-glob",
-        default="data/pems/metadata/*",
-        help="PeMS Station Metadata files (default: data/pems/metadata/*).",
+        default="data/pems/metadata/d04_text_meta_*.txt",
+        help="PeMS Station Metadata text files (default: data/pems/metadata/d04_text_meta_*.txt).",
     )
     select_stations.add_argument(
         "--config",
@@ -135,10 +139,14 @@ def main() -> None:
         source, provenance = download_osm(Path(args.config))
         print(json.dumps({"osm_source": str(source), "provenance": str(provenance)}, indent=2))
     elif args.command == "summarize-pems":
+        station_ids = (
+            load_station_ids(Path(args.station_ids_file)) if args.station_ids_file else None
+        )
         criteria = PemsFilter(
             start_hour=args.start_hour,
             end_hour=args.end_hour,
             minimum_observed_percent=args.minimum_observed_percent,
+            station_ids=station_ids,
         )
         summary = summarize_station_files(sorted(Path().glob(args.input_glob)), criteria)
         output = Path(args.output)
@@ -152,6 +160,8 @@ def main() -> None:
                 "start_hour": criteria.start_hour,
                 "end_hour": criteria.end_hour,
                 "minimum_observed_percent": criteria.minimum_observed_percent,
+                "station_ids_file": args.station_ids_file,
+                "station_id_count": len(criteria.station_ids) if criteria.station_ids else None,
             },
             "summary": summary.as_dict(),
             "limitation": (
