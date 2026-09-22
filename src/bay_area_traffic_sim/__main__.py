@@ -7,8 +7,9 @@ import json
 from pathlib import Path
 
 from bay_area_traffic_sim.experiments import repeat
-from bay_area_traffic_sim.osm_import import download_osm, import_osm
+from bay_area_traffic_sim.osm_import import download_osm, import_osm, load_corridor_config
 from bay_area_traffic_sim.pems import PemsFilter, summarize_station_files
+from bay_area_traffic_sim.pems_metadata import select_corridor_stations
 from bay_area_traffic_sim.toy_corridor import (
     build_network,
     metrics_as_dict,
@@ -82,6 +83,25 @@ def main() -> None:
         default="outputs/pems_calibration/us101_northbound_d4_morning_peak.json",
         help="JSON report path.",
     )
+    select_stations = subcommands.add_parser(
+        "select-us101-stations",
+        help="Select US-101 northbound mainline PeMS stations inside the study boundary.",
+    )
+    select_stations.add_argument(
+        "--metadata-glob",
+        default="data/pems/metadata/*",
+        help="PeMS Station Metadata files (default: data/pems/metadata/*).",
+    )
+    select_stations.add_argument(
+        "--config",
+        default="configs/us101_corridor.json",
+        help="Study-boundary configuration (default: configs/us101_corridor.json).",
+    )
+    select_stations.add_argument(
+        "--output",
+        default="outputs/pems_calibration/us101_corridor_station_selection.json",
+        help="JSON selection report path.",
+    )
     args = parser.parse_args()
 
     if args.command == "build-toy-network":
@@ -137,6 +157,24 @@ def main() -> None:
             "limitation": (
                 "This is district-wide US-101 northbound data. Add PeMS station metadata "
                 "before treating it as the SR-237 to Page Mill Road corridor."
+            ),
+        }
+        output.write_text(json.dumps(report, indent=2) + "\n")
+        print(json.dumps(report, indent=2))
+    elif args.command == "select-us101-stations":
+        corridor = load_corridor_config(Path(args.config))
+        selection = select_corridor_stations(
+            sorted(Path().glob(args.metadata_glob)), corridor.bounding_box
+        )
+        output = Path(args.output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        report = {
+            "corridor": corridor.name,
+            "bounding_box": corridor.bounding_box,
+            "selection": selection.as_dict(),
+            "limitation": (
+                "This is an automatic geographic filter. Confirm selected stations and their "
+                "ramp/interchange context during the manual network audit."
             ),
         }
         output.write_text(json.dumps(report, indent=2) + "\n")

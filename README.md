@@ -132,6 +132,19 @@ The downloaded files alone still span all of District 4's US-101. Download
 **Station Metadata** next; we will use it to identify only the detector IDs
 between SR-237 and Page Mill Road before using the data to tune the corridor.
 
+After placing the matching Station Metadata text files in `data/pems/metadata/`,
+produce the first automatic detector list with:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim select-us101-stations
+```
+
+The command keeps only District 4, northbound US-101 **mainline** detector
+locations inside the configured corridor boundary. It writes the station IDs,
+coordinates, and source metadata files to
+`outputs/pems_calibration/us101_corridor_station_selection.json`. The list
+still needs the short visual map audit described above.
+
 ## Status
 
 **Phase 1 - runnable toy corridor.** The human-like and CACC sensitivity
