@@ -44,3 +44,12 @@ def test_load_station_ids_accepts_a_committed_selection_config(tmp_path: Path) -
     selection.write_text('{"station_ids": [400001, 400002]}')
 
     assert load_station_ids(selection) == {400001, 400002}
+
+
+def test_load_station_ids_can_select_a_named_reviewed_subset(tmp_path: Path) -> None:
+    selection = tmp_path / "station_ids.json"
+    selection.write_text(
+        '{"station_ids": [400001, 400002], "provisionally_reviewed_station_ids": [400001]}'
+    )
+
+    assert load_station_ids(selection, "provisionally_reviewed_station_ids") == {400001}

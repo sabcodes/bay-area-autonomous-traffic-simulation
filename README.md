@@ -156,18 +156,22 @@ coordinates, and source metadata files to
 `outputs/pems_calibration/us101_corridor_station_selection.json`. The list
 still needs the short visual map audit described above.
 
-The current candidate IDs are stored in
-`configs/us101_corridor_station_ids.json`. Use them for a corridor-specific
-morning-peak summary:
+The current candidate IDs and a smaller, provisional reviewed subset are stored
+in `configs/us101_corridor_station_ids.json`. Use the provisional subset for
+the first corridor-specific morning-peak summary. It excludes the two Moffett
+locations still marked unsure in the audit sheet:
 
 ```bash
 .venv/bin/python -m bay_area_traffic_sim summarize-pems \
   --station-ids-file configs/us101_corridor_station_ids.json \
-  --output outputs/pems_calibration/us101_corridor_morning_peak.json
+  --station-ids-key provisionally_reviewed_station_ids \
+  --output outputs/pems_calibration/us101_corridor_provisional_morning_peak.json
 ```
 
-Use the [PeMS sensor audit sheet](docs/us101-sensor-audit.md) to check the
-candidate locations before treating them as final calibration targets.
+This report gives the “traffic rhythm” used to build the first human-traffic
+scenario: observed flow and speed for each five-minute slice, averaged across
+the selected days and sensors. Use the [PeMS sensor audit sheet](docs/us101-sensor-audit.md)
+to resolve the remaining locations before treating this as a final calibration target.
 
 ## Status
 

@@ -88,6 +88,14 @@ def main() -> None:
         "--station-ids-file",
         help="Optional JSON config/report containing the PeMS station_ids to retain.",
     )
+    calibrate.add_argument(
+        "--station-ids-key",
+        default="station_ids",
+        help=(
+            "Name of the detector-ID list in --station-ids-file "
+            "(default: station_ids)."
+        ),
+    )
     select_stations = subcommands.add_parser(
         "select-us101-stations",
         help="Select US-101 northbound mainline PeMS stations inside the study boundary.",
@@ -165,7 +173,9 @@ def main() -> None:
         print(json.dumps({"osm_source": str(source), "provenance": str(provenance)}, indent=2))
     elif args.command == "summarize-pems":
         station_ids = (
-            load_station_ids(Path(args.station_ids_file)) if args.station_ids_file else None
+            load_station_ids(Path(args.station_ids_file), args.station_ids_key)
+            if args.station_ids_file
+            else None
         )
         criteria = PemsFilter(
             start_hour=args.start_hour,
@@ -177,8 +187,13 @@ def main() -> None:
         output = Path(args.output)
         output.parent.mkdir(parents=True, exist_ok=True)
         limitation = (
-            "This is an automatic candidate-corridor filter. Confirm selected stations and their "
-            "ramp/interchange context during the manual network audit."
+            "This uses a provisional manually reviewed detector subset. It excludes the two "
+            "unresolved Moffett locations but is not yet a final calibration target."
+            if args.station_ids_key == "provisionally_reviewed_station_ids"
+            else (
+                "This is an automatic candidate-corridor filter. Confirm selected stations and "
+                "their ramp/interchange context during the manual network audit."
+            )
             if args.station_ids_file
             else (
                 "This is district-wide US-101 northbound data. Add PeMS station metadata "
@@ -195,6 +210,7 @@ def main() -> None:
                 "end_hour": criteria.end_hour,
                 "minimum_observed_percent": criteria.minimum_observed_percent,
                 "station_ids_file": args.station_ids_file,
+                "station_ids_key": args.station_ids_key if args.station_ids_file else None,
                 "station_id_count": len(criteria.station_ids) if criteria.station_ids else None,
             },
             "summary": summary.as_dict(),

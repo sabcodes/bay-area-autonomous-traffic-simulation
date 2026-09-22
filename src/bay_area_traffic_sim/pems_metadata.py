@@ -61,13 +61,15 @@ def select_corridor_stations(
     )
 
 
-def load_station_ids(selection_path: Path) -> set[int]:
-    """Load candidate detector IDs from a committed selection config or report."""
+def load_station_ids(selection_path: Path, key: str = "station_ids") -> set[int]:
+    """Load detector IDs from a named list in a committed selection config or report."""
 
     raw = json.loads(selection_path.read_text())
-    values = raw.get("station_ids", raw.get("selection", {}).get("station_ids"))
+    values = raw.get(key)
+    if values is None and key == "station_ids":
+        values = raw.get("selection", {}).get("station_ids")
     if not isinstance(values, list) or not all(isinstance(value, int) for value in values):
-        raise ValueError(f"Station ID list is missing or invalid: {selection_path}")
+        raise ValueError(f"Station ID list {key!r} is missing or invalid: {selection_path}")
     return set(values)
 
 
