@@ -47,6 +47,35 @@ research/      Source-backed feasibility notes
 
 We will add an installation script after agreeing on the first scenario definition so the setup is tested rather than merely documented.
 
+## Python environment
+
+All Python packages for this project belong in the project-local `.venv` folder.
+Never install simulation dependencies into the system Python.
+
+Create or refresh the environment:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -e '.[dev]'
+```
+
+Use the environment without activating it:
+
+```bash
+.venv/bin/python -m pytest -q
+.venv/bin/python -m ruff check .
+```
+
+Or activate it for an interactive terminal:
+
+```bash
+source .venv/bin/activate
+```
+
+`SUMO` is a native simulator installed separately from Python. Its Python
+bindings will be installed into `.venv` when we set up the first scenario.
+
 ## Status
 
 **Phase 0 - repository foundation.** No scenario, traffic data, or controller has been validated yet.
