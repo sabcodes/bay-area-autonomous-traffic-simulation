@@ -11,7 +11,16 @@ from xml.etree import ElementTree
 
 import sumolib
 
+from bay_area_traffic_sim.detectors import (
+    VirtualDetectorSpec,
+    build_virtual_detector_specs,
+    detector_specs_as_dict,
+    summarize_virtual_detector_output,
+    write_virtual_detector_file,
+)
 from bay_area_traffic_sim.metrics import RunMetrics, read_tripinfo
+from bay_area_traffic_sim.osm_import import load_corridor_config
+from bay_area_traffic_sim.pems_metadata import load_station_ids
 from bay_area_traffic_sim.sumo_install import binary
 from bay_area_traffic_sim.toy_corridor import repository_root
 
@@ -44,6 +53,7 @@ class PreparedBaseline:
     expected_input_vehicles: float
     simulation_end_seconds: int
     demand_profile: list[DemandPoint]
+    virtual_detectors: list[VirtualDetectorSpec]
     assumptions: list[str]
 
     def as_dict(self) -> dict[str, Any]:
@@ -214,6 +224,17 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
         for point in demand_points
     )
     simulation_end = demand_points[-1].end_seconds + clearance_seconds
+    corridor = load_corridor_config(root / raw["corridor_config"])
+    detector_station_ids = load_station_ids(
+        root / raw["virtual_detector_station_ids_file"],
+        raw["virtual_detector_station_ids_key"],
+    )
+    detector_specs = build_virtual_detector_specs(
+        network_file,
+        sorted(root.glob(raw["metadata_glob"])),
+        corridor.bounding_box,
+        detector_station_ids,
+    )
     prepared = PreparedBaseline(
         scenario=raw["scenario"],
         network_file=str(network_file),
@@ -225,6 +246,7 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
         expected_input_vehicles=expected_input,
         simulation_end_seconds=simulation_end,
         demand_profile=demand_points,
+        virtual_detectors=detector_specs,
         assumptions=[
             *raw["assumptions"],
             f"Warmup contributes approximately {first_interval_input:.1f} input vehicles.",
@@ -235,13 +257,26 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
     return prepared
 
 
-def run_human_baseline(config_path: Path, seed: int = 42) -> tuple[PreparedBaseline, RunMetrics]:
+def run_human_baseline(
+    config_path: Path, seed: int = 42
+) -> tuple[PreparedBaseline, RunMetrics, Path]:
     """Run the draft real-corridor human baseline and read completed-trip metrics."""
 
     prepared = prepare_human_baseline(config_path)
     output_directory = Path(prepared.manifest_file).parent
     tripinfo_file = output_directory / f"h0_human_baseline_seed_{seed}.tripinfo.xml"
     log_file = output_directory / f"h0_human_baseline_seed_{seed}.log"
+    raw = json.loads(config_path.read_text())
+    detector_file = repository_root() / raw["detector_file_template"].format(seed=seed)
+    detector_output_file = repository_root() / raw["detector_output_template"].format(seed=seed)
+    detector_summary_file = (
+        repository_root() / raw["detector_summary_template"].format(seed=seed)
+    )
+    write_virtual_detector_file(
+        detector_file,
+        detector_output_file,
+        prepared.virtual_detectors,
+    )
     subprocess.run(
         [
             str(binary("sumo")),
@@ -249,6 +284,8 @@ def run_human_baseline(config_path: Path, seed: int = 42) -> tuple[PreparedBasel
             prepared.network_file,
             "--route-files",
             prepared.route_file,
+            "--additional-files",
+            str(detector_file),
             "--step-length",
             "0.5",
             "--end",
@@ -269,4 +306,17 @@ def run_human_baseline(config_path: Path, seed: int = 42) -> tuple[PreparedBasel
         check=True,
         stdout=subprocess.DEVNULL,
     )
-    return prepared, read_tripinfo(tripinfo_file)
+    detector_intervals = summarize_virtual_detector_output(detector_output_file)
+    detector_summary_file.write_text(
+        json.dumps(
+            {
+                "seed": seed,
+                "period_seconds": SECONDS_PER_PROFILE_INTERVAL,
+                "detectors": detector_specs_as_dict(prepared.virtual_detectors),
+                "intervals": [asdict(interval) for interval in detector_intervals],
+            },
+            indent=2,
+        )
+        + "\n"
+    )
+    return prepared, read_tripinfo(tripinfo_file), detector_summary_file

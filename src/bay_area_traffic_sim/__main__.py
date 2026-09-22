@@ -6,10 +6,15 @@ import argparse
 import json
 from pathlib import Path
 
+from bay_area_traffic_sim.calibration import compare_detector_profiles
 from bay_area_traffic_sim.experiments import repeat
 from bay_area_traffic_sim.network_audit import audit_network
 from bay_area_traffic_sim.osm_import import download_osm, import_osm, load_corridor_config
-from bay_area_traffic_sim.pems import PemsFilter, summarize_station_files
+from bay_area_traffic_sim.pems import (
+    PemsFilter,
+    summarize_station_files,
+    summarize_station_profiles,
+)
 from bay_area_traffic_sim.pems_metadata import load_station_ids, select_corridor_stations
 from bay_area_traffic_sim.real_corridor import (
     prepare_human_baseline as prepare_real_human_baseline,
@@ -100,6 +105,41 @@ def main() -> None:
             "(default: station_ids)."
         ),
     )
+    station_profiles = subcommands.add_parser(
+        "summarize-pems-stations",
+        help="Build separate five-minute profiles for selected PeMS stations.",
+    )
+    station_profiles.add_argument(
+        "--input-glob",
+        default="data/pems/d04_text_station_5min_*.txt.gz",
+        help="PeMS Station 5-Minute input files.",
+    )
+    station_profiles.add_argument(
+        "--station-ids-file",
+        default="configs/us101_ramp_station_ids.json",
+        help="JSON config containing selected station IDs.",
+    )
+    station_profiles.add_argument(
+        "--station-ids-key",
+        default="station_ids",
+        help="Name of the detector-ID list in --station-ids-file.",
+    )
+    station_profiles.add_argument(
+        "--lane-types",
+        nargs="+",
+        default=["OR", "FR"],
+        help="PeMS lane types to retain (default: OR FR).",
+    )
+    station_profiles.add_argument("--start-hour", type=int, default=7)
+    station_profiles.add_argument("--end-hour", type=int, default=9)
+    station_profiles.add_argument(
+        "--minimum-observed-percent", type=float, default=90.0
+    )
+    station_profiles.add_argument(
+        "--output",
+        default="outputs/pems_calibration/us101_ramp_station_profiles.json",
+        help="JSON station-profile report path.",
+    )
     select_stations = subcommands.add_parser(
         "select-us101-stations",
         help="Select US-101 northbound mainline PeMS stations inside the study boundary.",
@@ -162,6 +202,23 @@ def main() -> None:
         help="Draft human baseline configuration.",
     )
     run_real.add_argument("--seed", type=int, default=42, help="SUMO random seed (default: 42).")
+    compare_detectors = subcommands.add_parser(
+        "compare-us101-detectors",
+        help="Compare observed PeMS station profiles with SUMO virtual detectors.",
+    )
+    compare_detectors.add_argument(
+        "--observed",
+        default="outputs/pems_calibration/us101_mainline_station_profiles.json",
+    )
+    compare_detectors.add_argument(
+        "--simulated",
+        default="outputs/us101_corridor/h0_virtual_detectors_seed_42.json",
+    )
+    compare_detectors.add_argument("--warmup-seconds", type=int, default=900)
+    compare_detectors.add_argument(
+        "--output",
+        default="outputs/us101_corridor/h0_detector_comparison_seed_42.json",
+    )
     args = parser.parse_args()
 
     if args.command == "build-toy-network":
@@ -242,6 +299,37 @@ def main() -> None:
         }
         output.write_text(json.dumps(report, indent=2) + "\n")
         print(json.dumps(report, indent=2))
+    elif args.command == "summarize-pems-stations":
+        station_ids = load_station_ids(Path(args.station_ids_file), args.station_ids_key)
+        criteria = PemsFilter(
+            start_hour=args.start_hour,
+            end_hour=args.end_hour,
+            minimum_observed_percent=args.minimum_observed_percent,
+            station_ids=station_ids,
+            lane_types=set(args.lane_types),
+        )
+        summary = summarize_station_profiles(
+            sorted(Path().glob(args.input_glob)), criteria
+        )
+        output = Path(args.output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        report = {
+            "filter": {
+                "start_hour": criteria.start_hour,
+                "end_hour": criteria.end_hour,
+                "minimum_observed_percent": criteria.minimum_observed_percent,
+                "station_ids_file": args.station_ids_file,
+                "station_ids_key": args.station_ids_key,
+                "lane_types": sorted(criteria.lane_types or []),
+            },
+            "summary": summary.as_dict(),
+            "limitation": (
+                "These are observed ramp targets. SUMO ramp edges require manual audit before "
+                "the profiles are used to inject or remove vehicles."
+            ),
+        }
+        output.write_text(json.dumps(report, indent=2) + "\n")
+        print(json.dumps(report, indent=2))
     elif args.command == "select-us101-stations":
         corridor = load_corridor_config(Path(args.config))
         selection = select_corridor_stations(
@@ -281,7 +369,9 @@ def main() -> None:
         prepared = prepare_real_human_baseline(Path(args.config))
         print(json.dumps(prepared.as_dict(), indent=2))
     elif args.command == "run-us101-human-baseline":
-        prepared, metrics = run_real_human_baseline(Path(args.config), args.seed)
+        prepared, metrics, detector_summary_file = run_real_human_baseline(
+            Path(args.config), args.seed
+        )
         print(
             json.dumps(
                 {
@@ -290,10 +380,21 @@ def main() -> None:
                     "expected_input_vehicles": prepared.expected_input_vehicles,
                     "metrics": metrics_as_dict(metrics),
                     "manifest_file": prepared.manifest_file,
+                    "virtual_detector_summary_file": str(detector_summary_file),
                 },
                 indent=2,
             )
         )
+    elif args.command == "compare-us101-detectors":
+        report = compare_detector_profiles(
+            Path(args.observed),
+            Path(args.simulated),
+            args.warmup_seconds,
+        )
+        output = Path(args.output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(report, indent=2) + "\n")
+        print(json.dumps(report, indent=2))
 
 
 if __name__ == "__main__":

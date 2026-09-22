@@ -4,6 +4,13 @@
   "pems_report": "outputs/pems_calibration/us101_corridor_provisional_morning_peak.json",
   "route_file": "outputs/us101_corridor/h0_human_baseline.rou.xml",
   "manifest_file": "outputs/us101_corridor/h0_human_baseline_manifest.json",
+  "corridor_config": "configs/us101_corridor.json",
+  "metadata_glob": "data/pems/metadata/d04_text_meta_*.txt",
+  "virtual_detector_station_ids_file": "configs/us101_corridor_station_ids.json",
+  "virtual_detector_station_ids_key": "provisionally_reviewed_station_ids",
+  "detector_file_template": "outputs/us101_corridor/h0_virtual_detectors_seed_{seed}.add.xml",
+  "detector_output_template": "outputs/us101_corridor/h0_virtual_detectors_seed_{seed}.xml",
+  "detector_summary_template": "outputs/us101_corridor/h0_virtual_detectors_seed_{seed}.json",
   "checkpoint_edge_ids": [
     "509747302",
     "509747310-AddedOnRampEdge",

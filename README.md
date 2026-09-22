@@ -197,6 +197,33 @@ stochastic following, but currently has only mainline passenger-car demand.
 Ramp demand, vehicle mix, held-out-day validation, and manual network
 corrections still belong to M3.
 
+Generate separate observed profiles for the six on-ramp and seven off-ramp
+PeMS candidates with:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim summarize-pems-stations
+```
+
+These profiles are demand targets only until each candidate is matched to the
+correct SUMO ramp edge. Human-baseline runs now also install lane-level virtual
+induction loops at the nine provisionally reviewed mainline PeMS stations and
+write a five-minute station summary beside the other run outputs.
+
+After generating the observed mainline station profiles and running seed 42,
+create the direct five-minute comparison with:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim summarize-pems-stations \
+  --station-ids-file configs/us101_corridor_station_ids.json \
+  --station-ids-key provisionally_reviewed_station_ids \
+  --lane-types ML \
+  --output outputs/pems_calibration/us101_mainline_station_profiles.json
+.venv/bin/python -m bay_area_traffic_sim compare-us101-detectors
+```
+
+This reports flow percentage error and speed error separately for each matched
+station rather than hiding spatial mismatches inside one corridor average.
+
 ## Status
 
 **Phase 1 - runnable toy corridor.** The human-like and CACC sensitivity

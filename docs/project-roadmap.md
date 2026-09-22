@@ -34,8 +34,14 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   mainline checkpoints and never falls below four lanes.
 - M3 has a runnable draft. Seed 42 completed 11,372 vehicles without teleport
   warnings, but its 59.7 mph average trip speed is substantially above the
-  provisional 48.7 mph observed detector target. Ramp demand, vehicle mix,
-  network corrections, and held-out validation are still required.
+  provisional 48.7 mph observed detector target. Nine PeMS-aligned virtual
+  stations now report 40 lane loops in five-minute intervals. Six reporting
+  stations have direct flow/speed comparisons: flow error ranges from 3.8% to
+  22.9%, and speed error ranges from 6.3 to 12.4 mph.
+- Ramp-demand preparation is active. Thirteen ramp sensors were identified;
+  five have qualifying October morning profiles. Injection remains gated on
+  the [ramp detector audit](us101-ramp-audit.md). Vehicle mix, missing-ramp
+  estimation, network corrections, and held-out validation are still required.
 
 ## Guardrails
 

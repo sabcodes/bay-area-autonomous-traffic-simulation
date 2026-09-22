@@ -1,0 +1,23 @@
+{
+  "corridor": "US-101 northbound: SR-237 to Oregon Expressway/Page Mill Road",
+  "status": "Candidate ramp detector set; SUMO edge mapping requires manual audit",
+  "station_ids": [
+    402917,
+    402919,
+    423301,
+    425546,
+    425694,
+    425696,
+    425699,
+    425893,
+    425894,
+    425895,
+    425897,
+    428588,
+    428589
+  ],
+  "on_ramp_station_ids": [402919, 423301, 425546, 425893, 425897, 428589],
+  "off_ramp_station_ids": [402917, 425694, 425696, 425699, 425894, 425895, 428588],
+  "lane_types": ["OR", "FR"],
+  "mapping_note": "Detector coordinates are close to both freeway and ramp edges. Do not inject or remove vehicles until each SUMO ramp edge is visually audited."
+}

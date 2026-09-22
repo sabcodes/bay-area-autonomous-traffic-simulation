@@ -1,7 +1,11 @@
 import gzip
 from pathlib import Path
 
-from bay_area_traffic_sim.pems import PemsFilter, summarize_station_files
+from bay_area_traffic_sim.pems import (
+    PemsFilter,
+    summarize_station_files,
+    summarize_station_profiles,
+)
 
 
 def _row(
@@ -131,3 +135,47 @@ def test_summary_counts_rows_without_a_usable_aggregate_measurement(tmp_path: Pa
     assert summary.invalid_rows == 0
     assert summary.unusable_aggregate_rows == 1
     assert summary.matching_rows == 0
+
+
+def test_station_profiles_keep_on_and_off_ramps_separate(tmp_path: Path) -> None:
+    source = tmp_path / "d04_text_station_5min_2025_10_09.txt.gz"
+    rows = [
+        _row("10/09/2025 07:00:00", 400001, lane_type="OR", flow=20, speed=35),
+        _row("10/10/2025 07:00:00", 400001, lane_type="OR", flow=30, speed=45),
+        _row("10/09/2025 07:00:00", 400002, lane_type="FR", flow=10, speed=30),
+        _row("10/09/2025 07:00:00", 400003, lane_type="ML", flow=100, speed=60),
+    ]
+    with gzip.open(source, "wt", newline="") as destination:
+        destination.write("\n".join(rows))
+
+    summary = summarize_station_profiles(
+        [source],
+        PemsFilter(
+            start_hour=7,
+            end_hour=8,
+            station_ids={400001, 400002},
+            lane_types={"OR", "FR"},
+        ),
+    )
+
+    assert summary.station_count == 2
+    assert summary.matching_rows == 3
+    assert summary.profiles[0].station_id == 400001
+    assert summary.profiles[0].lane_type == "OR"
+    assert summary.profiles[0].date_count == 2
+    assert summary.profiles[0].mean_flow_vehicles_per_5_minutes == 25
+    assert summary.profiles[0].time_profile[0]["mean_speed_mph"] == 40
+    assert summary.profiles[1].station_id == 400002
+
+
+def test_station_profiles_require_station_ids(tmp_path: Path) -> None:
+    source = tmp_path / "empty.txt.gz"
+    with gzip.open(source, "wt", newline=""):
+        pass
+
+    try:
+        summarize_station_profiles([source], PemsFilter(station_ids=None))
+    except ValueError as error:
+        assert "explicit station ID" in str(error)
+    else:
+        raise AssertionError("Expected a helpful error when station IDs are omitted.")
