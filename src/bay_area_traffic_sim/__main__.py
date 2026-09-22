@@ -151,6 +151,15 @@ def main() -> None:
         summary = summarize_station_files(sorted(Path().glob(args.input_glob)), criteria)
         output = Path(args.output)
         output.parent.mkdir(parents=True, exist_ok=True)
+        limitation = (
+            "This is an automatic candidate-corridor filter. Confirm selected stations and their "
+            "ramp/interchange context during the manual network audit."
+            if args.station_ids_file
+            else (
+                "This is district-wide US-101 northbound data. Add PeMS station metadata "
+                "before treating it as the SR-237 to Page Mill Road corridor."
+            )
+        )
         report = {
             "filter": {
                 "district": criteria.district,
@@ -164,10 +173,7 @@ def main() -> None:
                 "station_id_count": len(criteria.station_ids) if criteria.station_ids else None,
             },
             "summary": summary.as_dict(),
-            "limitation": (
-                "This is district-wide US-101 northbound data. Add PeMS station metadata "
-                "before treating it as the SR-237 to Page Mill Road corridor."
-            ),
+            "limitation": limitation,
         }
         output.write_text(json.dumps(report, indent=2) + "\n")
         print(json.dumps(report, indent=2))
