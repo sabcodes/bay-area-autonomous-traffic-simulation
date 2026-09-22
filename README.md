@@ -140,6 +140,9 @@ small, uncalibrated tool checks. In particular, record and investigate SUMO
 emergency-braking warnings before treating any CACC result as a safety or
 performance claim.
 
+The full sequence of work and completion criteria live in the
+[project roadmap](docs/project-roadmap.md).
+
 ## Research background
 
 See [local feasibility research](research/local-feasibility.md) for the source-backed feasibility assessment and constraints that guide the initial scope.
