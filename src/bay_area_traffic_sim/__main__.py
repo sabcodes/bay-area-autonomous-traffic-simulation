@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 from bay_area_traffic_sim.experiments import repeat
+from bay_area_traffic_sim.network_audit import audit_network
 from bay_area_traffic_sim.osm_import import download_osm, import_osm, load_corridor_config
 from bay_area_traffic_sim.pems import PemsFilter, summarize_station_files
 from bay_area_traffic_sim.pems_metadata import load_station_ids, select_corridor_stations
@@ -106,6 +107,30 @@ def main() -> None:
         default="outputs/pems_calibration/us101_corridor_station_selection.json",
         help="JSON selection report path.",
     )
+    audit = subcommands.add_parser(
+        "audit-us101-network",
+        help="Match candidate PeMS stations to the draft SUMO network for manual audit.",
+    )
+    audit.add_argument(
+        "--metadata-glob",
+        default="data/pems/metadata/d04_text_meta_*.txt",
+        help="PeMS Station Metadata text files (default: data/pems/metadata/d04_text_meta_*.txt).",
+    )
+    audit.add_argument(
+        "--config",
+        default="configs/us101_corridor.json",
+        help="Study-boundary configuration (default: configs/us101_corridor.json).",
+    )
+    audit.add_argument(
+        "--network",
+        default="outputs/us101_corridor/us101_corridor.net.xml",
+        help="Draft SUMO network path.",
+    )
+    audit.add_argument(
+        "--output",
+        default="outputs/us101_corridor/station_network_audit.json",
+        help="JSON audit report path.",
+    )
     args = parser.parse_args()
 
     if args.command == "build-toy-network":
@@ -191,6 +216,23 @@ def main() -> None:
             "limitation": (
                 "This is an automatic geographic filter. Confirm selected stations and their "
                 "ramp/interchange context during the manual network audit."
+            ),
+        }
+        output.write_text(json.dumps(report, indent=2) + "\n")
+        print(json.dumps(report, indent=2))
+    elif args.command == "audit-us101-network":
+        corridor = load_corridor_config(Path(args.config))
+        audit_result = audit_network(
+            Path(args.network), sorted(Path().glob(args.metadata_glob)), corridor.bounding_box
+        )
+        output = Path(args.output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        report = {
+            "corridor": corridor.name,
+            "audit": audit_result.as_dict(),
+            "limitation": (
+                "Closest-edge matching does not prove a detector belongs to the desired route. "
+                "Review ramps, collector-distributor roads, and complex interchanges manually."
             ),
         }
         output.write_text(json.dumps(report, indent=2) + "\n")

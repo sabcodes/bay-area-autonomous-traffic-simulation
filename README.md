@@ -116,6 +116,17 @@ lane count, and allowed movement is manually audited.
 Use the [US-101 network audit checklist](docs/us101-network-audit.md) to make
 that review repeatable.
 
+After downloading Station Metadata, generate a local detector-to-network
+matching report to guide the visual audit:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim audit-us101-network
+```
+
+It measures each candidate detector's nearest non-internal SUMO road edge.
+This catches mapping gaps but does not replace review around ramps and
+interchanges.
+
 ## First PeMS calibration target
 
 Put the PeMS `d04_text_station_5min_*.txt.gz` downloads under `data/pems/`,
