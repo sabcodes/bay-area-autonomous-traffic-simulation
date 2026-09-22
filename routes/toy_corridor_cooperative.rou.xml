@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    <!-- Idealized CACC parameters for a sensitivity experiment, not a deployment claim. -->
+    <vType id="cooperative" carFollowModel="CACC" accel="3.5" decel="5.0" sigma="0.0"
+           length="4.8" minGap="2.5" tau="1.4"/>
+
+    <route id="mainline" edges="main_in main_out"/>
+    <route id="ramp_to_mainline" edges="on_ramp main_out"/>
+
+    <flow id="mainline_cooperative" type="cooperative" route="mainline" begin="0" end="600"
+          vehsPerHour="1800" departLane="best" departSpeed="max"/>
+    <flow id="ramp_cooperative" type="cooperative" route="ramp_to_mainline" begin="0" end="600"
+          vehsPerHour="300" departLane="best" departSpeed="max"/>
+</routes>

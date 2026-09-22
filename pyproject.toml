@@ -1,6 +1,6 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "bay-area-traffic-sim"
@@ -29,9 +29,10 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+extend-exclude = ["build"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP"]
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/bay_area_traffic_sim"]
+[tool.setuptools.packages.find]
+where = ["src"]

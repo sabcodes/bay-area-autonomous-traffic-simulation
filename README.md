@@ -57,14 +57,15 @@ Create or refresh the environment:
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
-.venv/bin/python -m pip install -e '.[dev]'
+.venv/bin/python -m pip install '.[dev]'
 ```
 
+After changing project source code or dependencies, rerun the install command.
 Use the environment without activating it:
 
 ```bash
 .venv/bin/python -m pytest -q
-.venv/bin/python -m ruff check .
+.venv/bin/python -m ruff check src tests
 ```
 
 Or activate it for an interactive terminal:
@@ -85,15 +86,26 @@ traffic values are illustrative and are **not** a model of US-101.
 ```bash
 .venv/bin/python -m bay_area_traffic_sim build-toy-network
 .venv/bin/python -m bay_area_traffic_sim run-toy-baseline --seed 42
+.venv/bin/python -m bay_area_traffic_sim run-toy-cacc --seed 42
+.venv/bin/python -m bay_area_traffic_sim compare-toy --seeds 41 42 43
 ```
 
 The second command prints completed-trip count, average travel time, waiting
-time, and SUMO time loss. Generated network files and reports stay under
+time, and SUMO time loss. The CACC command changes only the vehicle-following
+model. It is not an RL policy or a real V2V radio model. Generated network
+files and reports stay under
 `outputs/` and are intentionally not committed.
+
+`compare-toy` prints the individual results plus their mean and sample spread.
+That is the beginning of reporting uncertainty: we do not rely on only one run.
 
 ## Status
 
-**Phase 0 - repository foundation.** No scenario, traffic data, or controller has been validated yet.
+**Phase 1 - runnable toy corridor.** The human-like and CACC sensitivity
+scenarios run locally and report multi-seed metrics. They are deliberately
+small, uncalibrated tool checks. In particular, record and investigate SUMO
+emergency-braking warnings before treating any CACC result as a safety or
+performance claim.
 
 ## Research background
 
