@@ -25,11 +25,11 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 ## Current position
 
 - M0 is complete.
-- M1 is active. District 4 Station 5-Minute downloads are available locally,
-  and the initial morning-peak summary is generated.
-- The next dependency is the District 4 **Station Metadata** export. It is the
-  location directory needed to identify the sensors that belong to the
-  SR-237-to-Page-Mill corridor.
+- M1 is active. District 4 Station 5-Minute and Station Metadata exports are
+  available locally. A candidate detector list and corridor-only morning-peak
+  summary are generated.
+- The next dependency is the short [PeMS sensor audit](us101-sensor-audit.md):
+  confirm that the candidate locations belong on the intended freeway segment.
 
 ## Guardrails
 

@@ -155,6 +155,9 @@ morning-peak summary:
   --output outputs/pems_calibration/us101_corridor_morning_peak.json
 ```
 
+Use the [PeMS sensor audit sheet](docs/us101-sensor-audit.md) to check the
+candidate locations before treating them as final calibration targets.
+
 ## Status
 
 **Phase 1 - runnable toy corridor.** The human-like and CACC sensitivity
