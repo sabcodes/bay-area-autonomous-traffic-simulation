@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 from bay_area_traffic_sim.experiments import repeat
-from bay_area_traffic_sim.osm_import import import_osm
+from bay_area_traffic_sim.osm_import import download_osm, import_osm
 from bay_area_traffic_sim.toy_corridor import (
     build_network,
     metrics_as_dict,
@@ -47,6 +47,15 @@ def main() -> None:
         default="configs/us101_corridor.json",
         help="Corridor import configuration (default: configs/us101_corridor.json).",
     )
+    download = subcommands.add_parser(
+        "download-us101-osm", help="Download a public OSM road extract and record its provenance."
+    )
+    download.add_argument(
+        "--config",
+        type=str,
+        default="configs/us101_corridor.json",
+        help="Corridor import configuration (default: configs/us101_corridor.json).",
+    )
     args = parser.parse_args()
 
     if args.command == "build-toy-network":
@@ -76,6 +85,9 @@ def main() -> None:
         )
     elif args.command == "import-us101-osm":
         print(import_osm(Path(args.config), Path("outputs/us101_corridor")))
+    elif args.command == "download-us101-osm":
+        source, provenance = download_osm(Path(args.config))
+        print(json.dumps({"osm_source": str(source), "provenance": str(provenance)}, indent=2))
 
 
 if __name__ == "__main__":

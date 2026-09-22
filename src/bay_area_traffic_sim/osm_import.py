@@ -5,10 +5,19 @@ from __future__ import annotations
 import json
 import subprocess
 from dataclasses import dataclass
+from datetime import UTC, datetime
 from pathlib import Path
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
 from bay_area_traffic_sim.sumo_install import binary
 from bay_area_traffic_sim.toy_corridor import repository_root
+
+OVERPASS_ENDPOINTS = (
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter",
+)
 
 
 @dataclass(frozen=True)
@@ -16,6 +25,7 @@ class CorridorConfig:
     """The saved boundary and source location for one real-road import."""
 
     name: str
+    bounding_box: dict[str, float]
     osm_source_path: Path
 
 
@@ -24,7 +34,67 @@ def load_corridor_config(config_path: Path) -> CorridorConfig:
 
     raw = json.loads(config_path.read_text())
     source_path = repository_root() / raw["osm_source_path"]
-    return CorridorConfig(name=raw["name"], osm_source_path=source_path)
+    return CorridorConfig(
+        name=raw["name"],
+        bounding_box=raw["bounding_box"],
+        osm_source_path=source_path,
+    )
+
+
+def road_query(bounding_box: dict[str, float]) -> str:
+    """Build a deliberately narrow Overpass query for road geometry."""
+
+    south, west = bounding_box["south"], bounding_box["west"]
+    north, east = bounding_box["north"], bounding_box["east"]
+    return f"""[out:xml][timeout:60];
+way["highway"~"motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link"]({south},{west},{north},{east});
+(._;>;);
+out body;"""
+
+
+def download_osm(config_path: Path) -> tuple[Path, Path]:
+    """Download a timestamped public road extract and write its provenance."""
+
+    config = load_corridor_config(config_path)
+    query = road_query(config.bounding_box)
+    payload: bytes | None = None
+    source_url: str | None = None
+    errors: list[str] = []
+    for endpoint in OVERPASS_ENDPOINTS:
+        request = Request(
+            endpoint,
+            data=urlencode({"data": query}).encode(),
+            headers={"User-Agent": "bay-area-traffic-sim-local-research/0.1"},
+            method="POST",
+        )
+        try:
+            with urlopen(request, timeout=30) as response:
+                payload = response.read()
+                source_url = endpoint
+                break
+        except (HTTPError, URLError, TimeoutError) as error:
+            errors.append(f"{endpoint}: {error}")
+    if payload is None or source_url is None:
+        raise RuntimeError("OSM download failed: " + "; ".join(errors))
+    if not payload.startswith(b"<?xml"):
+        raise RuntimeError("Overpass did not return OSM XML; the source file was not written.")
+
+    config.osm_source_path.parent.mkdir(parents=True, exist_ok=True)
+    config.osm_source_path.write_bytes(payload)
+    provenance_path = config.osm_source_path.with_suffix(".provenance.json")
+    provenance_path.write_text(
+        json.dumps(
+            {
+                "scenario": config.name,
+                "source": source_url,
+                "downloaded_at_utc": datetime.now(UTC).isoformat(),
+                "query": query,
+            },
+            indent=2,
+        )
+        + "\n"
+    )
+    return config.osm_source_path, provenance_path
 
 
 def import_osm(config_path: Path, output_directory: Path) -> Path:

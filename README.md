@@ -105,12 +105,16 @@ The US-101 boundary is saved in [configs/us101_corridor.json](configs/us101_corr
 Put a timestamped OSM XML extract at `data/osm/us101_corridor.osm.xml`, then run:
 
 ```bash
+.venv/bin/python -m bay_area_traffic_sim download-us101-osm
 .venv/bin/python -m bay_area_traffic_sim import-us101-osm
 ```
 
-The imported network appears under `outputs/us101_corridor/`. It is only a
-draft until every interchange, ramp, lane count, and allowed movement is
-manually audited.
+The downloader uses the public Overpass API and writes a provenance record next
+to the ignored map extract. The imported network appears under
+`outputs/us101_corridor/`. It is only a draft until every interchange, ramp,
+lane count, and allowed movement is manually audited.
+Use the [US-101 network audit checklist](docs/us101-network-audit.md) to make
+that review repeatable.
 
 ## Status
 

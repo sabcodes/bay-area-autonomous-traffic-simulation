@@ -23,7 +23,8 @@ venv/
 # Downloaded or generated scenario inputs (keep manifests and scripts in Git)
 data/raw/
 data/processed/
-data/osm/
+data/osm/*.osm.xml
+data/osm/*.pbf
 data/pems/
 data/mtc/
 outputs/

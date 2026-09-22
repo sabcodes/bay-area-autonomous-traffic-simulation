@@ -1,0 +1,6 @@
+{
+  "scenario": "US-101 northbound: SR-237 to Page Mill Road",
+  "source": "https://overpass-api.de/api/interpreter",
+  "downloaded_at_utc": "2026-09-22T05:01:50.448095+00:00",
+  "query": "[out:xml][timeout:60];\nway[\"highway\"~\"motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link\"](37.36,-122.1,37.45,-122.0);\n(._;>;);\nout body;"
+}
