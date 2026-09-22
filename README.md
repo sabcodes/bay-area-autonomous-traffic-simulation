@@ -193,6 +193,18 @@ Then run the two-hour morning profile plus warmup and network-clearance time:
 .venv/bin/python -m bay_area_traffic_sim run-us101-human-baseline --seed 42
 ```
 
+For research comparisons, repeat the exact scenario across random seeds and
+report both trip-metric and virtual-detector uncertainty:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim run-us101-human-baseline-multi \
+  --seeds 41 42 43
+```
+
+This writes `outputs/us101_corridor/h0_multiseed_report.json`. Random-seed
+spread captures stochastic driving variation only; it does not represent all
+uncertainty in demand, detector data, network geometry, or model parameters.
+
 The route is forced through ordered, detector-matched freeway checkpoints so
 SUMO cannot choose a one-lane ramp as a geometric shortcut. This is a runnable
 calibration draft, not the finished human baseline. It has human-like

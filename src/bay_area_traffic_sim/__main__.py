@@ -6,8 +6,11 @@ import argparse
 import json
 from pathlib import Path
 
-from bay_area_traffic_sim.calibration import compare_detector_profiles
-from bay_area_traffic_sim.experiments import repeat
+from bay_area_traffic_sim.calibration import (
+    compare_detector_profiles,
+    summarize_detector_comparisons,
+)
+from bay_area_traffic_sim.experiments import repeat, summarize_runs
 from bay_area_traffic_sim.network_audit import audit_network
 from bay_area_traffic_sim.osm_import import download_osm, import_osm, load_corridor_config
 from bay_area_traffic_sim.pems import (
@@ -76,8 +79,7 @@ def main() -> None:
         "--input-glob",
         default="data/pems/d04_text_station_5min_*.txt.gz",
         help=(
-            "PeMS Station 5-Minute input files "
-            "(default: data/pems/d04_text_station_5min_*.txt.gz)."
+            "PeMS Station 5-Minute input files (default: data/pems/d04_text_station_5min_*.txt.gz)."
         ),
     )
     calibrate.add_argument("--start-hour", type=int, default=7, help="Inclusive local hour.")
@@ -100,10 +102,7 @@ def main() -> None:
     calibrate.add_argument(
         "--station-ids-key",
         default="station_ids",
-        help=(
-            "Name of the detector-ID list in --station-ids-file "
-            "(default: station_ids)."
-        ),
+        help=("Name of the detector-ID list in --station-ids-file (default: station_ids)."),
     )
     station_profiles = subcommands.add_parser(
         "summarize-pems-stations",
@@ -132,9 +131,7 @@ def main() -> None:
     )
     station_profiles.add_argument("--start-hour", type=int, default=7)
     station_profiles.add_argument("--end-hour", type=int, default=9)
-    station_profiles.add_argument(
-        "--minimum-observed-percent", type=float, default=90.0
-    )
+    station_profiles.add_argument("--minimum-observed-percent", type=float, default=90.0)
     station_profiles.add_argument(
         "--output",
         default="outputs/pems_calibration/us101_ramp_station_profiles.json",
@@ -202,6 +199,31 @@ def main() -> None:
         help="Draft human baseline configuration.",
     )
     run_real.add_argument("--seed", type=int, default=42, help="SUMO random seed (default: 42).")
+    multi_real = subcommands.add_parser(
+        "run-us101-human-baseline-multi",
+        help="Run the real-corridor human baseline across multiple random seeds.",
+    )
+    multi_real.add_argument(
+        "--config",
+        default="configs/us101_human_baseline.json",
+        help="Draft human baseline configuration.",
+    )
+    multi_real.add_argument(
+        "--seeds",
+        type=int,
+        nargs="+",
+        default=[41, 42, 43],
+        help="One or more SUMO random seeds (default: 41 42 43).",
+    )
+    multi_real.add_argument(
+        "--observed",
+        default="outputs/pems_calibration/us101_mainline_station_profiles.json",
+    )
+    multi_real.add_argument("--warmup-seconds", type=int, default=900)
+    multi_real.add_argument(
+        "--output",
+        default="outputs/us101_corridor/h0_multiseed_report.json",
+    )
     compare_detectors = subcommands.add_parser(
         "compare-us101-detectors",
         help="Compare observed PeMS station profiles with SUMO virtual detectors.",
@@ -308,9 +330,7 @@ def main() -> None:
             station_ids=station_ids,
             lane_types=set(args.lane_types),
         )
-        summary = summarize_station_profiles(
-            sorted(Path().glob(args.input_glob)), criteria
-        )
+        summary = summarize_station_profiles(sorted(Path().glob(args.input_glob)), criteria)
         output = Path(args.output)
         output.parent.mkdir(parents=True, exist_ok=True)
         report = {
@@ -385,6 +405,45 @@ def main() -> None:
                 indent=2,
             )
         )
+    elif args.command == "run-us101-human-baseline-multi":
+        run_records = []
+        metrics = []
+        detector_comparisons = []
+        expected_input_vehicles = None
+        for seed in args.seeds:
+            prepared, run_metrics, detector_summary_file = run_real_human_baseline(
+                Path(args.config), seed
+            )
+            comparison = compare_detector_profiles(
+                Path(args.observed), detector_summary_file, args.warmup_seconds
+            )
+            expected_input_vehicles = prepared.expected_input_vehicles
+            metrics.append(run_metrics)
+            detector_comparisons.append(comparison)
+            run_records.append(
+                {
+                    "seed": seed,
+                    "metrics": metrics_as_dict(run_metrics),
+                    "virtual_detector_summary_file": str(detector_summary_file),
+                    "station_comparisons": comparison["station_comparisons"],
+                }
+            )
+        report = {
+            "scenario": "H0 draft human-only US-101 northbound baseline",
+            "seeds": args.seeds,
+            "expected_input_vehicles": expected_input_vehicles,
+            "runs": run_records,
+            "trip_metric_summary": summarize_runs(metrics),
+            "station_uncertainty": summarize_detector_comparisons(detector_comparisons),
+            "limitation": (
+                "Random-seed spread does not cover demand, detector, network, or "
+                "model-parameter uncertainty."
+            ),
+        }
+        output = Path(args.output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(report, indent=2) + "\n")
+        print(json.dumps(report, indent=2))
     elif args.command == "compare-us101-detectors":
         report = compare_detector_profiles(
             Path(args.observed),

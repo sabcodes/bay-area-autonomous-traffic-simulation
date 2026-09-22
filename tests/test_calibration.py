@@ -3,7 +3,10 @@ from pathlib import Path
 
 import pytest
 
-from bay_area_traffic_sim.calibration import compare_detector_profiles
+from bay_area_traffic_sim.calibration import (
+    compare_detector_profiles,
+    summarize_detector_comparisons,
+)
 
 
 def test_compare_detector_profiles_matches_station_and_five_minute_time(tmp_path: Path) -> None:
@@ -65,3 +68,35 @@ def test_compare_detector_profiles_matches_station_and_five_minute_time(tmp_path
     assert comparison["observed_mean_speed_mph"] == 45
     assert comparison["simulated_mean_speed_mph"] == 52.5
     assert comparison["speed_mean_absolute_error_mph"] == 7.5
+
+
+def test_summarize_detector_comparisons_reports_seed_spread() -> None:
+    reports = [
+        {
+            "station_comparisons": [
+                {
+                    "station_id": 400001,
+                    "matched_intervals": 24,
+                    "observed_mean_flow_vehicles_per_hour": 500.0,
+                    "simulated_mean_flow_vehicles_per_hour": simulated_flow,
+                    "flow_mean_absolute_percentage_error": flow_error,
+                    "observed_mean_speed_mph": 50.0,
+                    "simulated_mean_speed_mph": simulated_speed,
+                    "speed_mean_absolute_error_mph": speed_error,
+                }
+            ]
+        }
+        for simulated_flow, flow_error, simulated_speed, speed_error in (
+            (480.0, 4.0, 52.0, 2.0),
+            (520.0, 4.0, 48.0, 2.0),
+        )
+    ]
+
+    summary = summarize_detector_comparisons(reports)[0]
+
+    assert summary["runs"] == 2
+    assert summary["simulated_mean_flow_vehicles_per_hour"]["mean"] == 500
+    assert summary["simulated_mean_flow_vehicles_per_hour"][
+        "sample_standard_deviation"
+    ] == pytest.approx(28.2842712475)
+    assert summary["simulated_mean_speed_mph"]["mean"] == 50

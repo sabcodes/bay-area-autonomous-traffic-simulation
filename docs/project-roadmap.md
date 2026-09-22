@@ -32,13 +32,15 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 - M2 is active. The imported network now reaches the Oregon Expressway/Page
   Mill connection. The H0 route is constrained through detector-matched
   mainline checkpoints and never falls below four lanes.
-- M3 has a runnable ramp-aware draft. Seed 42 completed 12,457 vehicles without
-  SUMO route, teleport, or emergency-braking warnings. Its 59.4 mph average
-  trip speed remains too high. Nine PeMS-aligned virtual stations report 40
-  lane loops in five-minute intervals. At the entry station, simulated mean
-  flow is 4,657 vehicles/hour versus 4,646 observed (0.4% interval MAPE); a
-  second station is within 0.9%. Across the six comparable stations, flow MAPE
-  ranges from 0.4% to 32.1% and speed MAE from 6.9 to 13.3 mph.
+- M3 has a runnable ramp-aware draft. Seeds 41, 42, and 43 each completed
+  12,457 vehicles without SUMO route, teleport, or emergency-braking warnings.
+  Mean trip speed is 59.59 mph with a 0.16 mph sample standard deviation, so
+  the remaining speed bias is systematic rather than seed noise. Nine
+  PeMS-aligned virtual stations report 40 lane loops in five-minute intervals.
+  At the entry station, simulated mean flow is 4,656.5 vehicles/hour versus
+  4,645.9 observed, with mean interval MAPE of 0.38%. Across the six comparable
+  stations, mean flow MAPE ranges from 0.38% to 32.11%, and mean speed MAE from
+  7.06 to 13.59 mph.
 - Thirteen ramp sensors were identified and five have qualifying October
   morning profiles. Four were visually and topologically audited: one measured
   Mathilda exit is split from upstream demand, and the Mathilda, Moffett, and
@@ -46,6 +48,10 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   the endpoint. Vehicle mix, eight missing-ramp estimates, driver calibration,
   remaining network review, and held-out validation are still required. See
   the [ramp detector audit](us101-ramp-audit.md).
+- M4 is active. One command now runs the real baseline across multiple seeds
+  and writes per-run results plus sample mean and standard deviation for trip
+  metrics and station calibration errors. Queue, stability, and smoothness
+  metrics still need to be added before M4 is complete.
 
 ## Guardrails
 
