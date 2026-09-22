@@ -5,7 +5,8 @@
 This project is complete when someone can reproduce a local, evidence-backed
 comparison of human-like traffic, deterministic cooperative following, and one
 centralized traffic-control policy on the audited US-101 northbound corridor
-from SR-237 to Page Mill Road. The result must report uncertainty, assumptions,
+from SR-237 to the Oregon Expressway/Page Mill Road connection. The result must
+report uncertainty, assumptions,
 and limitations. It is not a real-vehicle controller or a deployment claim.
 
 ## Milestones
@@ -26,10 +27,15 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 
 - M0 is complete.
 - M1 is active. District 4 Station 5-Minute and Station Metadata exports are
-  available locally. A candidate detector list and corridor-only morning-peak
-  summary are generated.
-- The next dependency is the short [PeMS sensor audit](us101-sensor-audit.md):
-  confirm that the candidate locations belong on the intended freeway segment.
+  available locally. The corrected boundary selects 19 candidate detectors;
+  nine are in the provisional reviewed subset and ten need follow-up.
+- M2 is active. The imported network now reaches the Oregon Expressway/Page
+  Mill connection. The H0 route is constrained through detector-matched
+  mainline checkpoints and never falls below four lanes.
+- M3 has a runnable draft. Seed 42 completed 11,372 vehicles without teleport
+  warnings, but its 59.7 mph average trip speed is substantially above the
+  provisional 48.7 mph observed detector target. Ramp demand, vehicle mix,
+  network corrections, and held-out validation are still required.
 
 ## Guardrails
 

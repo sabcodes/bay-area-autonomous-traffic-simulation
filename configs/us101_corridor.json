@@ -1,14 +1,15 @@
 {
-  "name": "US-101 northbound: SR-237 to Page Mill Road",
+  "name": "US-101 northbound: SR-237 to Oregon Expressway/Page Mill Road",
   "bounding_box": {
-    "north": 37.45,
+    "north": 37.46,
     "south": 37.36,
-    "west": -122.1,
+    "west": -122.14,
     "east": -122.0
   },
   "osm_source_path": "data/osm/us101_corridor.osm.xml",
   "notes": [
-    "This is an initial extraction boundary from the design document.",
+    "Page Mill Road continues as Oregon Expressway before reaching US-101.",
+    "The western and northern bounds include the Oregon Expressway/Embarcadero Road interchange.",
     "Audit every interchange, ramp connection, lane count, and permitted movement before calibration."
   ]
 }

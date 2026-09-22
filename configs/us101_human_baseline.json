@@ -1,0 +1,33 @@
+{
+  "scenario": "H0 draft human-only US-101 northbound baseline",
+  "network_file": "outputs/us101_corridor/us101_corridor.net.xml",
+  "pems_report": "outputs/pems_calibration/us101_corridor_provisional_morning_peak.json",
+  "route_file": "outputs/us101_corridor/h0_human_baseline.rou.xml",
+  "manifest_file": "outputs/us101_corridor/h0_human_baseline_manifest.json",
+  "checkpoint_edge_ids": [
+    "509747302",
+    "509747310-AddedOnRampEdge",
+    "867208766",
+    "509747346",
+    "867246178",
+    "850032296",
+    "617335302",
+    "509747406-AddedOffRampEdge",
+    "1446453052",
+    "867254754",
+    "394368088",
+    "700010299",
+    "861090931",
+    "361615812"
+  ],
+  "warmup_seconds": 900,
+  "clearance_seconds": 1800,
+  "assumptions": [
+    "Simulation time 00:15 corresponds to observed time 07:00 after a 15-minute warmup.",
+    "PeMS total five-minute station flow is converted to vehicles per hour by multiplying by 12.",
+    "This first runnable baseline uses mainline passenger-car demand only; ramp demand and vehicle mix are not calibrated yet.",
+    "Observed PeMS speed is a validation target, not a commanded vehicle speed.",
+    "The mainline route passes through ordered detector-matched checkpoints so shortest-path routing cannot leave US-101 for a ramp shortcut.",
+    "Human behavior uses SUMO's stochastic Krauss following model and default lane-changing model."
+  ]
+}

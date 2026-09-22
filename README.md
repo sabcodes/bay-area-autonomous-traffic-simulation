@@ -159,7 +159,8 @@ still needs the short visual map audit described above.
 The current candidate IDs and a smaller, provisional reviewed subset are stored
 in `configs/us101_corridor_station_ids.json`. Use the provisional subset for
 the first corridor-specific morning-peak summary. It excludes the two Moffett
-locations still marked unsure in the audit sheet:
+locations still marked unsure and eight northern locations added when the map
+boundary was corrected:
 
 ```bash
 .venv/bin/python -m bay_area_traffic_sim summarize-pems \
@@ -172,6 +173,29 @@ This report gives the “traffic rhythm” used to build the first human-traffic
 scenario: observed flow and speed for each five-minute slice, averaged across
 the selected days and sensors. Use the [PeMS sensor audit sheet](docs/us101-sensor-audit.md)
 to resolve the remaining locations before treating this as a final calibration target.
+
+## Draft real-corridor human baseline
+
+The first H0 scenario converts that provisional five-minute PeMS profile into
+mainline passenger-car demand on the corrected SR-237-to-Oregon-Expressway
+network. Prepare the generated route and its assumption manifest with:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim prepare-us101-human-baseline
+```
+
+Then run the two-hour morning profile plus warmup and network-clearance time:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim run-us101-human-baseline --seed 42
+```
+
+The route is forced through ordered, detector-matched freeway checkpoints so
+SUMO cannot choose a one-lane ramp as a geometric shortcut. This is a runnable
+calibration draft, not the finished human baseline. It has human-like
+stochastic following, but currently has only mainline passenger-car demand.
+Ramp demand, vehicle mix, held-out-day validation, and manual network
+corrections still belong to M3.
 
 ## Status
 

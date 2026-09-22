@@ -11,6 +11,10 @@ from bay_area_traffic_sim.network_audit import audit_network
 from bay_area_traffic_sim.osm_import import download_osm, import_osm, load_corridor_config
 from bay_area_traffic_sim.pems import PemsFilter, summarize_station_files
 from bay_area_traffic_sim.pems_metadata import load_station_ids, select_corridor_stations
+from bay_area_traffic_sim.real_corridor import (
+    prepare_human_baseline as prepare_real_human_baseline,
+)
+from bay_area_traffic_sim.real_corridor import run_human_baseline as run_real_human_baseline
 from bay_area_traffic_sim.toy_corridor import (
     build_network,
     metrics_as_dict,
@@ -139,6 +143,25 @@ def main() -> None:
         default="outputs/us101_corridor/station_network_audit.json",
         help="JSON audit report path.",
     )
+    prepare_real = subcommands.add_parser(
+        "prepare-us101-human-baseline",
+        help="Create the PeMS-driven draft human-only route and manifest.",
+    )
+    prepare_real.add_argument(
+        "--config",
+        default="configs/us101_human_baseline.json",
+        help="Draft human baseline configuration.",
+    )
+    run_real = subcommands.add_parser(
+        "run-us101-human-baseline",
+        help="Run the PeMS-driven draft human-only scenario on the real network.",
+    )
+    run_real.add_argument(
+        "--config",
+        default="configs/us101_human_baseline.json",
+        help="Draft human baseline configuration.",
+    )
+    run_real.add_argument("--seed", type=int, default=42, help="SUMO random seed (default: 42).")
     args = parser.parse_args()
 
     if args.command == "build-toy-network":
@@ -188,7 +211,8 @@ def main() -> None:
         output.parent.mkdir(parents=True, exist_ok=True)
         limitation = (
             "This uses a provisional manually reviewed detector subset. It excludes the two "
-            "unresolved Moffett locations but is not yet a final calibration target."
+            "unresolved Moffett locations and newly added northern locations, so it is not yet "
+            "a final calibration target."
             if args.station_ids_key == "provisionally_reviewed_station_ids"
             else (
                 "This is an automatic candidate-corridor filter. Confirm selected stations and "
@@ -253,6 +277,23 @@ def main() -> None:
         }
         output.write_text(json.dumps(report, indent=2) + "\n")
         print(json.dumps(report, indent=2))
+    elif args.command == "prepare-us101-human-baseline":
+        prepared = prepare_real_human_baseline(Path(args.config))
+        print(json.dumps(prepared.as_dict(), indent=2))
+    elif args.command == "run-us101-human-baseline":
+        prepared, metrics = run_real_human_baseline(Path(args.config), args.seed)
+        print(
+            json.dumps(
+                {
+                    "scenario": prepared.scenario,
+                    "seed": args.seed,
+                    "expected_input_vehicles": prepared.expected_input_vehicles,
+                    "metrics": metrics_as_dict(metrics),
+                    "manifest_file": prepared.manifest_file,
+                },
+                indent=2,
+            )
+        )
 
 
 if __name__ == "__main__":
