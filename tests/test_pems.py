@@ -165,6 +165,30 @@ def test_station_profiles_keep_on_and_off_ramps_separate(tmp_path: Path) -> None
     assert summary.profiles[0].date_count == 2
     assert summary.profiles[0].mean_flow_vehicles_per_5_minutes == 25
     assert summary.profiles[0].time_profile[0]["mean_speed_mph"] == 40
+    assert summary.profiles[0].daily_time_profile == [
+        {
+            "date": "2025-10-09",
+            "time_profile": [
+                {
+                    "time": "07:00",
+                    "observations": 1,
+                    "mean_flow_vehicles_per_5_minutes": 20.0,
+                    "mean_speed_mph": 35.0,
+                }
+            ],
+        },
+        {
+            "date": "2025-10-10",
+            "time_profile": [
+                {
+                    "time": "07:00",
+                    "observations": 1,
+                    "mean_flow_vehicles_per_5_minutes": 30.0,
+                    "mean_speed_mph": 45.0,
+                }
+            ],
+        },
+    ]
     assert summary.profiles[1].station_id == 400002
 
 

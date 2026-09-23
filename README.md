@@ -252,16 +252,26 @@ diagnostic:
 It orders reporting detectors along the SUMO route and measures how much flow
 appears or disappears between neighbors. Comparisons involving a changed lane
 count or a ramp/collector/diagonal station label are marked for review and are
-not automatically treated as missing-ramp demand. Explicit decisions live in
+not automatically treated as missing-ramp demand. It matches the same actual
+dates and five-minute slots at both stations; older comparisons that averaged
+different day sets are superseded. Explicit decisions live in
 `configs/us101_flow_balance_audit.json`. Station 401948 is accepted as an
 observed five-lane mainline cross-section: the October data show five active
 lane measurements, and Caltrans documents a buffered managed/HOT lane in the
 Moffett Boulevard–Old Middlefield Way area. The adjacent +330 and +1,529
-vehicles/hour values remain valid as observed net-flow changes, but pair-level
-ramp audits keep them blocked from missing-ramp demand estimation until the
-intervening movements and detector mappings are reconciled. The mapped OSM/SUMO
-edge still has four lanes, so its geometry mismatch remains visible in the
-report notes. See [the Moffett-to-Shoreline pair audit](docs/us101-ramp-pair-audit.md).
+vehicles/hour values were produced from unmatched days. On the same 12 dates
+(288 five-minute slots), the net changes are about +238 and +1,622 vehicles per
+hour, respectively. These are still *net* changes—not counts of individual
+ramps—and remain blocked from missing-ramp demand until the movements and
+detector mappings are reconciled. The mapped OSM/SUMO edge still has four lanes,
+so its geometry mismatch remains visible in the report notes. See
+[the Moffett-to-Shoreline pair audit](docs/us101-ramp-pair-audit.md).
+
+To profile a detector on another freeway or direction, pass `--freeway` and
+`--direction` (for example `--freeway 85 --direction S`). This is used for the
+unverified SR-85 station 402920 candidate; its observed mean is about 129
+vehicles/hour over the same 12 days, but it is not yet assigned to a specific
+connector lane.
 
 ## Status
 

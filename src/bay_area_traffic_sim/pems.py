@@ -99,6 +99,7 @@ class StationTimeProfile:
     mean_flow_vehicles_per_5_minutes: float
     mean_speed_mph: float | None
     time_profile: list[dict[str, float | int | str | None]]
+    daily_time_profile: list[dict[str, object]]
 
 
 @dataclass(frozen=True)
@@ -241,6 +242,8 @@ def summarize_station_profiles(
     lane_types: dict[int, str] = {}
     profile_flows: defaultdict[tuple[int, str], list[float]] = defaultdict(list)
     profile_speeds: defaultdict[tuple[int, str], list[float]] = defaultdict(list)
+    daily_flows: defaultdict[tuple[int, str, str], list[float]] = defaultdict(list)
+    daily_speeds: defaultdict[tuple[int, str, str], list[float]] = defaultdict(list)
 
     for source in files:
         with gzip.open(source, "rt", newline="") as raw_file:
@@ -264,10 +267,15 @@ def summarize_station_profiles(
                     raise AssertionError("Aggregate measurements must include total flow.")
                 flows[station_id].append(observation.total_flow)
                 time_key = observation.timestamp.strftime("%H:%M")
+                date_key = observation.timestamp.date().isoformat()
                 profile_flows[(station_id, time_key)].append(observation.total_flow)
+                daily_flows[(station_id, date_key, time_key)].append(observation.total_flow)
                 if observation.average_speed_mph is not None:
                     speeds[station_id].append(observation.average_speed_mph)
                     profile_speeds[(station_id, time_key)].append(
+                        observation.average_speed_mph
+                    )
+                    daily_speeds[(station_id, date_key, time_key)].append(
                         observation.average_speed_mph
                     )
 
@@ -296,6 +304,34 @@ def summarize_station_profiles(
                     key_time
                     for key_station, key_time in profile_flows
                     if key_station == station_id
+                )
+            ],
+            daily_time_profile=[
+                {
+                    "date": date_key,
+                    "time_profile": [
+                        {
+                            "time": time_key,
+                            "observations": len(daily_flows[(station_id, date_key, time_key)]),
+                            "mean_flow_vehicles_per_5_minutes": fmean(
+                                daily_flows[(station_id, date_key, time_key)]
+                            ),
+                            "mean_speed_mph": (
+                                fmean(daily_speeds[(station_id, date_key, time_key)])
+                                if daily_speeds[(station_id, date_key, time_key)]
+                                else None
+                            ),
+                        }
+                        for key_station, date_key_for_time, time_key in sorted(daily_flows)
+                        if key_station == station_id and date_key_for_time == date_key
+                    ],
+                }
+                for date_key in sorted(
+                    {
+                        date_key
+                        for key_station, date_key, _ in daily_flows
+                        if key_station == station_id
+                    }
                 )
             ],
         )

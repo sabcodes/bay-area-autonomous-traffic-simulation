@@ -16,12 +16,12 @@
     {
       "upstream_station_id": 401534,
       "downstream_station_id": 401948,
-      "reason": "Moffett and SR-85 intervening ramp movements are not fully measured or geometrically reconciled; retain +330 veh/h only as a net mainline change."
+      "reason": "Moffett Boulevard on/off movements are not fully measured or assigned to this detector interval; retain the date-aligned +238 veh/h only as a net mainline change. The SR-85 connector merges downstream of station 401948."
     },
     {
       "upstream_station_id": 401948,
       "downstream_station_id": 401507,
-      "reason": "Shoreline ramp detector identities and the SUMO HOV connector/source geometry are unresolved; retain +1,529 veh/h only as a net mainline change."
+      "reason": "Shoreline NB ramp detector identities and the 402920-to-HOV-connector lane mapping remain unresolved; retain the date-aligned +1,622 veh/h only as a net mainline change. OSM/SUMO connector topology is reconciled."
     }
   ],
   "decisions": [

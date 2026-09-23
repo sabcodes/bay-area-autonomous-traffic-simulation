@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from collections import defaultdict
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from statistics import fmean
@@ -29,6 +30,7 @@ class OrderedFlowStation:
     cautions: list[str]
     full_cross_section_confirmed: bool = False
     notes: list[str] = field(default_factory=list)
+    flow_by_date_time: dict[tuple[str, str], float] = field(default_factory=dict)
 
 
 def _route_edge_ids(route_file: Path, route_id: str) -> list[str]:
@@ -38,17 +40,27 @@ def _route_edge_ids(route_file: Path, route_id: str) -> list[str]:
     return route.attrib["edges"].split()
 
 
-def _observed_profiles(report: dict[str, Any]) -> dict[int, dict[str, float]]:
+def _observed_profiles(
+    report: dict[str, Any],
+) -> tuple[dict[int, dict[str, float]], dict[int, dict[tuple[str, str], float]]]:
     profiles: dict[int, dict[str, float]] = {}
+    daily_profiles: dict[int, dict[tuple[str, str], float]] = {}
     for profile in report.get("summary", {}).get("profiles", []):
         station_id = int(profile["station_id"])
         profiles[station_id] = {
             str(point["time"]): float(point["mean_flow_vehicles_per_5_minutes"]) * 12
             for point in profile["time_profile"]
         }
+        daily_profiles[station_id] = {
+            (str(day["date"]), str(point["time"])): (
+                float(point["mean_flow_vehicles_per_5_minutes"]) * 12
+            )
+            for day in profile.get("daily_time_profile", [])
+            for point in day["time_profile"]
+        }
     if not profiles:
         raise ValueError("Observed station profile report contains no profiles.")
-    return profiles
+    return profiles, daily_profiles
 
 
 def order_observed_stations(
@@ -60,7 +72,7 @@ def order_observed_stations(
 ) -> list[OrderedFlowStation]:
     """Place reporting detector profiles in northbound route order."""
 
-    profiles = _observed_profiles(observed_report)
+    profiles, daily_profiles = _observed_profiles(observed_report)
     audit = audit or {}
     accepted_ids = {
         int(station_id) for station_id in audit.get("accepted_full_cross_section_station_ids", [])
@@ -114,6 +126,7 @@ def order_observed_stations(
                 cautions=cautions,
                 full_cross_section_confirmed=confirmed,
                 notes=notes,
+                flow_by_date_time=daily_profiles.get(station_id, {}),
             )
         )
     return sorted(ordered, key=lambda station: station.route_distance_meters)
@@ -128,13 +141,63 @@ def compare_adjacent_stations(
     blocked_pairs = blocked_pairs or {}
     segments: list[dict[str, object]] = []
     for upstream, downstream in zip(stations[:-1], stations[1:], strict=True):
-        common_times = sorted(upstream.flow_by_time.keys() & downstream.flow_by_time.keys())
-        if not common_times:
-            continue
-        changes = [
-            downstream.flow_by_time[time] - upstream.flow_by_time[time] for time in common_times
-        ]
+        date_aligned = upstream.flow_by_date_time and downstream.flow_by_date_time
+        if date_aligned:
+            common_intervals = sorted(
+                upstream.flow_by_date_time.keys() & downstream.flow_by_date_time.keys()
+            )
+            if not common_intervals:
+                continue
+            changes_by_time: defaultdict[str, list[float]] = defaultdict(list)
+            date_time_profile = []
+            for date_key, time in common_intervals:
+                change = (
+                    downstream.flow_by_date_time[(date_key, time)]
+                    - upstream.flow_by_date_time[(date_key, time)]
+                )
+                changes_by_time[time].append(change)
+                date_time_profile.append(
+                    {
+                        "date": date_key,
+                        "time": time,
+                        "net_flow_change_vehicles_per_hour": change,
+                    }
+                )
+            time_profile = [
+                {
+                    "time": time,
+                    "observations": len(changes),
+                    "net_flow_change_vehicles_per_hour": fmean(changes),
+                }
+                for time, changes in sorted(changes_by_time.items())
+            ]
+            matched_days = len({date_key for date_key, _ in common_intervals})
+            matched_intervals = len(common_intervals)
+            changes = [item["net_flow_change_vehicles_per_hour"] for item in date_time_profile]
+        else:
+            common_times = sorted(upstream.flow_by_time.keys() & downstream.flow_by_time.keys())
+            if not common_times:
+                continue
+            changes = [
+                downstream.flow_by_time[time] - upstream.flow_by_time[time]
+                for time in common_times
+            ]
+            time_profile = [
+                {
+                    "time": time,
+                    "net_flow_change_vehicles_per_hour": change,
+                }
+                for time, change in zip(common_times, changes, strict=True)
+            ]
+            date_time_profile = []
+            matched_days = None
+            matched_intervals = len(common_times)
         cautions = [*upstream.cautions, *downstream.cautions]
+        if not date_aligned:
+            cautions.append(
+                "Station profiles do not include date-level observations; same-day alignment "
+                "cannot be verified."
+            )
         pair_caution = blocked_pairs.get((upstream.station_id, downstream.station_id))
         if pair_caution:
             cautions.append(pair_caution)
@@ -168,7 +231,8 @@ def compare_adjacent_stations(
                 "distance_meters": (
                     downstream.route_distance_meters - upstream.route_distance_meters
                 ),
-                "matched_intervals": len(common_times),
+                "matched_days": matched_days,
+                "matched_intervals": matched_intervals,
                 "topology_class": (
                     "same_edge_consistency_check" if same_edge else "between_edges_net_balance"
                 ),
@@ -183,13 +247,8 @@ def compare_adjacent_stations(
                 "minimum_interval_change_vehicles_per_hour": min(changes),
                 "maximum_interval_change_vehicles_per_hour": max(changes),
                 "notes": sorted(set([*upstream.notes, *downstream.notes, *notes])),
-                "time_profile": [
-                    {
-                        "time": time,
-                        "net_flow_change_vehicles_per_hour": change,
-                    }
-                    for time, change in zip(common_times, changes, strict=True)
-                ],
+                "time_profile": time_profile,
+                "date_time_profile": date_time_profile,
                 "usable_for_missing_ramp_estimation": not cautions,
                 "cautions": sorted(set(cautions)),
             }
@@ -215,6 +274,11 @@ def build_flow_balance_report(
     )
     if len(stations) < 2:
         raise ValueError("At least two ordered reporting stations are required.")
+    station_summaries = []
+    for station in stations:
+        summary = asdict(station)
+        summary.pop("flow_by_date_time")
+        station_summaries.append(summary)
     blocked_pairs = {
         (int(item["upstream_station_id"]), int(item["downstream_station_id"])): str(
             item["reason"]
@@ -228,7 +292,7 @@ def build_flow_balance_report(
         "route_file": str(route_file),
         "network_file": str(network_file),
         "audit_file": str(audit_file) if audit_file else None,
-        "ordered_stations": [asdict(station) for station in stations],
+        "ordered_stations": station_summaries,
         "segments": segments,
         "summary": {
             "reporting_stations": len(stations),

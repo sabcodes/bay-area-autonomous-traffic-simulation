@@ -130,6 +130,17 @@ def main() -> None:
         default=["OR", "FR"],
         help="PeMS lane types to retain (default: OR FR).",
     )
+    station_profiles.add_argument(
+        "--freeway",
+        type=int,
+        default=101,
+        help="Freeway number to retain (default: 101).",
+    )
+    station_profiles.add_argument(
+        "--direction",
+        default="N",
+        help="Freeway direction to retain (default: N).",
+    )
     station_profiles.add_argument("--start-hour", type=int, default=7)
     station_profiles.add_argument("--end-hour", type=int, default=9)
     station_profiles.add_argument("--minimum-observed-percent", type=float, default=90.0)
@@ -353,6 +364,8 @@ def main() -> None:
     elif args.command == "summarize-pems-stations":
         station_ids = load_station_ids(Path(args.station_ids_file), args.station_ids_key)
         criteria = PemsFilter(
+            freeway=args.freeway,
+            direction=args.direction,
             start_hour=args.start_hour,
             end_hour=args.end_hour,
             minimum_observed_percent=args.minimum_observed_percent,
@@ -364,6 +377,8 @@ def main() -> None:
         output.parent.mkdir(parents=True, exist_ok=True)
         report = {
             "filter": {
+                "freeway": criteria.freeway,
+                "direction": criteria.direction,
                 "start_hour": criteria.start_hour,
                 "end_hour": criteria.end_hour,
                 "minimum_observed_percent": criteria.minimum_observed_percent,

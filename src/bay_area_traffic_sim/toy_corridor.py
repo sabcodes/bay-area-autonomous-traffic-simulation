@@ -11,12 +11,15 @@ from bay_area_traffic_sim.sumo_install import binary
 
 
 def repository_root(start_directory: Path | None = None) -> Path:
-    """Find this checkout from the current directory or one of its parents."""
+    """Find this checkout from the current directory or the installed source path."""
 
     start = (start_directory or Path.cwd()).resolve()
     for candidate in (start, *start.parents):
         if (candidate / "pyproject.toml").is_file() and (candidate / "network").is_dir():
             return candidate
+    source_root = Path(__file__).resolve().parents[2]
+    if (source_root / "pyproject.toml").is_file() and (source_root / "network").is_dir():
+        return source_root
     raise RuntimeError(
         "Run this command from the repository or one of its subdirectories so its scenario files "
         "can be found."

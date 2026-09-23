@@ -15,6 +15,7 @@ def _station(
     confirmed: bool = False,
     reported_lanes: int | None = None,
     notes: list[str] | None = None,
+    daily_flows: dict[tuple[str, str], float] | None = None,
 ) -> OrderedFlowStation:
     return OrderedFlowStation(
         station_id=station_id,
@@ -28,6 +29,9 @@ def _station(
         cautions=cautions or [],
         full_cross_section_confirmed=confirmed,
         notes=notes or [],
+        flow_by_date_time=daily_flows
+        if daily_flows is not None
+        else {("2025-10-01", time): flow for time, flow in flows.items()},
     )
 
 
@@ -143,4 +147,40 @@ def test_pair_audit_can_block_residual_without_losing_observed_net_change() -> N
     assert segment["usable_for_missing_ramp_estimation"] is False
     assert segment["cautions"] == [
         "Intervening ramp and detector mappings remain unresolved."
+    ]
+
+
+def test_adjacent_flow_balance_matches_only_shared_observation_dates() -> None:
+    upstream = _station(
+        1,
+        0.0,
+        4,
+        {"07:00": 5000},
+        daily_flows={
+            ("2025-10-01", "07:00"): 4000,
+            ("2025-10-02", "07:00"): 6000,
+        },
+    )
+    downstream = _station(
+        2,
+        1000.0,
+        4,
+        {"07:00": 3750},
+        daily_flows={
+            ("2025-10-02", "07:00"): 6500,
+            ("2025-10-03", "07:00"): 1000,
+        },
+    )
+
+    segment = compare_adjacent_stations([upstream, downstream])[0]
+
+    assert segment["mean_net_flow_change_vehicles_per_hour"] == 500
+    assert segment["matched_days"] == 1
+    assert segment["matched_intervals"] == 1
+    assert segment["time_profile"] == [
+        {
+            "time": "07:00",
+            "observations": 1,
+            "net_flow_change_vehicles_per_hour": 500,
+        }
     ]
