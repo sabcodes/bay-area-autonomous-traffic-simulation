@@ -2,6 +2,7 @@
   "scenario": "H0 draft human-only US-101 northbound baseline",
   "network_file": "outputs/us101_corridor/us101_corridor.net.xml",
   "pems_report": "outputs/pems_calibration/us101_mainline_station_profiles.json",
+  "aligned_pems_report_file": "outputs/pems_calibration/us101_mainline_profiles_aligned.json",
   "mainline_entry_station_id": 402370,
   "ramp_profile_file": "outputs/pems_calibration/us101_ramp_station_profiles.json",
   "route_file": "outputs/us101_corridor/h0_human_baseline.rou.xml",

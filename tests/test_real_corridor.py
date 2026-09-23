@@ -4,7 +4,9 @@ from xml.etree import ElementTree
 
 from bay_area_traffic_sim.real_corridor import (
     RampDemand,
+    _load_baseline_config,
     _subtract_demand_profiles,
+    common_observation_dates,
     demand_points_from_report,
     write_route_file,
 )
@@ -89,6 +91,96 @@ def test_demand_points_select_one_station_profile() -> None:
 
     assert points[0].vehicles_per_hour == 120
     assert points[0].observed_speed_mph is None
+
+
+def test_demand_points_can_use_only_selected_observation_dates() -> None:
+    report = {
+        "summary": {
+            "profiles": [
+                {
+                    "station_id": 123,
+                    "time_profile": [
+                        {"time": "07:00", "mean_flow_vehicles_per_5_minutes": 100}
+                    ],
+                    "daily_time_profile": [
+                        {
+                            "date": "2025-10-07",
+                            "time_profile": [
+                                {"time": "07:00", "observations": 1,
+                                 "mean_flow_vehicles_per_5_minutes": 80,
+                                 "mean_speed_mph": 50}
+                            ],
+                        },
+                        {
+                            "date": "2025-10-08",
+                            "time_profile": [
+                                {"time": "07:00", "observations": 1,
+                                 "mean_flow_vehicles_per_5_minutes": 120,
+                                 "mean_speed_mph": 60}
+                            ],
+                        },
+                    ],
+                }
+            ]
+        }
+    }
+
+    points = demand_points_from_report(
+        report, warmup_seconds=0, station_id=123, observation_dates={"2025-10-08"}
+    )
+
+    assert points[0].vehicles_per_hour == 1440
+    assert points[0].observed_speed_mph == 60
+
+
+def test_common_observation_dates_require_complete_matching_time_slots() -> None:
+    def profile(station_id: int, second_day_times: list[str]) -> dict[str, object]:
+        return {
+            "station_id": station_id,
+            "time_profile": [{"time": "07:00"}, {"time": "07:05"}],
+            "daily_time_profile": [
+                {
+                    "date": "2025-10-07",
+                    "time_profile": [
+                        {"time": "07:00"}, {"time": "07:05"}
+                    ],
+                },
+                {
+                    "date": "2025-10-08",
+                    "time_profile": [{"time": time} for time in second_day_times],
+                },
+            ],
+        }
+
+    report = {"summary": {"profiles": [profile(1, ["07:00", "07:05"]),
+                                          profile(2, ["07:00"])]}}
+
+    assert common_observation_dates([report], [1, 2]) == {"2025-10-07"}
+
+
+def test_scenario_config_can_inherit_and_override_a_parent(tmp_path: Path) -> None:
+    configs = tmp_path / "configs"
+    configs.mkdir()
+    (configs / "base.json").write_text(
+        json.dumps({"scenario": "base", "ramp_mappings": [1], "route_file": "base.rou.xml"})
+    )
+    (configs / "candidate.json").write_text(
+        json.dumps(
+            {
+                "extends": "configs/base.json",
+                "scenario": "candidate",
+                "route_file": "candidate.rou.xml",
+            }
+        )
+    )
+
+    config = _load_baseline_config(Path("configs/candidate.json"), tmp_path)
+
+    assert config == {
+        "scenario": "candidate",
+        "ramp_mappings": [1],
+        "route_file": "candidate.rou.xml",
+    }
 
 
 def test_subtract_demand_profiles_preserves_time_and_removes_flow() -> None:

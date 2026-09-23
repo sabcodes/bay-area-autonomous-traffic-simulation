@@ -86,7 +86,7 @@ traffic—not a single on-ramp count.
 | Shoreline Boulevard loop on-ramp | Caltrans lists “Shoreline Blvd Collector (Loop and Diagonal) On-ramp.” PeMS ID 402922 is labeled `OR`, “Shoreline Blvd on loop,” but metadata gives direction `S`, PM 48.17, and the same coordinate as another Shoreline record. | Officially documented NB entry exists at the interchange. The PeMS row's direction/postmile/coordinate do not line up cleanly with the 401948→401507 PM interval; do not use it as an NB ramp count without checking its detector map/configuration. | Not in current ramp profile scan and not modeled. |
 | Shoreline Boulevard diagonal/collector on-ramp | Caltrans lists the diagonal as well as loop entrance; the checked October PeMS metadata has no corresponding candidate row in the project's current ramp-ID list. | Candidate NB inflow likely lies in the Shoreline interchange area, but a lane-specific PeMS station and precise merge point were not identified in the current inventory. | Not mapped, profiled, or modeled. |
 | Shoreline Boulevard off-ramp | PeMS 402921 is `FR`, “Shoreline Blvd off,” with direction `S`, PM 48.17, and the same coordinate as 402922. Caltrans' exit table lists NB Shoreline at county PM 48.60. | The NB exit is documented and its official postmile falls between the two mainline stations. The PeMS detector metadata is inconsistent with that location/direction, so the ID cannot currently quantify the exiting flow. | Not in current ramp profile scan and not modeled. |
-| SR-85→NB US-101 HOV direct connector | VTA confirms this direct connector. OSM's continuous HOV path runs through ways `11479095 → 5012264 → 8493691 → 699542383 → 699013840 → 698786377 → 699541214` to node `447918140`; the local SUMO network has that connection from edge `11479095` to mainline edge `509747406`. | The apparent endpoint mismatch was a way-ID aggregation effect: SUMO's `--geometry.remove` joins an unbroken chain and preserves its first way ID. Topology is now reconciled, and this merge is downstream of station 401948 and upstream of 401507. | PeMS 402920 is an `OR` station on `SR85-S`, 2 lanes, about 37 m from the connected OSM path. Its 12-day average is 10.71 vehicles/5 min = **128.5 veh/h** (288 valid rows; no speed). OSM shows a one-lane HOV connector, so the station-to-specific-path/lane mapping remains unconfirmed. Do not assign it as NB connector demand yet. |
+| SR-85→NB US-101 HOV direct connector | VTA confirms this direct connector. OSM's continuous HOV path runs through ways `11479095 → 5012264 → 8493691 → 699542383 → 699013840 → 698786377 → 699541214` to node `447918140`; SUMO routes candidate edge `11479095` directly to mainline edge `509747406`, then through the study corridor. | The apparent endpoint mismatch was a way-ID aggregation effect: SUMO's `--geometry.remove` joins an unbroken chain and preserves its first way ID. This merge is downstream of station 401948 and upstream of 401507. The user's closer PeMS screenshot places station 402920 on the separate connector beside Bayshore Freeway near the merge. The location is now a visually supported likely match, though the screenshot does not show exact lane narrowing or direction arrows. | PeMS 402920 is an `OR` station on `SR85-S`, with two active detector lanes and about 37 m from the connected OSM path. On the same nine complete dates used by the baseline inputs, its mean is 11.69 vehicles/5 min = **140.3 veh/h** (216 date-time observations; no speed). OSM/SUMO still represent the connector as one lane, while PeMS roadway inventory reports a 24-ft road with 12-ft lanes. An optional candidate scenario injects this measured profile on edge `11479095` but keeps the lane mismatch explicit. In three matched seeds, the downstream station 401507 mean simulated flow moved from 4,836.7 to 4,980.3 veh/h and its flow MAPE from 32.94% to 30.95%; the observed date-aligned target is 7,236.7 veh/h, so most of the gap remains. Treat this strictly as an input/geometry sensitivity, not a proven ramp assignment or traffic-control benefit. |
 | Old Middlefield Way off-ramp | Caltrans exit table lists NB Old Middlefield Way at county PM 48.97; local SUMO connects mainline lane 0 to way `30990690` at the end of synthetic edge `509747406-AddedOffRampEdge`. | Official PM places this exit after station 401507 (PM 48.69), so it should not reduce the flow measured there. The SUMO detector placement is close to this split: all six virtual loops are on lanes 1–6 at position 70.24 m of a 94.71 m through edge; the ramp branches from lane 0 at the edge end. Thus the loops are on through lanes before the modeled exit, not on the exit lane, but only about 24.5 m upstream of the split. This deserves visual/geometric review. | Exit exists in the network; the detector is not on its exit-only lane. The network geometry/postmile agreement still needs review. |
 
 The `401507` generated virtual loops use
@@ -96,18 +96,21 @@ additional diverge/through transition, although PeMS reports six mainline
 lanes. This is not evidence that the PeMS station counts ramp vehicles, but
 the short distance from detector to split makes it a sensitive mapping.
 
-**Assessment:** The date-aligned +1,622 veh/h difference is plausible as a net outcome of
-one or more substantial entries, minus the Shoreline exit, but no current
-station data validates gross entry/exit volumes. The measured 402920 candidate
-is about 8% of that net change, but it cannot be subtracted as if it were an
-isolated gross connector flow. Shoreline on/off detector identities also need
-manual reconciliation. Keep the residual flagged as a net mainline change.
+**Assessment:** On the same nine dates as the scenario demand sources, the
+date-aligned +1,785 veh/h difference is plausible as a net outcome of one or
+more substantial entries, minus the Shoreline exit, but no current station data
+validates gross entry/exit volumes. The measured 402920 candidate is about 7.9%
+of that net change, but it cannot be subtracted as if it were an isolated gross
+connector flow. The optional three-seed candidate run improves downstream flow
+fit by about two percentage points but still underpredicts observed flow by
+about 31%. Shoreline on/off detector identities also need manual reconciliation.
+Keep the residual flagged as a net mainline change.
 
 ## Next checks before assigning ramp demand
 
-1. Visually confirm whether PeMS 402920's two SR-85 detector lanes correspond
-   to the one-lane HOV path (the station is nearby, but its lane mapping is not
-   proven).
+1. Confirm from lane-level aerial imagery or PeMS detector inventory where
+   402920's two detector lanes narrow to or diverge from the one-lane HOV path;
+   the current map screenshot supports its location but not exact lane geometry.
 2. Visually audit the physical NB Shoreline loop/diagonal on-ramps and NB
    Shoreline exit in the SUMO GUI, including connections and lane counts.
 3. Resolve the metadata/map identity for PeMS 402921/402922 and determine

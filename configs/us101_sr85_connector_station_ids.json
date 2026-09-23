@@ -1,7 +1,7 @@
 {
   "corridor": "US-101 northbound: SR-237 to Oregon Expressway/Page Mill Road",
-  "status": "Unverified PeMS station candidate for the SR-85 to NB US-101 HOV connector; do not assign to simulation demand until its detector position is mapped.",
+  "status": "Visually supported likely match for the SR-85-to-NB-US-101 HOV connector; keep out of baseline demand until lane-level path and matched-date treatment are verified.",
   "station_ids": [402920],
   "lane_types": ["OR"],
-  "mapping_note": "PeMS labels 402920 as a two-lane on-ramp on SR-85 southbound, Shoreline Boulevard diagonal. Its 2022-current location is near the OSM HOV connector path to NB US-101; this proximity is a candidate match, not confirmation."
+  "mapping_note": "PeMS labels 402920 as a two-lane on-ramp on SR-85 southbound, Shoreline Boulevard diagonal. The user-provided close-up PeMS current-location map places its marker on the separate connector beside Bayshore Freeway near the merge. OSM maps a one-way, one-lane HOV path to US 101 North through this location. This is strong visual/topological support for the location match, but the map does not identify the exact merge direction or explain the two-PeMS-lanes versus one-OSM-lane difference."
 }

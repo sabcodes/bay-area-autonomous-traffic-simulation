@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import subprocess
+from collections import defaultdict
+from copy import deepcopy
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
@@ -59,6 +61,8 @@ class PreparedBaseline:
     network_file: str
     route_file: str
     manifest_file: str
+    aligned_observed_profile_file: str
+    observation_dates: list[str]
     route_edge_count: int
     route_length_meters: float
     minimum_lane_count: int
@@ -74,7 +78,10 @@ class PreparedBaseline:
 
 
 def demand_points_from_report(
-    report: dict[str, Any], warmup_seconds: int, station_id: int | None = None
+    report: dict[str, Any],
+    warmup_seconds: int,
+    station_id: int | None = None,
+    observation_dates: set[str] | None = None,
 ) -> list[DemandPoint]:
     """Convert station flow per five minutes into a two-hour SUMO demand profile."""
 
@@ -90,7 +97,10 @@ def demand_points_from_report(
             ),
             None,
         )
-        raw_profile = station_profile.get("time_profile") if station_profile else None
+        if station_profile and observation_dates is not None:
+            raw_profile = _average_daily_profile(station_profile, observation_dates)
+        else:
+            raw_profile = station_profile.get("time_profile") if station_profile else None
     if not isinstance(raw_profile, list) or not raw_profile:
         raise ValueError("The PeMS report does not contain a non-empty time profile.")
 
@@ -117,6 +127,173 @@ def demand_points_from_report(
             )
         )
     return points
+
+
+def _average_daily_profile(
+    profile: dict[str, Any], observation_dates: set[str]
+) -> list[dict[str, Any]]:
+    """Average a station profile over only the requested actual dates."""
+
+    daily_profiles = profile.get("daily_time_profile")
+    if not isinstance(daily_profiles, list):
+        raise ValueError(
+            f"Station {profile.get('station_id')} has no date-level profile; regenerate "
+            "the PeMS station profiles before preparing a date-aligned scenario."
+        )
+    by_time: defaultdict[str, list[tuple[float, int, float | None]]] = defaultdict(list)
+    for daily in daily_profiles:
+        if daily.get("date") not in observation_dates:
+            continue
+        for point in daily.get("time_profile", []):
+            flow = point.get("mean_flow_vehicles_per_5_minutes")
+            if not isinstance(flow, (int, float)):
+                continue
+            observations = int(point.get("observations", 1))
+            speed = point.get("mean_speed_mph")
+            by_time[str(point["time"])].append(
+                (
+                    float(flow),
+                    observations,
+                    float(speed) if isinstance(speed, (int, float)) else None,
+                )
+            )
+    if not by_time:
+        raise ValueError(
+            f"Station {profile.get('station_id')} has no observations on the selected dates."
+        )
+    return [
+        {
+            "time": time,
+            "observations": sum(count for _, count, _ in values),
+            "mean_flow_vehicles_per_5_minutes": (
+                sum(flow * count for flow, count, _ in values)
+                / sum(count for _, count, _ in values)
+            ),
+            "mean_speed_mph": (
+                sum(speed * count for _, count, speed in values if speed is not None)
+                / sum(count for _, count, speed in values if speed is not None)
+                if any(speed is not None for _, _, speed in values)
+                else None
+            ),
+        }
+        for time, values in sorted(by_time.items())
+    ]
+
+
+def common_observation_dates(
+    reports: list[dict[str, Any]], station_ids: list[int]
+) -> set[str]:
+    """Find dates where every selected station has all of the same time slots."""
+
+    profiles: dict[int, dict[str, Any]] = {}
+    for report in reports:
+        for profile in report.get("summary", {}).get("profiles", []):
+            station_id = int(profile["station_id"])
+            if station_id in profiles:
+                raise ValueError(f"Station {station_id} appears in more than one profile report.")
+            profiles[station_id] = profile
+    missing = sorted(set(station_ids) - set(profiles))
+    if missing:
+        raise ValueError(f"No PeMS profiles are available for required stations: {missing}.")
+    date_sets: list[set[str]] = []
+    time_sets_by_station: dict[int, dict[str, set[str]]] = {}
+    for station_id in station_ids:
+        profile = profiles[station_id]
+        daily_profiles = profile.get("daily_time_profile")
+        if not isinstance(daily_profiles, list):
+            raise ValueError(
+                f"Station {station_id} has no date-level profile; regenerate PeMS profiles."
+            )
+        date_sets.append({str(day["date"]) for day in daily_profiles})
+        time_sets_by_station[station_id] = {
+            str(day["date"]): {str(point["time"]) for point in day.get("time_profile", [])}
+            for day in daily_profiles
+        }
+    common_dates = set.intersection(*date_sets) if date_sets else set()
+    if not common_dates:
+        raise ValueError("The selected demand stations have no shared observation dates.")
+    expected_times = {
+        str(point["time"]) for point in profiles[station_ids[0]].get("time_profile", [])
+    }
+    complete_dates = {
+        date
+        for date in common_dates
+        if all(
+            time_sets_by_station[station_id][date] >= expected_times
+            for station_id in station_ids
+        )
+    }
+    if not complete_dates:
+        raise ValueError("No shared observation dates have complete matching time slots.")
+    return complete_dates
+
+
+def _align_profile_report(report: dict[str, Any], dates: set[str]) -> dict[str, Any]:
+    """Return a copy of a station report whose summaries use the chosen dates."""
+
+    aligned = deepcopy(report)
+    profiles = aligned.get("summary", {}).get("profiles", [])
+    for profile in profiles:
+        profile["daily_time_profile"] = [
+            day for day in profile.get("daily_time_profile", []) if day.get("date") in dates
+        ]
+        profile["date_count"] = len(profile["daily_time_profile"])
+        profile["time_profile"] = _average_daily_profile(profile, dates)
+        profile["matching_rows"] = sum(
+            int(point.get("observations", 0))
+            for day in profile["daily_time_profile"]
+            for point in day.get("time_profile", [])
+        )
+        all_points = [
+            point
+            for day in profile["daily_time_profile"]
+            for point in day["time_profile"]
+        ]
+        total_observations = sum(int(point.get("observations", 0)) for point in all_points)
+        profile["mean_flow_vehicles_per_5_minutes"] = (
+            sum(
+                float(point["mean_flow_vehicles_per_5_minutes"])
+                * int(point.get("observations", 0))
+                for point in all_points
+            )
+            / total_observations
+            if total_observations
+            else None
+        )
+        speed_points = [
+            point for point in all_points if isinstance(point.get("mean_speed_mph"), (int, float))
+        ]
+        speed_observations = sum(int(point.get("observations", 0)) for point in speed_points)
+        profile["mean_speed_mph"] = (
+            sum(
+                float(point["mean_speed_mph"]) * int(point.get("observations", 0))
+                for point in speed_points
+            )
+            / speed_observations
+            if speed_observations
+            else None
+        )
+    summary = aligned.get("summary", {})
+    summary["matching_rows"] = sum(profile.get("matching_rows", 0) for profile in profiles)
+    summary["station_count"] = len(profiles)
+    aligned["date_alignment"] = {
+        "method": "shared complete dates across all scenario demand stations",
+        "observation_dates": sorted(dates),
+    }
+    return aligned
+
+
+def _load_baseline_config(config_path: Path, root: Path) -> dict[str, Any]:
+    """Load a full baseline config, optionally inheriting a parent scenario."""
+
+    config_file = config_path if config_path.is_absolute() else root / config_path
+    raw = json.loads(config_file.read_text())
+    parent_config = raw.pop("extends", None)
+    if parent_config:
+        inherited = json.loads((root / str(parent_config)).read_text())
+        inherited.update(raw)
+        raw = inherited
+    return raw
 
 
 def _route_edges(network_file: Path, checkpoint_edge_ids: list[str]) -> list[Any]:
@@ -310,6 +487,7 @@ def _build_ramp_demands(
     mappings: list[dict[str, Any]],
     ramp_report: dict[str, Any],
     warmup_seconds: int,
+    observation_dates: set[str],
 ) -> list[RampDemand]:
     """Join measured ramp profiles to their visually and topologically audited routes."""
 
@@ -340,7 +518,9 @@ def _build_ramp_demands(
                 name=str(mapping["name"]),
                 route_id=f"ramp_{station_id}_{lane_type.lower()}",
                 route_edge_ids=route_edge_ids,
-                demand_profile=demand_points_from_report(ramp_report, warmup_seconds, station_id),
+                demand_profile=demand_points_from_report(
+                    ramp_report, warmup_seconds, station_id, observation_dates
+                ),
             )
         )
     return demands
@@ -364,12 +544,16 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
     """Build a route and provenance manifest from the corrected network and PeMS report."""
 
     root = repository_root()
-    raw = json.loads(config_path.read_text())
+    raw = _load_baseline_config(config_path, root)
     network_file = root / raw["network_file"]
     pems_report_file = root / raw["pems_report"]
     ramp_profile_file = root / raw["ramp_profile_file"]
     route_file = root / raw["route_file"]
     manifest_file = root / raw["manifest_file"]
+    supplemental_ramp_reports = [
+        json.loads((root / path).read_text())
+        for path in raw.get("supplemental_ramp_profile_files", [])
+    ]
     for required_file in (network_file, pems_report_file, ramp_profile_file):
         if not required_file.is_file():
             raise FileNotFoundError(f"Required baseline input not found: {required_file}")
@@ -377,19 +561,42 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
     warmup_seconds = int(raw["warmup_seconds"])
     clearance_seconds = int(raw["clearance_seconds"])
     report = json.loads(pems_report_file.read_text())
-    mainline_entry_points = demand_points_from_report(
-        report, warmup_seconds, int(raw["mainline_entry_station_id"])
-    )
     ramp_report = json.loads(ramp_profile_file.read_text())
+    ramp_reports = [ramp_report, *supplemental_ramp_reports]
+    ramp_profiles = [
+        profile
+        for source_report in ramp_reports
+        for profile in source_report.get("summary", {}).get("profiles", [])
+    ]
+    ramp_report = {
+        **ramp_report,
+        "summary": {**ramp_report.get("summary", {}), "profiles": ramp_profiles},
+    }
+    ramp_mappings = [
+        *raw["active_ramp_mappings"],
+        *raw.get("additional_ramp_mappings", []),
+    ]
+    station_ids_for_demand = [
+        int(raw["mainline_entry_station_id"]),
+        *(int(mapping["station_id"]) for mapping in ramp_mappings),
+    ]
+    observation_dates = common_observation_dates([report, *ramp_reports], station_ids_for_demand)
+    mainline_entry_points = demand_points_from_report(
+        report,
+        warmup_seconds,
+        int(raw["mainline_entry_station_id"]),
+        observation_dates,
+    )
     route_edges = _route_edges(network_file, raw["checkpoint_edge_ids"])
     route_edge_ids = [edge.getID() for edge in route_edges]
     route_length = sum(edge.getLength() for edge in route_edges)
     ramp_demands = _build_ramp_demands(
         network_file,
         route_edge_ids,
-        raw["active_ramp_mappings"],
+        ramp_mappings,
         ramp_report,
         warmup_seconds,
+        observation_dates,
     )
     off_ramp_profiles = [ramp.demand_profile for ramp in ramp_demands if ramp.lane_type == "FR"]
     mainline_through_points = _subtract_demand_profiles(mainline_entry_points, off_ramp_profiles)
@@ -415,11 +622,18 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
         corridor.bounding_box,
         detector_station_ids,
     )
+    aligned_observed_profile_file = root / raw["aligned_pems_report_file"]
+    aligned_observed_profile_file.parent.mkdir(parents=True, exist_ok=True)
+    aligned_observed_profile_file.write_text(
+        json.dumps(_align_profile_report(report, observation_dates), indent=2) + "\n"
+    )
     prepared = PreparedBaseline(
         scenario=raw["scenario"],
         network_file=str(network_file),
         route_file=str(route_file),
         manifest_file=str(manifest_file),
+        aligned_observed_profile_file=str(aligned_observed_profile_file),
+        observation_dates=sorted(observation_dates),
         route_edge_count=len(route_edges),
         route_length_meters=route_length,
         minimum_lane_count=min(edge.getLaneNumber() for edge in route_edges),
@@ -430,6 +644,9 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
         virtual_detectors=detector_specs,
         assumptions=[
             *raw["assumptions"],
+            *raw.get("additional_assumptions", []),
+            "Mainline and active ramp demand profiles use the same dates and complete "
+            "five-minute intervals.",
             f"Warmup contributes approximately {warmup_input:.1f} input vehicles.",
         ],
     )
@@ -444,10 +661,10 @@ def run_human_baseline(
     """Run the draft real-corridor human baseline and read completed-trip metrics."""
 
     prepared = prepare_human_baseline(config_path)
+    raw = _load_baseline_config(config_path, repository_root())
     output_directory = Path(prepared.manifest_file).parent
     tripinfo_file = output_directory / f"h0_human_baseline_seed_{seed}.tripinfo.xml"
     log_file = output_directory / f"h0_human_baseline_seed_{seed}.log"
-    raw = json.loads(config_path.read_text())
     detector_file = repository_root() / raw["detector_file_template"].format(seed=seed)
     detector_output_file = repository_root() / raw["detector_output_template"].format(seed=seed)
     detector_summary_file = repository_root() / raw["detector_summary_template"].format(seed=seed)

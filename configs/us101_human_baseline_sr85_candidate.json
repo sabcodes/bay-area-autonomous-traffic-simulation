@@ -1,0 +1,25 @@
+{
+  "extends": "configs/us101_human_baseline.json",
+  "scenario": "H0 human baseline with visually supported SR-85 connector candidate",
+  "supplemental_ramp_profile_files": [
+    "outputs/pems_calibration/us101_sr85_connector_station_profiles.json"
+  ],
+  "additional_ramp_mappings": [
+    {
+      "station_id": 402920,
+      "lane_type": "OR",
+      "name": "Shoreline Boulevard diagonal: SR-85 to NB US-101 candidate",
+      "sumo_edge_id": "11479095",
+      "merge_edge_id": "509747406"
+    }
+  ],
+  "route_file": "outputs/us101_corridor/sr85_candidate/h0_sr85_candidate.rou.xml",
+  "manifest_file": "outputs/us101_corridor/sr85_candidate/h0_sr85_candidate_manifest.json",
+  "aligned_pems_report_file": "outputs/pems_calibration/us101_sr85_candidate_mainline_profiles_aligned.json",
+  "detector_file_template": "outputs/us101_corridor/sr85_candidate/h0_sr85_candidate_virtual_detectors_seed_{seed}.add.xml",
+  "detector_output_template": "outputs/us101_corridor/sr85_candidate/h0_sr85_candidate_virtual_detectors_seed_{seed}.xml",
+  "detector_summary_template": "outputs/us101_corridor/sr85_candidate/h0_sr85_candidate_virtual_detectors_seed_{seed}.json",
+  "additional_assumptions": [
+    "Station 402920 is a visually supported likely location match, but its two detector lanes map to a one-lane SUMO edge; treat this run as a demand/geometry sensitivity, not an accepted final baseline."
+  ]
+}

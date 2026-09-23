@@ -33,26 +33,35 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 - M2 is active. The imported network now reaches the Oregon Expressway/Page
   Mill connection. The H0 route is constrained through detector-matched
   mainline checkpoints and never falls below four lanes.
-- M3 has a runnable ramp-aware draft. Seeds 41, 42, and 43 each completed
-  12,457 vehicles without SUMO route, teleport, or emergency-braking warnings.
-  Mean trip speed is 59.59 mph with a 0.16 mph sample standard deviation, so
-  the remaining speed bias is systematic rather than seed noise. Ten
-  PeMS-aligned virtual stations report 43 lane loops in five-minute intervals.
-  At the entry station, simulated mean flow is 4,656.5 vehicles/hour versus
-  4,645.9 observed, with mean interval MAPE of 0.38%. Across the six comparable
-  stations, mean flow MAPE ranges from 0.38% to 32.11%, and mean speed MAE from
-  7.06 to 13.59 mph.
+- M3 has a runnable ramp-aware draft. Demand profiles now use complete dates
+  shared across the mainline entry and every active ramp, and the validation
+  profile uses those same dates. On the current nine-day set, three seeds each
+  completed 13,482 vehicles without route, teleport, collision, or
+  emergency-braking warnings. Mean trip speed is 59.10 mph (sample SD 0.18).
+  Across six comparable mainline stations, flow MAPE ranges from 0.31% to
+  32.94% and speed MAE from 10.50 to 17.86 mph, so speed and downstream flow
+  calibration remain active.
 - Observed flow conservation is now explicit. Seven reporting stations are
   placed in route order and six adjacent residuals are calculated. Five are
   usable; one same-edge pair is classified as detector disagreement rather
   than demand. Station 401948 is accepted as a five-lane PeMS cross-section:
   its five lane measurements are active, its location is on northbound US-101,
   and Caltrans documents the managed/HOT lane buffered between Moffett
-  Boulevard and Old Middlefield Way. The +330 and +1,529 vehicles/hour net
-  changes are now available for empirical flow balance. The mapped OSM/SUMO
+  Boulevard and Old Middlefield Way. Same-date comparisons replace the earlier
+  unmatched-day values: +238 and +1,622 vehicles/hour across 12 days and 288
+  morning intervals for the Moffett and Shoreline pairs. On the nine complete
+  dates shared by all H0 demand sources, the Shoreline pair is +1,785 veh/h.
+  The mapped OSM/SUMO
   edge `617335302` still represents only four lanes, so that model geometry gap
   remains visible as a note. Neither residual is a standalone ramp count; audit
   intervening entrances and exits before assigning demand to any one ramp.
+  PeMS station 402920 averages 140.3 vehicles/hour over those nine dates. A
+  close-up user-provided PeMS map and a valid SUMO route visually/topologically
+  support its location on the SR-85-to-NB-101 connector. A separate three-seed
+  sensitivity moves simulated flow at 401507 from 4,836.7 to 4,980.3 veh/h and
+  reduces flow MAPE from 32.94% to 30.95%; this is not a controller benefit or
+  final ramp-demand acceptance. The two PeMS lanes versus one SUMO lane and
+  exact merge direction remain caveats.
 - Thirteen ramp sensors were identified and five have qualifying October
   morning profiles. Four were visually and topologically audited: one measured
   Mathilda exit is split from upstream demand, and the Mathilda, Moffett, and

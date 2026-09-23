@@ -229,7 +229,9 @@ def main() -> None:
     )
     multi_real.add_argument(
         "--observed",
-        default="outputs/pems_calibration/us101_mainline_station_profiles.json",
+        help=(
+            "Optional observed-profile override; otherwise use the scenario's date-aligned profile."
+        ),
     )
     multi_real.add_argument("--warmup-seconds", type=int, default=900)
     multi_real.add_argument(
@@ -459,7 +461,9 @@ def main() -> None:
                 Path(args.config), seed
             )
             comparison = compare_detector_profiles(
-                Path(args.observed), detector_summary_file, args.warmup_seconds
+                Path(args.observed or prepared.aligned_observed_profile_file),
+                detector_summary_file,
+                args.warmup_seconds,
             )
             expected_input_vehicles = prepared.expected_input_vehicles
             metrics.append(run_metrics)
@@ -473,7 +477,7 @@ def main() -> None:
                 }
             )
         report = {
-            "scenario": "H0 draft human-only US-101 northbound baseline",
+            "scenario": prepared.scenario,
             "seeds": args.seeds,
             "expected_input_vehicles": expected_input_vehicles,
             "runs": run_records,

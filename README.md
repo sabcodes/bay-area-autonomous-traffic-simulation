@@ -269,9 +269,40 @@ so its geometry mismatch remains visible in the report notes. See
 
 To profile a detector on another freeway or direction, pass `--freeway` and
 `--direction` (for example `--freeway 85 --direction S`). This is used for the
-unverified SR-85 station 402920 candidate; its observed mean is about 129
-vehicles/hour over the same 12 days, but it is not yet assigned to a specific
-connector lane.
+visually supported SR-85 station 402920 candidate; its mean is about 129
+vehicles/hour over 12 days, but exact lane-level placement remains uncertain.
+
+Human-baseline preparation now requires complete common observation dates
+across its mainline entry and active ramp detectors. Its manifest records the
+selected dates, and detector validation uses a matching-date copy of the
+mainline profile. To test station 402920 without changing the accepted H0
+baseline, run the separate candidate scenario:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim summarize-pems-stations \
+  --station-ids-file configs/us101_sr85_connector_station_ids.json \
+  --freeway 85 \
+  --direction S \
+  --lane-types OR \
+  --start-hour 7 \
+  --end-hour 9 \
+  --minimum-observed-percent 90 \
+  --output outputs/pems_calibration/us101_sr85_connector_station_profiles.json
+.venv/bin/python -m bay_area_traffic_sim run-us101-human-baseline-multi \
+  --config configs/us101_human_baseline.json \
+  --seeds 41 42 43 \
+  --output outputs/us101_corridor/h0_date_aligned_multiseed_report.json
+.venv/bin/python -m bay_area_traffic_sim run-us101-human-baseline-multi \
+  --config configs/us101_human_baseline_sr85_candidate.json \
+  --seeds 41 42 43 \
+  --output outputs/us101_corridor/sr85_candidate/h0_sr85_candidate_multiseed_report.json
+```
+
+This is a demand-and-network sensitivity, not evidence that a traffic-control
+policy works. The candidate config keeps the one-lane SUMO connector and
+records the PeMS two-lane mismatch; do not use its flow as finalized demand
+until the lane geometry is reconciled. Compare it with the regular baseline
+using the same seed list.
 
 ## Status
 

@@ -74,24 +74,30 @@ Neither 402921's off-ramp value nor 402922's on-ramp value can be subtracted
 from or added to the **northbound** 401948→401507 net flow change. Caltrans' NB
 Shoreline ramp-meter notice confirms a northbound entrance in the interval,
 but those two southbound PeMS records are not valid NB ramp counts. A separate
-candidate, 402920, measures southbound SR-85 on-ramp flow at about 128.5
-vehicles/hour over 12 common days. OSM confirms a connected HOV route into NB
-US-101, but the detector-to-lane mapping is unverified; 402920 cannot by itself
-close the balance. The date-aligned mainline net change is +1,621.625
-vehicles/hour over 12 common days (288 morning intervals), replacing the
-earlier +1,529 estimate that used unmatched date sets.
+candidate, 402920, measures southbound SR-85 on-ramp flow. The user's close-up
+PeMS map screenshot visually supports its location on the separate connector
+beside Bayshore Freeway near the merge. The generated SUMO graph has a valid
+route from connector edge `11479095` onto northbound US-101 edge `509747406`.
+Across the same nine complete dates used by all H0 demand inputs, 402920
+averages 140.3 vehicles/hour (216 morning intervals); the matched
+401948→401507 net change is +1,785.2 vehicles/hour. The 402920 candidate cannot
+by itself close the balance. A pair-only comparison over 12 shared days gives
++1,621.6 vehicles/hour, replacing the earlier +1,529 estimate that used
+unmatched date sets.
 
 ## Next mapping step and human check
 
 Available local PeMS text metadata and TMDD inventory are enough to settle the
 directional identity and rule out IDs 402921/402922 for this NB study. They are
 not enough to place either detector on a particular physical ramp, or to map a
-northbound Shoreline detector to a SUMO edge. Before using 402920 as NB HOV
-connector demand, visually compare its PeMS station configuration and two
-detector lanes with the single-lane OSM/SUMO connector path. A screenshot or
-station configuration export is still useful to verify that mapping. No extra
-visual confirmation is needed to reject 402921/402922 as northbound US-101
-counts.
+northbound Shoreline detector to a SUMO edge. Before using 402920 as finalized
+NB HOV connector demand, compare the two PeMS detector lanes with the
+single-lane OSM/SUMO path. The user's close-up PeMS current-location screenshot
+visually supports the location match: the marker is on the separate connector
+beside Bayshore Freeway near the merge. The remaining uncertainty is the exact
+lane narrowing and merge direction, not whether the detector is in the
+interchange area. No extra visual confirmation is needed to reject
+402921/402922 as northbound US-101 counts.
 
 ## Primary sources
 
