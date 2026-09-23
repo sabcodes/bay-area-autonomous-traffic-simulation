@@ -84,6 +84,28 @@ def test_adjacent_flow_balance_preserves_detector_mapping_mismatch() -> None:
     assert segment["usable_for_missing_ramp_estimation"] is False
 
 
+def test_adjacent_flow_balance_treats_same_edge_difference_as_detector_bias() -> None:
+    upstream = _station(1, 0.0, 4, {"07:00": 4000}, confirmed=True)
+    downstream = OrderedFlowStation(
+        station_id=2,
+        station_name="Station 2",
+        edge_id=upstream.edge_id,
+        route_distance_meters=100.0,
+        represented_lanes=4,
+        reported_lanes=4,
+        mean_flow_vehicles_per_hour=3800,
+        flow_by_time={"07:00": 3800},
+        cautions=[],
+        full_cross_section_confirmed=True,
+    )
+
+    segment = compare_adjacent_stations([upstream, downstream])[0]
+
+    assert segment["topology_class"] == "same_edge_consistency_check"
+    assert segment["usable_for_missing_ramp_estimation"] is False
+    assert segment["time_profile"] == [{"time": "07:00", "net_flow_change_vehicles_per_hour": -200}]
+
+
 def test_adjacent_flow_balance_preserves_station_cautions() -> None:
     stations = [
         _station(1, 0.0, 4, {"07:00": 4000}),

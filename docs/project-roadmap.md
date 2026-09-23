@@ -43,12 +43,13 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   stations, mean flow MAPE ranges from 0.38% to 32.11%, and mean speed MAE from
   7.06 to 13.59 mph.
 - Observed flow conservation is now explicit. Seven reporting stations are
-  placed in route order and six adjacent residuals are calculated. Four are
-  usable; two are quarantined because PeMS station 401948 reports five lanes
-  while mapped OSM/SUMO edge `617335302` has four. The quarantined segments
-  contain mean changes of +330 and +1,529 vehicles/hour, so resolving this
-  network/data discrepancy is the next M2/M3 task before missing flow is
-  injected.
+  placed in route order and six adjacent residuals are calculated. Three are
+  usable. One same-edge pair is classified as detector disagreement rather
+  than demand, and two segments are quarantined because PeMS station 401948
+  reports five lanes while mapped OSM/SUMO edge `617335302` has four. Those
+  final segments contain mean changes of +330 and +1,529 vehicles/hour, so
+  resolving this network/data discrepancy is the next M2/M3 task before
+  missing flow is injected.
 - Thirteen ramp sensors were identified and five have qualifying October
   morning profiles. Four were visually and topologically audited: one measured
   Mathilda exit is split from upstream demand, and the Mathilda, Moffett, and

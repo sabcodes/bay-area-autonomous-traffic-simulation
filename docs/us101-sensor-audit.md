@@ -53,10 +53,11 @@ especially carefully.
 ## Flow-balance result
 
 The audited station order is 402370, 401996, 401998, 402372, 401534, 401948,
-and 401507. The first four adjacent comparisons are currently usable. They
-show mean changes of +33, +258, -196, and +14 vehicles/hour respectively.
-The next two comparisons show +330 and +1,529 vehicles/hour, but both touch
-station 401948 and remain quarantined because its five-lane PeMS cross-section
-maps to a four-lane OSM/SUMO edge. The larger residual must not be injected as
-ramp demand until that discrepancy is resolved with stronger lane evidence or
-a reproducible network correction.
+and 401507. Three adjacent comparisons are currently usable, with mean changes
+of +33, +258, and +14 vehicles/hour. Stations 401998 and 402372 map to the
+same uninterrupted SUMO edge but differ by -196 vehicles/hour; that is treated
+as detector disagreement rather than ramp demand. The final two comparisons
+show +330 and +1,529 vehicles/hour, but both touch station 401948 and remain
+quarantined because its five-lane PeMS cross-section maps to a four-lane
+OSM/SUMO edge. The larger residual must not be injected until that discrepancy
+is resolved with stronger lane evidence or a reproducible network correction.

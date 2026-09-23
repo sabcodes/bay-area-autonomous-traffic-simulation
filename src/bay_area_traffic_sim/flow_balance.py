@@ -127,6 +127,12 @@ def compare_adjacent_stations(
             downstream.flow_by_time[time] - upstream.flow_by_time[time] for time in common_times
         ]
         cautions = [*upstream.cautions, *downstream.cautions]
+        same_edge = upstream.edge_id == downstream.edge_id
+        if same_edge:
+            cautions.append(
+                "Both stations map to the same uninterrupted SUMO edge; their observed "
+                "difference is a detector-consistency issue, not ramp demand."
+            )
         if upstream.reported_lanes != downstream.reported_lanes and not (
             upstream.full_cross_section_confirmed and downstream.full_cross_section_confirmed
         ):
@@ -143,6 +149,9 @@ def compare_adjacent_stations(
                     downstream.route_distance_meters - upstream.route_distance_meters
                 ),
                 "matched_intervals": len(common_times),
+                "topology_class": (
+                    "same_edge_consistency_check" if same_edge else "between_edges_net_balance"
+                ),
                 "mean_net_flow_change_vehicles_per_hour": mean_change,
                 "interpretation": (
                     "net_inflow"
@@ -153,6 +162,13 @@ def compare_adjacent_stations(
                 ),
                 "minimum_interval_change_vehicles_per_hour": min(changes),
                 "maximum_interval_change_vehicles_per_hour": max(changes),
+                "time_profile": [
+                    {
+                        "time": time,
+                        "net_flow_change_vehicles_per_hour": change,
+                    }
+                    for time, change in zip(common_times, changes, strict=True)
+                ],
                 "usable_for_missing_ramp_estimation": not cautions,
                 "cautions": sorted(set(cautions)),
             }
