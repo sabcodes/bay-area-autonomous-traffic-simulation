@@ -58,6 +58,10 @@ of +33, +258, and +14 vehicles/hour. Stations 401998 and 402372 map to the
 same uninterrupted SUMO edge but differ by -196 vehicles/hour; that is treated
 as detector disagreement rather than ramp demand. The final two comparisons
 show +330 and +1,529 vehicles/hour, but both touch station 401948 and remain
-quarantined because its five-lane PeMS cross-section maps to a four-lane
-OSM/SUMO edge. The larger residual must not be injected until that discrepancy
-is resolved with stronger lane evidence or a reproducible network correction.
+quarantined. The user's PeMS screenshots confirm the correct US-101 northbound
+location in Mountain View and show detector lanes 1–5. They also show roadway
+inventory of 48 ft width at 12 ft per lane, plus an HOV designation. That
+evidence confirms the detector configuration and location, but does not prove
+five physical through lanes; the matching OSM/SUMO edge has four. Keep those
+residuals out of ramp-demand estimates until the PeMS lane numbering and HOV
+cross-section are reconciled with the road geometry.

@@ -47,9 +47,12 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   usable. One same-edge pair is classified as detector disagreement rather
   than demand, and two segments are quarantined because PeMS station 401948
   reports five lanes while mapped OSM/SUMO edge `617335302` has four. Those
-  final segments contain mean changes of +330 and +1,529 vehicles/hour, so
-  resolving this network/data discrepancy is the next M2/M3 task before
-  missing flow is injected.
+  final segments contain mean changes of +330 and +1,529 vehicles/hour. User
+  screenshots confirm station 401948 is in Mountain View and has detector
+  channels 1–5, while the roadway inventory reports 48 ft width at 12 ft per
+  lane and an HOV designation. Its location is accepted; its physical lane
+  mapping remains unresolved. Do not inject those residuals until the PeMS
+  channel numbering and HOV cross-section are reconciled with road geometry.
 - Thirteen ramp sensors were identified and five have qualifying October
   morning profiles. Four were visually and topologically audited: one measured
   Mathilda exit is split from upstream demand, and the Mathilda, Moffett, and

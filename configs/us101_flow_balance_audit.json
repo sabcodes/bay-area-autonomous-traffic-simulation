@@ -2,7 +2,6 @@
   "accepted_full_cross_section_station_ids": [
     401507,
     401534,
-    401948,
     401996,
     401997,
     401998,
@@ -35,8 +34,8 @@
     },
     {
       "station_id": 401948,
-      "decision": "accepted_full_cross_section",
-      "reason": "Close-zoom map review places the five-lane detector on northbound US-101 north of Moffett Boulevard. Its mapped OSM/SUMO edge currently has four lanes, so adjacent residuals remain quarantined."
+      "decision": "location_confirmed_lane_mapping_unresolved",
+      "reason": "PeMS Current Location confirms US-101 northbound at Moffett Boulevard, Mountain View. The configuration shows detector lanes 1-5, while roadway inventory reports 48 ft width and 12 ft lanes and identifies the main lane as HOV. The 5-vs-4 interpretation is unresolved; do not treat this as a confirmed five-lane physical cross-section."
     }
   ]
 }

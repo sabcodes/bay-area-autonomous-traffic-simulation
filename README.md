@@ -254,7 +254,9 @@ appears or disappears between neighbors. Comparisons involving a changed lane
 count or a ramp/collector/diagonal station label are marked for review and are
 not automatically treated as missing-ramp demand. Explicit decisions live in
 `configs/us101_flow_balance_audit.json`; station 401948 is currently
-quarantined because PeMS reports five lanes while its OSM/SUMO edge has four.
+quarantined because PeMS lists five detector channels, while its roadway
+inventory suggests four 12-foot lane widths and marks an HOV lane; the mapped
+OSM/SUMO edge has four lanes.
 
 ## Status
 
