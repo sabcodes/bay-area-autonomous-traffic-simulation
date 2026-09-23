@@ -26,7 +26,7 @@ means we check it more carefully before calibration.
 | --- | --- | ---: | --- | --- | --- |
 | 401507 | SHORELINE BLVD | 6 | [map](https://www.openstreetmap.org/?mlat=37.412677&mlon=-122.079539#map=16/37.412677/-122.079539) | Provisional keep | Looks about right. |
 | 401534 | MOFFETT BLVD | 4 | [map](https://www.openstreetmap.org/?mlat=37.407511&mlon=-122.065278#map=16/37.407511/-122.065278) | Provisional keep | Close zoom places marker on northbound mainline. |
-| 401948 | MOFFETT BLVD | 5 | [map](https://www.openstreetmap.org/?mlat=37.409514&mlon=-122.071728#map=16/37.409514/-122.071728) | Keep location; mapping blocked | Close zoom places marker on northbound mainline, but PeMS reports five lanes and OSM/SUMO edge `617335302` has four. |
+| 401948 | MOFFETT BLVD | 5 | [map](https://www.openstreetmap.org/?mlat=37.409514&mlon=-122.071728#map=16/37.409514/-122.071728) | Accept PeMS cross-section; model gap remains | Five active PeMS lane measurements on the northbound mainline; SUMO maps four lanes on edge `617335302`. |
 | 401949 | SHORELINE BLVD RM-N-COLL | 5 | [map](https://www.openstreetmap.org/?mlat=37.414582&mlon=-122.083368#map=16/37.414582/-122.083368) | Exclude | Close zoom places marker on separated collector/ramp roadway. |
 | 401996 | FAIR OAKS | 4 | [map](https://www.openstreetmap.org/?mlat=37.396411&mlon=-122.015716#map=16/37.396411/-122.015716) | Provisional keep | Looks about right. |
 | 401997 | MATHILDA AVE | 4 | [map](https://www.openstreetmap.org/?mlat=37.398829&mlon=-122.026742#map=16/37.398829/-122.026742) | Provisional keep | Looks about right. |

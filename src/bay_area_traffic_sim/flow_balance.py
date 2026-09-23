@@ -121,9 +121,11 @@ def order_observed_stations(
 
 def compare_adjacent_stations(
     stations: list[OrderedFlowStation],
+    blocked_pairs: dict[tuple[int, int], str] | None = None,
 ) -> list[dict[str, object]]:
     """Calculate observed net flow changes and label unsafe comparisons."""
 
+    blocked_pairs = blocked_pairs or {}
     segments: list[dict[str, object]] = []
     for upstream, downstream in zip(stations[:-1], stations[1:], strict=True):
         common_times = sorted(upstream.flow_by_time.keys() & downstream.flow_by_time.keys())
@@ -133,6 +135,9 @@ def compare_adjacent_stations(
             downstream.flow_by_time[time] - upstream.flow_by_time[time] for time in common_times
         ]
         cautions = [*upstream.cautions, *downstream.cautions]
+        pair_caution = blocked_pairs.get((upstream.station_id, downstream.station_id))
+        if pair_caution:
+            cautions.append(pair_caution)
         same_edge = upstream.edge_id == downstream.edge_id
         notes = []
         if same_edge:
@@ -210,7 +215,13 @@ def build_flow_balance_report(
     )
     if len(stations) < 2:
         raise ValueError("At least two ordered reporting stations are required.")
-    segments = compare_adjacent_stations(stations)
+    blocked_pairs = {
+        (int(item["upstream_station_id"]), int(item["downstream_station_id"])): str(
+            item["reason"]
+        )
+        for item in json.loads(audit_file.read_text()).get("blocked_segment_pairs", [])
+    } if audit_file else {}
+    segments = compare_adjacent_stations(stations, blocked_pairs=blocked_pairs)
     return {
         "observed_profile_file": str(observed_profile_file),
         "manifest_file": str(manifest_file),

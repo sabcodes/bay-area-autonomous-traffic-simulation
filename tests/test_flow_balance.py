@@ -124,3 +124,23 @@ def test_adjacent_flow_balance_preserves_station_cautions() -> None:
     assert segment["usable_for_missing_ramp_estimation"] is False
     assert segment["cautions"] == ["Collector road context."]
     assert segment["mean_net_flow_change_vehicles_per_hour"] == pytest.approx(1000)
+
+
+def test_pair_audit_can_block_residual_without_losing_observed_net_change() -> None:
+    stations = [
+        _station(401534, 0.0, 4, {"07:00": 4756}, confirmed=True),
+        _station(401948, 1000.0, 5, {"07:00": 5086}, confirmed=True),
+    ]
+
+    segment = compare_adjacent_stations(
+        stations,
+        blocked_pairs={
+            (401534, 401948): "Intervening ramp and detector mappings remain unresolved."
+        },
+    )[0]
+
+    assert segment["mean_net_flow_change_vehicles_per_hour"] == 330
+    assert segment["usable_for_missing_ramp_estimation"] is False
+    assert segment["cautions"] == [
+        "Intervening ramp and detector mappings remain unresolved."
+    ]

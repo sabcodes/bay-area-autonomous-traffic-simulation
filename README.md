@@ -257,10 +257,11 @@ not automatically treated as missing-ramp demand. Explicit decisions live in
 observed five-lane mainline cross-section: the October data show five active
 lane measurements, and Caltrans documents a buffered managed/HOT lane in the
 Moffett Boulevard–Old Middlefield Way area. The adjacent +330 and +1,529
-vehicles/hour residuals are now available for empirical flow balance. The
-mapped OSM/SUMO edge still has four lanes, so its geometry mismatch remains
-visible in the report notes. These net residuals must not be mistaken for
-single-ramp counts until all intervening entrances and exits are audited.
+vehicles/hour values remain valid as observed net-flow changes, but pair-level
+ramp audits keep them blocked from missing-ramp demand estimation until the
+intervening movements and detector mappings are reconciled. The mapped OSM/SUMO
+edge still has four lanes, so its geometry mismatch remains visible in the
+report notes. See [the Moffett-to-Shoreline pair audit](docs/us101-ramp-pair-audit.md).
 
 ## Status
 

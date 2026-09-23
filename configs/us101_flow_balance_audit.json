@@ -12,6 +12,18 @@
     425892
   ],
   "excluded_station_ids": [401949],
+  "blocked_segment_pairs": [
+    {
+      "upstream_station_id": 401534,
+      "downstream_station_id": 401948,
+      "reason": "Moffett and SR-85 intervening ramp movements are not fully measured or geometrically reconciled; retain +330 veh/h only as a net mainline change."
+    },
+    {
+      "upstream_station_id": 401948,
+      "downstream_station_id": 401507,
+      "reason": "Shoreline ramp detector identities and the SUMO HOV connector/source geometry are unresolved; retain +1,529 veh/h only as a net mainline change."
+    }
+  ],
   "decisions": [
     {
       "station_id": 401998,
