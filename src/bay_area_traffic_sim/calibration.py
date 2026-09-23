@@ -93,6 +93,12 @@ def compare_detector_profiles(
     simulated_report = json.loads(simulated_detector_file.read_text())
     observed_profiles = observed_report.get("summary", {}).get("profiles", [])
     simulated_intervals = simulated_report.get("intervals", [])
+    lane_mismatch_station_ids = {
+        int(detector["station_id"])
+        for detector in simulated_report.get("detectors", [])
+        if detector.get("reported_lane_count") is not None
+        and int(detector["reported_lane_count"]) != len(detector.get("lane_ids", []))
+    }
     if not observed_profiles:
         raise ValueError("Observed station profile report contains no profiles.")
     if not simulated_intervals:
@@ -117,6 +123,8 @@ def compare_detector_profiles(
     missing_simulated_station_ids: list[int] = []
     for profile in observed_profiles:
         station_id = profile["station_id"]
+        if station_id in lane_mismatch_station_ids:
+            continue
         pairs = [
             (point, simulated_by_station_time[(station_id, point["time"])])
             for point in profile["time_profile"]
@@ -169,6 +177,7 @@ def compare_detector_profiles(
         "warmup_seconds": warmup_seconds,
         "station_comparisons": [asdict(comparison) for comparison in comparisons],
         "missing_simulated_station_ids": missing_simulated_station_ids,
+        "excluded_lane_mismatch_station_ids": sorted(lane_mismatch_station_ids),
         "limitation": (
             "Calibration targets are provisional until detector locations, ramp context, "
             "and held-out validation days are finalized."

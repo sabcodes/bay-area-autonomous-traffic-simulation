@@ -100,3 +100,56 @@ def test_summarize_detector_comparisons_reports_seed_spread() -> None:
         "sample_standard_deviation"
     ] == pytest.approx(28.2842712475)
     assert summary["simulated_mean_speed_mph"]["mean"] == 50
+
+
+def test_compare_detector_profiles_excludes_lane_mapping_mismatch(
+    tmp_path: Path,
+) -> None:
+    observed = tmp_path / "observed.json"
+    simulated = tmp_path / "simulated.json"
+    observed.write_text(
+        json.dumps(
+            {
+                "summary": {
+                    "profiles": [
+                        {
+                            "station_id": 400001,
+                            "time_profile": [
+                                {
+                                    "time": "07:00",
+                                    "mean_flow_vehicles_per_5_minutes": 40,
+                                    "mean_speed_mph": 50,
+                                }
+                            ],
+                        }
+                    ]
+                }
+            }
+        )
+    )
+    simulated.write_text(
+        json.dumps(
+            {
+                "detectors": [
+                    {
+                        "station_id": 400001,
+                        "reported_lane_count": 5,
+                        "lane_ids": ["a", "b", "c", "d"],
+                    }
+                ],
+                "intervals": [
+                    {
+                        "station_id": 400001,
+                        "begin_seconds": 900,
+                        "flow_vehicles_per_hour": 480,
+                        "speed_mph": 50,
+                    }
+                ],
+            }
+        )
+    )
+
+    report = compare_detector_profiles(observed, simulated)
+
+    assert report["station_comparisons"] == []
+    assert report["excluded_lane_mismatch_station_ids"] == [400001]

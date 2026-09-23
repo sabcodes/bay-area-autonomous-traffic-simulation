@@ -28,19 +28,27 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 - M0 is complete.
 - M1 is active. District 4 Station 5-Minute and Station Metadata exports are
   available locally. The corrected boundary selects 19 candidate detectors;
-  nine are in the provisional reviewed subset and ten need follow-up.
+  ten mainline locations are provisionally accepted, eight need follow-up, and
+  one Shoreline collector detector is excluded.
 - M2 is active. The imported network now reaches the Oregon Expressway/Page
   Mill connection. The H0 route is constrained through detector-matched
   mainline checkpoints and never falls below four lanes.
 - M3 has a runnable ramp-aware draft. Seeds 41, 42, and 43 each completed
   12,457 vehicles without SUMO route, teleport, or emergency-braking warnings.
   Mean trip speed is 59.59 mph with a 0.16 mph sample standard deviation, so
-  the remaining speed bias is systematic rather than seed noise. Nine
-  PeMS-aligned virtual stations report 40 lane loops in five-minute intervals.
+  the remaining speed bias is systematic rather than seed noise. Ten
+  PeMS-aligned virtual stations report 43 lane loops in five-minute intervals.
   At the entry station, simulated mean flow is 4,656.5 vehicles/hour versus
   4,645.9 observed, with mean interval MAPE of 0.38%. Across the six comparable
   stations, mean flow MAPE ranges from 0.38% to 32.11%, and mean speed MAE from
   7.06 to 13.59 mph.
+- Observed flow conservation is now explicit. Seven reporting stations are
+  placed in route order and six adjacent residuals are calculated. Four are
+  usable; two are quarantined because PeMS station 401948 reports five lanes
+  while mapped OSM/SUMO edge `617335302` has four. The quarantined segments
+  contain mean changes of +330 and +1,529 vehicles/hour, so resolving this
+  network/data discrepancy is the next M2/M3 task before missing flow is
+  injected.
 - Thirteen ramp sensors were identified and five have qualifying October
   morning profiles. Four were visually and topologically audited: one measured
   Mathilda exit is split from upstream demand, and the Mathilda, Moffett, and

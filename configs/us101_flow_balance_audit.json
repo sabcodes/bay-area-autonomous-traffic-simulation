@@ -1,0 +1,42 @@
+{
+  "accepted_full_cross_section_station_ids": [
+    401507,
+    401534,
+    401948,
+    401996,
+    401997,
+    401998,
+    402370,
+    402372,
+    404522,
+    425892
+  ],
+  "excluded_station_ids": [401949],
+  "decisions": [
+    {
+      "station_id": 401998,
+      "decision": "accepted_full_cross_section",
+      "reason": "Close-zoom map review places the marker on the northbound US-101 mainline despite the ramp-diagonal name."
+    },
+    {
+      "station_id": 401507,
+      "decision": "accepted_full_cross_section",
+      "reason": "Close-zoom map review places the six-lane detector on northbound US-101 before the Shoreline interchange."
+    },
+    {
+      "station_id": 401949,
+      "decision": "excluded",
+      "reason": "Close-zoom map review places the marker on the separated Shoreline collector/ramp roadway."
+    },
+    {
+      "station_id": 401534,
+      "decision": "accepted_full_cross_section",
+      "reason": "Close-zoom map review places the four-lane detector on northbound US-101 at Moffett Boulevard."
+    },
+    {
+      "station_id": 401948,
+      "decision": "accepted_full_cross_section",
+      "reason": "Close-zoom map review places the five-lane detector on northbound US-101 north of Moffett Boulevard. Its mapped OSM/SUMO edge currently has four lanes, so adjacent residuals remain quarantined."
+    }
+  ]
+}

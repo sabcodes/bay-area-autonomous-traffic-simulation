@@ -222,9 +222,10 @@ PeMS candidates with:
 
 Only mappings accepted in the [ramp audit](docs/us101-ramp-audit.md) become
 SUMO demand; missing observations are not interpreted as zero. Human-baseline
-runs also install lane-level virtual induction loops at the nine provisionally
-reviewed mainline PeMS stations and write a five-minute station summary beside
-the other run outputs.
+runs also install lane-level virtual induction loops at the ten provisionally
+reviewed mainline PeMS locations and write a five-minute station summary beside
+the other run outputs. A station is automatically excluded from calibration
+scoring when its PeMS lane count does not match the mapped SUMO edge.
 
 After generating the observed mainline station profiles and running seed 42,
 create the direct five-minute comparison with:
@@ -240,6 +241,20 @@ create the direct five-minute comparison with:
 
 This reports flow percentage error and speed error separately for each matched
 station rather than hiding spatial mismatches inside one corridor average.
+
+Before estimating missing ramps, build the observed flow-conservation
+diagnostic:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim analyze-us101-flow-balance
+```
+
+It orders reporting detectors along the SUMO route and measures how much flow
+appears or disappears between neighbors. Comparisons involving a changed lane
+count or a ramp/collector/diagonal station label are marked for review and are
+not automatically treated as missing-ramp demand. Explicit decisions live in
+`configs/us101_flow_balance_audit.json`; station 401948 is currently
+quarantined because PeMS reports five lanes while its OSM/SUMO edge has four.
 
 ## Status
 

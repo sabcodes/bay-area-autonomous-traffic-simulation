@@ -6,9 +6,10 @@ These are the candidate District 4, northbound US-101 mainline detector
 stations automatically selected inside the corrected SR-237-to-Oregon-
 Expressway/Page-Mill study boundary.
 They were derived from the August 27 and October 16, 2025 PeMS metadata
-snapshots. The current provisional morning report intentionally uses only the
-nine earlier reviewed candidates; six of those supplied qualifying readings.
-The ten unsure locations are excluded until follow-up review.
+snapshots. The current provisional morning report uses the ten accepted
+mainline candidates; data availability determines which supply qualifying
+readings. Eight unsure northern locations remain excluded until follow-up
+review, and one Shoreline collector location is explicitly excluded.
 
 ## What to check
 
@@ -24,12 +25,12 @@ means we check it more carefully before calibration.
 | ID | PeMS name | Lanes | Map | Decision | Notes |
 | --- | --- | ---: | --- | --- | --- |
 | 401507 | SHORELINE BLVD | 6 | [map](https://www.openstreetmap.org/?mlat=37.412677&mlon=-122.079539#map=16/37.412677/-122.079539) | Provisional keep | Looks about right. |
-| 401534 | MOFFETT BLVD | 4 | [map](https://www.openstreetmap.org/?mlat=37.407511&mlon=-122.065278#map=16/37.407511/-122.065278) | Unsure | Needs follow-up. |
-| 401948 | MOFFETT BLVD | 5 | [map](https://www.openstreetmap.org/?mlat=37.409514&mlon=-122.071728#map=16/37.409514/-122.071728) | Unsure | Needs follow-up. |
-| 401949 | SHORELINE BLVD RM-N-COLL | 5 | [map](https://www.openstreetmap.org/?mlat=37.414582&mlon=-122.083368#map=16/37.414582/-122.083368) | Provisional keep | Looks about right. |
+| 401534 | MOFFETT BLVD | 4 | [map](https://www.openstreetmap.org/?mlat=37.407511&mlon=-122.065278#map=16/37.407511/-122.065278) | Provisional keep | Close zoom places marker on northbound mainline. |
+| 401948 | MOFFETT BLVD | 5 | [map](https://www.openstreetmap.org/?mlat=37.409514&mlon=-122.071728#map=16/37.409514/-122.071728) | Keep location; mapping blocked | Close zoom places marker on northbound mainline, but PeMS reports five lanes and OSM/SUMO edge `617335302` has four. |
+| 401949 | SHORELINE BLVD RM-N-COLL | 5 | [map](https://www.openstreetmap.org/?mlat=37.414582&mlon=-122.083368#map=16/37.414582/-122.083368) | Exclude | Close zoom places marker on separated collector/ramp roadway. |
 | 401996 | FAIR OAKS | 4 | [map](https://www.openstreetmap.org/?mlat=37.396411&mlon=-122.015716#map=16/37.396411/-122.015716) | Provisional keep | Looks about right. |
 | 401997 | MATHILDA AVE | 4 | [map](https://www.openstreetmap.org/?mlat=37.398829&mlon=-122.026742#map=16/37.398829/-122.026742) | Provisional keep | Looks about right. |
-| 401998 | Ellis Street rm-n-diag | 4 | [map](https://www.openstreetmap.org/?mlat=37.404178&mlon=-122.051070#map=16/37.404178/-122.051070) | Provisional keep | Looks about right. |
+| 401998 | Ellis Street rm-n-diag | 4 | [map](https://www.openstreetmap.org/?mlat=37.404178&mlon=-122.051070#map=16/37.404178/-122.051070) | Provisional keep | Close zoom confirms marker on northbound mainline. |
 | 402370 | 4A5324 LOC 70 | 4 | [map](https://www.openstreetmap.org/?mlat=37.395920&mlon=-122.013438#map=16/37.395920/-122.013438) | Provisional keep | Appears consistent with the Moffett-area sensors. |
 | 402372 | 4A5324 loc 72 | 4 | [map](https://www.openstreetmap.org/?mlat=37.405470&mlon=-122.055924#map=16/37.405470/-122.055924) | Provisional keep | Looks about right. |
 | 402376 | 4A5324 LOC 75 | 6 | [map](https://www.openstreetmap.org/?mlat=37.435945&mlon=-122.109246#map=16/37.435945/-122.109246) | Unsure | Added by corrected northern boundary. |
@@ -48,3 +49,14 @@ means we check it more carefully before calibration.
 PeMS labels with `rm` or `diag` can still be reported as mainline (`ML`) in
 the metadata. Do not automatically exclude them, but inspect those locations
 especially carefully.
+
+## Flow-balance result
+
+The audited station order is 402370, 401996, 401998, 402372, 401534, 401948,
+and 401507. The first four adjacent comparisons are currently usable. They
+show mean changes of +33, +258, -196, and +14 vehicles/hour respectively.
+The next two comparisons show +330 and +1,529 vehicles/hour, but both touch
+station 401948 and remain quarantined because its five-lane PeMS cross-section
+maps to a four-lane OSM/SUMO edge. The larger residual must not be injected as
+ramp demand until that discrepancy is resolved with stronger lane evidence or
+a reproducible network correction.

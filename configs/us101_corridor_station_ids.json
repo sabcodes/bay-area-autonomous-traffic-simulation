@@ -1,6 +1,6 @@
 {
   "corridor": "US-101 northbound: SR-237 to Oregon Expressway/Page Mill Road",
-  "status": "Partial manual audit complete; ten stations require follow-up",
+  "status": "Partial manual audit complete; eight stations require follow-up",
   "selection_rule": "District 4, US-101 northbound mainline stations inside configs/us101_corridor.json",
   "metadata_sources": [
     {
@@ -37,7 +37,8 @@
   ],
   "provisionally_reviewed_station_ids": [
     401507,
-    401949,
+    401534,
+    401948,
     401996,
     401997,
     401998,
@@ -47,8 +48,6 @@
     425892
   ],
   "requires_follow_up_station_ids": [
-    401534,
-    401948,
     402376,
     402377,
     402379,
@@ -58,5 +57,8 @@
     425545,
     425697
   ],
-  "manual_audit_note": "402370 appears consistent with the Moffett-area sensors. The two Moffett stations and eight sensors added by the corrected northern boundary are retained as candidates but are not fully verified."
+  "excluded_station_ids": [
+    401949
+  ],
+  "manual_audit_note": "Close-zoom map review accepted mainline stations 401534 and 401948 and excluded 401949 because its marker lies on the separated Shoreline collector/ramp roadway. Eight northern candidates still require review."
 }

@@ -11,6 +11,7 @@ from bay_area_traffic_sim.calibration import (
     summarize_detector_comparisons,
 )
 from bay_area_traffic_sim.experiments import repeat, summarize_runs
+from bay_area_traffic_sim.flow_balance import build_flow_balance_report
 from bay_area_traffic_sim.network_audit import audit_network
 from bay_area_traffic_sim.osm_import import download_osm, import_osm, load_corridor_config
 from bay_area_traffic_sim.pems import (
@@ -241,6 +242,34 @@ def main() -> None:
         "--output",
         default="outputs/us101_corridor/h0_detector_comparison_seed_42.json",
     )
+    flow_balance = subcommands.add_parser(
+        "analyze-us101-flow-balance",
+        help="Diagnose observed net flow changes between ordered mainline stations.",
+    )
+    flow_balance.add_argument(
+        "--observed",
+        default="outputs/pems_calibration/us101_mainline_station_profiles.json",
+    )
+    flow_balance.add_argument(
+        "--manifest",
+        default="outputs/us101_corridor/h0_human_baseline_manifest.json",
+    )
+    flow_balance.add_argument(
+        "--route-file",
+        default="outputs/us101_corridor/h0_human_baseline.rou.xml",
+    )
+    flow_balance.add_argument(
+        "--network",
+        default="outputs/us101_corridor/us101_corridor.net.xml",
+    )
+    flow_balance.add_argument(
+        "--audit",
+        default="configs/us101_flow_balance_audit.json",
+    )
+    flow_balance.add_argument(
+        "--output",
+        default="outputs/pems_calibration/us101_flow_balance.json",
+    )
     args = parser.parse_args()
 
     if args.command == "build-toy-network":
@@ -344,8 +373,8 @@ def main() -> None:
             },
             "summary": summary.as_dict(),
             "limitation": (
-                "These are observed ramp targets. SUMO ramp edges require manual audit before "
-                "the profiles are used to inject or remove vehicles."
+                "These are observed station targets. Verify sensor location, lane coverage, "
+                "and SUMO edge mapping before using them for calibration or demand."
             ),
         }
         output.write_text(json.dumps(report, indent=2) + "\n")
@@ -449,6 +478,18 @@ def main() -> None:
             Path(args.observed),
             Path(args.simulated),
             args.warmup_seconds,
+        )
+        output = Path(args.output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(report, indent=2) + "\n")
+        print(json.dumps(report, indent=2))
+    elif args.command == "analyze-us101-flow-balance":
+        report = build_flow_balance_report(
+            Path(args.observed),
+            Path(args.manifest),
+            Path(args.route_file),
+            Path(args.network),
+            Path(args.audit),
         )
         output = Path(args.output)
         output.parent.mkdir(parents=True, exist_ok=True)

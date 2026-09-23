@@ -27,6 +27,7 @@ class VirtualDetectorSpec:
     edge_id: str
     lane_ids: list[str]
     position_meters: float
+    reported_lane_count: int | None = None
 
 
 @dataclass(frozen=True)
@@ -81,6 +82,7 @@ def build_virtual_detector_specs(
                 edge_id=edge.getID(),
                 lane_ids=[lane.getID() for lane in lanes],
                 position_meters=max(1.0, min(position, maximum_position)),
+                reported_lane_count=station.lanes,
             )
         )
     return specs
