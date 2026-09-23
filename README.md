@@ -253,10 +253,14 @@ It orders reporting detectors along the SUMO route and measures how much flow
 appears or disappears between neighbors. Comparisons involving a changed lane
 count or a ramp/collector/diagonal station label are marked for review and are
 not automatically treated as missing-ramp demand. Explicit decisions live in
-`configs/us101_flow_balance_audit.json`; station 401948 is currently
-quarantined because PeMS lists five detector channels, while its roadway
-inventory suggests four 12-foot lane widths and marks an HOV lane; the mapped
-OSM/SUMO edge has four lanes.
+`configs/us101_flow_balance_audit.json`. Station 401948 is accepted as an
+observed five-lane mainline cross-section: the October data show five active
+lane measurements, and Caltrans documents a buffered managed/HOT lane in the
+Moffett Boulevard–Old Middlefield Way area. The adjacent +330 and +1,529
+vehicles/hour residuals are now available for empirical flow balance. The
+mapped OSM/SUMO edge still has four lanes, so its geometry mismatch remains
+visible in the report notes. These net residuals must not be mistaken for
+single-ramp counts until all intervening entrances and exits are audited.
 
 ## Status
 

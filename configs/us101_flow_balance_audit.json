@@ -2,6 +2,7 @@
   "accepted_full_cross_section_station_ids": [
     401507,
     401534,
+    401948,
     401996,
     401997,
     401998,
@@ -34,8 +35,8 @@
     },
     {
       "station_id": 401948,
-      "decision": "location_confirmed_lane_mapping_unresolved",
-      "reason": "PeMS Current Location confirms US-101 northbound at Moffett Boulevard, Mountain View. The configuration shows detector lanes 1-5, while roadway inventory reports 48 ft width and 12 ft lanes and identifies the main lane as HOV. The 5-vs-4 interpretation is unresolved; do not treat this as a confirmed five-lane physical cross-section."
+      "decision": "accepted_full_cross_section_model_lane_gap",
+      "reason": "PeMS Current Location confirms US-101 northbound at Moffett Boulevard, Mountain View. The 5-minute export has five active lane measurements at this ML station. Its roadway inventory identifies the median lane as HOV, and Caltrans describes a buffered managed/HOT lane between Moffett Boulevard and Old Middlefield Way. Accept the PeMS cross-section for observed flow balance; separately flag that the mapped SUMO edge has only four lanes."
     }
   ]
 }

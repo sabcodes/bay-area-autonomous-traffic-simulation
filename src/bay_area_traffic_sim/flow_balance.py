@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from statistics import fmean
 from typing import Any
@@ -28,6 +28,7 @@ class OrderedFlowStation:
     flow_by_time: dict[str, float]
     cautions: list[str]
     full_cross_section_confirmed: bool = False
+    notes: list[str] = field(default_factory=list)
 
 
 def _route_edge_ids(route_file: Path, route_id: str) -> list[str]:
@@ -86,15 +87,19 @@ def order_observed_stations(
         name = str(detector["station_name"])
         confirmed = station_id in accepted_ids
         cautions = []
+        notes = []
         if not confirmed and any(marker in name.lower() for marker in COMPLEX_STATION_LABELS):
             cautions.append("Station label suggests ramp, diagonal, or collector-road context.")
         represented_lanes = len(detector["lane_ids"])
         reported_lanes = int(detector.get("reported_lane_count") or represented_lanes)
         if represented_lanes != reported_lanes:
-            cautions.append(
-                "PeMS reports a different lane count than the mapped SUMO edge "
-                f"({reported_lanes} versus {represented_lanes})."
+            mismatch = (
+                "PeMS reports "
+                f"{reported_lanes} lanes while the mapped SUMO edge represents "
+                f"{represented_lanes}; this is a simulation-geometry mismatch, "
+                "not a reason to discard an audited PeMS cross-section."
             )
+            (notes if confirmed else cautions).append(mismatch)
         flow_by_time = profiles[station_id]
         ordered.append(
             OrderedFlowStation(
@@ -108,6 +113,7 @@ def order_observed_stations(
                 flow_by_time=flow_by_time,
                 cautions=cautions,
                 full_cross_section_confirmed=confirmed,
+                notes=notes,
             )
         )
     return sorted(ordered, key=lambda station: station.route_distance_meters)
@@ -128,6 +134,7 @@ def compare_adjacent_stations(
         ]
         cautions = [*upstream.cautions, *downstream.cautions]
         same_edge = upstream.edge_id == downstream.edge_id
+        notes = []
         if same_edge:
             cautions.append(
                 "Both stations map to the same uninterrupted SUMO edge; their observed "
@@ -140,6 +147,14 @@ def compare_adjacent_stations(
                 "Represented lane count changes between the two stations "
                 f"({upstream.reported_lanes} to {downstream.reported_lanes})."
             )
+        elif upstream.reported_lanes != downstream.reported_lanes:
+            notes = [
+                "Reported lane count changes between audited full cross-sections "
+                f"({upstream.reported_lanes} to {downstream.reported_lanes}); "
+                "retain this as an observed corridor transition."
+            ]
+        else:
+            notes = []
         mean_change = fmean(changes)
         segments.append(
             {
@@ -162,6 +177,7 @@ def compare_adjacent_stations(
                 ),
                 "minimum_interval_change_vehicles_per_hour": min(changes),
                 "maximum_interval_change_vehicles_per_hour": max(changes),
+                "notes": sorted(set([*upstream.notes, *downstream.notes, *notes])),
                 "time_profile": [
                     {
                         "time": time,

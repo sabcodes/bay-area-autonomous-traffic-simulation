@@ -53,15 +53,18 @@ especially carefully.
 ## Flow-balance result
 
 The audited station order is 402370, 401996, 401998, 402372, 401534, 401948,
-and 401507. Three adjacent comparisons are currently usable, with mean changes
-of +33, +258, and +14 vehicles/hour. Stations 401998 and 402372 map to the
+and 401507. Five adjacent comparisons are currently usable, with mean changes
+of +33, +258, +14, +330, and +1,529 vehicles/hour. Stations 401998 and 402372 map to the
 same uninterrupted SUMO edge but differ by -196 vehicles/hour; that is treated
-as detector disagreement rather than ramp demand. The final two comparisons
-show +330 and +1,529 vehicles/hour, but both touch station 401948 and remain
-quarantined. The user's PeMS screenshots confirm the correct US-101 northbound
-location in Mountain View and show detector lanes 1–5. They also show roadway
-inventory of 48 ft width at 12 ft per lane, plus an HOV designation. That
-evidence confirms the detector configuration and location, but does not prove
-five physical through lanes; the matching OSM/SUMO edge has four. Keep those
-residuals out of ramp-demand estimates until the PeMS lane numbering and HOV
-cross-section are reconciled with the road geometry.
+as detector disagreement rather than ramp demand. The user's PeMS screenshots
+confirm the US-101 northbound location in Mountain View and detector lanes 1–5.
+The October 1 five-minute export independently shows five active lane
+measurements for this ML station. Its roadway inventory identifies an HOV lane,
+and [Caltrans describes a buffered managed/HOT lane between Moffett Boulevard
+and Old Middlefield Way](https://dot.ca.gov/-/media/dot-media/programs/traffic-operations/documents/hov/2026-ca-hov-facilities-degradation-action-plan-a11y.pdf).
+We therefore accept the five-lane PeMS observation as a full cross-section for
+empirical flow balance. The four-lane OSM/SUMO edge remains a separate
+simulation-geometry gap, reported as a note rather than used to discard the
+observed flows. These residuals are net corridor changes, not measurements of
+individual ramps; assign them to missing-ramp demand only after auditing the
+intervening entrances and exits.

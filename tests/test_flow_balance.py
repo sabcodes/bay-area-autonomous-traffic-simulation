@@ -14,6 +14,7 @@ def _station(
     cautions: list[str] | None = None,
     confirmed: bool = False,
     reported_lanes: int | None = None,
+    notes: list[str] | None = None,
 ) -> OrderedFlowStation:
     return OrderedFlowStation(
         station_id=station_id,
@@ -26,6 +27,7 @@ def _station(
         flow_by_time=flows,
         cautions=cautions or [],
         full_cross_section_confirmed=confirmed,
+        notes=notes or [],
     )
 
 
@@ -65,7 +67,7 @@ def test_adjacent_flow_balance_accepts_audited_full_cross_sections() -> None:
     assert segment["usable_for_missing_ramp_estimation"] is True
 
 
-def test_adjacent_flow_balance_preserves_detector_mapping_mismatch() -> None:
+def test_audited_pems_cross_section_remains_usable_with_model_lane_gap() -> None:
     stations = [
         _station(1, 0.0, 4, {"07:00": 4000}, confirmed=True),
         _station(
@@ -73,15 +75,20 @@ def test_adjacent_flow_balance_preserves_detector_mapping_mismatch() -> None:
             1000.0,
             4,
             {"07:00": 5000},
-            ["PeMS reports 5 lanes but SUMO maps 4."],
             confirmed=True,
             reported_lanes=5,
+            notes=[
+                "PeMS reports 5 lanes while the mapped SUMO edge represents 4; "
+                "this is a simulation-geometry mismatch."
+            ],
         ),
     ]
 
     segment = compare_adjacent_stations(stations)[0]
 
-    assert segment["usable_for_missing_ramp_estimation"] is False
+    assert segment["usable_for_missing_ramp_estimation"] is True
+    assert segment["cautions"] == []
+    assert any("simulation-geometry mismatch" in note for note in segment["notes"])
 
 
 def test_adjacent_flow_balance_treats_same_edge_difference_as_detector_bias() -> None:
