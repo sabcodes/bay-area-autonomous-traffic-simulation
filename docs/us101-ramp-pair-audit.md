@@ -93,9 +93,9 @@ traffic—not a single on-ramp count.
 
 | Candidate movement | PeMS / source evidence | Direction and interval assessment | Current status |
 | --- | --- | --- | --- |
-| Shoreline Boulevard loop on-ramp | Caltrans lists “Shoreline Blvd Collector (Loop and Diagonal) On-ramp.” PeMS ID 402922 is labeled `OR`, “Shoreline Blvd on loop,” but metadata gives direction `S`, PM 48.17, and the same coordinate as another Shoreline record. | Officially documented NB entry exists at the interchange. The PeMS row's direction/postmile/coordinate do not line up cleanly with the 401948→401507 PM interval; do not use it as an NB ramp count without checking its detector map/configuration. | Not in current ramp profile scan and not modeled. |
+| Shoreline Boulevard loop on-ramp | Caltrans lists “Shoreline Blvd Collector (Loop and Diagonal) On-ramp.” PeMS ID 402922 is labeled `OR`, “Shoreline Blvd on loop,” but the active 2025 metadata and live PeMS page identify it as `US-101-S`, PM 48.17. | The NB entrance exists, but 402922 is a southbound detector; its older location at PM 48.62 must not be reused for the 2025 observations. See the [station-identity audit](us101-shoreline-pems-audit.md). | NB entrance flow remains unmeasured in the current profile and is not modeled. |
 | Shoreline Boulevard diagonal/collector on-ramp | Caltrans lists the diagonal as well as loop entrance; the checked October PeMS metadata has no corresponding candidate row in the project's current ramp-ID list. | Candidate NB inflow likely lies in the Shoreline interchange area, but a lane-specific PeMS station and precise merge point were not identified in the current inventory. | Not mapped, profiled, or modeled. |
-| Shoreline Boulevard off-ramp | PeMS 402921 is `FR`, “Shoreline Blvd off,” with direction `S`, PM 48.17, and the same coordinate as 402922. Caltrans' exit table lists NB Shoreline at county PM 48.60. | The NB exit is documented and its official postmile falls between the two mainline stations. The PeMS detector metadata is inconsistent with that location/direction, so the ID cannot currently quantify the exiting flow. | Not in current ramp profile scan and not modeled. |
+| Shoreline Boulevard off-ramp | PeMS 402921 is `FR`, “Shoreline Blvd off,” and its active 2025 metadata and live page identify it as `US-101-S`, PM 48.17. Caltrans' exit table lists NB Shoreline at county PM 48.60. | The NB exit is documented and lies between the two mainline stations, but 402921 measures a southbound movement. See the [station-identity audit](us101-shoreline-pems-audit.md). | NB exit flow remains unmeasured in the current profile and is not modeled. |
 | SR-85→NB US-101 HOV direct connector | VTA confirms this direct connector. OSM's continuous HOV path runs through ways `11479095 → 5012264 → 8493691 → 699542383 → 699013840 → 698786377 → 699541214` to node `447918140`; SUMO routes candidate edge `11479095` directly to mainline edge `509747406`, then through the study corridor. | The apparent endpoint mismatch was a way-ID aggregation effect: SUMO's `--geometry.remove` joins an unbroken chain and preserves its first way ID. This merge is downstream of station 401948 and upstream of 401507. The Google Maps view places the 402920 pin in the broad interchange area, but does not resolve its roadway. PeMS direction/type and nearest network geometry instead support a likely southbound SR-85 entrance; 402920 is not assigned to this northbound HOV path. | A prior experiment mapped the measured 402920 profile (11.69 vehicles/5 min = **140.3 veh/h**, 216 date-time observations) onto edge `11479095`. That assignment and its one-/two-lane variants are now explicitly counterfactual, not observed ramp demand. The prior three-seed result (401507 mean flow 4,836.7→4,980.3 veh/h; MAPE 32.94%→30.95%) is a sensitivity result only and must not be used to claim a calibrated NB inflow or controller benefit. Keep the actual NB connector geometry as an open network audit item; do not transfer the 402920 detector's 24-ft roadway inventory to it. |
 | Old Middlefield Way off-ramp | Caltrans exit table lists NB Old Middlefield Way at county PM 48.97; local SUMO connects mainline lane 0 to way `30990690` at the end of synthetic edge `509747406-AddedOffRampEdge`. | Official PM places this exit after station 401507 (PM 48.69), so it should not reduce the flow measured there. The SUMO detector placement is close to this split: all six virtual loops are on lanes 1–6 at position 70.24 m of a 94.71 m through edge; the ramp branches from lane 0 at the edge end. Thus the loops are on through lanes before the modeled exit, not on the exit lane, but only about 24.5 m upstream of the split. This deserves visual/geometric review. | Exit exists in the network; the detector is not on its exit-only lane. The network geometry/postmile agreement still needs review. |
 
@@ -112,8 +112,9 @@ more substantial entries, minus the Shoreline exit, but no current station data
 validates gross entry/exit volumes. Station 402920 is likely a southbound SR-85
 entrance and must not be counted as NB US-101 inflow. The optional three-seed
 run that injected its profile on the NB HOV connector is a counterfactual
-topology/input sensitivity only. Shoreline on/off detector identities also
-need manual reconciliation. Keep the residual flagged as a net mainline change.
+topology/input sensitivity only. Shoreline IDs 402921/402922 have been
+identified as southbound; the separate NB Shoreline flows remain unknown.
+Keep the residual flagged as a net mainline change.
 
 ## Next checks before assigning ramp demand
 
@@ -124,9 +125,8 @@ need manual reconciliation. Keep the residual flagged as a net mainline change.
    observed demand.
 2. Visually audit the physical NB Shoreline loop/diagonal on-ramps and NB
    Shoreline exit in the SUMO GUI, including connections and lane counts.
-3. Resolve the metadata/map identity for PeMS 402921/402922 and determine
-   whether those IDs are current, correctly directed detectors for the NB
-   entrance/exit.
+3. Search for distinct NB Shoreline entrance/exit measurements; do not reuse
+   the resolved southbound PeMS IDs 402921/402922 as northbound ramp counts.
 4. Reconcile PeMS postmile with the 401507 sensor position relative to the
    Old Middlefield exit split.
 5. Only then compare measured ramp totals against time-aligned mainline
