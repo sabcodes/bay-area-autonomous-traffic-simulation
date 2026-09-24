@@ -41,17 +41,27 @@ specific routes, not every ramp in the imported network.
 
 | OSM edge / location | Import warning | Current interpretation |
 | --- | --- | --- |
-| `396010342`, near the Oregon Expressway end of the extract | OSM `placement=transition` is unsupported; no matching edge appears in the generated network. | The edge is just north of the selected route endpoint, but its relation to the Oregon Expressway interchange should be visually checked before treating it as irrelevant. |
-| `348360455`, near the Shoreline interchange | Sharp turn radius of 7.99 m at the edge end. | It is a two-lane motorway link about 65 m from the northbound mainline route. Check ramp curvature and its connection in SUMO. |
-| `690599564#0`, near the Shoreline interchange | A junction cluster is reduced because of parallel outgoing movements. | It is about 91 m from the mainline route. Confirm the resulting split/merge movement visually. |
-| `941192341`, San Antonio/Mathilda-area approach | SUMO does not join a junction cluster because of parallel incoming movements. | It is a two-lane motorway link about 255 m from the mainline route. Confirm whether this is an intended separate ramp movement. |
-| `19146053#0`, near the SR-237 interchange | A minor green connection exceeds 19.44 m/s; SUMO warns a turn lane may be missing. | It is outside the modeled through-mainline route but near the SR-237 interchange. Check whether the movement is in scope and whether its lane connection is plausible. |
+| `396010342`, at the Oregon Expressway terminal junction | OSM `placement=transition` is unsupported; no matching edge appears in the generated network. It is a one-lane motorway link sharing endpoint node `1392020693` with the terminal US-101 edges. | This may be part of the Oregon Expressway ramp movement. It cannot be dismissed as just outside the study area; confirm it is represented or intentionally excluded. |
+| `348360455`, near the Shoreline interchange | Sharp turn radius of 7.99 m at the edge end. | It is a two-lane motorway link signed toward CA-85 South / US-101 South, about 65 m from the northbound mainline route. Check ramp curvature and its connection in SUMO. |
+| `690599564#0`, near the Shoreline interchange | A junction cluster is reduced because of parallel outgoing movements. | OSM marks the link toward US-101 North / Old Middlefield Way; it is about 91 m from the mainline route. Confirm the resulting split/merge movement visually. |
+| `941192341`, Mathilda Avenue / SR-237 approach | SUMO does not join a junction cluster because of parallel incoming movements. | It is a two-lane link signed for eastbound SR-237, about 255 m from the mainline route. Confirm its relation to the SR-237 boundary movements. |
+| `19146053#0`, near West Maude Avenue / SR-237 | A minor green connection exceeds 19.44 m/s; SUMO warns a turn lane may be missing. | It is a two-lane link for eastbound SR-237, outside the modeled through-mainline route. Check whether its approach connection is in scope and plausible. |
 
 Other logged warnings include unsupported cycleway compounds, minor-street
 turn geometry, and signal programs elsewhere in the broad bounding box. They
 were not associated with the audited US-101 through-route edges in this pass.
-The full captured log was temporary and is not a tracked artifact; regenerate
-it by running the import command with output redirected to a separate log.
+The full captured log was temporary and is not a tracked artifact. To inspect
+it again without replacing the current project network, run the same importer
+into a fresh temporary directory:
+
+```bash
+audit_dir=$(mktemp -d)
+.venv/bin/netconvert \
+  --osm-files data/osm/us101_corridor.osm.xml \
+  --output-file "$audit_dir/us101_corridor.net.xml" \
+  --geometry.remove --ramps.guess --junctions.join --tls.discard-simple \
+  > "$audit_dir/netconvert.log" 2>&1
+```
 
 ## Known geometry mismatches
 
@@ -61,11 +71,20 @@ it by running the import command with output redirected to a separate log.
   five-lane observation, but a network correction still needs a lane-to-lane
   connection design.
 - At station 402377, PeMS reports four lanes and the matched OSM/SUMO edge
-  `861090931` has five. The station is accepted in the data inventory, but the
-  discrepancy is not corrected in the model.
-- At station 402920 on the SR-85 HOV connector, two PeMS detector lanes map to
-  a one-lane OSM/SUMO connector. Existing one-lane and two-lane hypotheses were
-  run, but neither confirms the actual painted merge.
+  `861090931` has five. A close aerial view centered on the PeMS coordinate
+  (37.440393, -122.113925) confirms the detector is on US-101 rather than the
+  adjacent W Bayshore Road/frontage facility. The available imagery does not
+  make the painted lane count reliable enough to decide whether PeMS omits a
+  lane detector or the modeled cross-section should be four lanes. Keep the
+  station in the inventory, but do not alter the network until detector
+  coverage or a sharper lane-level source is confirmed.
+- At station 402920, PeMS reports two detector lanes and a “Shoreline Blvd on
+  diag” on-ramp in the SR-85/US-101 interchange area. VTA documents both an
+  HOV-only direct connector and a separate general-purpose NB SR-85-to-US-101
+  ramp there. OSM/SUMO edge `11479095` is a one-lane HOV path, but the PeMS
+  detector has not been matched to that exact path. Existing one-lane and
+  two-lane hypotheses are sensitivities only and do not confirm station
+  identity or the painted merge.
 - At station 401507, the nearest generated edge has seven lanes because an
   added exit/diverge lane is represented in the synthetic SUMO transition.
   The six PeMS mainline lanes and the virtual-loop positions lie before the

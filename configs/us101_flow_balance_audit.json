@@ -21,7 +21,7 @@
     {
       "upstream_station_id": 401948,
       "downstream_station_id": 401507,
-      "reason": "Shoreline NB ramp detector identities and the 402920-to-HOV-connector lane mapping remain unresolved; retain the date-aligned +1,622 veh/h only as a net mainline change. OSM/SUMO connector topology is reconciled."
+      "reason": "Shoreline NB ramp detector identities and station 402920's exact SR-85/US-101 ramp path remain unresolved; retain the date-aligned +1,622 veh/h only as a net mainline change. The candidate mapping to the one-lane HOV connector is hypothetical. OSM/SUMO connector topology is reconciled."
     }
   ],
   "decisions": [

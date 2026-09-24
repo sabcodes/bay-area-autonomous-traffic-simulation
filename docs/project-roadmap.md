@@ -30,13 +30,13 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   available locally. The reproducible inventory contains 19 candidates: 13
   northbound mainline cross-sections inside the endpoint, five exclusions
   (beyond the endpoint or on collector roadways), and one conservative holdout
-  (station 425545: its PeMS ML type/lane count conflicts with its collector
-  name). The Caltrans Oregon
+  (station 425545: PeMS marks it ML and the lane count matches the map, but the
+  “rm-n-coll” name makes its full through-mainline coverage uncertain). The Caltrans Oregon
   Expressway exit is at county PM 52.17. Eight accepted stations have at least
   90% coverage on at least 12 of 13 selected dates; five (401997, 402376,
   402379, 404522, 425892) have no qualifying rows. Missing observations remain
-  missing, never zero. The aggregate and station-level reports are saved under
-  `outputs/pems_calibration/us101_corridor_*morning_peak.json` and
+  missing, never zero. The aggregate and station-level reports are saved as
+  `outputs/pems_calibration/us101_corridor_final_morning_peak.json` and
   `outputs/pems_calibration/us101_corridor_m1_station_profiles.json`. The
   current M3 draft keeps its previously selected calibration subset separate
   from this full audited inventory. See the [sensor audit](us101-sensor-audit.md).
@@ -69,12 +69,13 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   remains visible as a note. Neither residual is a standalone ramp count; audit
   intervening entrances and exits before assigning demand to any one ramp.
   PeMS station 402920 averages 140.3 vehicles/hour over those nine dates. A
-  close-up user-provided PeMS map and a valid SUMO route visually/topologically
-  support its location on the SR-85-to-NB-101 connector. A separate three-seed
+  close-up user-provided PeMS map places it in the SR-85/US-101 interchange
+  area, but VTA documents separate HOV and general-purpose NB connectors, so
+  its specific path remains unresolved. A separate three-seed
   sensitivity moves simulated flow at 401507 from 4,836.7 to 4,980.3 veh/h and
   reduces flow MAPE from 32.94% to 30.95%; this is not a controller benefit or
-  final ramp-demand acceptance. The two PeMS lanes versus one SUMO lane and
-  exact merge direction remain caveats.
+  final ramp-demand acceptance. The two PeMS detector lanes versus the
+  one-lane HOV-path hypothesis and exact ramp identity remain unresolved.
 - Thirteen ramp sensors were identified and five have qualifying October
   morning profiles. Four were visually and topologically audited: one measured
   Mathilda exit is split from upstream demand, and the Mathilda, Moffett, and

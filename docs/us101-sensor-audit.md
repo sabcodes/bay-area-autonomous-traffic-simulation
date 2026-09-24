@@ -70,6 +70,11 @@ zero-traffic measurements. Station 425545 has qualifying data on 13 dates but
 is not included in the accepted profile because its collector/mainline coverage
 is unresolved.
 
+Across the eight accepted stations with readings, the report contains 2,448
+five-minute observations, with an average of 418.9 vehicles per five minutes
+per station and an average speed of 50.7 mph. This is an average across
+detector cross-sections, not a summed corridor flow.
+
 The 13-day date set includes weekend dates; it is the set available after the
 coverage filter, not a weekday-only sample. Use the separate H0 common-date
 profile for baseline calibration rather than assuming this whole M1 summary is

@@ -3,16 +3,23 @@
 ## Visual and metadata evidence
 
 PeMS metadata for station 402920 reports an OR detector on SR-85 southbound,
-two lanes, and the name “Shoreline Blvd on diag.” The user-provided satellite
-view at `37.40848, -122.070905` places the detector on a separate diagonal
-connector beside US-101. It visually supports a two-lane connector near the
-detector. The screenshot does not conclusively identify the exact lane-to-lane
-connection where the connector joins US-101, so the merge remains a hypothesis.
+two lanes, and the name “Shoreline Blvd on diag.” The user-provided map and
+aerial imagery at `37.40848, -122.070905` place the detector in the
+SR-85/US-101 interchange area, but do not identify its exact ramp path. VTA's
+environmental assessment describes both an HOV-only direct connector and a
+separate general-purpose northbound SR-85-to-US-101 ramp at the north end of
+SR-85. Thus, the station cannot be assigned to the OSM HOV connector based on
+proximity alone. An additional aerial review
+([Google Maps](https://www.google.com/maps/@37.40848,-122.070905,80m/data=!3m1!1e3),
+checked 2026-09-24) did not resolve the ramp identity or painted merge lanes.
+The lane-count and receiving-lane cases below remain sensitivities, not a
+verified representation of the station's road.
 
-The OSM-derived SUMO network models connector edge `11479095` as one lane. The
-one-lane case remains the existing comparison candidate; the alternate network
-is built under `outputs/us101_corridor/sr85_two_lane_shared_merge/` and does not
-replace the baseline network.
+The OSM-derived SUMO network models HOV connector edge `11479095` as one lane.
+The one-lane case remains the mapped-network comparison candidate; the
+alternate network is built under
+`outputs/us101_corridor/sr85_two_lane_shared_merge/` and does not replace the
+baseline network. Neither is accepted as station 402920's actual path.
 
 ## Merge hypotheses tested
 

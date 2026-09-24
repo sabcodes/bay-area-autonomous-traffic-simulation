@@ -277,8 +277,10 @@ so its geometry mismatch remains visible in the report notes. See
 
 To profile a detector on another freeway or direction, pass `--freeway` and
 `--direction` (for example `--freeway 85 --direction S`). This is used for the
-visually supported SR-85 station 402920 candidate; its mean is about 129
-vehicles/hour over 12 days, but exact lane-level placement remains uncertain.
+interchange-area SR-85 station 402920 candidate; its mean is about 129
+vehicles/hour over 12 days. VTA documents distinct HOV and general-purpose
+northbound ramps at the interchange, so assigning this detector to the HOV
+connector remains hypothetical.
 
 Human-baseline preparation now requires complete common observation dates
 across its mainline entry and active ramp detectors. Its manifest records the

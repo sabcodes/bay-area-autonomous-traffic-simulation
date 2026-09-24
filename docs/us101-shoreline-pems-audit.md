@@ -74,10 +74,12 @@ Neither 402921's off-ramp value nor 402922's on-ramp value can be subtracted
 from or added to the **northbound** 401948→401507 net flow change. Caltrans' NB
 Shoreline ramp-meter notice confirms a northbound entrance in the interval,
 but those two southbound PeMS records are not valid NB ramp counts. A separate
-candidate, 402920, measures southbound SR-85 on-ramp flow. The user's close-up
-PeMS map screenshot visually supports its location on the separate connector
-beside Bayshore Freeway near the merge. The generated SUMO graph has a valid
-route from connector edge `11479095` onto northbound US-101 edge `509747406`.
+candidate, 402920, measures a southbound SR-85 on-ramp in the interchange
+area. The user's close-up PeMS map supports that general location, but VTA
+documents both an HOV-only direct connector and a separate general-purpose
+northbound SR-85-to-US-101 ramp. The generated SUMO graph has a valid route
+from HOV connector edge `11479095` onto northbound US-101 edge `509747406`; the
+PeMS station has not been matched to that HOV path.
 Across the same nine complete dates used by all H0 demand inputs, 402920
 averages 140.3 vehicles/hour (216 morning intervals); the matched
 401948→401507 net change is +1,785.2 vehicles/hour. The 402920 candidate cannot
@@ -91,13 +93,12 @@ Available local PeMS text metadata and TMDD inventory are enough to settle the
 directional identity and rule out IDs 402921/402922 for this NB study. They are
 not enough to place either detector on a particular physical ramp, or to map a
 northbound Shoreline detector to a SUMO edge. Before using 402920 as finalized
-NB HOV connector demand, compare the two PeMS detector lanes with the
-single-lane OSM/SUMO path. The user's close-up PeMS current-location screenshot
-visually supports the location match: the marker is on the separate connector
-beside Bayshore Freeway near the merge. The remaining uncertainty is the exact
-lane narrowing and merge direction, not whether the detector is in the
-interchange area. No extra visual confirmation is needed to reject
-402921/402922 as northbound US-101 counts.
+NB ramp demand, match it to either the HOV connector or the separate
+general-purpose ramp, then compare its two detector lanes with that path. The
+current screenshot supports its location in the interchange area, not the
+specific path. The remaining uncertainty includes ramp identity, lane
+narrowing, and merge direction. No extra visual confirmation is needed to
+reject 402921/402922 as northbound US-101 counts.
 
 ## Primary sources
 
