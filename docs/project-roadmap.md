@@ -43,9 +43,13 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 - M2 is active. The northbound H0 route (37 edges), a reverse southbound route
   (41 edges), and four active ramp routes pass graph-connectivity checks. A
   repeat `netconvert` import succeeded, but emitted warnings at several
-  interchange links that still need visual decisions. The audit found known
-  401948, 402377, 402920, and 401507 lane/transition mismatches; no corrective
-  network patch has yet been applied or versioned. See the [network audit](us101-network-audit.md).
+  interchange links that still need visual decisions. Open network questions
+  include the 401948 and 402377 lane counts, the 401507 synthetic transition,
+  and several warning locations. Station 402920 is now likely identified as a
+  southbound SR-85 entrance outside the NB US-101 route; its former HOV
+  connector mapping is counterfactual, not an observed lane mismatch. No
+  corrective network patch has yet been applied or versioned. See the [network
+  audit](us101-network-audit.md).
 - M3 has a runnable ramp-aware draft. Demand profiles now use complete dates
   shared across the mainline entry and every active ramp, and the validation
   profile uses those same dates. On the current nine-day set, three seeds each
@@ -68,14 +72,14 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   edge `617335302` still represents only four lanes, so that model geometry gap
   remains visible as a note. Neither residual is a standalone ramp count; audit
   intervening entrances and exits before assigning demand to any one ramp.
-  PeMS station 402920 averages 140.3 vehicles/hour over those nine dates. A
-  close-up user-provided PeMS map places it in the SR-85/US-101 interchange
-  area, but VTA documents separate HOV and general-purpose NB connectors, so
-  its specific path remains unresolved. A separate three-seed
-  sensitivity moves simulated flow at 401507 from 4,836.7 to 4,980.3 veh/h and
-  reduces flow MAPE from 32.94% to 30.95%; this is not a controller benefit or
-  final ramp-demand acceptance. The two PeMS detector lanes versus the
-  one-lane HOV-path hypothesis and exact ramp identity remain unresolved.
+  PeMS station 402920 averages 140.3 vehicles/hour over those nine dates, but
+  its metadata identifies a southbound SR-85 on-ramp. The nearest generated
+  graph feature also feeds southbound CA-85 (~9.9 m from the detector location;
+  the NB HOV connector is ~37.4 m away), so do not count this profile as NB
+  US-101 demand. The earlier three-seed HOV mapping result (401507 flow
+  4,836.7→4,980.3 veh/h; MAPE 32.94%→30.95%) is retained only as a
+  counterfactual. A Playwright Google Maps view confirms the interchange area
+  but not painted lanes. Separately audit the actual NB SR-85 ramp geometry.
 - Thirteen ramp sensors were identified and five have qualifying October
   morning profiles. Four were visually and topologically audited: one measured
   Mathilda exit is split from upstream demand, and the Mathilda, Moffett, and

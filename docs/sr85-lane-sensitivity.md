@@ -3,21 +3,24 @@
 ## Visual and metadata evidence
 
 PeMS metadata for station 402920 reports an OR detector on SR-85 southbound,
-two lanes, and the name “Shoreline Blvd on diag.” The user-provided map and
-aerial imagery at `37.40848, -122.070905` place the detector in the
-SR-85/US-101 interchange area, but do not identify its exact ramp path. VTA's
-environmental assessment describes both an HOV-only direct connector and a
-separate general-purpose northbound SR-85-to-US-101 ramp at the north end of
-SR-85. Thus, the station cannot be assigned to the OSM HOV connector based on
-proximity alone. An additional aerial review
-([Google Maps](https://www.google.com/maps/@37.40848,-122.070905,80m/data=!3m1!1e3),
-checked 2026-09-24) did not resolve the ramp identity or painted merge lanes.
-The lane-count and receiving-lane cases below remain sensitivities, not a
-verified representation of the station's road.
+two lanes, and the name “Shoreline Blvd on diag.” Its coordinate is in the
+SR-85/US-101 interchange area. The nearest generated SUMO feature is a
+two-lane synthetic entrance feeding southbound CA-85 edge `11479094`, about
+9.9 m from the station coordinate; the one-lane NB US-101 HOV connector is
+about 37.4 m away. Together, PeMS route/direction/type and nearest graph
+geometry support treating 402920 as a southbound SR-85 entrance outside the NB
+study path. VTA documents an HOV-only direct connector and a separate
+general-purpose northbound SR-85-to-US-101 ramp. A Playwright-captured Google
+Maps view at [the station coordinate](https://www.google.com/maps/@37.40848,-122.070905,18z/data=!3m1!1e3),
+checked 2026-09-24, confirms only the broad interchange location; the lane
+markings are not clear enough to determine a taper or exact detector roadway.
+Therefore neither prior HOV mapping nor its lane counts represent observed
+geometry or demand.
 
-The OSM-derived SUMO network models HOV connector edge `11479095` as one lane.
-The one-lane case remains the mapped-network comparison candidate; the
-alternate network is built under
+The OSM-derived SUMO network models NB HOV connector edge `11479095` as one
+lane. Both scenarios below map southbound station 402920 onto that northbound
+edge, so both are now explicitly counterfactual; neither is a mapped-network
+comparison using observed NB ramp demand. The alternate network is built under
 `outputs/us101_corridor/sr85_two_lane_shared_merge/` and does not replace the
 baseline network. Neither is accepted as station 402920's actual path.
 
@@ -31,8 +34,8 @@ and 5 produced about 744 seconds of average waiting for the station 402920
 vehicles in seed 41, with a maximum over 2,200 seconds. That mapping was
 rejected as implausible for this model and is not used by the current config.
 
-The current sensitivity adds connector lane 1 and maps both connector lanes to
-the existing dedicated receiving lane 5. This two-to-one merge hypothesis ran
+The counterfactual sensitivity adds connector lane 1 and maps both connector
+lanes to the existing dedicated receiving lane 5. This two-to-one merge ran
 with seeds 41, 42, and 43: all 13,800 vehicles completed in each run, station
 402920 ramp trips had zero waiting, and the SUMO logs reported no teleports,
 collisions, or emergency braking.
@@ -51,13 +54,14 @@ Both scenarios use the same complete PeMS dates and seeds.
 
 The differences are tiny relative to the model’s broader calibration error.
 They do not support a claim that the extra ramp lane improves corridor
-performance. The current merge lets both ramp lanes enter one reserved freeway
-lane; it is a convenient and stable sensitivity, not a verified representation
-of the painted merge markings.
+performance. Because 402920 is likely a southbound SR-85 entrance, these runs
+are counterfactual topology/input sensitivities—not calibration evidence for
+the NB US-101 connector and not a controller comparison. The two lanes entering
+one reserved freeway lane are a convenient, stable hypothetical only.
 
 ## Next audit
 
-Before adopting either lane topology, review aerial lane markings or Caltrans
-plans at the actual connector exit and confirm whether the two lanes remain
-separate, taper to one, or enter adjacent US-101 lanes. Keep this scenario
-separate from controller experiments until that geometry is reconciled.
+Before implementing the actual NB connector, obtain a source specific to that
+connector (Caltrans/VTA plan or sharper lane-level imagery) and confirm the
+lane count, taper, and receiving US-101 lanes. Keep both station-402920 runs
+separate from baseline calibration and controller experiments.

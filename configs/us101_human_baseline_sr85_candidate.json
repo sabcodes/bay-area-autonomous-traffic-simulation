@@ -1,6 +1,6 @@
 {
   "extends": "configs/us101_human_baseline.json",
-  "scenario": "H0 human baseline with hypothetical SR-85 interchange ramp mapping",
+  "scenario": "Counterfactual: map southbound SR-85 station 402920 to NB US-101 HOV connector",
   "supplemental_ramp_profile_files": [
     "outputs/pems_calibration/us101_sr85_connector_station_profiles.json"
   ],
@@ -8,7 +8,7 @@
     {
       "station_id": 402920,
       "lane_type": "OR",
-      "name": "Shoreline Boulevard diagonal: unverified SR-85/US-101 interchange path",
+      "name": "Counterfactual mapping; station is likely on southbound SR-85 on-ramp",
       "sumo_edge_id": "11479095",
       "merge_edge_id": "509747406"
     }
@@ -20,6 +20,6 @@
   "detector_output_template": "outputs/us101_corridor/sr85_candidate/h0_sr85_candidate_virtual_detectors_seed_{seed}.xml",
   "detector_summary_template": "outputs/us101_corridor/sr85_candidate/h0_sr85_candidate_virtual_detectors_seed_{seed}.json",
   "additional_assumptions": [
-    "Station 402920 is visually located within the SR-85/US-101 interchange area, but VTA documents both an HOV-only direct connector and a separate general-purpose ramp here. Mapping its two detector lanes to one-lane SUMO edge 11479095 is hypothetical; treat this run as a demand/geometry sensitivity, not an accepted ramp assignment or baseline."
+    "PeMS identifies 402920 as a southbound SR-85 on-ramp; the closest generated network feature is a two-lane on-ramp feeding southbound CA-85. Mapping its measured profile to NB US-101 HOV edge 11479095 is counterfactual and must not be used for baseline calibration, observed ramp demand, or controller-benefit claims."
   ]
 }

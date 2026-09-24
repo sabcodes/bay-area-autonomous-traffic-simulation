@@ -276,17 +276,20 @@ so its geometry mismatch remains visible in the report notes. See
 [the Moffett-to-Shoreline pair audit](docs/us101-ramp-pair-audit.md).
 
 To profile a detector on another freeway or direction, pass `--freeway` and
-`--direction` (for example `--freeway 85 --direction S`). This is used for the
-interchange-area SR-85 station 402920 candidate; its mean is about 129
-vehicles/hour over 12 days. VTA documents distinct HOV and general-purpose
-northbound ramps at the interchange, so assigning this detector to the HOV
-connector remains hypothetical.
+`--direction` (for example `--freeway 85 --direction S`). This was used to
+inspect SR-85 station 402920 (about 129 vehicles/hour over the 12-day profile
+window). PeMS identifies it as a southbound SR-85 on-ramp, and the nearest
+generated network feature feeds southbound CA-85. It is likely outside the
+northbound US-101 study path. Existing configs that inject its profile on the
+NB HOV connector are counterfactual experiments only, not observed NB ramp
+demand. See the [SR-85 sensitivity audit](docs/sr85-lane-sensitivity.md).
 
 Human-baseline preparation now requires complete common observation dates
 across its mainline entry and active ramp detectors. Its manifest records the
 selected dates, and detector validation uses a matching-date copy of the
-mainline profile. To test station 402920 without changing the accepted H0
-baseline, run the separate candidate scenario:
+mainline profile. To reproduce the southbound 402920 station profile used in
+the counterfactual sensitivity audit (without adding it to the accepted H0
+baseline), run:
 
 ```bash
 .venv/bin/python -m bay_area_traffic_sim summarize-pems-stations \

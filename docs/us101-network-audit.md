@@ -78,13 +78,15 @@ audit_dir=$(mktemp -d)
   lane detector or the modeled cross-section should be four lanes. Keep the
   station in the inventory, but do not alter the network until detector
   coverage or a sharper lane-level source is confirmed.
-- At station 402920, PeMS reports two detector lanes and a “Shoreline Blvd on
-  diag” on-ramp in the SR-85/US-101 interchange area. VTA documents both an
-  HOV-only direct connector and a separate general-purpose NB SR-85-to-US-101
-  ramp there. OSM/SUMO edge `11479095` is a one-lane HOV path, but the PeMS
-  detector has not been matched to that exact path. Existing one-lane and
-  two-lane hypotheses are sensitivities only and do not confirm station
-  identity or the painted merge.
+- PeMS 402920 is labeled as a two-lane southbound SR-85 on-ramp. The closest
+  generated SUMO feature is a two-lane synthetic entrance feeding southbound
+  CA-85 edge `11479094` (~9.9 m from the station coordinate); the one-lane NB
+  US-101 HOV connector is ~37.4 m away. Treat 402920 as likely outside the NB
+  study route and do not use its observed profile as NB ramp demand. The
+  Playwright-captured Google Maps imagery confirms only the interchange area;
+  it does not resolve lane markings. Prior HOV-path scenarios remain
+  counterfactual sensitivities. Audit the actual NB general-purpose connector
+  separately before changing its geometry.
 - At station 401507, the nearest generated edge has seven lanes because an
   added exit/diverge lane is represented in the synthetic SUMO transition.
   The six PeMS mainline lanes and the virtual-loop positions lie before the

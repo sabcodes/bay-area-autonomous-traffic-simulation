@@ -1,7 +1,7 @@
 {
   "corridor": "US-101 northbound: SR-237 to Oregon Expressway/Page Mill Road",
-  "status": "Station is visually located within the SR-85/US-101 interchange area, but its specific ramp path is unresolved; keep out of baseline demand until path and lane mapping are verified.",
+  "status": "Likely southbound SR-85 on-ramp detector, outside the NB US-101 study route; do not treat it as NB US-101 demand.",
   "station_ids": [402920],
   "lane_types": ["OR"],
-  "mapping_note": "PeMS labels 402920 as a two-lane on-ramp on SR-85 southbound, Shoreline Boulevard diagonal. The user-provided close-up PeMS map and aerial review place it in the SR-85/US-101 interchange area. VTA documents both an HOV-only direct connector and a separate general-purpose northbound SR-85-to-US-101 ramp here, so proximity does not establish that this station measures OSM's one-lane HOV path. Treat mapping to edge 11479095 as an explicit sensitivity hypothesis only; the two detector lanes, exact route, and receiving lanes remain unverified."
+  "mapping_note": "PeMS labels 402920 as a two-lane on-ramp on SR-85 southbound, Shoreline Boulevard diagonal. A Playwright-captured close aerial view places it at the interchange. In the generated SUMO network, the nearest feature is a two-lane synthetic on-ramp segment feeding southbound CA-85 edge 11479094, about 9.9 m from the station coordinate; the one-lane HOV connector to NB US-101 (edge 11479095) is about 37.4 m away. Together with PeMS route/direction/type, this supports treating 402920 as a likely southbound SR-85 entrance outside the NB US-101 study route. Mapping it to edge 11479095 is retained only as a counterfactual sensitivity, not a plausible detector assignment."
 }

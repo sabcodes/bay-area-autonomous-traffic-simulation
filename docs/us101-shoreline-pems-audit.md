@@ -73,17 +73,22 @@ same physical ramp just from its name or nearest-node distance.
 Neither 402921's off-ramp value nor 402922's on-ramp value can be subtracted
 from or added to the **northbound** 401948→401507 net flow change. Caltrans' NB
 Shoreline ramp-meter notice confirms a northbound entrance in the interval,
-but those two southbound PeMS records are not valid NB ramp counts. A separate
-candidate, 402920, measures a southbound SR-85 on-ramp in the interchange
-area. The user's close-up PeMS map supports that general location, but VTA
-documents both an HOV-only direct connector and a separate general-purpose
-northbound SR-85-to-US-101 ramp. The generated SUMO graph has a valid route
-from HOV connector edge `11479095` onto northbound US-101 edge `509747406`; the
-PeMS station has not been matched to that HOV path.
+but those two southbound PeMS records are not valid NB ramp counts. PeMS
+station 402920 is a two-lane southbound SR-85 on-ramp, not an observed
+northbound US-101 movement. In the generated SUMO graph, the closest feature
+is a two-lane synthetic on-ramp feeding southbound CA-85 edge `11479094` (about
+9.9 m from the station coordinate); the one-lane HOV connector to northbound
+US-101 edge `509747406` is about 37.4 m away. Its route/direction/type and the
+nearest graph feature therefore support excluding 402920 from the NB US-101
+flow balance. The Google Maps screenshot confirms only the broad interchange
+location, not painted lane markings or the detector's exact roadway. VTA also
+documents a separate general-purpose NB SR-85→US-101 ramp. The earlier mapping
+of measured 402920 flow onto the HOV path is retained as a counterfactual
+sensitivity, not evidence of observed NB ramp demand.
 Across the same nine complete dates used by all H0 demand inputs, 402920
-averages 140.3 vehicles/hour (216 morning intervals); the matched
-401948→401507 net change is +1,785.2 vehicles/hour. The 402920 candidate cannot
-by itself close the balance. A pair-only comparison over 12 shared days gives
+averages 140.3 vehicles/hour (216 morning intervals). That figure describes
+southbound SR-85 traffic and is not comparable as an NB US-101 input. The
+matched 401948→401507 net change is +1,785.2 vehicles/hour. A pair-only comparison over 12 shared days gives
 +1,621.6 vehicles/hour, replacing the earlier +1,529 estimate that used
 unmatched date sets.
 
@@ -92,13 +97,13 @@ unmatched date sets.
 Available local PeMS text metadata and TMDD inventory are enough to settle the
 directional identity and rule out IDs 402921/402922 for this NB study. They are
 not enough to place either detector on a particular physical ramp, or to map a
-northbound Shoreline detector to a SUMO edge. Before using 402920 as finalized
-NB ramp demand, match it to either the HOV connector or the separate
-general-purpose ramp, then compare its two detector lanes with that path. The
-current screenshot supports its location in the interchange area, not the
-specific path. The remaining uncertainty includes ramp identity, lane
-narrowing, and merge direction. No extra visual confirmation is needed to
-reject 402921/402922 as northbound US-101 counts.
+northbound Shoreline detector to a SUMO edge. Current evidence supports
+treating 402920 as a southbound SR-85 entrance outside the NB corridor. The
+actual northbound SR-85 general-purpose ramp still needs its geometry and lane
+connections audited, but 402920's profile must not be used as its observed
+demand. The screenshot supports only the interchange-area location; it does
+not resolve painted lanes. No extra visual confirmation is needed to reject
+402921/402922 as northbound US-101 counts.
 
 ## Primary sources
 

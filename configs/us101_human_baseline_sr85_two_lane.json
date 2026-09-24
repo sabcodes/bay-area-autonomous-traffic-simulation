@@ -1,6 +1,6 @@
 {
   "extends": "configs/us101_human_baseline.json",
-  "scenario": "H0 sensitivity: hypothetical two-lane SR-85 interchange path",
+  "scenario": "Counterfactual: two-lane station-402920 mapping to NB US-101 HOV connector",
   "supplemental_ramp_profile_files": [
     "outputs/pems_calibration/us101_sr85_connector_station_profiles.json"
   ],
@@ -8,7 +8,7 @@
     {
       "station_id": 402920,
       "lane_type": "OR",
-      "name": "Shoreline Boulevard diagonal: unverified SR-85/US-101 interchange path",
+      "name": "Counterfactual mapping; station is likely on southbound SR-85 on-ramp",
       "sumo_edge_id": "11479095",
       "merge_edge_id": "509747406"
     }
@@ -21,8 +21,8 @@
   "detector_output_template": "outputs/us101_corridor/sr85_two_lane/h0_sr85_two_lane_virtual_detectors_seed_{seed}.xml",
   "detector_summary_template": "outputs/us101_corridor/sr85_two_lane/h0_sr85_two_lane_virtual_detectors_seed_{seed}.json",
   "additional_assumptions": [
-    "Station 402920 inventory reports two 12-foot lanes, but its exact ramp path is unresolved. VTA documents distinct HOV-only and general-purpose northbound ramps in this interchange.",
-    "This sensitivity hypothetically maps the station to the OSM HOV connector, adds a second connector lane, connects feeder lanes 3 and 4 to connector lanes 1 and 0, and joins both connector lanes to the existing dedicated US-101 receiving lane 5. The map does not prove this is the station's roadway or establish the painted merge alignment.",
+    "PeMS identifies station 402920 as a southbound SR-85 on-ramp; the nearest generated network feature is a two-lane ramp feeding southbound CA-85. Its measured flow is not supported as NB US-101 connector demand.",
+    "This counterfactual maps the station to the NB US-101 HOV connector, adds a second connector lane, connects feeder lanes 3 and 4 to connector lanes 1 and 0, and joins both lanes to receiving lane 5. It exists only to illustrate network sensitivity and must not be interpreted as station mapping or physical geometry.",
     "Compare against the one-lane SR-85 candidate with matching demand dates and random seeds; this isolates network geometry, not a controller effect."
   ]
 }
