@@ -1,6 +1,6 @@
 {
   "extends": "configs/us101_human_baseline.json",
-  "scenario": "H0 sensitivity: two-lane SR-85 connector geometry hypothesis",
+  "scenario": "H0 sensitivity: two-lane SR-85 connector with single-lane merge hypothesis",
   "supplemental_ramp_profile_files": [
     "outputs/pems_calibration/us101_sr85_connector_station_profiles.json"
   ],
@@ -13,7 +13,7 @@
       "merge_edge_id": "509747406"
     }
   ],
-  "network_file": "outputs/us101_corridor/sr85_two_lane_ordered/us101_corridor_two_lane.net.xml",
+  "network_file": "outputs/us101_corridor/sr85_two_lane_shared_merge/us101_corridor_two_lane.net.xml",
   "route_file": "outputs/us101_corridor/sr85_two_lane/h0_sr85_two_lane.rou.xml",
   "manifest_file": "outputs/us101_corridor/sr85_two_lane/h0_sr85_two_lane_manifest.json",
   "aligned_pems_report_file": "outputs/pems_calibration/us101_sr85_two_lane_profiles_aligned.json",
@@ -22,7 +22,7 @@
   "detector_summary_template": "outputs/us101_corridor/sr85_two_lane/h0_sr85_two_lane_virtual_detectors_seed_{seed}.json",
   "additional_assumptions": [
     "Station 402920 inventory reports two 12-foot lanes, while the OSM-derived SUMO connector has one lane.",
-    "This sensitivity adds a second connector lane, connects feeder lanes 3 and 4 to connector lanes 1 and 0, and joins connector lanes 0 and 1 to US-101 lanes 4 and 5. Those lane-to-lane connections are geometry hypotheses, not verified PeMS detector-lane assignments.",
+    "This sensitivity adds a second connector lane, connects feeder lanes 3 and 4 to connector lanes 1 and 0, and joins both connector lanes to the existing dedicated US-101 receiving lane 5. This represents a possible lane drop at the merge; the screenshot supports two lanes near the detector but does not prove the lane-level merge alignment.",
     "Compare against the one-lane SR-85 candidate with matching demand dates and random seeds; this isolates network geometry, not a controller effect."
   ]
 }

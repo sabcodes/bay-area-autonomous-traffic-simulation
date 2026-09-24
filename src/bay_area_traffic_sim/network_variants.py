@@ -18,16 +18,17 @@ def build_sr85_two_lane_variant(
     ramp_edge_id: str = "11479095",
     feeder_edge_id: str = "1343445177",
     merge_edge_id: str = "509747406",
+    merge_lane_targets: tuple[int, int] = (5, 5),
 ) -> Path:
     """Build a separate two-lane SR-85 connector sensitivity network.
 
     The PeMS roadway inventory reports two 12-foot lanes at station 402920,
     while the current OSM-derived SUMO edge has one lane. The sensitivity adds
     a second lane only on that edge and explicitly splits the two rightmost
-    feeder lanes across the connector. It preserves lane order at the merge by
-    mapping connector lanes 0 and 1 to freeway lanes 4 and 5. This is a
-    topology experiment, not an assertion that PeMS detector lanes align with
-    those SUMO lanes.
+    feeder lanes across the connector. The requested pair maps connector lanes
+    0 and 1 to their target lanes at the US-101 merge. This is a topology
+    experiment, not an assertion that PeMS detector lanes align with those SUMO
+    lanes.
     """
 
     if not base_network.is_file():
@@ -106,12 +107,23 @@ def build_sr85_two_lane_variant(
         "connection",
         {"from": feeder_edge_id, "to": ramp_edge_id, "fromLane": "3", "toLane": "1"},
     )
-    ElementTree.SubElement(
-        connection_patch,
-        "delete",
-        {"from": ramp_edge_id, "to": merge_edge_id, "fromLane": "0", "toLane": "5"},
-    )
-    for from_lane, to_lane in (("0", "4"), ("1", "5")):
+    if merge_lane_targets[0] != 5:
+        ElementTree.SubElement(
+            connection_patch,
+            "delete",
+            {"from": ramp_edge_id, "to": merge_edge_id, "fromLane": "0", "toLane": "5"},
+        )
+        ElementTree.SubElement(
+            connection_patch,
+            "connection",
+            {
+                "from": ramp_edge_id,
+                "to": merge_edge_id,
+                "fromLane": "0",
+                "toLane": str(merge_lane_targets[0]),
+            },
+        )
+    for from_lane, to_lane in (("1", str(merge_lane_targets[1])),):
         ElementTree.SubElement(
             connection_patch,
             "connection",
@@ -165,7 +177,8 @@ def build_sr85_two_lane_variant(
     }
     if feeder_links != {(3, 1), (4, 0)}:
         raise RuntimeError(f"Unexpected feeder lane mapping into {ramp_edge_id}: {feeder_links}")
-    if merge_links != {(0, 4), (1, 5)}:
+    expected_merge_links = {(0, merge_lane_targets[0]), (1, merge_lane_targets[1])}
+    if merge_links != expected_merge_links:
         raise RuntimeError(
             f"Unexpected lane mapping from {ramp_edge_id} to {merge_edge_id}: {merge_links}"
         )

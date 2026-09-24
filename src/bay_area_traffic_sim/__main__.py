@@ -249,11 +249,19 @@ def main() -> None:
     )
     lane_variant.add_argument(
         "--output-network",
-        default="outputs/us101_corridor/sr85_two_lane_ordered/us101_corridor_two_lane.net.xml",
+        default="outputs/us101_corridor/sr85_two_lane_shared_merge/us101_corridor_two_lane.net.xml",
     )
     lane_variant.add_argument(
         "--plain-directory",
-        default="outputs/us101_corridor/sr85_two_lane_ordered/plain",
+        default="outputs/us101_corridor/sr85_two_lane_shared_merge/plain",
+    )
+    lane_variant.add_argument(
+        "--merge-lane-targets",
+        type=int,
+        nargs=2,
+        default=[5, 5],
+        metavar=("LANE0_TARGET", "LANE1_TARGET"),
+        help="Target freeway lanes for connector lanes 0 and 1 (default: 5 5).",
     )
     compare_detectors = subcommands.add_parser(
         "compare-us101-detectors",
@@ -515,6 +523,7 @@ def main() -> None:
                 Path(args.base_network),
                 Path(args.output_network),
                 Path(args.plain_directory),
+                merge_lane_targets=tuple(args.merge_lane_targets),
             )
         )
     elif args.command == "compare-us101-detectors":

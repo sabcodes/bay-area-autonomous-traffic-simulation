@@ -304,19 +304,25 @@ records the PeMS two-lane mismatch; do not use its flow as finalized demand
 until the lane geometry is reconciled. Compare it with the regular baseline
 using the same seed list.
 
-The separate two-lane geometry hypothesis can be built with:
+The separate two-lane geometry hypothesis can be built and prepared with:
 
 ```bash
 .venv/bin/python -m bay_area_traffic_sim build-sr85-two-lane-variant
 .venv/bin/python -m bay_area_traffic_sim prepare-us101-human-baseline \
   --config configs/us101_human_baseline_sr85_two_lane.json
+.venv/bin/python -m bay_area_traffic_sim run-us101-human-baseline-multi \
+  --config configs/us101_human_baseline_sr85_two_lane.json \
+  --seeds 41 42 43 \
+  --output outputs/us101_corridor/sr85_two_lane/h0_sr85_two_lane_multiseed_report.json
 ```
 
-Initial smoke testing found long queues for station 402920 traffic at the
-connector merge, so the two-lane version is not yet suitable for a multi-seed
-performance comparison. Keep the one-lane candidate as the working case. The
-two-lane config is retained only to make the lane-mapping hypothesis explicit
-and reproducible while the merge geometry is manually audited.
+The current variant maps both connector lanes to US-101 lane 5, representing a
+possible two-to-one merge. A split mapping to US-101 lanes 4 and 5 caused
+unrealistically long ramp queues in a diagnostic run. The current three-seed
+variant completed all vehicles with no teleport or safety warnings, but its
+traffic metrics are nearly identical to the one-lane candidate. This is only a
+geometry sensitivity, not evidence that two lanes improve traffic or that the
+lane-level merge has been confirmed. See the [SR-85 lane sensitivity notes](docs/sr85-lane-sensitivity.md).
 
 ## Status
 

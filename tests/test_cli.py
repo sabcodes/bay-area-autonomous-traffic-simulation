@@ -47,6 +47,7 @@ def test_sr85_two_lane_variant_command_exposes_isolated_network_paths() -> None:
     assert "--base-network" in result.stdout
     assert "--output-network" in result.stdout
     assert "--plain-directory" in result.stdout
+    assert "--merge-lane-targets" in result.stdout
 
 
 def test_station_profile_command_can_summarize_a_southbound_feeder(tmp_path: Path) -> None:
