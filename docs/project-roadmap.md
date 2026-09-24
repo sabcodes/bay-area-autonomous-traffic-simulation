@@ -45,7 +45,12 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   repeat `netconvert` import succeeded, but emitted warnings at several
   interchange links that still need visual decisions. Open network questions
   include the 401948 and 402377 lane counts, the 401507 synthetic transition,
-  and several warning locations. Station 402920 is now likely identified as a
+  and several warning locations. The apparent missing Oregon-terminal edge
+  was traced to `netconvert` geometry simplification and its legal movement
+  exists. A historical VTA/Caltrans report confirms northbound auxiliary-lane
+  segments around both 401948 and 402377; Playwright satellite captures locate
+  the detector roadways but do not settle the current painted lane mapping.
+  Station 402920 is now likely identified as a
   southbound SR-85 entrance outside the NB US-101 route; its former HOV
   connector mapping is counterfactual, not an observed lane mismatch. No
   corrective network patch has yet been applied or versioned. See the [network

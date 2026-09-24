@@ -41,7 +41,7 @@ specific routes, not every ramp in the imported network.
 
 | OSM edge / location | Import warning | Current interpretation |
 | --- | --- | --- |
-| `396010342`, at the Oregon Expressway terminal junction | OSM `placement=transition` is unsupported; no matching edge appears in the generated network. It is a one-lane motorway link sharing endpoint node `1392020693` with the terminal US-101 edges. | This may be part of the Oregon Expressway ramp movement. It cannot be dismissed as just outside the study area; confirm it is represented or intentionally excluded. |
+| `396010342`, at the Oregon Expressway terminal junction | OSM `placement=transition` is unsupported; no edge retains this ID after `--geometry.remove`. | Resolved as an ID/geometry simplification, **not** a missing movement: OSM way `396010342` continues way `396010343` through node `3988099144`. The generated one-lane edge `396010343` spans `1080063002` to `1392020693` and connects lane 0 to lane 0 of five-lane edge `396010341`. The exact painted ramp geometry still belongs in the visual audit. |
 | `348360455`, near the Shoreline interchange | Sharp turn radius of 7.99 m at the edge end. | It is a two-lane motorway link signed toward CA-85 South / US-101 South, about 65 m from the northbound mainline route. Check ramp curvature and its connection in SUMO. |
 | `690599564#0`, near the Shoreline interchange | A junction cluster is reduced because of parallel outgoing movements. | OSM marks the link toward US-101 North / Old Middlefield Way; it is about 91 m from the mainline route. Confirm the resulting split/merge movement visually. |
 | `941192341`, Mathilda Avenue / SR-237 approach | SUMO does not join a junction cluster because of parallel incoming movements. | It is a two-lane link signed for eastbound SR-237, about 255 m from the mainline route. Confirm its relation to the SR-237 boundary movements. |
@@ -68,16 +68,22 @@ audit_dir=$(mktemp -d)
 - At PeMS station 401948, PeMS reports five active northbound US-101 lanes,
   while OSM and SUMO represent edge `617335302` as four lanes. Caltrans'
   managed-lane source and the user's PeMS station screenshot support the
-  five-lane observation, but a network correction still needs a lane-to-lane
-  connection design.
+  five-lane observation. A [2015 VTA/Caltrans project report](https://www.vta.org/system/files?file=2019-09%2FAppendix+B++-+US+101+Express+Lanes+Project%E2%80%99s+Project+Report%2C+August+2015_0.pdf)
+  (section 3.3.1, printed pages 13–14) explicitly lists a northbound auxiliary
+  lane from Moffett Boulevard to N. Shoreline Boulevard. This historical
+  design record corroborates the possible missing modeled lane; it is not a
+  current as-built survey. A network correction still needs a source-backed
+  lane-to-lane connection design at both ends of edge `617335302`.
 - At station 402377, PeMS reports four lanes and the matched OSM/SUMO edge
   `861090931` has five. A close aerial view centered on the PeMS coordinate
   (37.440393, -122.113925) confirms the detector is on US-101 rather than the
-  adjacent W Bayshore Road/frontage facility. The available imagery does not
-  make the painted lane count reliable enough to decide whether PeMS omits a
-  lane detector or the modeled cross-section should be four lanes. Keep the
-  station in the inventory, but do not alter the network until detector
-  coverage or a sharper lane-level source is confirmed.
+  adjacent E Bayshore Road/frontage facility. The same 2015 report lists a
+  northbound auxiliary lane from San Antonio Road to Oregon Expressway, so a
+  five-lane physical cross-section with only four PeMS detectors is plausible.
+  However, the report predates the measured 2025 data and the aerial image
+  does not establish which lane, if any, PeMS omits. Keep the station in the
+  inventory, but do not treat its four-lane flow as a proven full-freeway total
+  or change the network until detector coverage is confirmed.
 - PeMS 402920 is labeled as a two-lane southbound SR-85 on-ramp. The closest
   generated SUMO feature is a two-lane synthetic entrance feeding southbound
   CA-85 edge `11479094` (~9.9 m from the station coordinate); the one-lane NB
@@ -90,7 +96,39 @@ audit_dir=$(mktemp -d)
 - At station 401507, the nearest generated edge has seven lanes because an
   added exit/diverge lane is represented in the synthetic SUMO transition.
   The six PeMS mainline lanes and the virtual-loop positions lie before the
-  modeled Old Middlefield split, but the short spacing remains sensitive.
+  modeled Old Middlefield split, but the short spacing remains sensitive. The
+  [2018 VTA/Caltrans pavement-delineation sheets PD-18 and PD-19](https://www.vta.org/system/files?file=2019-11%2FAppendix+C+-+US101-SR85+Express+Lanes+Project+Plans.pdf)
+  draw a northbound Shoreline entrance and Old Middlefield exit in this area;
+  they support the existence of both movements, not the precise position of
+  the modeled seven-lane transition or the 2025 painted lane count.
+
+## Playwright visual evidence (2026-09-24)
+
+The repeatable screenshot command is documented in the
+[README](../README.md#playwright-map-audit). It stores the PNG and a timestamped
+URL/coordinate JSON record under ignored `outputs/map_audit/`; third-party map
+imagery is not committed. These are interpretation aids, not surveyed plans or
+proof of current lane configuration.
+
+| PeMS station | Captured satellite view | What it supports | What it does not settle |
+| --- | --- | --- | --- |
+| 401948 | [Moffett NB](https://www.google.com/maps/@37.409514,-122.071728,20z/data=!3m1!1e3) | The station-centered view shows the divided US-101 carriageway and a separate managed-lane area. | The complete lane transition to Shoreline and SUMO connection indices. |
+| 401507 | [Shoreline NB](https://www.google.com/maps/@37.412677,-122.079539,20z/data=!3m1!1e3) | The view shows nearby ramp pavement, gore markings, and a mainline cross-section. | Whether the seven-lane synthetic SUMO edge represents the painted exit-lane transition at the detector's precise longitudinal position. |
+| 402377 | [San Antonio–Oregon NB](https://www.google.com/maps/@37.440393,-122.113925,20z/data=!3m1!1e3) | The station coordinate is on US-101, not the parallel frontage road. | Whether all five modeled lanes have active PeMS detectors. |
+
+The same script captured the four remaining importer-warning areas at the
+[Shoreline loop](https://www.google.com/maps/@37.411452,-122.079141,19z/data=!3m1!1e3),
+[Shoreline/La Avenida link](https://www.google.com/maps/@37.413468,-122.078318,19z/data=!3m1!1e3),
+[Mathilda/SR-237 approach](https://www.google.com/maps/@37.401426,-122.026866,19z/data=!3m1!1e3),
+and [West Maude/SR-237 approach](https://www.google.com/maps/@37.395001,-122.045769,19z/data=!3m1!1e3).
+Those views locate the movements and distinguish the two SR-237 boundary
+areas from the NB US-101 through route. They do **not** establish that the
+SUMO sharp-radius or junction-cluster warnings are harmless: connection
+indices, turn radii, and allowed lane changes still need a network-level check.
+Two more 21z views center the [SR-85 split](https://www.google.com/maps/@37.408584,-122.069243,21z/data=!3m1!1e3)
+and [Shoreline-side merge](https://www.google.com/maps/@37.410960,-122.075152,21z/data=!3m1!1e3)
+at the ends of four-lane SUMO edge `617335302`; lane paint and bridge shadows
+remain insufficient to infer safe new connection indices.
 
 ## M2 status and remaining work
 

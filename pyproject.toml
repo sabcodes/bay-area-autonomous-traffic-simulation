@@ -23,6 +23,9 @@ dev = [
   "pytest>=8.0,<9.0",
   "ruff>=0.8,<1.0",
 ]
+visual-audit = [
+  "playwright>=1.55,<2.0",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

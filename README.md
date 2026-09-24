@@ -116,6 +116,23 @@ lane count, and allowed movement is manually audited.
 Use the [US-101 network audit checklist](docs/us101-network-audit.md) to make
 that review repeatable.
 
+### Playwright map audit
+
+For close Google Maps satellite screenshots used in the manual lane audit,
+install the optional browser tool **inside this project's venv**:
+
+```bash
+.venv/bin/python -m pip install '.[visual-audit]'
+.venv/bin/python scripts/capture_google_maps.py \
+  --latitude 37.409514 --longitude -122.071728 --zoom 20 \
+  --output outputs/map_audit/401948_moffett_nb.png
+```
+
+The script uses a local Chrome installation and writes a PNG plus a JSON file
+with the URL and capture time. `outputs/` is ignored by Git, so third-party
+imagery stays local. Aerial views can locate ramps and markings but are not a
+survey of current lane counts or legal movements.
+
 After downloading Station Metadata, generate a local detector-to-network
 matching report to guide the visual audit:
 
