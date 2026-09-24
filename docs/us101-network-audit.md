@@ -105,9 +105,11 @@ Before M2 can be closed:
 1. Inspect the relevant warning locations and the Shoreline, SR-85, Moffett,
    San Antonio, SR-237, and Oregon Expressway movements in SUMO or aerial
    imagery.
-2. Resolve the four lane/transition discrepancies above and apply only
-   source-backed corrections; preserve competing interpretations as named
-   network variants if the geometry is still uncertain.
+2. Resolve the remaining 401948/402377 lane-count questions and the 401507
+   synthetic transition, then apply only source-backed corrections. Preserve
+   competing interpretations as named network variants if geometry remains
+   uncertain. Keep the 402920 station-to-path counterfactual out of the
+   observed NB demand model.
 3. Record the final patch and source evidence, rebuild the network, rerun route
    checks, and rerun the H0 smoke test.
 
