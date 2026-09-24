@@ -130,7 +130,7 @@ interchanges.
 ## First PeMS calibration target
 
 Put the PeMS `d04_text_station_5min_*.txt.gz` downloads under `data/pems/`,
-then create an auditable summary of the weekday morning peak:
+then create an auditable summary of the morning peak:
 
 ```bash
 .venv/bin/python -m bay_area_traffic_sim summarize-pems
@@ -139,9 +139,8 @@ then create an auditable summary of the weekday morning peak:
 It reads 07:00–08:59 local time from District 4, northbound US-101 mainline
 detectors, rejects observations below 90% coverage, and writes its filter and
 results to `outputs/pems_calibration/us101_northbound_d4_morning_peak.json`.
-The downloaded files alone still span all of District 4's US-101. Download
-**Station Metadata** next; we will use it to identify only the detector IDs
-between SR-237 and Page Mill Road before using the data to tune the corridor.
+The corridor-specific metadata selection and manual decisions are in
+`configs/us101_corridor_station_ids.json` and the [sensor audit](docs/us101-sensor-audit.md).
 
 After placing the matching Station Metadata text files in `data/pems/metadata/`,
 produce the first automatic detector list with:
@@ -151,22 +150,31 @@ produce the first automatic detector list with:
 ```
 
 The command keeps only District 4, northbound US-101 **mainline** detector
-locations inside the configured corridor boundary. It writes the station IDs,
-coordinates, and source metadata files to
-`outputs/pems_calibration/us101_corridor_station_selection.json`. The list
-still needs the short visual map audit described above.
+locations inside the configured boundary. It writes station IDs, coordinates,
+and source metadata to `outputs/pems_calibration/us101_corridor_station_selection.json`.
+The reviewed inventory contains 13 accepted corridor cross-sections, five
+excluded candidates, and one conservative holdout; review decisions and
+caveats are recorded in the sensor audit.
 
-The current candidate IDs and a smaller, provisional reviewed subset are stored
-in `configs/us101_corridor_station_ids.json`. Use the provisional subset for
-the first corridor-specific morning-peak summary. It excludes the two Moffett
-locations still marked unsure and eight northern locations added when the map
-boundary was corrected:
+The full reviewed inventory and the smaller subset used by the existing draft
+baseline are stored in `configs/us101_corridor_station_ids.json`. Reproduce the
+full M1 station-by-station report with:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim summarize-pems-stations \
+  --station-ids-file configs/us101_corridor_station_ids.json \
+  --station-ids-key accepted_corridor_station_ids \
+  --lane-types ML \
+  --output outputs/pems_calibration/us101_corridor_m1_station_profiles.json
+```
+
+The aggregate M1 report is generated with:
 
 ```bash
 .venv/bin/python -m bay_area_traffic_sim summarize-pems \
   --station-ids-file configs/us101_corridor_station_ids.json \
-  --station-ids-key provisionally_reviewed_station_ids \
-  --output outputs/pems_calibration/us101_corridor_provisional_morning_peak.json
+  --station-ids-key accepted_corridor_station_ids \
+  --output outputs/pems_calibration/us101_corridor_final_morning_peak.json
 ```
 
 This report gives the “traffic rhythm” used to build the first human-traffic

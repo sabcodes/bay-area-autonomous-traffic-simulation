@@ -26,13 +26,26 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 ## Current position
 
 - M0 is complete.
-- M1 is active. District 4 Station 5-Minute and Station Metadata exports are
-  available locally. The corrected boundary selects 19 candidate detectors;
-  ten mainline locations are provisionally accepted, eight need follow-up, and
-  one Shoreline collector detector is excluded.
-- M2 is active. The imported network now reaches the Oregon Expressway/Page
-  Mill connection. The H0 route is constrained through detector-matched
-  mainline checkpoints and never falls below four lanes.
+- M1 is complete. District 4 Station 5-Minute and Station Metadata exports are
+  available locally. The reproducible inventory contains 19 candidates: 13
+  northbound mainline cross-sections inside the endpoint, five exclusions
+  (beyond the endpoint or on collector roadways), and one conservative holdout
+  (station 425545: its PeMS ML type/lane count conflicts with its collector
+  name). The Caltrans Oregon
+  Expressway exit is at county PM 52.17. Eight accepted stations have at least
+  90% coverage on at least 12 of 13 selected dates; five (401997, 402376,
+  402379, 404522, 425892) have no qualifying rows. Missing observations remain
+  missing, never zero. The aggregate and station-level reports are saved under
+  `outputs/pems_calibration/us101_corridor_*morning_peak.json` and
+  `outputs/pems_calibration/us101_corridor_m1_station_profiles.json`. The
+  current M3 draft keeps its previously selected calibration subset separate
+  from this full audited inventory. See the [sensor audit](us101-sensor-audit.md).
+- M2 is active. The northbound H0 route (37 edges), a reverse southbound route
+  (41 edges), and four active ramp routes pass graph-connectivity checks. A
+  repeat `netconvert` import succeeded, but emitted warnings at several
+  interchange links that still need visual decisions. The audit found known
+  401948, 402377, 402920, and 401507 lane/transition mismatches; no corrective
+  network patch has yet been applied or versioned. See the [network audit](us101-network-audit.md).
 - M3 has a runnable ramp-aware draft. Demand profiles now use complete dates
   shared across the mainline entry and every active ramp, and the validation
   profile uses those same dates. On the current nine-day set, three seeds each
