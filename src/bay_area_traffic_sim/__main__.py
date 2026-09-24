@@ -13,6 +13,7 @@ from bay_area_traffic_sim.calibration import (
 from bay_area_traffic_sim.experiments import repeat, summarize_runs
 from bay_area_traffic_sim.flow_balance import build_flow_balance_report
 from bay_area_traffic_sim.network_audit import audit_network
+from bay_area_traffic_sim.network_variants import build_sr85_two_lane_variant
 from bay_area_traffic_sim.osm_import import download_osm, import_osm, load_corridor_config
 from bay_area_traffic_sim.pems import (
     PemsFilter,
@@ -237,6 +238,22 @@ def main() -> None:
     multi_real.add_argument(
         "--output",
         default="outputs/us101_corridor/h0_multiseed_report.json",
+    )
+    lane_variant = subcommands.add_parser(
+        "build-sr85-two-lane-variant",
+        help="Build a separate two-lane sensitivity network for the SR-85 connector.",
+    )
+    lane_variant.add_argument(
+        "--base-network",
+        default="outputs/us101_corridor/us101_corridor.net.xml",
+    )
+    lane_variant.add_argument(
+        "--output-network",
+        default="outputs/us101_corridor/sr85_two_lane_ordered/us101_corridor_two_lane.net.xml",
+    )
+    lane_variant.add_argument(
+        "--plain-directory",
+        default="outputs/us101_corridor/sr85_two_lane_ordered/plain",
     )
     compare_detectors = subcommands.add_parser(
         "compare-us101-detectors",
@@ -492,6 +509,14 @@ def main() -> None:
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json.dumps(report, indent=2) + "\n")
         print(json.dumps(report, indent=2))
+    elif args.command == "build-sr85-two-lane-variant":
+        print(
+            build_sr85_two_lane_variant(
+                Path(args.base_network),
+                Path(args.output_network),
+                Path(args.plain_directory),
+            )
+        )
     elif args.command == "compare-us101-detectors":
         report = compare_detector_profiles(
             Path(args.observed),

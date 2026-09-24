@@ -27,6 +27,28 @@ def test_station_profile_command_exposes_freeway_and_direction_filters() -> None
     assert "--direction" in result.stdout
 
 
+def test_sr85_two_lane_variant_command_exposes_isolated_network_paths() -> None:
+    environment = os.environ | {"PYTHONPATH": str(Path("src").resolve())}
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "bay_area_traffic_sim",
+            "build-sr85-two-lane-variant",
+            "--help",
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+        env=environment,
+    )
+
+    assert "--base-network" in result.stdout
+    assert "--output-network" in result.stdout
+    assert "--plain-directory" in result.stdout
+
+
 def test_station_profile_command_can_summarize_a_southbound_feeder(tmp_path: Path) -> None:
     source = tmp_path / "station_5min.txt.gz"
     with gzip.open(source, "wt", newline="") as destination:

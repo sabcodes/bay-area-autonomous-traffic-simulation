@@ -304,6 +304,20 @@ records the PeMS two-lane mismatch; do not use its flow as finalized demand
 until the lane geometry is reconciled. Compare it with the regular baseline
 using the same seed list.
 
+The separate two-lane geometry hypothesis can be built with:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim build-sr85-two-lane-variant
+.venv/bin/python -m bay_area_traffic_sim prepare-us101-human-baseline \
+  --config configs/us101_human_baseline_sr85_two_lane.json
+```
+
+Initial smoke testing found long queues for station 402920 traffic at the
+connector merge, so the two-lane version is not yet suitable for a multi-seed
+performance comparison. Keep the one-lane candidate as the working case. The
+two-lane config is retained only to make the lane-mapping hypothesis explicit
+and reproducible while the merge geometry is manually audited.
+
 ## Status
 
 **Phase 1 - runnable toy corridor.** The human-like and CACC sensitivity
