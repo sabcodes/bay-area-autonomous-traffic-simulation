@@ -22,13 +22,14 @@ def build_sr85_two_lane_variant(
 ) -> Path:
     """Build a separate two-lane SR-85 connector sensitivity network.
 
-    The PeMS roadway inventory reports two 12-foot lanes at station 402920,
-    while the current OSM-derived SUMO edge has one lane. The sensitivity adds
-    a second lane only on that edge and explicitly splits the two rightmost
-    feeder lanes across the connector. The requested pair maps connector lanes
-    0 and 1 to their target lanes at the US-101 merge. This is a topology
-    experiment, not an assertion that PeMS detector lanes align with those SUMO
-    lanes.
+    This hypothetical maps PeMS station 402920 to the one-lane OSM-derived HOV
+    connector and adds a second lane on that edge. VTA documents a separate
+    general-purpose ramp at the interchange, so station-to-path identity is
+    unresolved and must not be inferred from proximity. The sensitivity
+    explicitly splits the two rightmost feeder lanes across the connector; the
+    requested pair maps connector lanes 0 and 1 to their target lanes at the
+    US-101 merge. This is a topology experiment, not an assertion that PeMS
+    detector lanes align with those SUMO lanes.
     """
 
     if not base_network.is_file():
