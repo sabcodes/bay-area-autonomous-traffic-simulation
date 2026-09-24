@@ -65,6 +65,9 @@
   "requires_follow_up_station_ids": [
     425545
   ],
+  "full_cross_section_unverified_station_ids": [
+    402377
+  ],
   "excluded_station_ids": [
     401949,
     402380,
@@ -72,5 +75,5 @@
     422116,
     425697
   ],
-  "manual_audit_note": "Ten stations retain prior close-zoom review. Three additional northbound mainline candidates are inside the official Oregon Expressway endpoint by PeMS postmile and match US-101 motorways in SUMO. Station 402377 has a 4-PeMS/5-SUMO lane-count discrepancy. Five accepted stations (401997, 402376, 402379, 404522, 425892) have no qualifying five-minute observations in the downloaded files; absence is not zero flow. Station 402380 and stations 404529/422116 lie beyond the endpoint; 401949 and 425697 are excluded as collectors. Station 425545 is held out: PeMS calls it ML and its 5-lane SUMO match agrees with the PeMS lane count, but its 'rm-n-coll' name leaves full through-mainline coverage uncertain."
+  "manual_audit_note": "Ten stations retain prior close-zoom review. Three additional northbound mainline candidates are inside the official Oregon Expressway endpoint by PeMS postmile and match US-101 motorways in SUMO. Station 402377 has four active PeMS detectors on a five-lane SUMO edge; VTA's documented double express lanes and historical auxiliary lane make incomplete detector coverage plausible. Its measured flow is not a verified full-freeway total. Five accepted stations (401997, 402376, 402379, 404522, 425892) have no qualifying five-minute observations in the downloaded files; absence is not zero flow. Station 402380 and stations 404529/422116 lie beyond the endpoint; 401949 and 425697 are excluded as collectors. Station 425545 is held out: PeMS calls it ML and its 5-lane SUMO match agrees with the PeMS lane count, but its 'rm-n-coll' name leaves full through-mainline coverage uncertain."
 }

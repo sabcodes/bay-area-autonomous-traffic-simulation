@@ -47,8 +47,9 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   include the 401948 and 402377 lane counts, the 401507 synthetic transition,
   and several warning locations. The apparent missing Oregon-terminal edge
   was traced to `netconvert` geometry simplification and its legal movement
-  exists. A historical VTA/Caltrans report confirms northbound auxiliary-lane
-  segments around both 401948 and 402377; Playwright satellite captures locate
+  exists. VTA's Phase 3 record confirms double express lanes north of SR-85,
+  while a historical VTA/Caltrans report lists northbound auxiliary-lane
+  segments around both 401948 and 402377. Playwright satellite captures locate
   the detector roadways but do not settle the current painted lane mapping.
   Station 402920 is now likely identified as a
   southbound SR-85 entrance outside the NB US-101 route; its former HOV

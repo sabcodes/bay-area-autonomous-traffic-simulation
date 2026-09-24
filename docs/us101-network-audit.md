@@ -50,6 +50,11 @@ specific routes, not every ramp in the imported network.
 Other logged warnings include unsupported cycleway compounds, minor-street
 turn geometry, and signal programs elsewhere in the broad bounding box. They
 were not associated with the audited US-101 through-route edges in this pass.
+None of the four unresolved warning edge IDs in the table occurs in the five
+generated H0 route definitions. The two Shoreline links can still matter when
+the currently missing Shoreline ramp demand is added. The Mathilda and West
+Maude warnings are on SR-237/approach movements outside those H0 routes; do
+not let either warning stand in for a defect on the NB US-101 mainline.
 The full captured log was temporary and is not a tracked artifact. To inspect
 it again without replacing the current project network, run the same importer
 into a fresh temporary directory:
@@ -68,16 +73,24 @@ audit_dir=$(mktemp -d)
 - At PeMS station 401948, PeMS reports five active northbound US-101 lanes,
   while OSM and SUMO represent edge `617335302` as four lanes. Caltrans'
   managed-lane source and the user's PeMS station screenshot support the
-  five-lane observation. A [2015 VTA/Caltrans project report](https://www.vta.org/system/files?file=2019-09%2FAppendix+B++-+US+101+Express+Lanes+Project%E2%80%99s+Project+Report%2C+August+2015_0.pdf)
-  (section 3.3.1, printed pages 13–14) explicitly lists a northbound auxiliary
-  lane from Moffett Boulevard to N. Shoreline Boulevard. This historical
-  design record corroborates the possible missing modeled lane; it is not a
-  current as-built survey. A network correction still needs a source-backed
-  lane-to-lane connection design at both ends of edge `617335302`.
+  five-lane observation. [VTA's Phase 3 project record](https://www.vta.org/projects/us-101-and-state-route-85-express-lanes-project-phase-3)
+  says the existing double carpool lanes north of the Mountain View SR-85
+  interchange were converted to double express lanes, with service beginning
+  in February 2022. VTA's [Phase 3 fact sheet](https://www.vta.org/sites/default/files/2020-01/85-101%20phase%203_011320_0.pdf)
+  says that conversion did not construct new traffic lanes. An earlier
+  [VTA/Caltrans project report](https://www.vta.org/system/files?file=2019-09%2FAppendix+B++-+US+101+Express+Lanes+Project%E2%80%99s+Project+Report%2C+August+2015_0.pdf)
+  (section 3.3.1, printed pages 13–14) also lists a northbound auxiliary lane
+  from Moffett Boulevard to N. Shoreline Boulevard. Together with the 2025
+  five-detector record, this is strong evidence of **at least one** missing
+  modeled lane. The total physical count and which lane is omitted by OSM
+  remain unsettled; the historical report is not a current as-built survey.
+  A correction still needs a source-backed lane-to-lane connection design at
+  both ends of edge `617335302`.
 - At station 402377, PeMS reports four lanes and the matched OSM/SUMO edge
   `861090931` has five. A close aerial view centered on the PeMS coordinate
   (37.440393, -122.113925) confirms the detector is on US-101 rather than the
-  adjacent E Bayshore Road/frontage facility. The same 2015 report lists a
+  adjacent E Bayshore Road/frontage facility. VTA's Phase 3 record describes
+  double express lanes on this side of SR-85, and the 2015 report lists a
   northbound auxiliary lane from San Antonio Road to Oregon Expressway, so a
   five-lane physical cross-section with only four PeMS detectors is plausible.
   However, the report predates the measured 2025 data and the aerial image
