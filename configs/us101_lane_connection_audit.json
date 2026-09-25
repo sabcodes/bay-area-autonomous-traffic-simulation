@@ -1,0 +1,19 @@
+{
+  "network_file": "outputs/us101_corridor/us101_corridor.net.xml",
+  "routes": [
+    {
+      "name": "northbound",
+      "route_file": "outputs/us101_corridor/h0_human_baseline.rou.xml",
+      "route_id": "us101_northbound",
+      "expected_edge_count": 37,
+      "minimum_lane_count": 4
+    },
+    {
+      "name": "southbound",
+      "checkpoint_edge_ids": ["619117737", "867247243", "867204829"],
+      "expected_edge_count": 36,
+      "minimum_lane_count": 4,
+      "checkpoint_note": "867247243 keeps the through freeway path at SR-85; an unconstrained shortest path detours onto six one-/two-lane ramp links."
+    }
+  ]
+}

@@ -10,6 +10,7 @@ from bay_area_traffic_sim.calibration import (
     compare_detector_profiles,
     summarize_detector_comparisons,
 )
+from bay_area_traffic_sim.corridor_junctions import build_lane_connection_audit
 from bay_area_traffic_sim.experiments import repeat, summarize_runs
 from bay_area_traffic_sim.flow_balance import build_flow_balance_report
 from bay_area_traffic_sim.network_audit import audit_network
@@ -192,6 +193,21 @@ def main() -> None:
         "--output",
         default="outputs/us101_corridor/station_network_audit.json",
         help="JSON audit report path.",
+    )
+    lane_audit = subcommands.add_parser(
+        "audit-us101-lane-connections",
+        help=(
+            "Inventory every through-lane transition and immediate side connection "
+            "in both directions."
+        ),
+    )
+    lane_audit.add_argument(
+        "--config",
+        default="configs/us101_lane_connection_audit.json",
+    )
+    lane_audit.add_argument(
+        "--output",
+        default="outputs/us101_corridor/lane_connection_audit.json",
     )
     prepare_real = subcommands.add_parser(
         "prepare-us101-human-baseline",
@@ -456,6 +472,28 @@ def main() -> None:
         }
         output.write_text(json.dumps(report, indent=2) + "\n")
         print(json.dumps(report, indent=2))
+    elif args.command == "audit-us101-lane-connections":
+        report = build_lane_connection_audit(Path(args.config))
+        output = Path(args.output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(report, indent=2) + "\n")
+        print(
+            json.dumps(
+                {
+                    "output": str(output),
+                    "routes": [
+                        {
+                            "name": route["name"],
+                            "edge_count": route["edge_count"],
+                            "transition_count": route["transition_count"],
+                            "branch_transition_count": route["branch_transition_count"],
+                        }
+                        for route in report["routes"]
+                    ],
+                },
+                indent=2,
+            )
+        )
     elif args.command == "prepare-us101-human-baseline":
         prepared = prepare_real_human_baseline(Path(args.config))
         print(json.dumps(prepared.as_dict(), indent=2))

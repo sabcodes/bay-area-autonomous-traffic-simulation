@@ -40,8 +40,17 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   `outputs/pems_calibration/us101_corridor_m1_station_profiles.json`. The
   current M3 draft keeps its previously selected calibration subset separate
   from this full audited inventory. See the [sensor audit](us101-sensor-audit.md).
-- M2 is active. The northbound H0 route (37 edges), a reverse southbound route
-  (41 edges), and four active ramp routes pass graph-connectivity checks. A
+- M2 is active. The northbound H0 route (37 edges), a corrected southbound
+  through route (36 edges), and four active ramp routes pass graph-connectivity
+  checks. The earlier 41-edge southbound shortest path was wrong for auditing:
+  it detoured onto six narrow SR-85 connector links. A versioned checkpoint and
+  regression test now prevent that shortcut. A reproducible lane ledger covers
+  all 36 NB and 35 SB through transitions and identifies 19 NB and 21 SB
+  junctions with immediate side connections. Its directed side-path trace
+  reaches 118 first-trunk/surface endpoints without search-limit failures,
+  but forks and shared paths require individual review. A 40-row manual
+  checklist is open; none of these entries has yet been signed off as current
+  lane geometry. A
   repeat `netconvert` import succeeded, but emitted warnings at several
   interchange links that still need visual decisions. Open network questions
   include the 401948 and 402377 lane counts, the 401507 synthetic transition,

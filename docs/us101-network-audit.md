@@ -26,10 +26,26 @@ checkpoint pairs has a route. The route traverses motorway and motorway-link
 edges; its generated edges have modeled limits of 65 mph on freeway segments
 and about 49.7 mph on link segments.
 
-The reverse southbound route between corresponding mainline edges near
-stations 402379 and 402370 is also connected (41 edges, all motorway or
-motorway-link). This is a graph-connectivity check, not a lane-by-lane visual
-inspection of the southbound facility.
+The earlier unconstrained southbound shortest path was **not** a valid
+through-mainline audit route: its 41 edges included six one- or two-lane
+motorway links through the SR-85 interchange (`394382945 → 8925144 →
+394382094#0 → 9899589 → 281956181 → 281956185`). It left and rejoined the
+freeway. A versioned checkpoint at four-lane edge `867247243` now forces the
+southbound through path. The corrected route has 36 edges and no edge narrower
+than four lanes. This corrects the prior 41-edge claim; the 41-edge path remains
+in a regression test specifically because graph connectivity alone missed the
+shortcut.
+
+The new lane-link ledger checks all 36 northbound and 35 southbound adjacent
+edge pairs for actual SUMO lane connections that permit passenger vehicles.
+It inventories 19 northbound and 21 southbound junctions with an immediate
+incoming or outgoing side connection. A bounded directed search follows each
+side connection to the first audited through route, other motorway, or surface
+road. The resulting 118 path endings comprise 86 surface/other-road endings,
+18 returns to an audited through route, and 14 other-motorway endings; none hit
+the depth or cycle limit. Forks and shared paths mean these are neither 118
+independent ramps nor 118 validated movements. This is a systematic topology
+inventory, not a lane-marking sign-off.
 
 All five saved H0 routes (mainline, three on-ramps, and one off-ramp) were
 checked: every edge exists and every adjacent pair connects. The three-seed H0
@@ -37,13 +53,45 @@ simulation previously completed all 13,482 vehicles per seed without route,
 teleport, collision, or emergency-braking warnings. This validates those
 specific routes, not every ramp in the imported network.
 
+## Full through-route lane-connection ledger
+
+The [audit configuration](../configs/us101_lane_connection_audit.json) records
+both directions and the southbound SR-85 checkpoint. The
+[ledger builder](../src/bay_area_traffic_sim/corridor_junctions.py) records lane
+counts, passenger-permitted through-lane mappings, side-branch lane mappings,
+and coordinates for every transition. Reproduce its ignored JSON output with:
+
+```bash
+.venv/bin/python -m bay_area_traffic_sim audit-us101-lane-connections
+```
+
+The output is `outputs/us101_corridor/lane_connection_audit.json`. A test
+reconstructs both routes, checks every through connection, and confirms that
+removing the SR-85 checkpoint reintroduces narrow ramp links. The 40 branch
+junctions are a [manual review checklist](us101-ramp-review-checklist.md),
+**not** 40 visually approved ramps. A branch trace stops at the first trunk or
+surface road and does not prove the rest of an interchange or a precise lane
+marking. The current network also does not encode verified express-lane
+eligibility rules. We will not use this ledger alone to declare M2 complete.
+
+The [2018 VTA/Caltrans pavement-delineation and sign plans, sheets PD-18–PD-34](https://www.vta.org/system/files?file=2019-11%2FAppendix+C+-+US101-SR85+Express+Lanes+Project+Plans.pdf)
+were visually inspected as historical primary evidence. PD-18 and PD-19 draw
+the Shoreline NB entrance and the separate Old Middlefield NB exit; PD-22–PD-25
+draw Rengstorff and San Antonio ramps; PD-31–PD-33 draw the Oregon/Embarcadero
+movements. They help identify which branch should exist, but their June 2018
+approval and sign-work purpose do not prove the September 2026 as-built lane
+count or precise SUMO connection indices. They do not cover the eastern
+Moffett/SR-237 section of this study route. The downloaded source used for
+visual review has SHA-256
+`7ad55de077d9a517bec70353feaf3149c46d579f6b18f49a6639972515b64a3d`.
+
 ## Relevant importer warnings
 
 | OSM edge / location | Import warning | Current interpretation |
 | --- | --- | --- |
 | `396010342`, at the Oregon Expressway terminal junction | OSM `placement=transition` is unsupported; no edge retains this ID after `--geometry.remove`. | Resolved as an ID/geometry simplification, **not** a missing movement: OSM way `396010342` continues way `396010343` through node `3988099144`. The generated one-lane edge `396010343` spans `1080063002` to `1392020693` and connects lane 0 to lane 0 of five-lane edge `396010341`. The exact painted ramp geometry still belongs in the visual audit. |
-| `348360455`, near the Shoreline interchange | Sharp turn radius of 7.99 m at the edge end. | It is a two-lane motorway link signed toward CA-85 South / US-101 South, about 65 m from the northbound mainline route. Check ramp curvature and its connection in SUMO. |
-| `690599564#0`, near the Shoreline interchange | A junction cluster is reduced because of parallel outgoing movements. | OSM marks the link toward US-101 North / Old Middlefield Way; it is about 91 m from the mainline route. Confirm the resulting split/merge movement visually. |
+| `348360455`, near the Shoreline interchange | Sharp turn radius of 7.99 m at the edge end. | It is a two-lane motorway link signed toward CA-85 South / US-101 South. The directed side-path ledger places it on review paths `SB-11-O` and `SB-16-I`; inspect the actual curvature and lane connection there. |
+| `690599564#0`, near the Shoreline interchange | A junction cluster is reduced because of parallel outgoing movements. | OSM marks the link toward US-101 North / Old Middlefield Way. The directed ledger places it on `NB-28-I`; confirm the resulting split/merge movement visually. |
 | `941192341`, Mathilda Avenue / SR-237 approach | SUMO does not join a junction cluster because of parallel incoming movements. | It is a two-lane link signed for eastbound SR-237, about 255 m from the mainline route. Confirm its relation to the SR-237 boundary movements. |
 | `19146053#0`, near West Maude Avenue / SR-237 | A minor green connection exceeds 19.44 m/s; SUMO warns a turn lane may be missing. | It is a two-lane link for eastbound SR-237, outside the modeled through-mainline route. Check whether its approach connection is in scope and plausible. |
 
@@ -51,10 +99,12 @@ Other logged warnings include unsupported cycleway compounds, minor-street
 turn geometry, and signal programs elsewhere in the broad bounding box. They
 were not associated with the audited US-101 through-route edges in this pass.
 None of the four unresolved warning edge IDs in the table occurs in the five
-generated H0 route definitions. The two Shoreline links can still matter when
-the currently missing Shoreline ramp demand is added. The Mathilda and West
-Maude warnings are on SR-237/approach movements outside those H0 routes; do
-not let either warning stand in for a defect on the NB US-101 mainline.
+generated H0 route definitions. The directed trace confirms that two
+Shoreline warnings lie on other reachable review paths even though H0 does
+not traverse them; they cannot be dismissed for M2. The Mathilda and West
+Maude warnings are on SR-237/approach movements outside those H0 routes and
+did not appear in the bounded branch trace; audit their approach context
+separately rather than calling them NB US-101 mainline defects.
 The full captured log was temporary and is not a tracked artifact. To inspect
 it again without replacing the current project network, run the same importer
 into a fresh temporary directory:
