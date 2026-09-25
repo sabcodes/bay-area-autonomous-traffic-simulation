@@ -84,6 +84,12 @@ count or precise SUMO connection indices. They do not cover the eastern
 Moffett/SR-237 section of this study route. The downloaded source used for
 visual review has SHA-256
 `7ad55de077d9a517bec70353feaf3149c46d579f6b18f49a6639972515b64a3d`.
+VTA reported [new express-lane striping in October 2021](https://www.vta.org/blog/us-101sr-85-gets-makeover-preparation-new-express-lanes),
+so the 2018 plan must not be treated as the final post-conversion paint.
+[Caltrans District 4 lists as-built records as a requestable record type](https://dot.ca.gov/caltrans-near-me/district-4/d4-popular-links/district-4-records-request).
+No records request has been submitted; post-2022 pavement-delineation/as-built
+sheets for Santa Clara US-101 PM 47.9–52.2 would be the strongest documentary
+route to resolving the open lane-index decisions.
 
 ## Relevant importer warnings
 

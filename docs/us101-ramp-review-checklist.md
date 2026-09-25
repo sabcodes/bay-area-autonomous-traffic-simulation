@@ -43,11 +43,11 @@ ledger. All states below are open; this table is an inventory, not approval.
 | NB-14-I | 14 | `281956182` | Open |
 | NB-17-O | 17 | `394385426` | Open |
 | NB-19-I | 19 | `777748240` | Open |
-| NB-22-O | 22 | `5005672` | Open |
+| NB-22-O | 22 | `5005672` | Located; lane review open |
 | NB-23-I | 23 | `394387883` | Open |
 | NB-24-I | 24 | `11479095` | Open |
-| NB-26-O | 26 | `30990690` | Open |
-| NB-28-I | 28 | `685973436` | Open |
+| NB-26-O | 26 | `30990690` | Located; lane review open |
+| NB-28-I | 28 | `685973436` | Located; lane review open |
 | NB-30-O | 30 | `9245798` | Open |
 | NB-31-I | 31 | `8927566` | Open |
 | NB-32-O | 32 | `4370043` | Open |
@@ -60,7 +60,7 @@ ledger. All states below are open; this table is an inventory, not approval.
 | SB-06-O | 6 | `8923902` | Open |
 | SB-07-I | 7 | `394369030` | Open |
 | SB-09-I | 9 | `304467430` | Open |
-| SB-11-O | 11 | `8924695` | Open |
+| SB-11-O | 11 | `8924695` | Located; warning review open |
 | SB-12-O | 12 | `38083577` | Open |
 | SB-15-O | 15 | `8924268` | Open |
 | SB-16-I | 16 | `949062561` | Open |
@@ -76,6 +76,31 @@ ledger. All states below are open; this table is an inventory, not approval.
 | SB-34-O | 34 | `8927783` | Open |
 
 ## Cross-cutting decisions still open
+
+The first location pass establishes movement identity, **not** lane sign-off.
+The OSM source tags `NB-22-O` as a two-lane exit to Shoreline Boulevard and
+`NB-26-O` as a one-lane exit to Old Middlefield Way. The 2018 VTA/Caltrans
+pavement-delineation plan PD-19 draws distinct Shoreline entrance and Old
+Middlefield exit movements; its age precludes a current lane-count conclusion.
+`NB-28-I` traces backward through `690599564#0`, tagged for US-101 North / Old
+Middlefield Way, to the North Shoreline/La Avenida side of the interchange.
+The saved satellite captures locate that loop and the `SB-11-O` loop carrying
+warning edge `348360455`; the capture date is not a guarantee of the underlying
+imagery date. Neither image resolves SUMO's parallel-movement reduction or
+7.99 m sharp-turn warning. These four rows remain open for lane-level review.
+
+A separate Playwright pair centered on `NB-28-I` at
+[37.4165909, -122.0862390](https://www.google.com/maps/@37.4165909,-122.0862390,19z/data=!3m1!1e3)
+and its upstream edge start at
+[37.4148066, -122.0831324](https://www.google.com/maps/@37.4148066,-122.0831324,20z/data=!3m1!1e3)
+is saved under ignored `outputs/map_audit/` with timestamped JSON metadata.
+The upstream view shows a separated right-side ramp/acceleration pavement;
+the downstream junction view shows the US-101 carriageway near the Permanente
+Creek Trail bridge but no unambiguous ramp nose. SUMO represents the last
+side edge `685973436` as one lane over 337.71 m before joining the through
+route. This supports the *location* of a long merge path; it does not prove
+that its simulated join point, receiving lane, or lane-drop location matches
+the current paint. Keep `NB-28-I` open.
 
 - Resolve the 401948 five-detector versus four-lane baseline mismatch without
   silently promoting the provisional five-lane sensitivity scenario.
