@@ -48,10 +48,10 @@ ledger. All states below are open; this table is an inventory, not approval.
 | NB-24-I | 24 | `11479095` | Open |
 | NB-26-O | 26 | `30990690` | Located; lane review open |
 | NB-28-I | 28 | `685973436` | Located; lane review open |
-| NB-30-O | 30 | `9245798` | Open |
-| NB-31-I | 31 | `8927566` | Open |
-| NB-32-O | 32 | `4370043` | Open |
-| NB-33-I | 33 | `9739842#1` | Open |
+| NB-30-O | 30 | `9245798` | Located; lane review open |
+| NB-31-I | 31 | `8927566` | Located; lane review open |
+| NB-32-O | 32 | `4370043` | Located; lane review open |
+| NB-33-I | 33 | `9739842#1` | Located; lane review open |
 | NB-35-O | 35 | `13100980` | Open |
 | SB-00-I | 0 | `27086204#3` | Open |
 | SB-02-O | 2 | `8925871` | Open |
@@ -100,7 +100,22 @@ Creek Trail bridge but no unambiguous ramp nose. SUMO represents the last
 side edge `685973436` as one lane over 337.71 m before joining the through
 route. This supports the *location* of a long merge path; it does not prove
 that its simulated join point, receiving lane, or lane-drop location matches
-the current paint. Keep `NB-28-I` open.
+ the current paint. Keep `NB-28-I` open.
+
+The next location pass covers `NB-30-O`/`NB-31-I` at Rengstorff–Amphitheater
+and `NB-32-O`/`NB-33-I` at San Antonio. OSM tags the first exit for
+Amphitheater Parkway/Rengstorff Avenue and the second for San Antonio Road;
+their paired entrances trace from nearby surface approaches. Historical VTA
+plans PD-22 and PD-25 draw corresponding northbound exit/entrance movements.
+The [Rengstorff](https://www.google.com/maps/@37.4208,-122.0918,19z/data=!3m1!1e3)
+and [San Antonio](https://www.google.com/maps/@37.428,-122.101,19z/data=!3m1!1e3)
+Playwright views show the physical interchange ramps at the expected
+locations. Close views centered on the four SUMO transition coordinates are
+also retained under ignored `outputs/map_audit/`; several show only the
+freeway because a long modeled connector begins or ends away from its visible
+gore. Thus the image/plan match is for **movement existence and general
+location**, not a current lane-link or lane-count approval. All four rows
+remain open.
 
 - Resolve the 401948 five-detector versus four-lane baseline mismatch without
   silently promoting the provisional five-lane sensitivity scenario.
