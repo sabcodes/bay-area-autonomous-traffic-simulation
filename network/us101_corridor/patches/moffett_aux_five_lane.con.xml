@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connections>
+    <!-- SUMO lane 0 is rightmost. The candidate adds a right-side through/auxiliary lane. -->
+    <!-- Upstream: lane 1 is shared between the Shoreline exit and the new through lane. -->
+    <delete from="1343740299" to="617335302" fromLane="2" toLane="0"/>
+    <delete from="1343740299" to="617335302" fromLane="3" toLane="1"/>
+    <delete from="1343740299" to="617335302" fromLane="4" toLane="2"/>
+    <delete from="1343740299" to="617335302" fromLane="5" toLane="3"/>
+    <connection from="1343740299" to="617335302" fromLane="1" toLane="0"/>
+    <connection from="1343740299" to="617335302" fromLane="2" toLane="1"/>
+    <connection from="1343740299" to="617335302" fromLane="3" toLane="2"/>
+    <connection from="1343740299" to="617335302" fromLane="4" toLane="3"/>
+    <connection from="1343740299" to="617335302" fromLane="5" toLane="4"/>
+    <!-- Downstream: mainline and Shoreline-side ramp share receiving lane 0. -->
+    <delete from="617335302" to="361615811" fromLane="0" toLane="1"/>
+    <delete from="617335302" to="361615811" fromLane="1" toLane="2"/>
+    <delete from="617335302" to="361615811" fromLane="2" toLane="3"/>
+    <delete from="617335302" to="361615811" fromLane="3" toLane="4"/>
+    <connection from="617335302" to="361615811" fromLane="0" toLane="0"/>
+    <connection from="617335302" to="361615811" fromLane="1" toLane="1"/>
+    <connection from="617335302" to="361615811" fromLane="2" toLane="2"/>
+    <connection from="617335302" to="361615811" fromLane="3" toLane="3"/>
+    <connection from="617335302" to="361615811" fromLane="4" toLane="4"/>
+</connections>

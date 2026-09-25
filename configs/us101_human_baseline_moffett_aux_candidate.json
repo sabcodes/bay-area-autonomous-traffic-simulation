@@ -1,0 +1,17 @@
+{
+  "extends": "configs/us101_human_baseline.json",
+  "scenario": "H0 Moffett-to-Shoreline five-lane auxiliary candidate (not as-built)",
+  "network_file": "outputs/us101_corridor/moffett_aux_five_lane/us101_corridor.net.xml",
+  "aligned_pems_report_file": "outputs/us101_corridor/moffett_aux_five_lane/us101_mainline_profiles_aligned.json",
+  "route_file": "outputs/us101_corridor/moffett_aux_five_lane/h0_human_baseline.rou.xml",
+  "manifest_file": "outputs/us101_corridor/moffett_aux_five_lane/h0_human_baseline_manifest.json",
+  "detector_file_template": "outputs/us101_corridor/moffett_aux_five_lane/h0_virtual_detectors_seed_{seed}.add.xml",
+  "detector_output_template": "outputs/us101_corridor/moffett_aux_five_lane/h0_virtual_detectors_seed_{seed}.xml",
+  "detector_summary_template": "outputs/us101_corridor/moffett_aux_five_lane/h0_virtual_detectors_seed_{seed}.json",
+  "additional_assumptions": [
+    "This is a provisional lane-layout hypothesis, not a surveyed 2025 as-built roadway.",
+    "OSM edge 617335302 is modeled with five lanes, adding a right-side Moffett-to-Shoreline through/auxiliary lane.",
+    "The right-side upstream lane shares a Shoreline exit and through connection; the downstream lane shares a receiving lane with the Shoreline-side ramp.",
+    "No express-lane restrictions or full corridor lane-to-lane reconciliation are claimed for this sensitivity run."
+  ]
+}

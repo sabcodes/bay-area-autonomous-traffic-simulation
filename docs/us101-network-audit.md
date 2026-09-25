@@ -84,8 +84,8 @@ audit_dir=$(mktemp -d)
   five-detector record, this is strong evidence of **at least one** missing
   modeled lane. The total physical count and which lane is omitted by OSM
   remain unsettled; the historical report is not a current as-built survey.
-  A correction still needs a source-backed lane-to-lane connection design at
-  both ends of edge `617335302`.
+  The isolated five-lane candidate below tests one explicit right-side
+  auxiliary-lane interpretation, but is not promoted to the audited baseline.
 - At station 402377, PeMS reports four lanes and the matched OSM/SUMO edge
   `861090931` has five. A close aerial view centered on the PeMS coordinate
   (37.440393, -122.113925) confirms the detector is on US-101 rather than the
@@ -140,27 +140,88 @@ SUMO sharp-radius or junction-cluster warnings are harmless: connection
 indices, turn radii, and allowed lane changes still need a network-level check.
 Two more 21z views center the [SR-85 split](https://www.google.com/maps/@37.408584,-122.069243,21z/data=!3m1!1e3)
 and [Shoreline-side merge](https://www.google.com/maps/@37.410960,-122.075152,21z/data=!3m1!1e3)
-at the ends of four-lane SUMO edge `617335302`; lane paint and bridge shadows
-remain insufficient to infer safe new connection indices.
+at the ends of four-lane baseline SUMO edge `617335302`; lane paint and bridge
+shadows remain insufficient to infer the exact as-built connection indices.
+
+## Provisional five-lane Moffett–Shoreline candidate
+
+The versioned [edge patch](../network/us101_corridor/patches/moffett_aux_five_lane.edg.xml),
+[connection patch](../network/us101_corridor/patches/moffett_aux_five_lane.con.xml),
+and [H0 configuration](../configs/us101_human_baseline_moffett_aux_candidate.json)
+make one lane-level hypothesis explicit. SUMO lane 0 is the rightmost lane.
+This is a sensitivity scenario, **not** a claim about the present pavement,
+managed-lane designation, or where the PeMS loops sit within each lane.
+
+| Transition | Candidate mapping | Interpretation to test |
+| --- | --- | --- |
+| Upstream `1343740299` (6 lanes) | Lanes 0–1 retain the two-lane Shoreline exit; lane 1 also feeds new through lane 0; lanes 2–5 feed through lanes 1–4. | A right-side auxiliary/through lane begins after a shared exit choice. |
+| Midsegment `617335302` | Increase 4 → 5 lanes. | All five active lanes measured by PeMS 401948 have a corresponding virtual loop. |
+| Downstream `361615811` (5 lanes) | Midsegment lanes 0–4 feed downstream lanes 0–4; the Shoreline-side ramp `394387883` also feeds downstream lane 0. | The added lane rejoins a shared rightmost merge receiving lane. |
+
+The original four-lane network is unchanged. To rebuild the isolated candidate
+after importing the base network, run from the repository root:
+
+```bash
+.venv/bin/netconvert \
+  --sumo-net-file outputs/us101_corridor/us101_corridor.net.xml \
+  --edge-files network/us101_corridor/patches/moffett_aux_five_lane.edg.xml \
+  --connection-files network/us101_corridor/patches/moffett_aux_five_lane.con.xml \
+  --output-file outputs/us101_corridor/moffett_aux_five_lane/us101_corridor.net.xml
+.venv/bin/python -m bay_area_traffic_sim run-us101-human-baseline-multi \
+  --config configs/us101_human_baseline_moffett_aux_candidate.json \
+  --seeds 41 42 43 \
+  --output outputs/us101_corridor/moffett_aux_five_lane/h0_multiseed_report.json
+.venv/bin/python -m pytest -q tests/test_moffett_aux_candidate.py
+```
+
+The regression test rebuilds the candidate and checks all four local branch
+and merge link sets, including preservation of the Shoreline exit and ramp.
+An unpatched `netconvert` rebuild was also compared against the candidate:
+both contain 4,485 edges; only `617335302` changes lane count, and all
+changed non-internal connections are the eight removed and ten added by this
+patch. Five edge lengths near the modified junctions also shift slightly as
+SUMO reconstructs their geometry, so the variant is not a pure capacity-only
+change.
+
+In three human-driver seeds (41–43), the route remained 37 edges and PeMS
+401948 gained five modeled loops instead of four. Each run completed 13,482
+vehicles, with no route, teleport, collision, or emergency-braking warnings.
+This is a simulation integrity check, **not** a safety validation or evidence
+that the new lane layout is a better representation of the real road.
+
+The unchanged baseline was rerun with the same seeds and current inputs. Both
+layouts completed 13,482 vehicles per seed. Mean trip speeds were 59.10 mph
+for the four-lane baseline and 59.13 mph for the candidate; corresponding mean
+travel times were 383.41 and 383.08 seconds. These tiny differences are not a
+calibration success, especially because `netconvert` also adjusts nearby edge
+lengths. The existing calibration code correctly excluded 401948 from the
+four-lane report because PeMS measures five lanes there. With five loops, the
+candidate can at least be compared against the full five-lane PeMS profile:
+its three-seed mean modeled flow is 4,838 vehicles/hour versus 5,451.5
+observed, with 11.54% mean five-minute flow MAPE and 8.94 mph speed MAE.
+The six other comparable stations change only slightly and still show large
+downstream flow and speed errors. Results live in the ignored
+`outputs/us101_corridor/moffett_aux_five_lane/h0_multiseed_report.json` and
+`outputs/us101_corridor/h0_moffett_matched_baseline_multiseed_report.json`.
 
 ## M2 status and remaining work
 
 **M2 is not complete.** The topology checks establish that the selected H0
-routes are connected, but the M2 exit condition also requires visual review of
-both directions, every ramp/merge/diverge, and each relevant warning. No
-hand-authored network correction has yet been applied under
-`network/us101_corridor/patches/`, and the generated network is not versioned.
+routes are connected, and a hand-authored *candidate* patch now exists, but the
+M2 exit condition still requires visual review of both directions, every
+ramp/merge/diverge, and each relevant warning. The baseline network remains
+generated and ignored, not a versioned as-built correction.
 
 Before M2 can be closed:
 
 1. Inspect the relevant warning locations and the Shoreline, SR-85, Moffett,
    San Antonio, SR-237, and Oregon Expressway movements in SUMO or aerial
    imagery.
-2. Resolve the remaining 401948/402377 lane-count questions and the 401507
+2. Resolve the as-built 401948/402377 lane-count questions and the 401507
    synthetic transition, then apply only source-backed corrections. Preserve
-   competing interpretations as named network variants if geometry remains
-   uncertain. Keep the 402920 station-to-path counterfactual out of the
-   observed NB demand model.
+   the five-lane Moffett candidate and other competing interpretations as
+   named variants while geometry remains uncertain. Keep the 402920
+   station-to-path counterfactual out of the observed NB demand model.
 3. Record the final patch and source evidence, rebuild the network, rerun route
    checks, and rerun the H0 smoke test.
 

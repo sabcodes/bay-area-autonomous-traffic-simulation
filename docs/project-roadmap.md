@@ -53,9 +53,11 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   the detector roadways but do not settle the current painted lane mapping.
   Station 402920 is now likely identified as a
   southbound SR-85 entrance outside the NB US-101 route; its former HOV
-  connector mapping is counterfactual, not an observed lane mismatch. No
-  corrective network patch has yet been applied or versioned. See the [network
-  audit](us101-network-audit.md).
+  connector mapping is counterfactual, not an observed lane mismatch. A
+  versioned, isolated five-lane Moffett–Shoreline *candidate* now has explicit
+  lane-level connections, a rebuild test, and a three-seed H0 smoke test. It
+  is not an accepted as-built correction; the broader M2 ramp and lane audit
+  remains open. See the [network audit](us101-network-audit.md).
 - M3 has a runnable ramp-aware draft. Demand profiles now use complete dates
   shared across the mainline entry and every active ramp, and the validation
   profile uses those same dates. On the current nine-day set, three seeds each
@@ -74,9 +76,10 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   unmatched-day values: +238 and +1,622 vehicles/hour across 12 days and 288
   morning intervals for the Moffett and Shoreline pairs. On the nine complete
   dates shared by all H0 demand sources, the Shoreline pair is +1,785 veh/h.
-  The mapped OSM/SUMO
-  edge `617335302` still represents only four lanes, so that model geometry gap
-  remains visible as a note. Neither residual is a standalone ramp count; audit
+  The baseline OSM/SUMO edge `617335302` still represents only four lanes; the
+  five-lane sensitivity lets 401948 enter a like-for-like virtual-detector
+  comparison but does not settle the as-built lane layout. Neither residual is
+  a standalone ramp count; audit
   intervening entrances and exits before assigning demand to any one ramp.
   PeMS station 402920 averages 140.3 vehicles/hour over those nine dates, but
   its metadata identifies a southbound SR-85 on-ramp. The nearest generated
