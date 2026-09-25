@@ -62,7 +62,7 @@ ledger. All states below are open; this table is an inventory, not approval.
 | SB-09-I | 9 | `304467430` | Open |
 | SB-11-O | 11 | `8924695` | Located; warning review open |
 | SB-12-O | 12 | `38083577` | Open |
-| SB-15-O | 15 | `8924268` | Open |
+| SB-15-O | 15 | `8924268` | Located; lane review open |
 | SB-16-I | 16 | `949062561` | Open |
 | SB-17-O | 17 | `394385424#0` | Open |
 | SB-18-I | 18 | `509747360` | Open |
@@ -129,3 +129,12 @@ remain open.
   edges did not appear in this bounded branch trace, so check them separately.
 - Check current express/HOV lane permissions. The current importer and this
   passenger-legal trace do not certify occupancy or toll eligibility.
+- Prioritize the three two-lane through-edge drops: `NB-05-O` (Mathilda,
+  6→4), `NB-22-O` (Shoreline collector, 6→4), and `SB-15-O` (US-101 South
+  to CA-85 South split, 6→4). Each currently maps source lanes 2–5 to through lanes 0–3,
+  leaving lanes 0–1 to the side exit. That is internally coherent SUMO
+  topology, not proof that two current painted lanes really exit there.
+  OSM explicitly tags `SB-15-O` as a two-lane CA-85 South movement. A
+  [Playwright wide view](https://www.google.com/maps/@37.4107052,-122.0755288,19z/data=!3m1!1e3)
+  shows the separate southbound connector pavement, but lane markings at the
+  modeled divergence remain too ambiguous for sign-off.
