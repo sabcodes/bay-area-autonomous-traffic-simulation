@@ -74,6 +74,17 @@ surface road and does not prove the rest of an interchange or a precise lane
 marking. The current network also does not encode verified express-lane
 eligibility rules. We will not use this ledger alone to declare M2 complete.
 
+This matters for the human baseline as well as for geometry. [VTA's current
+express-lane guide](https://www.vta.org/go/express-lanes) requires a FasTrak
+account/tag for express-lane use and distinguishes toll-paying solo drivers
+from qualifying carpools; its [occupancy FAQ](https://www.vta.org/faq/what-are-carpool-occupancy-requirements)
+gives HOV 3+ as the toll-free threshold for US-101/SR-85. SUMO's generic
+`passenger` permission check only proves a car can follow a link in the
+imported graph. It does **not** model toll choice, occupancy, access-zone
+markings, or lane-change restrictions. These behavioral/legal layers must be
+represented or bounded as sensitivity assumptions before treating
+lane-specific simulation results as calibrated reality.
+
 The [2018 VTA/Caltrans pavement-delineation and sign plans, sheets PD-18–PD-34](https://www.vta.org/system/files?file=2019-11%2FAppendix+C+-+US101-SR85+Express+Lanes+Project+Plans.pdf)
 were visually inspected as historical primary evidence. PD-18 and PD-19 draw
 the Shoreline NB entrance and the separate Old Middlefield NB exit; PD-22–PD-25

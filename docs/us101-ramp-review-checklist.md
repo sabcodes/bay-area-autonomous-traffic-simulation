@@ -35,7 +35,7 @@ ledger. All states below are open; this table is an inventory, not approval.
 | Review ID | Through-route transition | Side edge | State |
 | --- | ---: | --- | --- |
 | NB-00-I | 0 | `509747285` | Open |
-| NB-05-O | 5 | `9080606` | Open |
+| NB-05-O | 5 | `9080606` | Located; lane review open |
 | NB-06-I | 6 | `509747339` | Open |
 | NB-09-O | 9 | `9545875` | Open |
 | NB-10-I | 10 | `509747350` | Open |
@@ -138,3 +138,9 @@ remain open.
   [Playwright wide view](https://www.google.com/maps/@37.4107052,-122.0755288,19z/data=!3m1!1e3)
   shows the separate southbound connector pavement, but lane markings at the
   modeled divergence remain too ambiguous for sign-off.
+  For `NB-05-O`, OSM tags edge `9080606` as a two-lane Mathilda Avenue exit
+  with access toward eastbound SR-237. A
+  [junction-centered view](https://www.google.com/maps/@37.3983583,-122.0246679,19z/data=!3m1!1e3)
+  places its separated right-side collector alongside US-101, but does not
+  establish that both simulated lanes physically diverge at the modeled
+  6→4 transition. Keep this row open for the as-built comparison.

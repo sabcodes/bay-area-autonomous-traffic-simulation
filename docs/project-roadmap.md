@@ -66,7 +66,10 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   versioned, isolated five-lane Moffett–Shoreline *candidate* now has explicit
   lane-level connections, a rebuild test, and a three-seed H0 smoke test. It
   is not an accepted as-built correction; the broader M2 ramp and lane audit
-  remains open. See the [network audit](us101-network-audit.md).
+  remains open. VTA's express-lane occupancy/toll rules also remain outside
+  the generic SUMO passenger-permission check, so current lane-specific
+  baseline results cannot be called legally calibrated. See the
+  [network audit](us101-network-audit.md).
 - M3 has a runnable ramp-aware draft. Demand profiles now use complete dates
   shared across the mainline entry and every active ramp, and the validation
   profile uses those same dates. On the current nine-day set, three seeds each
