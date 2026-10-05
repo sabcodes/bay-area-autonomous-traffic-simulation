@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connections>
+    <!-- Preserve five freeway lanes up to the Mathilda gore. Lane 0 exits. -->
+    <delete from="1343750048" to="1343750048-AddedOffRampEdge"/>
+    <connection from="1343750048" to="1343750048-AddedOffRampEdge" fromLane="0" toLane="0"/>
+    <connection from="1343750048" to="1343750048-AddedOffRampEdge" fromLane="1" toLane="1"/>
+    <connection from="1343750048" to="1343750048-AddedOffRampEdge" fromLane="2" toLane="2"/>
+    <connection from="1343750048" to="1343750048-AddedOffRampEdge" fromLane="3" toLane="3"/>
+    <connection from="1343750048" to="1343750048-AddedOffRampEdge" fromLane="4" toLane="4"/>
+    <delete from="1343750048-AddedOffRampEdge" to="867208766"/>
+    <connection from="1343750048-AddedOffRampEdge" to="867208766" fromLane="1" toLane="0"/>
+    <connection from="1343750048-AddedOffRampEdge" to="867208766" fromLane="2" toLane="1"/>
+    <connection from="1343750048-AddedOffRampEdge" to="867208766" fromLane="3" toLane="2"/>
+    <connection from="1343750048-AddedOffRampEdge" to="867208766" fromLane="4" toLane="3"/>
+    <delete from="1343750048-AddedOffRampEdge" to="9080606"/>
+    <connection from="1343750048-AddedOffRampEdge" to="9080606" fromLane="0" toLane="0"/>
+
+    <!-- Two surface approaches share the single entrance lane. -->
+    <delete from="60776691" to="534473511"/>
+    <connection from="60776691" to="534473511" fromLane="0" toLane="0"/>
+    <connection from="9245800" to="534473511" fromLane="0" toLane="0"/>
+    <!-- The 21.52 m pocket ends at the immediate Rengstorff exit. The lane 1
+         link approximates the short merge used by continuing traffic. -->
+    <delete from="534473511" to="849774368"/>
+    <connection from="534473511" to="849774368" fromLane="0" toLane="0"/>
+    <connection from="534473511" to="849774368" fromLane="0" toLane="1"/>
+</connections>

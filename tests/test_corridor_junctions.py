@@ -51,6 +51,17 @@ def test_full_route_ledger_rejects_sr85_ramp_shortcut(tmp_path: Path) -> None:
     )
     assert report["branch_path_endpoint_counts"]["depth_limit_unresolved"] == 0
     assert report["branch_path_endpoint_counts"]["cycle_unresolved"] == 0
+    through_endings = [
+        (route["name"], path["endpoint_route"])
+        for route in report["routes"]
+        for transition in route["transitions"]
+        for field in ("incoming_branches", "outgoing_branches")
+        for branch in transition[field]
+        for path in branch["corridor_paths"]
+        if path["endpoint"] == "audited_through_route"
+    ]
+    assert sum(source == destination for source, destination in through_endings) == 16
+    assert sum(source != destination for source, destination in through_endings) == 2
     southbound_ids = {edge["edge_id"] for edge in southbound["edges"]}
     assert "867247243" in southbound_ids
     assert "394382945" not in southbound_ids

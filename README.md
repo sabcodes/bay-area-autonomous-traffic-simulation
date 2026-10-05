@@ -6,6 +6,10 @@ An open, local research testbed for asking a narrow question:
 
 This is a simulation research project, not a prediction system or a safety-critical driving controller. Results will only be meaningful after the model has been calibrated against observed traffic data.
 
+For the current milestone state and handoff context, see the
+[project memory](docs/project-memory.md), [roadmap](docs/project-roadmap.md),
+and [domain glossary](CONTEXT.md). M0–M2 are complete; M3 calibration is active.
+
 ## What we will build first
 
 We will begin with a small, reproducible corridor simulation rather than the entire Bay Area:

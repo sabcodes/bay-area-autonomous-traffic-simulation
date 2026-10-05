@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edges>
+    <!-- One rightmost US-101 lane exits at Mathilda. The ramp widens after the gore. -->
+    <edge id="1343750048-AddedOffRampEdge" numLanes="5"/>
+    <edge id="9080606" numLanes="1">
+        <!-- Approximate widening point; the lane behavior is observed, its exact station is not. -->
+        <split pos="-30" lanes="0 1" id="mathilda_ramp_widening" idAfter="9080606-widened"/>
+    </edge>
+
+    <!-- OSM records one Rengstorff entrance lane; ramp guessing made it two. -->
+    <edge id="534473511" numLanes="1"/>
+</edges>

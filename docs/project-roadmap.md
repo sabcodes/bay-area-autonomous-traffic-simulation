@@ -40,35 +40,28 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   `outputs/pems_calibration/us101_corridor_m1_station_profiles.json`. The
   current M3 draft keeps its previously selected calibration subset separate
   from this full audited inventory. See the [sensor audit](us101-sensor-audit.md).
-- M2 is active. The northbound H0 route (37 edges), a corrected southbound
-  through route (36 edges), and four active ramp routes pass graph-connectivity
-  checks. The earlier 41-edge southbound shortest path was wrong for auditing:
-  it detoured onto six narrow SR-85 connector links. A versioned checkpoint and
-  regression test now prevent that shortcut. A reproducible lane ledger covers
-  all 36 NB and 35 SB through transitions and identifies 19 NB and 21 SB
-  junctions with immediate side connections. Its directed side-path trace
-  reaches 118 first-trunk/surface endpoints without search-limit failures,
-  but forks and shared paths require individual review. A 40-row manual
-  checklist is open; none of these entries has yet been signed off as current
-  lane geometry. A
-  repeat `netconvert` import succeeded, but emitted warnings at several
-  interchange links that still need visual decisions. Open network questions
-  include the 401948 and 402377 lane counts, the 401507 synthetic transition,
-  and several warning locations. The apparent missing Oregon-terminal edge
-  was traced to `netconvert` geometry simplification and its legal movement
-  exists. VTA's Phase 3 record confirms double express lanes north of SR-85,
-  while a historical VTA/Caltrans report lists northbound auxiliary-lane
-  segments around both 401948 and 402377. Playwright satellite captures locate
-  the detector roadways but do not settle the current painted lane mapping.
-  Station 402920 is now likely identified as a
-  southbound SR-85 entrance outside the NB US-101 route; its former HOV
-  connector mapping is counterfactual, not an observed lane mismatch. A
-  versioned, isolated five-lane Moffett–Shoreline *candidate* now has explicit
-  lane-level connections, a rebuild test, and a three-seed H0 smoke test. It
-  is not an accepted as-built correction; the broader M2 ramp and lane audit
-  remains open. VTA's express-lane occupancy/toll rules also remain outside
-  the generic SUMO passenger-permission check, so current lane-specific
-  baseline results cannot be called legally calibrated. See the
+- M2 is complete for the versioned US-101 corridor network at the project's
+  practical accuracy standard. Both through routes and all 40 adjacent branch
+  junctions have been reviewed for movement location, ramp side, modeled lane
+  count, passenger-legal links, and directed connectivity. Four side movements
+  carry H0 demand; the other 36 are also reviewed but carry no H0 demand.
+  The user's lane checks led to versioned corrections at Mathilda NB (one
+  rightmost lane drops into a one-lane ramp that widens later) and Rengstorff
+  SB (one entrance lane, a 21.52 m immediate-exit pocket, and five continuing
+  lanes). Shoreline NB and CA-85 SB each send the two rightmost lanes off
+  while four continue. The separate express connectors remain left-side
+  movements. All 40 branch junctions have passenger-legal lane links and
+  their traced paths terminate at a road endpoint; no contradictory ramp-side
+  connection was found. The network was rebuilt from the saved OSM input
+  with the versioned correction patch, its lane ledger regenerated, and H0
+  seeds 41–43 completed 13,482 vehicles each without route, teleport,
+  collision, emergency-braking, or SUMO warning entries. The three
+  Shoreline/Mathilda importer warnings are retained as reviewed modeling
+  approximations, not silently suppressed; West Maude/SR-237 lies outside
+  US-101 mainline acceptance. Exact as-built paint, PeMS loop wiring, and
+  managed-lane demand behavior are not certified by M2. See the
+  [acceptance record](us101-m2-acceptance.md), [40-row checklist](us101-ramp-review-checklist.md),
+  [warning review](us101-importer-warning-review.md), and
   [network audit](us101-network-audit.md).
 - M3 has a runnable ramp-aware draft. Demand profiles now use complete dates
   shared across the mainline entry and every active ramp, and the validation
@@ -88,9 +81,11 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   unmatched-day values: +238 and +1,622 vehicles/hour across 12 days and 288
   morning intervals for the Moffett and Shoreline pairs. On the nine complete
   dates shared by all H0 demand sources, the Shoreline pair is +1,785 veh/h.
-  The baseline OSM/SUMO edge `617335302` still represents only four lanes; the
-  five-lane sensitivity lets 401948 enter a like-for-like virtual-detector
-  comparison but does not settle the as-built lane layout. Neither residual is
+  The user's station-centered review identifies four Moffett through lanes and
+  a short fifth weaving lane; compare the mainline total against the four
+  through lanes and retain the five-lane version as a separate auxiliary-lane
+  candidate. The baseline OSM/SUMO edge `617335302` still represents only four
+  lanes. Neither residual is
   a standalone ramp count; audit
   intervening entrances and exits before assigning demand to any one ramp.
   PeMS station 402920 averages 140.3 vehicles/hour over those nine dates, but
@@ -100,13 +95,14 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   US-101 demand. The earlier three-seed HOV mapping result (401507 flow
   4,836.7→4,980.3 veh/h; MAPE 32.94%→30.95%) is retained only as a
   counterfactual. A Playwright Google Maps view confirms the interchange area
-  but not painted lanes. Separately audit the actual NB SR-85 ramp geometry.
+  but not painted lanes. Check the NB SR-85 connector's detailed geometry if a
+  later scenario adds demand to it.
 - Thirteen ramp sensors were identified and five have qualifying October
   morning profiles. Four were visually and topologically audited: one measured
   Mathilda exit is split from upstream demand, and the Mathilda, Moffett, and
   San Antonio entries are injected. The reporting Embarcadero entry lies past
   the endpoint. Vehicle mix, eight missing-ramp estimates, driver calibration,
-  remaining network review, and held-out validation are still required. See
+  and held-out validation are still required. See
   the [ramp detector audit](us101-ramp-audit.md).
 - M4 is active. One command now runs the real baseline across multiple seeds
   and writes per-run results plus sample mean and standard deviation for trip

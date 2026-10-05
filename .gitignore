@@ -24,6 +24,7 @@ venv/
 data/raw/
 data/processed/
 data/osm/*.osm.xml
+!data/osm/us101_corridor.osm.xml
 data/osm/*.pbf
 data/pems/
 data/mtc/

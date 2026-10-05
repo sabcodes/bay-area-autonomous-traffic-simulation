@@ -75,6 +75,7 @@
     "Eight missing ramp profiles and the Embarcadero boundary ramp remain excluded; vehicle mix is not calibrated yet.",
     "Observed PeMS speed is a validation target, not a commanded vehicle speed.",
     "The mainline route passes through ordered detector-matched checkpoints so shortest-path routing cannot leave US-101 for a ramp shortcut.",
+    "Any modeled passenger vehicle using a Santa Clara US-101/SR-85 express lane during weekday tolling hours is assumed to carry a valid FasTrak tag and pay the applicable toll; tag ownership and toll choice are not simulated.",
     "Human behavior uses SUMO's stochastic Krauss following model and default lane-changing model."
   ]
 }

@@ -139,7 +139,7 @@ def _passenger_successors(edge: Any, direction: str) -> list[Any]:
 
 
 def _trace_branch(
-    network: Any, branch_id: str, direction: str, through_edge_ids: set[str]
+    network: Any, branch_id: str, direction: str, through_edge_routes: dict[str, str]
 ) -> list[dict[str, object]]:
     """Trace legal forks to the first trunk road, surface road, or graph boundary."""
 
@@ -152,7 +152,7 @@ def _trace_branch(
         chain, seen = pending.pop()
         edge = chain[-1]
         edge_type = edge.getType()
-        if len(chain) > 1 and edge.getID() in through_edge_ids:
+        if len(chain) > 1 and edge.getID() in through_edge_routes:
             endpoint = "audited_through_route"
         elif len(chain) > 1 and edge_type == "highway.motorway" and edge.getLaneNumber() >= 2:
             endpoint = "other_motorway"
@@ -179,7 +179,13 @@ def _trace_branch(
                 if len(paths) + len(pending) > maximum_paths:
                     raise ValueError(f"Branch {branch_id} exceeds {maximum_paths} paths")
                 continue
-        paths.append({"edge_ids": [item.getID() for item in chain], "endpoint": endpoint})
+        record: dict[str, object] = {
+            "edge_ids": [item.getID() for item in chain],
+            "endpoint": endpoint,
+        }
+        if endpoint == "audited_through_route":
+            record["endpoint_route"] = through_edge_routes[edge.getID()]
+        paths.append(record)
     return sorted(paths, key=lambda item: item["edge_ids"])
 
 
@@ -234,8 +240,10 @@ def build_lane_connection_audit(config_path: Path) -> dict[str, object]:
                 "transitions": transitions,
             }
         )
-    through_edge_ids = {
-        edge["edge_id"] for route in routes for edge in route["edges"]
+    through_edge_routes = {
+        edge["edge_id"]: route["name"]
+        for route in routes
+        for edge in route["edges"]
     }
     for route in routes:
         for transition in route["transitions"]:
@@ -245,7 +253,7 @@ def build_lane_connection_audit(config_path: Path) -> dict[str, object]:
             ):
                 for branch in transition[field]:
                     branch["corridor_paths"] = _trace_branch(
-                        network, branch["edge_id"], direction, through_edge_ids
+                        network, branch["edge_id"], direction, through_edge_routes
                     )
     return {
         "network_file": str(network_file),

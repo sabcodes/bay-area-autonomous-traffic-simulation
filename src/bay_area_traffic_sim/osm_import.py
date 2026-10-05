@@ -27,17 +27,26 @@ class CorridorConfig:
     name: str
     bounding_box: dict[str, float]
     osm_source_path: Path
+    edge_patch_path: Path | None = None
+    connection_patch_path: Path | None = None
 
 
 def load_corridor_config(config_path: Path) -> CorridorConfig:
     """Load import metadata without silently downloading map data."""
 
     raw = json.loads(config_path.read_text())
-    source_path = repository_root() / raw["osm_source_path"]
+    root = repository_root()
+    source_path = root / raw["osm_source_path"]
+    edge_patch = raw.get("edge_patch_path")
+    connection_patch = raw.get("connection_patch_path")
+    if bool(edge_patch) != bool(connection_patch):
+        raise ValueError("Both edge_patch_path and connection_patch_path are required together.")
     return CorridorConfig(
         name=raw["name"],
         bounding_box=raw["bounding_box"],
         osm_source_path=source_path,
+        edge_patch_path=root / edge_patch if edge_patch else None,
+        connection_patch_path=root / connection_patch if connection_patch else None,
     )
 
 
@@ -111,15 +120,28 @@ def import_osm(config_path: Path, output_directory: Path) -> Path:
             "there before importing."
         )
 
+    apply_patch = config.edge_patch_path is not None
+    if apply_patch:
+        assert config.edge_patch_path is not None
+        assert config.connection_patch_path is not None
+        for patch_path in (config.edge_patch_path, config.connection_patch_path):
+            if not patch_path.is_file():
+                raise FileNotFoundError(f"Network patch not found: {patch_path}")
+
     output_directory.mkdir(parents=True, exist_ok=True)
     network_file = output_directory / "us101_corridor.net.xml"
+    raw_network_file = (
+        output_directory / "us101_corridor_osm_raw.net.xml"
+        if apply_patch
+        else network_file
+    )
     subprocess.run(
         [
             str(binary("netconvert")),
             "--osm-files",
             str(config.osm_source_path),
             "--output-file",
-            str(network_file),
+            str(raw_network_file),
             "--geometry.remove",
             "--ramps.guess",
             "--junctions.join",
@@ -127,4 +149,21 @@ def import_osm(config_path: Path, output_directory: Path) -> Path:
         ],
         check=True,
     )
+    if apply_patch:
+        assert config.edge_patch_path is not None
+        assert config.connection_patch_path is not None
+        subprocess.run(
+            [
+                str(binary("netconvert")),
+                "--sumo-net-file",
+                str(raw_network_file),
+                "--edge-files",
+                str(config.edge_patch_path),
+                "--connection-files",
+                str(config.connection_patch_path),
+                "--output-file",
+                str(network_file),
+            ],
+            check=True,
+        )
     return network_file
