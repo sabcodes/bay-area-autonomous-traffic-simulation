@@ -1,0 +1,20 @@
+{
+  "extends": "configs/us101_human_baseline.json",
+  "scenario": "M3 weekday calibration draft, northbound US-101",
+  "observation_dates": [
+    "2025-10-07",
+    "2025-10-08",
+    "2025-10-09",
+    "2025-10-10",
+    "2025-10-14"
+  ],
+  "route_file": "outputs/us101_corridor/m3/calibration/h0.rou.xml",
+  "manifest_file": "outputs/us101_corridor/m3/calibration/manifest.json",
+  "aligned_pems_report_file": "outputs/us101_corridor/m3/calibration/observed.json",
+  "detector_file_template": "outputs/us101_corridor/m3/calibration/detectors_seed_{seed}.add.xml",
+  "detector_output_template": "outputs/us101_corridor/m3/calibration/detectors_seed_{seed}.xml",
+  "detector_summary_template": "outputs/us101_corridor/m3/calibration/detectors_seed_{seed}.json",
+  "additional_assumptions": [
+    "This profile uses only the five predeclared M3 calibration weekdays."
+  ]
+}

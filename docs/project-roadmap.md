@@ -63,7 +63,8 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   [acceptance record](us101-m2-acceptance.md), [40-row checklist](us101-ramp-review-checklist.md),
   [warning review](us101-importer-warning-review.md), and
   [network audit](us101-network-audit.md).
-- M3 has a runnable ramp-aware draft. Demand profiles now use complete dates
+- M3 is in progress under the [human-baseline execution plan](m3-human-baseline-plan.md).
+  H0 has a runnable ramp-aware draft. Demand profiles now use complete dates
   shared across the mainline entry and every active ramp, and the validation
   profile uses those same dates. On the current nine-day set, three seeds each
   completed 13,482 vehicles without route, teleport, collision, or

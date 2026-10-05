@@ -1,0 +1,14 @@
+{
+  "extends": "configs/us101_human_baseline.json",
+  "scenario": "M3 weekday validation draft, 2025-10-15",
+  "observation_dates": ["2025-10-15"],
+  "route_file": "outputs/us101_corridor/m3/validation_2025_10_15/h0.rou.xml",
+  "manifest_file": "outputs/us101_corridor/m3/validation_2025_10_15/manifest.json",
+  "aligned_pems_report_file": "outputs/us101_corridor/m3/validation_2025_10_15/observed.json",
+  "detector_file_template": "outputs/us101_corridor/m3/validation_2025_10_15/detectors_seed_{seed}.add.xml",
+  "detector_output_template": "outputs/us101_corridor/m3/validation_2025_10_15/detectors_seed_{seed}.xml",
+  "detector_summary_template": "outputs/us101_corridor/m3/validation_2025_10_15/detectors_seed_{seed}.json",
+  "additional_assumptions": [
+    "This profile uses one predeclared M3 validation weekday. No M3 parameter fit may use it."
+  ]
+}

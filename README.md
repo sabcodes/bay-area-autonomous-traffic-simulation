@@ -239,8 +239,9 @@ SUMO cannot choose a one-lane ramp as a geometric shortcut. This is a runnable
 calibration draft, not the finished human baseline. It has human-like
 stochastic following and the four measured, audited ramp movements currently
 inside the study boundary. Eight missing ramp profiles, vehicle mix,
-held-out-day validation, driver calibration, and remaining manual network
-review still belong to M3.
+held-out-day validation, and driver calibration still belong to M3. The
+[M3 execution plan](docs/m3-human-baseline-plan.md) fixes the observation split
+and next implementation steps. The manual network review was completed in M2.
 
 Generate separate observed profiles for the six on-ramp and seven off-ramp
 PeMS candidates with:

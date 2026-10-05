@@ -7,6 +7,7 @@ import subprocess
 from collections import defaultdict
 from copy import deepcopy
 from dataclasses import asdict, dataclass
+from datetime import date
 from pathlib import Path
 from typing import Any
 from xml.etree import ElementTree
@@ -580,7 +581,26 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
         int(raw["mainline_entry_station_id"]),
         *(int(mapping["station_id"]) for mapping in ramp_mappings),
     ]
-    observation_dates = common_observation_dates([report, *ramp_reports], station_ids_for_demand)
+    available_dates = common_observation_dates([report, *ramp_reports], station_ids_for_demand)
+    configured_dates = raw.get("observation_dates")
+    if configured_dates is None:
+        observation_dates = available_dates
+    else:
+        if not isinstance(configured_dates, list) or not configured_dates:
+            raise ValueError("observation_dates must be a non-empty list of ISO dates.")
+        for selected_date in configured_dates:
+            if not isinstance(selected_date, str):
+                raise ValueError("Every observation date must be an ISO date string.")
+            date.fromisoformat(selected_date)
+        if len(configured_dates) != len(set(configured_dates)):
+            raise ValueError("observation_dates contains a duplicate date.")
+        unavailable = sorted(set(configured_dates) - available_dates)
+        if unavailable:
+            raise ValueError(
+                "Selected observation dates lack complete common demand profiles: "
+                f"{unavailable}"
+            )
+        observation_dates = set(configured_dates)
     mainline_entry_points = demand_points_from_report(
         report,
         warmup_seconds,

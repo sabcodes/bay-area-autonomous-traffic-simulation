@@ -1,6 +1,6 @@
 # Project memory and handoff
 
-**Updated:** 2026-10-04
+**Updated:** 2026-10-05
 **Repository:** `sabcodes/bay-area-autonomous-traffic-simulation`
 **Local Obsidian vault:** `Auto-Car Traffic Research`
 
@@ -42,7 +42,14 @@ Read the [M2 acceptance record](us101-m2-acceptance.md),
 
 ## Next work
 
-M3 needs a calibrated vehicle mix, defensible treatment of missing ramp
+The [M3 execution plan](m3-human-baseline-plan.md) now fixes weekday
+calibration dates (October 7–10 and 14, 2025) and untouched validation dates
+(October 15–16). Date selection is implemented and a seed-42 calibration draft
+has run on the five calibration weekdays; its Shoreline flow MAPE is 33.00%
+and speed MAE is 13.22 mph. The current nine-date average includes two
+Saturdays and must not serve as independent validation. Next, diagnose demand
+and congestion before tuning behavior. M3 also needs a calibrated vehicle
+mix, defensible treatment of missing ramp
 demand, better downstream flow and speed fit, and validation on days separate
 from calibration. The existing H0 draft runs, but Shoreline station 401507
 still has about 33% flow MAPE and about 10.5 mph speed MAE. Provisional
