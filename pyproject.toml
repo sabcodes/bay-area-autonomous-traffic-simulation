@@ -26,6 +26,9 @@ dev = [
 visual-audit = [
   "playwright>=1.55,<2.0",
 ]
+reports = [
+  "matplotlib>=3.9,<4",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

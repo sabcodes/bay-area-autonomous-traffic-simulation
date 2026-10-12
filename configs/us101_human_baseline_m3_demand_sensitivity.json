@@ -1,0 +1,42 @@
+{
+  "extends": "configs/us101_human_baseline.json",
+  "scenario": "M3 calibration-only missing-entrance demand sensitivity",
+  "pems_report": "outputs/pems_calibration/us101_corridor_m1_station_profiles.json",
+  "virtual_detector_station_ids_key": "accepted_corridor_station_ids",
+  "detector_lane_indices": {"402377": [1, 2, 3, 4]},
+  "observation_dates": [
+    "2025-10-07",
+    "2025-10-08",
+    "2025-10-09",
+    "2025-10-10",
+    "2025-10-14"
+  ],
+  "estimated_entrance_mappings": [
+    {
+      "id": "midcorridor_entrance",
+      "name": "Unmeasured entrance-group sensitivity before station 401998",
+      "sumo_edge_id": "509747350",
+      "merge_edge_id": "509747347-AddedOnRampEdge",
+      "vehicles_per_hour": 700,
+      "basis": "Calibration-only group hypothesis: 401996 to 401998 net +235 veh/h, while measured Mathilda exit minus entrance is about -462 veh/h. Other unmeasured entries and exits remain unresolved; 700 is not a count for this ramp."
+    },
+    {
+      "id": "sr85_gp_entrance",
+      "name": "Unmeasured SR-85-area entrance-group sensitivity before station 401507",
+      "sumo_edge_id": "394387883",
+      "merge_edge_id": "361615811",
+      "vehicles_per_hour": 2000,
+      "basis": "Calibration-only group hypothesis: the observed 401948 to 401507 net increase is about 2047 veh/h across five weekdays. The 401948 lane mismatch and unmeasured HOV/other movements prevent assigning this number to the GP ramp."
+    }
+  ],
+  "route_file": "outputs/us101_corridor/m3/demand_sensitivity/h0.rou.xml",
+  "manifest_file": "outputs/us101_corridor/m3/demand_sensitivity/manifest.json",
+  "aligned_pems_report_file": "outputs/us101_corridor/m3/demand_sensitivity/observed.json",
+  "detector_file_template": "outputs/us101_corridor/m3/demand_sensitivity/detectors_seed_{seed}.add.xml",
+  "detector_output_template": "outputs/us101_corridor/m3/demand_sensitivity/detectors_seed_{seed}.xml",
+  "detector_summary_template": "outputs/us101_corridor/m3/demand_sensitivity/detectors_seed_{seed}.json",
+  "additional_assumptions": [
+    "The 700 and 2000 veh/h additions are explicit constant-flow sensitivity inputs, not observed ramp counts or a calibrated OD estimate.",
+    "Only predeclared calibration dates are used; validation dates remain untouched."
+  ]
+}

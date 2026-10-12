@@ -1,0 +1,14 @@
+{
+  "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+  "snapshot_sha256": "24fa10d17554c98853acf1a8b179aca59cdd2132866201f948a846203c6ad991",
+  "sumo_version": "Eclipse SUMO netconvert 1.27.1",
+  "source_osm": "data/osm/us101_corridor.osm.xml",
+  "source_provenance": "data/osm/us101_corridor.osm.provenance.json",
+  "patches": [
+    "network/us101_corridor/patches/mathilda_rengstorff.edg.xml",
+    "network/us101_corridor/patches/mathilda_rengstorff.con.xml"
+  ],
+  "license": "OpenStreetMap-derived road data, ODbL 1.0",
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "reason": "Preserve the exact accepted bytes used in M3. Regenerated netconvert headers contain timestamps and absolute paths, so a rebuild may have a different byte hash despite equivalent topology."
+}

@@ -1,0 +1,25 @@
+{
+  "extends": "configs/us101_human_baseline_m3_buffer_trial.json",
+  "scenario": "M3 buffer plus downstream net-exit calibration hypothesis",
+  "estimated_ramp_mappings": [
+    {
+      "id": "midcorridor_entrance", "name": "Unmeasured pre-401998 net-entry group",
+      "sumo_edge_id": "509747350", "merge_edge_id": "509747347-AddedOnRampEdge",
+      "vehicles_per_hour": 700,
+      "basis": "Rounded calibration net residual after measured Mathilda movements; not an individual ramp count."
+    },
+    {
+      "id": "sr85_gp_entrance", "name": "Unmeasured pre-401507 net-entry group",
+      "sumo_edge_id": "394387883", "merge_edge_id": "361615811",
+      "vehicles_per_hour": 2000,
+      "basis": "Rounded Moffett-to-Shoreline calibration residual after measured Moffett entrance; not a GP ramp count."
+    },
+    {
+      "id": "downstream_net_exit", "lane_type": "FR",
+      "name": "Unmeasured post-Shoreline net-exit group at a San Antonio exit",
+      "sumo_edge_id": "4370043", "diverge_edge_id": "394368089",
+      "vehicles_per_hour": 1500,
+      "basis": "Calibration-only hypothesis: 8041 veh/h at 401507 plus 560 measured San Antonio entrance minus 5616 across four 402377 channels leaves 2985 before the missing lane. An assumed 1500 veh/h missing-lane contribution gives a rounded 1500 veh/h net-exit group. Gross ramp flows and field wiring remain unknown."
+    }
+  ]
+}

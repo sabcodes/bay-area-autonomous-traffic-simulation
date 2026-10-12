@@ -16,7 +16,7 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 | M0 | Local foundation | Project-local Python environment, SUMO installation, toy corridor, tests, and basic multi-seed reporting. | Runnable commands and passing tests. |
 | M1 | Observed-data foundation | Obtain PeMS Station 5-Minute and Station Metadata exports; retain only detector stations inside the named corridor; document selected days and missing observations. | Reproducible detector list and saved data-summary report. |
 | M2 | Network audit | Inspect OSM-derived US-101 geometry, lanes, ramps, merges, exits, and legal movements; manually correct any defects. | Completed audit checklist and versioned corrected network. |
-| M3 | Human-like baseline | Build demand, routes, vehicle mix, and driver behavior; tune them against held-out observed speed and flow. | Calibration report and separate-day validation report. |
+| M3 | Human-like baseline | Build demand, routes, vehicle mix, and driver behavior; tune on calibration days, then check held-out speed and flow. | Calibration report and separate-day validation report. |
 | M4 | Experiment harness | Make scenario settings explicit; run repeated seeds; produce throughput, travel time, queue, speed-stability, and smoothness results. | One command creates a comparable multi-seed report. |
 | M5 | Cooperative CACC | Add a deterministic cooperative-following policy using SUMO leader/follower or context queries. Check safety-related simulation warnings before using results. | Human versus CACC comparison under matching assumptions. |
 | M6 | Centralized control | Add one explainable intervention, such as ramp metering or a speed advisory, then compare it fairly with M3 and M5. | Human, CACC, and central-control result matrix. |
@@ -63,15 +63,21 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   [acceptance record](us101-m2-acceptance.md), [40-row checklist](us101-ramp-review-checklist.md),
   [warning review](us101-importer-warning-review.md), and
   [network audit](us101-network-audit.md).
-- M3 is in progress under the [human-baseline execution plan](m3-human-baseline-plan.md).
-  H0 has a runnable ramp-aware draft. Demand profiles now use complete dates
-  shared across the mainline entry and every active ramp, and the validation
-  profile uses those same dates. On the current nine-day set, three seeds each
-  completed 13,482 vehicles without route, teleport, collision, or
-  emergency-braking warnings. Mean trip speed is 59.10 mph (sample SD 0.18).
-  Across six comparable mainline stations, flow MAPE ranges from 0.31% to
-  32.94% and speed MAE from 10.50 to 17.86 mph, so speed and downstream flow
-  calibration remain active.
+- M3 is **complete at the practical experiment standard**, with a documented
+  held-out fidelity failure. Its [six-stage plan](m3-human-baseline-plan.md),
+  [closeout](m3-human-baseline-report.md), [results](../reports/m3/README.md),
+  and [demand ledger](m3-demand-ledger.md) are the current records. Twelve
+  bounded candidates led to a frozen 1.5 s headway / 4% truck baseline with
+  three net-movement assumptions and an existing upstream network buffer.
+  All 15 final calibration and six validation runs cleared without SUMO
+  warnings. Calibration mean errors: 8.32% flow MAPE / 8.15 mph speed MAE.
+  Held-out combined errors: 19.37% / 14.90 mph. October 15 missed both
+  fidelity targets; October 16 met both. This is a completed evaluation,
+  not a successfully field-validated H0. Settings were not retuned after
+  viewing validation. Work stops after M3; M4 needs a new user instruction.
+- The remaining observed-data findings below describe the earlier audit and
+  diagnostic draft. The former nine-date average, which included Saturdays,
+  is preserved as historical evidence and is not independent validation.
 - Observed flow conservation is now explicit. Seven reporting stations are
   placed in route order and six adjacent residuals are calculated. Five are
   usable; one same-edge pair is classified as detector disagreement rather
@@ -102,13 +108,14 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   morning profiles. Four were visually and topologically audited: one measured
   Mathilda exit is split from upstream demand, and the Mathilda, Moffett, and
   San Antonio entries are injected. The reporting Embarcadero entry lies past
-  the endpoint. Vehicle mix, eight missing-ramp estimates, driver calibration,
-  and held-out validation are still required. See
-  the [ramp detector audit](us101-ramp-audit.md).
-- M4 is active. One command now runs the real baseline across multiple seeds
+  the endpoint. M3 added the vehicle mix, three bounded net-movement hypotheses,
+  driver calibration, and held-out evaluation. Individual gross ramp flows
+  remain unknown. See the [ramp detector audit](us101-ramp-audit.md).
+- M4 has a partial harness. One command runs the real baseline across multiple seeds
   and writes per-run results plus sample mean and standard deviation for trip
   metrics and station calibration errors. Queue, stability, and smoothness
-  metrics still need to be added before M4 is complete.
+  metrics still need to be added before M4 is complete. No M4 work is active
+  after this M3 closeout.
 
 ## Guardrails
 

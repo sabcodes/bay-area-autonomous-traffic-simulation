@@ -28,6 +28,7 @@ class VirtualDetectorSpec:
     lane_ids: list[str]
     position_meters: float
     reported_lane_count: int | None = None
+    recorded_lane_ids: list[str] | None = None
 
 
 @dataclass(frozen=True)
@@ -48,6 +49,7 @@ def build_virtual_detector_specs(
     metadata_files: Iterable[Path],
     bounding_box: Mapping[str, float],
     station_ids: Set[int],
+    lane_indices: Mapping[int, list[int]] | None = None,
 ) -> list[VirtualDetectorSpec]:
     """Place virtual loops at selected PeMS coordinates on their matched road edges."""
 
@@ -73,8 +75,19 @@ def build_virtual_detector_specs(
         point = network.convertLonLat2XY(station.longitude, station.latitude)
         position, _ = geomhelper.polygonOffsetAndDistanceToPoint(point, edge.getShape())
         lane_count = min(station.lanes or edge.getLaneNumber(), edge.getLaneNumber())
-        lanes = edge.getLanes()[-lane_count:]
-        maximum_position = min(lane.getLength() for lane in lanes) - 1
+        indices = (lane_indices or {}).get(station_id)
+        if indices is None:
+            lanes = edge.getLanes()[-lane_count:]
+        else:
+            if (
+                not indices
+                or len(set(indices)) != len(indices)
+                or any(index < 0 or index >= edge.getLaneNumber() for index in indices)
+            ):
+                raise ValueError(f"Invalid lane indices for station {station_id}: {indices}")
+            lanes = [edge.getLanes()[index] for index in indices]
+        recorded_lanes = edge.getLanes() if indices is not None else lanes
+        maximum_position = min(lane.getLength() for lane in recorded_lanes) - 1
         specs.append(
             VirtualDetectorSpec(
                 station_id=station_id,
@@ -83,6 +96,9 @@ def build_virtual_detector_specs(
                 lane_ids=[lane.getID() for lane in lanes],
                 position_meters=max(1.0, min(position, maximum_position)),
                 reported_lane_count=station.lanes,
+                recorded_lane_ids=(
+                    [lane.getID() for lane in recorded_lanes] if indices is not None else None
+                ),
             )
         )
     return specs
@@ -98,7 +114,9 @@ def write_virtual_detector_file(
 
     root = ElementTree.Element("additional")
     for spec in specs:
-        for lane_index, lane_id in enumerate(spec.lane_ids):
+        for lane_index, lane_id in enumerate(spec.recorded_lane_ids or spec.lane_ids):
+            if spec.recorded_lane_ids is not None:
+                lane_index = int(lane_id.rsplit("_", 1)[1])
             ElementTree.SubElement(
                 root,
                 "inductionLoop",
@@ -117,7 +135,9 @@ def write_virtual_detector_file(
     tree.write(destination, encoding="utf-8", xml_declaration=True)
 
 
-def summarize_virtual_detector_output(path: Path) -> list[VirtualDetectorInterval]:
+def summarize_virtual_detector_output(
+    path: Path, lane_indices: Mapping[int, Set[int]] | None = None
+) -> list[VirtualDetectorInterval]:
     """Aggregate lane-level induction-loop output into PeMS-like station intervals."""
 
     grouped: defaultdict[tuple[int, float, float], list[ElementTree.Element]] = defaultdict(list)
@@ -126,6 +146,10 @@ def summarize_virtual_detector_output(path: Path) -> list[VirtualDetectorInterva
         if not detector_id.startswith("pems_"):
             continue
         station_id = int(detector_id.split("_", maxsplit=3)[1])
+        if lane_indices and station_id in lane_indices:
+            physical_lane = int(detector_id.rsplit("_", 1)[1])
+            if physical_lane not in lane_indices[station_id]:
+                continue
         begin = float(interval.attrib["begin"])
         end = float(interval.attrib["end"])
         grouped[(station_id, begin, end)].append(interval)

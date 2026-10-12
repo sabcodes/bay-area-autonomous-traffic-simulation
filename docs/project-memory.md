@@ -1,6 +1,6 @@
 # Project memory and handoff
 
-**Updated:** 2026-10-05
+**Updated:** 2026-10-12
 **Repository:** `sabcodes/bay-area-autonomous-traffic-simulation`
 **Local Obsidian vault:** `Auto-Car Traffic Research`
 
@@ -10,7 +10,7 @@ This project compares human-like traffic with explainable autonomous-vehicle
 coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
-of truth: **M0, M1, and M2 are complete. M3 is the active scientific task.**
+of truth: **M0–M3 experiment work is complete. M3 has a held-out fidelity limit.**
 M4 has a partial runnable multi-seed harness.
 
 ## M2 decision to preserve
@@ -40,21 +40,41 @@ Read the [M2 acceptance record](us101-m2-acceptance.md),
 [warning decisions](us101-importer-warning-review.md), and
 [network audit](us101-network-audit.md) before changing the network.
 
-## Next work
+## M3 closeout and stopping point
 
-The [M3 execution plan](m3-human-baseline-plan.md) now fixes weekday
-calibration dates (October 7–10 and 14, 2025) and untouched validation dates
-(October 15–16). Date selection is implemented and a seed-42 calibration draft
-has run on the five calibration weekdays; its Shoreline flow MAPE is 33.00%
-and speed MAE is 13.22 mph. The current nine-date average includes two
-Saturdays and must not serve as independent validation. Next, diagnose demand
-and congestion before tuning behavior. M3 also needs a calibrated vehicle
-mix, defensible treatment of missing ramp
-demand, better downstream flow and speed fit, and validation on days separate
-from calibration. The existing H0 draft runs, but Shoreline station 401507
-still has about 33% flow MAPE and about 10.5 mph speed MAE. Provisional
-detector-to-lane mappings at 401948, 401507, and 402377 are modeling choices,
-not field-wiring proof. See the [sensor audit](us101-sensor-audit.md) and
+M3 execution now uses `scripts/run_m3_baseline.py` and
+`configs/us101_m3_experiment.json`. Twelve bounded calibration cases are saved in
+`reports/m3/candidates_report.json`. The final selection is `buffer_exit_tau15`
+(1.5 s headway, 4% truck proxy, 700/2,000 veh/h net-entry and 1,500 veh/h
+net-exit group assumptions). The 1,007.33 m upstream buffer uses the unchanged
+M2 network and station 400790's separately labeled 80%-coverage inlet proxy;
+comparison targets retain 90% coverage. Final calibration and sensitivities
+are complete: 15/15 calibration runs cleared cleanly, 8.32% flow MAPE and
+8.15 mph speed MAE. The frozen scenario is
+`configs/us101_human_baseline_m3_frozen.json`; `reports/m3/freeze.json` records
+the pre-validation treatment and source hashes. All six held-out validation
+runs cleared cleanly and matched the frozen treatment. Combined errors were
+19.37% flow MAPE and 14.90 mph speed MAE: the speed target was missed.
+October 15 missed both targets (29.95%, 21.50 mph); October 16 met both
+(8.79%, 8.30 mph). The October 15 upstream bottleneck was not reproduced.
+This closes the practical M3 experiment, not a successful field-validation
+claim. See the [closeout record](m3-human-baseline-report.md) and
+[results](../reports/m3/README.md). Do not tune against these held-out errors.
+The [staged plan](m3-human-baseline-plan.md) records the exact resume point.
+Stop after M3 closeout; do not start M4 without a new user instruction.
+The [demand ledger](m3-demand-ledger.md) distinguishes measured
+flows, group estimates, and omitted movements. Public 2024 Caltrans annual
+truck/ramp inputs and their hashes are saved in `data/caltrans/`.
+
+The split GP/express allocation cases with longer headways produced
+teleports and are rejected. The final representative-day full-lane mean
+errors are 8.38% flow MAPE and 5.93 mph speed MAE. The earlier no-buffer
+15-run calibration is preserved separately (7.67% flow, 12.51 mph speed).
+These calibration figures are separate from held-out validation. The reserved
+dates were October 15–16, 2025; choices were frozen before running them. PeMS speeds are never
+commands. The old nine-date average includes two Saturdays and is diagnostic
+only. Provisional lane mappings remain modeling choices, not field-wiring
+proof. See the [sensor audit](us101-sensor-audit.md) and
 [ramp detector audit](us101-ramp-audit.md).
 
 ## Working rules
@@ -67,4 +87,5 @@ not field-wiring proof. See the [sensor audit](us101-sensor-audit.md) and
 - Preserve missing PeMS observations as missing, not zero.
 - Compare later policies against H0 with the same network, demand window,
   vehicle mix, and seed set. Treat controller effects as unproven until M3
-  calibration and separate-day validation are complete.
+  calibration and separate-day evaluation are complete. M3's failed October 15
+  fit remains a limitation of any later policy interpretation.

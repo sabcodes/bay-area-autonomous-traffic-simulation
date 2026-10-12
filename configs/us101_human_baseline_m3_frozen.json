@@ -1,0 +1,184 @@
+{
+  "scenario": "M3 frozen human baseline",
+  "network_file": "outputs/us101_corridor/us101_corridor.net.xml",
+  "pems_report": "outputs/pems_calibration/us101_m3_upstream_proxy_profiles.json",
+  "aligned_pems_report_file": "outputs/us101_corridor/m3/frozen/observed.json",
+  "mainline_entry_station_id": 400790,
+  "ramp_profile_file": "outputs/pems_calibration/us101_ramp_station_profiles.json",
+  "route_file": "outputs/us101_corridor/m3/frozen/h0.rou.xml",
+  "manifest_file": "outputs/us101_corridor/m3/frozen/manifest.json",
+  "corridor_config": "configs/us101_corridor.json",
+  "metadata_glob": "data/pems/metadata/d04_text_meta_*.txt",
+  "virtual_detector_station_ids_file": "configs/us101_corridor_station_ids.json",
+  "virtual_detector_station_ids_key": "accepted_corridor_station_ids",
+  "detector_file_template": "outputs/us101_corridor/m3/frozen/detectors_seed_{seed}.add.xml",
+  "detector_output_template": "outputs/us101_corridor/m3/frozen/detectors_seed_{seed}.xml",
+  "detector_summary_template": "outputs/us101_corridor/m3/frozen/detectors_seed_{seed}.json",
+  "active_ramp_mappings": [
+    {
+      "station_id": 428588,
+      "lane_type": "FR",
+      "name": "Mathilda Ave off-ramp",
+      "sumo_edge_id": "9080606"
+    },
+    {
+      "station_id": 428589,
+      "lane_type": "OR",
+      "name": "Mathilda Ave northbound loop on-ramp",
+      "sumo_edge_id": "509747339",
+      "merge_edge_id": "509747346"
+    },
+    {
+      "station_id": 402919,
+      "lane_type": "OR",
+      "name": "Moffett Blvd northbound loop on-ramp",
+      "sumo_edge_id": "847214392#0",
+      "merge_edge_id": "1047818462"
+    },
+    {
+      "station_id": 425546,
+      "lane_type": "OR",
+      "name": "San Antonio Rd northbound on-ramp",
+      "sumo_edge_id": "9739842#1",
+      "merge_edge_id": "700010299"
+    }
+  ],
+  "excluded_reporting_ramps": [
+    {
+      "station_id": 425897,
+      "reason": "The Embarcadero on-ramp merges beyond the corridor analysis endpoint."
+    }
+  ],
+  "checkpoint_edge_ids": [
+    "395354963",
+    "28485321",
+    "28485321-AddedOffRampEdge",
+    "509747302",
+    "509747310-AddedOnRampEdge",
+    "867208766",
+    "509747346",
+    "867246178",
+    "850032296",
+    "617335302",
+    "509747406-AddedOffRampEdge",
+    "1446453052",
+    "867254754",
+    "394368088",
+    "700010299",
+    "861090931",
+    "361615812"
+  ],
+  "warmup_seconds": 900,
+  "clearance_seconds": 7200,
+  "assumptions": [
+    "Simulation time 00:15 corresponds to 07:00 after a 15-minute warmup.",
+    "Mainline inlet uses station 400790 at at least 80% reported coverage; comparison targets retain at least 90% coverage.",
+    "The existing motorway buffer is about 1 km upstream of the M2 analysis start; omitted upstream exits and inlet imputation are uncertainties.",
+    "PeMS five-minute flow is multiplied by 12 to obtain vehicles per hour.",
+    "Measured Mathilda exit demand is removed from the through flow; measured Mathilda, Moffett, and San Antonio entrances are injected on audited edges.",
+    "Missing-entrance groups are assumed demand, and other omitted ramps remain unknown.",
+    "PeMS speed is a comparison target and is not imposed on vehicles.",
+    "Mainline routes follow ordered motorway checkpoints; passengers in managed lanes are assumed eligible or toll-paying.",
+    "Human behavior uses stochastic Krauss following and the default lane-changing model."
+  ],
+  "detector_lane_indices": {
+    "402377": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "observation_dates": [
+    "2025-10-08"
+  ],
+  "additional_assumptions": [
+    "Station 400790 with at least 80% reported coverage supplies an inlet proxy; comparison targets retain 90% coverage.",
+    "The 1.008 km existing motorway buffer precedes the M2 analysis start. Its flow may include omitted upstream exits; its exact lane paint is not certified.",
+    "Measured speed is not imposed on vehicles; the buffer tests whether the prior inlet suppressed upstream congestion."
+  ],
+  "estimated_ramp_mappings": [
+    {
+      "id": "midcorridor_entrance",
+      "name": "Unmeasured pre-401998 net-entry group",
+      "sumo_edge_id": "509747350",
+      "merge_edge_id": "509747347-AddedOnRampEdge",
+      "vehicles_per_hour": 700,
+      "basis": "Rounded calibration net residual after measured Mathilda movements; not an individual ramp count."
+    },
+    {
+      "id": "sr85_gp_entrance",
+      "name": "Unmeasured pre-401507 net-entry group",
+      "sumo_edge_id": "394387883",
+      "merge_edge_id": "361615811",
+      "vehicles_per_hour": 2000,
+      "basis": "Rounded Moffett-to-Shoreline calibration residual after measured Moffett entrance; not a GP ramp count."
+    },
+    {
+      "id": "downstream_net_exit",
+      "lane_type": "FR",
+      "name": "Unmeasured post-Shoreline net-exit group at a San Antonio exit",
+      "sumo_edge_id": "4370043",
+      "diverge_edge_id": "394368089",
+      "vehicles_per_hour": 1500,
+      "basis": "Calibration-only hypothesis: 8041 veh/h at 401507 plus 560 measured San Antonio entrance minus 5616 across four 402377 channels leaves 2985 before the missing lane. An assumed 1500 veh/h missing-lane contribution gives a rounded 1500 veh/h net-exit group. Gross ramp flows and field wiring remain unknown."
+    }
+  ],
+  "human_parameters": {
+    "accel": 2.6,
+    "decel": 4.5,
+    "emergencyDecel": 9.0,
+    "sigma": 0.5,
+    "tau": 1.5,
+    "length": 5.0,
+    "minGap": 2.5,
+    "speedFactor": 1.0,
+    "speedDev": 0.1
+  },
+  "truck_share": 0.04,
+  "expected_input_sha256": {
+    "outputs/us101_corridor/us101_corridor.net.xml": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+    "outputs/pems_calibration/us101_m3_upstream_proxy_profiles.json": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+    "outputs/pems_calibration/us101_ramp_station_profiles.json": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+    "configs/us101_corridor.json": "3756012f0f376ed00e8a3ea7180124bf2850938d8f21249f28880b6225dac774",
+    "configs/us101_corridor_station_ids.json": "5c696bd22accb4f66b8fd5d5d591aa9f9f303a00de4916d7f2255b8aefd8c24b",
+    "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+    "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f",
+    "data/caltrans/2024-d4-ramp-adt-a11y.xlsx": "459228bc5a58ed9533bff07750408f89b5edcf4b78242b225c47c117ea550a94",
+    "data/caltrans/2024-truck-aadt-a11y.xlsx": "c3c0a4f0169585f9d9f0019972c365c078e5adc68c71007c405db1492a5d4e0b"
+  },
+  "frozen_vehicle_types": [
+    {
+      "id": "human_passenger",
+      "vClass": "passenger",
+      "carFollowModel": "Krauss",
+      "accel": "2.6",
+      "decel": "4.5",
+      "emergencyDecel": "9.0",
+      "sigma": "0.5",
+      "tau": "1.5",
+      "length": "5.0",
+      "minGap": "2.5",
+      "speedFactor": "1.0",
+      "speedDev": "0.1",
+      "probability": "0.96"
+    },
+    {
+      "id": "human_truck",
+      "vClass": "truck",
+      "carFollowModel": "Krauss",
+      "accel": "1.2",
+      "decel": "4.0",
+      "emergencyDecel": "9.0",
+      "sigma": "0.5",
+      "tau": "1.5",
+      "length": "12.0",
+      "minGap": "2.5",
+      "speedFactor": "1.0",
+      "speedDev": "0.1",
+      "probability": "0.04",
+      "maxSpeed": "24.59"
+    }
+  ],
+  "freeze_note": "Selected on calibration only before held-out validation. Driver/fleet attributes and network/input/engine hashes are checked through the treatment ledger."
+}

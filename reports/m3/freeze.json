@@ -1,0 +1,172 @@
+{
+  "frozen_at": "2026-10-12T00:06:55.294195-07:00",
+  "status": "frozen_before_validation",
+  "selected_candidate": "buffer_exit_tau15",
+  "treatment_sha256": "bd41772cb9e78b03f91bf239b039eb84fd96e1d6ebe840b4b883768d8203c7aa",
+  "calibration_dates": [
+    "2025-10-07",
+    "2025-10-08",
+    "2025-10-09",
+    "2025-10-10",
+    "2025-10-14"
+  ],
+  "validation_dates": [
+    "2025-10-15",
+    "2025-10-16"
+  ],
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "file_sha256": {
+    "configs/us101_human_baseline_m3_frozen.json": "51a0f84aa965849c1d43a520417a30ed47169ae297b7484dd3fbba2ecad9ad69",
+    "configs/us101_m3_experiment.json": "622ea25633e7cea048f803f26874aee734b0575baa4f044b6618cec2b12e60d1",
+    "reports/m3/calibration_report.json": "9808a7fe8408d9f7c5ab35dde4eae00dfeb978852e0ec12fb4d800ff5eb56ec0"
+  },
+  "treatment": {
+    "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+    "human_parameters": {
+      "accel": 2.6,
+      "decel": 4.5,
+      "emergencyDecel": 9.0,
+      "sigma": 0.5,
+      "tau": 1.5,
+      "length": 5.0,
+      "minGap": 2.5,
+      "speedFactor": 1.0,
+      "speedDev": 0.1
+    },
+    "vehicle_types": [
+      {
+        "id": "human_passenger",
+        "vClass": "passenger",
+        "carFollowModel": "Krauss",
+        "accel": "2.6",
+        "decel": "4.5",
+        "emergencyDecel": "9.0",
+        "sigma": "0.5",
+        "tau": "1.5",
+        "length": "5.0",
+        "minGap": "2.5",
+        "speedFactor": "1.0",
+        "speedDev": "0.1",
+        "probability": "0.96"
+      },
+      {
+        "id": "human_truck",
+        "vClass": "truck",
+        "carFollowModel": "Krauss",
+        "accel": "1.2",
+        "decel": "4.0",
+        "emergencyDecel": "9.0",
+        "sigma": "0.5",
+        "tau": "1.5",
+        "length": "12.0",
+        "minGap": "2.5",
+        "speedFactor": "1.0",
+        "speedDev": "0.1",
+        "probability": "0.04",
+        "maxSpeed": "24.59"
+      }
+    ],
+    "truck_share": 0.04,
+    "estimated_ramps": [
+      {
+        "id": "midcorridor_entrance",
+        "name": "Unmeasured pre-401998 net-entry group",
+        "sumo_edge_id": "509747350",
+        "merge_edge_id": "509747347-AddedOnRampEdge",
+        "vehicles_per_hour": 700.0,
+        "basis": "Rounded calibration net residual after measured Mathilda movements; not an individual ramp count."
+      },
+      {
+        "id": "sr85_gp_entrance",
+        "name": "Unmeasured pre-401507 net-entry group",
+        "sumo_edge_id": "394387883",
+        "merge_edge_id": "361615811",
+        "vehicles_per_hour": 2000.0,
+        "basis": "Rounded Moffett-to-Shoreline calibration residual after measured Moffett entrance; not a GP ramp count."
+      },
+      {
+        "id": "downstream_net_exit",
+        "lane_type": "FR",
+        "name": "Unmeasured post-Shoreline net-exit group at a San Antonio exit",
+        "sumo_edge_id": "4370043",
+        "diverge_edge_id": "394368089",
+        "vehicles_per_hour": 1500.0,
+        "basis": "Calibration-only hypothesis: 8041 veh/h at 401507 plus 560 measured San Antonio entrance minus 5616 across four 402377 channels leaves 2985 before the missing lane. An assumed 1500 veh/h missing-lane contribution gives a rounded 1500 veh/h net-exit group. Gross ramp flows and field wiring remain unknown."
+      }
+    ],
+    "detector_lane_indices": {
+      "402377": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "provenance": {
+      "mainline_profile_sha256": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+      "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+      "metadata_sha256": {
+        "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+        "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+      },
+      "sumo_version": "Eclipse SUMO sumo 1.27.1"
+    },
+    "warmup_seconds": 900,
+    "clearance_seconds": 7200,
+    "mainline_entry_station_id": 400790,
+    "active_ramp_mappings": [
+      {
+        "station_id": 428588,
+        "lane_type": "FR",
+        "name": "Mathilda Ave off-ramp",
+        "sumo_edge_id": "9080606"
+      },
+      {
+        "station_id": 428589,
+        "lane_type": "OR",
+        "name": "Mathilda Ave northbound loop on-ramp",
+        "sumo_edge_id": "509747339",
+        "merge_edge_id": "509747346"
+      },
+      {
+        "station_id": 402919,
+        "lane_type": "OR",
+        "name": "Moffett Blvd northbound loop on-ramp",
+        "sumo_edge_id": "847214392#0",
+        "merge_edge_id": "1047818462"
+      },
+      {
+        "station_id": 425546,
+        "lane_type": "OR",
+        "name": "San Antonio Rd northbound on-ramp",
+        "sumo_edge_id": "9739842#1",
+        "merge_edge_id": "700010299"
+      }
+    ],
+    "checkpoint_edge_ids": [
+      "395354963",
+      "28485321",
+      "28485321-AddedOffRampEdge",
+      "509747302",
+      "509747310-AddedOnRampEdge",
+      "867208766",
+      "509747346",
+      "867246178",
+      "850032296",
+      "617335302",
+      "509747406-AddedOffRampEdge",
+      "1446453052",
+      "867254754",
+      "394368088",
+      "700010299",
+      "861090931",
+      "361615812"
+    ],
+    "step_length_seconds": 0.5
+  },
+  "selection_evidence": "Calibration only: final bounded candidate uses the existing 1007.33 m upstream network buffer, 80% coverage station 400790 inlet proxy, and a 1500 veh/h downstream net-exit hypothesis. Representative-day full-lane station flow MAPE 8.38% and speed MAE 5.93 mph, clean and cleared. This improves speed versus the no-buffer candidate (11.91 mph) and flow versus the buffer without net exit (10.90%). Confirm all five calibration days before freezing validation; no further candidate fitting. Final five-day/three-seed calibration: 8.32% flow MAPE, 8.15 mph speed MAE, 15/15 clean and cleared. SUMO indices 1\u20134 retained at 402377 after the calibration-only alternative gave 23.05% flow MAPE / 4.07 mph speed MAE versus 8.61% / 3.01 mph."
+}

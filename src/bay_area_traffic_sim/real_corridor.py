@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
+import math
+import re
 import subprocess
 from collections import defaultdict
 from copy import deepcopy
@@ -44,14 +47,17 @@ class DemandPoint:
 
 @dataclass(frozen=True)
 class RampDemand:
-    """One visually audited ramp route and its observed demand profile."""
+    """One visually audited ramp route and its measured or assumed demand profile."""
 
-    station_id: int
+    station_id: int | None
     lane_type: str
     name: str
     route_id: str
     route_edge_ids: list[str]
     demand_profile: list[DemandPoint]
+    source_kind: str = "measured_pems"
+    source_note: str | None = None
+    vehicle_type: str | None = None
 
 
 @dataclass(frozen=True)
@@ -60,10 +66,15 @@ class PreparedBaseline:
 
     scenario: str
     network_file: str
+    network_sha256: str
     route_file: str
     manifest_file: str
     aligned_observed_profile_file: str
     observation_dates: list[str]
+    human_parameters: dict[str, float]
+    truck_share: float
+    vehicle_types: list[dict[str, str]]
+    provenance: dict[str, Any]
     route_edge_count: int
     route_length_meters: float
     minimum_lane_count: int
@@ -181,9 +192,7 @@ def _average_daily_profile(
     ]
 
 
-def common_observation_dates(
-    reports: list[dict[str, Any]], station_ids: list[int]
-) -> set[str]:
+def common_observation_dates(reports: list[dict[str, Any]], station_ids: list[int]) -> set[str]:
     """Find dates where every selected station has all of the same time slots."""
 
     profiles: dict[int, dict[str, Any]] = {}
@@ -220,8 +229,7 @@ def common_observation_dates(
         date
         for date in common_dates
         if all(
-            time_sets_by_station[station_id][date] >= expected_times
-            for station_id in station_ids
+            time_sets_by_station[station_id][date] >= expected_times for station_id in station_ids
         )
     }
     if not complete_dates:
@@ -246,15 +254,12 @@ def _align_profile_report(report: dict[str, Any], dates: set[str]) -> dict[str, 
             for point in day.get("time_profile", [])
         )
         all_points = [
-            point
-            for day in profile["daily_time_profile"]
-            for point in day["time_profile"]
+            point for day in profile["daily_time_profile"] for point in day["time_profile"]
         ]
         total_observations = sum(int(point.get("observations", 0)) for point in all_points)
         profile["mean_flow_vehicles_per_5_minutes"] = (
             sum(
-                float(point["mean_flow_vehicles_per_5_minutes"])
-                * int(point.get("observations", 0))
+                float(point["mean_flow_vehicles_per_5_minutes"]) * int(point.get("observations", 0))
                 for point in all_points
             )
             / total_observations
@@ -284,14 +289,18 @@ def _align_profile_report(report: dict[str, Any], dates: set[str]) -> dict[str, 
     return aligned
 
 
-def _load_baseline_config(config_path: Path, root: Path) -> dict[str, Any]:
+def _load_baseline_config(
+    config_path: Path, root: Path, parents: frozenset[Path] = frozenset()
+) -> dict[str, Any]:
     """Load a full baseline config, optionally inheriting a parent scenario."""
 
-    config_file = config_path if config_path.is_absolute() else root / config_path
+    config_file = (config_path if config_path.is_absolute() else root / config_path).resolve()
+    if config_file in parents:
+        raise ValueError(f"Scenario config inheritance cycle at {config_file}.")
     raw = json.loads(config_file.read_text())
     parent_config = raw.pop("extends", None)
     if parent_config:
-        inherited = json.loads((root / str(parent_config)).read_text())
+        inherited = _load_baseline_config(Path(parent_config), root, parents | {config_file})
         inherited.update(raw)
         raw = inherited
     return raw
@@ -323,6 +332,8 @@ def write_route_file(
     demand_points: list[DemandPoint],
     warmup_seconds: int,
     ramp_demands: list[RampDemand] | None = None,
+    human_parameters: dict[str, float] | None = None,
+    truck_share: float = 0.0,
 ) -> None:
     """Write a transparent SUMO route file for human passenger traffic."""
 
@@ -330,6 +341,8 @@ def write_route_file(
         raise ValueError("The baseline route needs at least one edge.")
     if not demand_points:
         raise ValueError("The baseline route needs at least one demand point.")
+    if not math.isfinite(truck_share) or not 0 <= truck_share <= 1:
+        raise ValueError("truck_share must be a finite proportion in [0, 1].")
 
     root = ElementTree.Element("routes")
     root.append(
@@ -337,24 +350,46 @@ def write_route_file(
             "Draft human baseline: measured mainline and audited ramp passenger demand."
         )
     )
-    ElementTree.SubElement(
-        root,
-        "vType",
-        {
-            "id": "human_passenger",
-            "vClass": "passenger",
-            "carFollowModel": "Krauss",
-            "accel": "2.6",
-            "decel": "4.5",
-            "emergencyDecel": "9.0",
-            "sigma": "0.5",
-            "tau": "1.2",
-            "length": "5.0",
-            "minGap": "2.5",
-            "speedFactor": "1.0",
-            "speedDev": "0.1",
-        },
+    passenger_attributes = {
+        "id": "human_passenger",
+        "vClass": "passenger",
+        "carFollowModel": "Krauss",
+        "accel": "2.6",
+        "decel": "4.5",
+        "emergencyDecel": "9.0",
+        "sigma": "0.5",
+        "tau": "1.2",
+        "length": "5.0",
+        "minGap": "2.5",
+        "speedFactor": "1.0",
+        "speedDev": "0.1",
+    }
+    passenger_attributes.update(
+        {key: str(value) for key, value in (human_parameters or {}).items()}
     )
+    type_id = "human_mix" if truck_share else "human_passenger"
+    parent = (
+        ElementTree.SubElement(root, "vTypeDistribution", {"id": type_id}) if truck_share else root
+    )
+    if truck_share:
+        # ponytail: one heavy-vehicle proxy; use axle-class types if measured data become available.
+        passenger_attributes["probability"] = str(1.0 - truck_share)
+    ElementTree.SubElement(parent, "vType", passenger_attributes)
+    if truck_share:
+        ElementTree.SubElement(
+            parent,
+            "vType",
+            {
+                **passenger_attributes,
+                "id": "human_truck",
+                "vClass": "truck",
+                "probability": str(truck_share),
+                "length": "12.0",
+                "accel": "1.2",
+                "decel": "4.0",
+                "maxSpeed": "24.59",
+            },
+        )
     for ramp in ramp_demands or []:
         ElementTree.SubElement(
             root,
@@ -367,14 +402,15 @@ def write_route_file(
         {"id": "us101_northbound", "edges": " ".join(route_edge_ids)},
     )
 
-    _add_profile_flows(root, "mainline", "us101_northbound", demand_points, warmup_seconds)
+    _add_profile_flows(root, "mainline", "us101_northbound", demand_points, warmup_seconds, type_id)
     for ramp in ramp_demands or []:
         _add_profile_flows(
             root,
-            f"ramp_{ramp.station_id}",
+            f"ramp_{ramp.station_id}" if ramp.station_id is not None else ramp.route_id,
             ramp.route_id,
             ramp.demand_profile,
             warmup_seconds,
+            ramp.vehicle_type or type_id,
         )
 
     flows = root.findall("flow")
@@ -396,13 +432,14 @@ def _add_flow(
     end_seconds: int,
     vehicles_per_hour: float,
     route_id: str = "us101_northbound",
+    type_id: str = "human_passenger",
 ) -> None:
     ElementTree.SubElement(
         root,
         "flow",
         {
             "id": flow_id,
-            "type": "human_passenger",
+            "type": type_id,
             "route": route_id,
             "begin": str(begin_seconds),
             "end": str(end_seconds),
@@ -419,6 +456,7 @@ def _add_profile_flows(
     route_id: str,
     demand_points: list[DemandPoint],
     warmup_seconds: int,
+    type_id: str = "human_passenger",
 ) -> None:
     if warmup_seconds:
         _add_flow(
@@ -428,6 +466,7 @@ def _add_profile_flows(
             warmup_seconds,
             demand_points[0].vehicles_per_hour,
             route_id,
+            type_id,
         )
     for point in demand_points:
         _add_flow(
@@ -437,6 +476,7 @@ def _add_profile_flows(
             point.end_seconds,
             point.vehicles_per_hour,
             route_id,
+            type_id,
         )
 
 
@@ -522,6 +562,78 @@ def _build_ramp_demands(
                 demand_profile=demand_points_from_report(
                     ramp_report, warmup_seconds, station_id, observation_dates
                 ),
+                source_kind="measured_pems",
+                source_note=None,
+            )
+        )
+    return demands
+
+
+def _build_estimated_ramp_demands(
+    network_file: Path,
+    mainline_edge_ids: list[str],
+    mappings: list[dict[str, Any]],
+    time_template: list[DemandPoint],
+) -> list[RampDemand]:
+    """Create labeled constant-flow ramp hypotheses, not PeMS observations."""
+
+    if not mappings:
+        return []
+    network = sumolib.net.readNet(str(network_file))
+    demands: list[RampDemand] = []
+    used_ids: set[str] = set()
+    for mapping in mappings:
+        estimate_id = str(mapping["id"])
+        if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", estimate_id):
+            raise ValueError(f"Invalid estimated entrance ID: {estimate_id!r}.")
+        if estimate_id in used_ids:
+            raise ValueError(f"Duplicate estimated entrance ID: {estimate_id}.")
+        used_ids.add(estimate_id)
+        flow = float(mapping["vehicles_per_hour"])
+        if not math.isfinite(flow) or flow < 0:
+            raise ValueError(f"Estimated entrance {estimate_id} needs finite non-negative flow.")
+        lane_type = str(mapping.get("lane_type", "OR"))
+        if lane_type == "OR":
+            merge_edge_id = str(mapping["merge_edge_id"])
+            try:
+                merge_index = mainline_edge_ids.index(merge_edge_id)
+            except ValueError as error:
+                raise ValueError(
+                    f"Estimated entrance merge edge {merge_edge_id} is not on the mainline."
+                ) from error
+            ramp_segment = _shortest_route_edge_ids(
+                network, str(mapping["sumo_edge_id"]), merge_edge_id
+            )
+            route_edge_ids = ramp_segment + mainline_edge_ids[merge_index + 1 :]
+        elif lane_type == "FR":
+            diverge = str(mapping["diverge_edge_id"])
+            diverge_index = mainline_edge_ids.index(diverge)
+            exit_edge = network.getEdge(str(mapping["sumo_edge_id"]))
+            if exit_edge not in network.getEdge(diverge).getOutgoing():
+                raise ValueError(f"Estimated exit is not directly connected to {diverge}.")
+            route_edge_ids = mainline_edge_ids[: diverge_index + 1] + [exit_edge.getID()]
+        else:
+            raise ValueError(f"Unsupported estimated ramp type: {lane_type}.")
+        demands.append(
+            RampDemand(
+                station_id=None,
+                lane_type=lane_type,
+                name=str(mapping["name"]),
+                route_id=f"estimated_{estimate_id}",
+                route_edge_ids=route_edge_ids,
+                demand_profile=[
+                    DemandPoint(
+                        observed_time=point.observed_time,
+                        begin_seconds=point.begin_seconds,
+                        end_seconds=point.end_seconds,
+                        vehicles_per_hour=flow,
+                        observed_speed_mph=None,
+                    )
+                    for point in time_template
+                ],
+                source_kind="assumed_sensitivity",
+                source_note=str(mapping["basis"]),
+                vehicle_type="human_passenger" if mapping.get("passenger_only") else None,
             )
         )
     return demands
@@ -558,9 +670,38 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
     for required_file in (network_file, pems_report_file, ramp_profile_file):
         if not required_file.is_file():
             raise FileNotFoundError(f"Required baseline input not found: {required_file}")
+    for filename, expected in raw.get("expected_input_sha256", {}).items():
+        actual = hashlib.sha256((root / filename).read_bytes()).hexdigest()
+        if actual != expected:
+            raise ValueError(f"Frozen M3 input changed: {filename}. Rebaseline explicitly.")
 
     warmup_seconds = int(raw["warmup_seconds"])
     clearance_seconds = int(raw["clearance_seconds"])
+    human_parameters = {
+        "accel": 2.6,
+        "decel": 4.5,
+        "emergencyDecel": 9.0,
+        "sigma": 0.5,
+        "tau": 1.2,
+        "length": 5.0,
+        "minGap": 2.5,
+        "speedFactor": 1.0,
+        "speedDev": 0.1,
+    }
+    overrides = raw.get("human_parameters", {})
+    allowed_parameters = set(human_parameters) | {"lcCooperative", "lcSpeedGain", "lcStrategic"}
+    if set(overrides) - allowed_parameters:
+        raise ValueError(
+            f"Unsupported human parameters: {sorted(set(overrides) - allowed_parameters)}"
+        )
+    human_parameters.update({key: float(value) for key, value in overrides.items()})
+    if any(not math.isfinite(value) or value < 0 for value in human_parameters.values()):
+        raise ValueError("Human parameters must be finite and non-negative.")
+    if human_parameters["tau"] < 0.5 or not 0 <= human_parameters["sigma"] <= 1:
+        raise ValueError("tau must be at least the 0.5-second step; sigma must be in [0, 1].")
+    truck_share = float(raw.get("truck_share", 0.0))
+    if not math.isfinite(truck_share) or not 0 <= truck_share <= 1:
+        raise ValueError("truck_share must be a finite proportion in [0, 1].")
     report = json.loads(pems_report_file.read_text())
     ramp_report = json.loads(ramp_profile_file.read_text())
     ramp_reports = [ramp_report, *supplemental_ramp_reports]
@@ -597,8 +738,7 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
         unavailable = sorted(set(configured_dates) - available_dates)
         if unavailable:
             raise ValueError(
-                "Selected observation dates lack complete common demand profiles: "
-                f"{unavailable}"
+                f"Selected observation dates lack complete common demand profiles: {unavailable}"
             )
         observation_dates = set(configured_dates)
     mainline_entry_points = demand_points_from_report(
@@ -618,6 +758,14 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
         warmup_seconds,
         observation_dates,
     )
+    ramp_demands.extend(
+        _build_estimated_ramp_demands(
+            network_file,
+            route_edge_ids,
+            raw.get("estimated_ramp_mappings", raw.get("estimated_entrance_mappings", [])),
+            mainline_entry_points,
+        )
+    )
     off_ramp_profiles = [ramp.demand_profile for ramp in ramp_demands if ramp.lane_type == "FR"]
     mainline_through_points = _subtract_demand_profiles(mainline_entry_points, off_ramp_profiles)
     write_route_file(
@@ -626,6 +774,8 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
         mainline_through_points,
         warmup_seconds,
         ramp_demands,
+        human_parameters,
+        truck_share,
     )
 
     all_profiles = [mainline_through_points] + [ramp.demand_profile for ramp in ramp_demands]
@@ -641,6 +791,10 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
         sorted(root.glob(raw["metadata_glob"])),
         corridor.bounding_box,
         detector_station_ids,
+        {
+            int(station): indices
+            for station, indices in raw.get("detector_lane_indices", {}).items()
+        },
     )
     aligned_observed_profile_file = root / raw["aligned_pems_report_file"]
     aligned_observed_profile_file.parent.mkdir(parents=True, exist_ok=True)
@@ -650,10 +804,27 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
     prepared = PreparedBaseline(
         scenario=raw["scenario"],
         network_file=str(network_file),
+        network_sha256=hashlib.sha256(network_file.read_bytes()).hexdigest(),
         route_file=str(route_file),
         manifest_file=str(manifest_file),
         aligned_observed_profile_file=str(aligned_observed_profile_file),
         observation_dates=sorted(observation_dates),
+        human_parameters=human_parameters,
+        truck_share=truck_share,
+        vehicle_types=[
+            kind.attrib for kind in ElementTree.parse(route_file).getroot().iter("vType")
+        ],
+        provenance={
+            "mainline_profile_sha256": hashlib.sha256(pems_report_file.read_bytes()).hexdigest(),
+            "ramp_profile_sha256": hashlib.sha256(ramp_profile_file.read_bytes()).hexdigest(),
+            "metadata_sha256": {
+                str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()
+                for path in sorted(root.glob(raw["metadata_glob"]))
+            },
+            "sumo_version": subprocess.check_output(
+                [str(binary("sumo")), "--version"], text=True
+            ).splitlines()[0],
+        },
         route_edge_count=len(route_edges),
         route_length_meters=route_length,
         minimum_lane_count=min(edge.getLaneNumber() for edge in route_edges),
@@ -685,6 +856,7 @@ def run_human_baseline(
     output_directory = Path(prepared.manifest_file).parent
     tripinfo_file = output_directory / f"h0_human_baseline_seed_{seed}.tripinfo.xml"
     log_file = output_directory / f"h0_human_baseline_seed_{seed}.log"
+    summary_file = output_directory / f"h0_summary_seed_{seed}.xml"
     detector_file = repository_root() / raw["detector_file_template"].format(seed=seed)
     detector_output_file = repository_root() / raw["detector_output_template"].format(seed=seed)
     detector_summary_file = repository_root() / raw["detector_summary_template"].format(seed=seed)
@@ -710,6 +882,8 @@ def run_human_baseline(
             str(seed),
             "--tripinfo-output",
             str(tripinfo_file),
+            "--summary-output",
+            str(summary_file),
             "--log",
             str(log_file),
             "--no-step-log",
@@ -722,7 +896,41 @@ def run_human_baseline(
         check=True,
         stdout=subprocess.DEVNULL,
     )
-    detector_intervals = summarize_virtual_detector_output(detector_output_file)
+    final_step = ElementTree.parse(summary_file).getroot().findall("step")[-1].attrib
+    log_lines = log_file.read_text().splitlines()
+    warning_lines = [
+        line
+        for line in log_lines
+        if any(
+            word in line.lower()
+            for word in ("warning", "error", "teleport", "collision", "emergency")
+        )
+    ]
+    vehicle_types: dict[str, int] = defaultdict(int)
+    for _, trip in ElementTree.iterparse(tripinfo_file, events=("end",)):
+        if trip.tag == "tripinfo":
+            vehicle_types[trip.attrib.get("vType", "unknown")] += 1
+            trip.clear()
+    (output_directory / f"h0_run_health_seed_{seed}.json").write_text(
+        json.dumps(
+            {
+                "seed": seed,
+                "final_summary": final_step,
+                "warning_lines": warning_lines,
+                "completed_vehicle_types": dict(vehicle_types),
+            },
+            indent=2,
+        )
+        + "\n"
+    )
+    detector_intervals = summarize_virtual_detector_output(
+        detector_output_file,
+        {
+            spec.station_id: {int(lane.rsplit("_", 1)[1]) for lane in spec.lane_ids}
+            for spec in prepared.virtual_detectors
+            if spec.recorded_lane_ids is not None
+        },
+    )
     detector_summary_file.write_text(
         json.dumps(
             {

@@ -1,0 +1,37 @@
+{
+  "baseline_config": "configs/us101_human_baseline_m3_frozen.json",
+  "reference_baseline_config": "configs/us101_human_baseline_m3_demand_sensitivity.json",
+  "calibration_dates": [
+    "2025-10-07",
+    "2025-10-08",
+    "2025-10-09",
+    "2025-10-10",
+    "2025-10-14"
+  ],
+  "representative_calibration_date": "2025-10-08",
+  "representative_day_rule": "Median 07:00-09:00 upstream station 402370 mean flow among the five predeclared calibration weekdays.",
+  "validation_dates": [
+    "2025-10-15",
+    "2025-10-16"
+  ],
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "truck_share": 0.04,
+  "clearance_seconds": 7200,
+  "scoring_excluded_station_ids": [
+    402377
+  ],
+  "candidates": {
+    "buffer_exit_tau15": {
+      "tau": 1.5
+    }
+  },
+  "selected_candidate": "buffer_exit_tau15",
+  "selection_reason": "Calibration only: final bounded candidate uses the existing 1007.33 m upstream network buffer, 80% coverage station 400790 inlet proxy, and a 1500 veh/h downstream net-exit hypothesis. Representative-day full-lane station flow MAPE 8.38% and speed MAE 5.93 mph, clean and cleared. This improves speed versus the no-buffer candidate (11.91 mph) and flow versus the buffer without net exit (10.90%). Confirm all five calibration days before freezing validation; no further candidate fitting. Final five-day/three-seed calibration: 8.32% flow MAPE, 8.15 mph speed MAE, 15/15 clean and cleared. SUMO indices 1\u20134 retained at 402377 after the calibration-only alternative gave 23.05% flow MAPE / 4.07 mph speed MAE versus 8.61% / 3.01 mph.",
+  "output_directory": "outputs/us101_corridor/m3/experiment",
+  "report_directory": "reports/m3",
+  "selection_status": "frozen_before_validation"
+}

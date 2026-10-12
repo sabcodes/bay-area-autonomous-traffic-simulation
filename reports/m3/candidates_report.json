@@ -1,0 +1,2197 @@
+{
+  "phase": "candidates",
+  "dates": [
+    "2025-10-08"
+  ],
+  "seeds": [
+    42
+  ],
+  "summary": [
+    {
+      "case": "tau12",
+      "runs": 1,
+      "all_clean_and_cleared": true,
+      "mean_station_flow_mape_percent": 5.615575468909146,
+      "mean_station_speed_mae_mph": 21.743164056928496
+    },
+    {
+      "case": "tau15",
+      "runs": 1,
+      "all_clean_and_cleared": false,
+      "mean_station_flow_mape_percent": 8.415350811136966,
+      "mean_station_speed_mae_mph": 11.912363896844726
+    },
+    {
+      "case": "tau18",
+      "runs": 1,
+      "all_clean_and_cleared": false,
+      "mean_station_flow_mape_percent": 18.997210718714403,
+      "mean_station_speed_mae_mph": 4.748714554312823
+    },
+    {
+      "case": "tau20",
+      "runs": 1,
+      "all_clean_and_cleared": false,
+      "mean_station_flow_mape_percent": 25.516975415068256,
+      "mean_station_speed_mae_mph": 5.341272022754175
+    },
+    {
+      "case": "tau13",
+      "runs": 1,
+      "all_clean_and_cleared": false,
+      "mean_station_flow_mape_percent": 5.983066191938035,
+      "mean_station_speed_mae_mph": 19.64326671392222
+    },
+    {
+      "case": "tau14",
+      "runs": 1,
+      "all_clean_and_cleared": false,
+      "mean_station_flow_mape_percent": 6.749075470058778,
+      "mean_station_speed_mae_mph": 14.473107672545888
+    },
+    {
+      "case": "tau15_split",
+      "runs": 1,
+      "all_clean_and_cleared": false,
+      "mean_station_flow_mape_percent": 17.05299108996545,
+      "mean_station_speed_mae_mph": 7.588205829930371
+    },
+    {
+      "case": "tau16_split",
+      "runs": 1,
+      "all_clean_and_cleared": false,
+      "mean_station_flow_mape_percent": 21.34971404080315,
+      "mean_station_speed_mae_mph": 5.917648575015467
+    },
+    {
+      "case": "tau17_split",
+      "runs": 1,
+      "all_clean_and_cleared": false,
+      "mean_station_flow_mape_percent": 25.165462408301163,
+      "mean_station_speed_mae_mph": 5.060243883287595
+    },
+    {
+      "case": "tau18_split",
+      "runs": 1,
+      "all_clean_and_cleared": false,
+      "mean_station_flow_mape_percent": 29.155789100774275,
+      "mean_station_speed_mae_mph": 5.381361722949335
+    },
+    {
+      "case": "buffer_tau15",
+      "runs": 1,
+      "all_clean_and_cleared": true,
+      "mean_station_flow_mape_percent": 10.901900267544598,
+      "mean_station_speed_mae_mph": 5.788761929956467
+    },
+    {
+      "case": "buffer_exit_tau15",
+      "runs": 1,
+      "all_clean_and_cleared": true,
+      "mean_station_flow_mape_percent": 8.381724109797036,
+      "mean_station_speed_mae_mph": 5.926163362837969
+    }
+  ],
+  "runs": [
+    {
+      "case": "tau12",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": true,
+      "treatment_sha256": "cfe8b313ca79828609181c9a7686c6c6ab7dffbed0aaa795fa4a16a1b06d04a6",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 1.2,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_entrances": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured entrance-group sensitivity before station 401998",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Calibration-only group hypothesis: 401996 to 401998 net +235 veh/h, while measured Mathilda exit minus entrance is about -462 veh/h. Other unmeasured entries and exits remain unresolved; 700 is not a count for this ramp."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured SR-85-area entrance-group sensitivity before station 401507",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 2000.0,
+            "basis": "Calibration-only group hypothesis: the observed 401948 to 401507 net increase is about 2047 veh/h across five weekdays. The 401948 lane mismatch and unmeasured HOV/other movements prevent assigning this number to the GP ramp."
+          }
+        ]
+      },
+      "manifest_file": "outputs/us101_corridor/m3/experiment/candidates/tau12/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 21647,
+        "average_travel_time_seconds": 580.8505335612325,
+        "average_waiting_time_seconds": 23.888506490506767,
+        "average_time_loss_seconds": 250.9286547789532,
+        "average_trip_speed_mph": 42.862568525581736
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "9899.50",
+          "loaded": "21647",
+          "inserted": "21647",
+          "running": "0",
+          "waiting": "0",
+          "ended": "21647",
+          "arrived": "21647",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "64.19",
+          "meanTravelTime": "580.85",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 20777,
+          "human_truck": 870
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 7977.5,
+          "flow_mean_absolute_percentage_error": 7.213222324919073,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 47.43864128896042,
+          "speed_mean_absolute_error_mph": 4.151691986726224
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 6065.5,
+          "flow_mean_absolute_percentage_error": 7.87621268288251,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 56.55846863607446,
+          "speed_mean_absolute_error_mph": 21.38763530274113
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 5774.0,
+          "flow_mean_absolute_percentage_error": 1.1486317539621727,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 56.94472972983409,
+          "speed_mean_absolute_error_mph": 25.144729729834086
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 6062.5,
+          "flow_mean_absolute_percentage_error": 6.578176365590916,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 56.443164707278065,
+          "speed_mean_absolute_error_mph": 24.28483137394473
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 5773.0,
+          "flow_mean_absolute_percentage_error": 0.398706954156923,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 56.86007606598243,
+          "speed_mean_absolute_error_mph": 26.689242732649095
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 6066.5,
+          "flow_mean_absolute_percentage_error": 10.478502731943282,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 56.43418654900906,
+          "speed_mean_absolute_error_mph": 28.800853215675726
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    },
+    {
+      "case": "tau15",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": false,
+      "treatment_sha256": "2d665ab9b54d240f8df617d5168caa525890d379a184af49f91d3111155b472f",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 1.5,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_entrances": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured entrance-group sensitivity before station 401998",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Calibration-only group hypothesis: 401996 to 401998 net +235 veh/h, while measured Mathilda exit minus entrance is about -462 veh/h. Other unmeasured entries and exits remain unresolved; 700 is not a count for this ramp."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured SR-85-area entrance-group sensitivity before station 401507",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 2000.0,
+            "basis": "Calibration-only group hypothesis: the observed 401948 to 401507 net increase is about 2047 veh/h across five weekdays. The 401948 lane mismatch and unmeasured HOV/other movements prevent assigning this number to the GP ramp."
+          }
+        ]
+      },
+      "manifest_file": "outputs/us101_corridor/m3/experiment/candidates/tau15/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 20615,
+        "average_travel_time_seconds": 889.572956585011,
+        "average_waiting_time_seconds": 54.57756487994179,
+        "average_time_loss_seconds": 554.537073490177,
+        "average_trip_speed_mph": 34.678467024281915
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "9899.50",
+          "loaded": "21647",
+          "inserted": "20714",
+          "running": "99",
+          "waiting": "933",
+          "ended": "20615",
+          "arrived": "20615",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "285.88",
+          "meanTravelTime": "889.57",
+          "meanSpeed": "26.79",
+          "meanSpeedRelative": "0.92",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 19785,
+          "human_truck": 830
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 6849.0,
+          "flow_mean_absolute_percentage_error": 17.098674103132065,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 40.454871109726504,
+          "speed_mean_absolute_error_mph": 3.694663880685333
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 5548.0,
+          "flow_mean_absolute_percentage_error": 10.407336205444668,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 39.12758695633021,
+          "speed_mean_absolute_error_mph": 5.139822584870223
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 5732.0,
+          "flow_mean_absolute_percentage_error": 1.6419538361493446,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 51.94956515107489,
+          "speed_mean_absolute_error_mph": 20.754763088148305
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 5623.0,
+          "flow_mean_absolute_percentage_error": 10.184404527131731,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 39.78740575644673,
+          "speed_mean_absolute_error_mph": 7.629072423113396
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 5743.5,
+          "flow_mean_absolute_percentage_error": 0.942522302461422,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 52.5420211453112,
+          "speed_mean_absolute_error_mph": 22.595053139018233
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 5600.0,
+          "flow_mean_absolute_percentage_error": 10.217213892502558,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 39.294141598566206,
+          "speed_mean_absolute_error_mph": 11.660808265232868
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    },
+    {
+      "case": "tau18",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": false,
+      "treatment_sha256": "0928cf3b3196364c094d436e409a2f531329e61b38dc0fbdd61d4eb9e0c4097e",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 1.8,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_entrances": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured entrance-group sensitivity before station 401998",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Calibration-only group hypothesis: 401996 to 401998 net +235 veh/h, while measured Mathilda exit minus entrance is about -462 veh/h. Other unmeasured entries and exits remain unresolved; 700 is not a count for this ramp."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured SR-85-area entrance-group sensitivity before station 401507",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 2000.0,
+            "basis": "Calibration-only group hypothesis: the observed 401948 to 401507 net increase is about 2047 veh/h across five weekdays. The 401948 lane mismatch and unmeasured HOV/other movements prevent assigning this number to the GP ramp."
+          }
+        ]
+      },
+      "manifest_file": "outputs/us101_corridor/m3/experiment/candidates/tau18/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 18226,
+        "average_travel_time_seconds": 1054.5007955667727,
+        "average_waiting_time_seconds": 73.1811697574893,
+        "average_time_loss_seconds": 720.5662092614946,
+        "average_trip_speed_mph": 29.41670678680266
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "9899.50",
+          "loaded": "21647",
+          "inserted": "20128",
+          "running": "1902",
+          "waiting": "1519",
+          "ended": "18226",
+          "arrived": "18226",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "23",
+          "stopped": "0",
+          "meanWaitingTime": "631.00",
+          "meanTravelTime": "1054.50",
+          "meanSpeed": "9.06",
+          "meanSpeedRelative": "0.31",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 17504,
+          "human_truck": 722
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 5954.0,
+          "flow_mean_absolute_percentage_error": 26.884967043132832,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 37.79676994682533,
+          "speed_mean_absolute_error_mph": 6.278046921781271
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 4738.0,
+          "flow_mean_absolute_percentage_error": 20.111304303680843,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 32.50707744418445,
+          "speed_mean_absolute_error_mph": 3.5559221538638215
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 4832.0,
+          "flow_mean_absolute_percentage_error": 17.081200086139884,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 32.43588511993665,
+          "speed_mean_absolute_error_mph": 4.283879794412017
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 4853.5,
+          "flow_mean_absolute_percentage_error": 18.982170381713228,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 31.826702899763575,
+          "speed_mean_absolute_error_mph": 3.747745696431085
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 4847.5,
+          "flow_mean_absolute_percentage_error": 16.41142401483906,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 31.815290605134148,
+          "speed_mean_absolute_error_mph": 4.2738473617628365
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 4828.5,
+          "flow_mean_absolute_percentage_error": 14.512198482780581,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 31.942303912601247,
+          "speed_mean_absolute_error_mph": 6.352845397625905
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    },
+    {
+      "case": "tau20",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": false,
+      "treatment_sha256": "ebec27656d4e0a805c516c34ec66caff0a71d4eb07352efafe8061322739a70a",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 2.0,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_entrances": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured entrance-group sensitivity before station 401998",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Calibration-only group hypothesis: 401996 to 401998 net +235 veh/h, while measured Mathilda exit minus entrance is about -462 veh/h. Other unmeasured entries and exits remain unresolved; 700 is not a count for this ramp."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured SR-85-area entrance-group sensitivity before station 401507",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 2000.0,
+            "basis": "Calibration-only group hypothesis: the observed 401948 to 401507 net increase is about 2047 veh/h across five weekdays. The 401948 lane mismatch and unmeasured HOV/other movements prevent assigning this number to the GP ramp."
+          }
+        ]
+      },
+      "manifest_file": "outputs/us101_corridor/m3/experiment/candidates/tau20/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 16646,
+        "average_travel_time_seconds": 1125.8769374023789,
+        "average_waiting_time_seconds": 81.10894509191397,
+        "average_time_loss_seconds": 792.0758350354439,
+        "average_trip_speed_mph": 28.291647166717635
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "9899.50",
+          "loaded": "21647",
+          "inserted": "18964",
+          "running": "2318",
+          "waiting": "2683",
+          "ended": "16646",
+          "arrived": "16646",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "51",
+          "stopped": "0",
+          "meanWaitingTime": "885.10",
+          "meanTravelTime": "1125.88",
+          "meanSpeed": "7.75",
+          "meanSpeedRelative": "0.27",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 15971,
+          "human_truck": 675
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 5459.0,
+          "flow_mean_absolute_percentage_error": 32.93548528017426,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 36.418341402754095,
+          "speed_mean_absolute_error_mph": 7.57332526391257
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 4341.5,
+          "flow_mean_absolute_percentage_error": 26.31538510607376,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 32.368399420079975,
+          "speed_mean_absolute_error_mph": 3.563689378418093
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 4445.0,
+          "flow_mean_absolute_percentage_error": 23.46050080493669,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 30.531666507336137,
+          "speed_mean_absolute_error_mph": 5.242170589561975
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 4432.0,
+          "flow_mean_absolute_percentage_error": 26.03870380914921,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 31.290995881455803,
+          "speed_mean_absolute_error_mph": 3.8757928442467127
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 4462.0,
+          "flow_mean_absolute_percentage_error": 22.71389285894986,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 29.30093281470297,
+          "speed_mean_absolute_error_mph": 5.116460206635376
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 4384.5,
+          "flow_mean_absolute_percentage_error": 21.637884631125758,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 31.61396689161904,
+          "speed_mean_absolute_error_mph": 6.676193853750319
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    },
+    {
+      "case": "tau13",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": false,
+      "treatment_sha256": "69ff04c2e8a44f71b7335c6240aa2b817c20d027f345b07d5f28b16f5730ced9",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 1.3,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_entrances": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured entrance-group sensitivity before station 401998",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Calibration-only group hypothesis: 401996 to 401998 net +235 veh/h, while measured Mathilda exit minus entrance is about -462 veh/h. Other unmeasured entries and exits remain unresolved; 700 is not a count for this ramp."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured SR-85-area entrance-group sensitivity before station 401507",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 2000.0,
+            "basis": "Calibration-only group hypothesis: the observed 401948 to 401507 net increase is about 2047 veh/h across five weekdays. The 401948 lane mismatch and unmeasured HOV/other movements prevent assigning this number to the GP ramp."
+          }
+        ],
+        "detector_lane_indices": {
+          "402377": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "manifest_file": "outputs/us101_corridor/m3/experiment/candidates/tau13/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 21205,
+        "average_travel_time_seconds": 659.2234378684273,
+        "average_waiting_time_seconds": 33.24098090073096,
+        "average_time_loss_seconds": 327.1915788729073,
+        "average_trip_speed_mph": 40.40850820685603
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "9899.50",
+          "loaded": "21647",
+          "inserted": "21316",
+          "running": "111",
+          "waiting": "331",
+          "ended": "21205",
+          "arrived": "21205",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "177.04",
+          "meanTravelTime": "659.22",
+          "meanSpeed": "27.01",
+          "meanSpeedRelative": "0.93",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 20354,
+          "human_truck": 851
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 7548.5,
+          "flow_mean_absolute_percentage_error": 10.836897466205926,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 44.36116744429909,
+          "speed_mean_absolute_error_mph": 2.4999374032880777
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 6050.5,
+          "flow_mean_absolute_percentage_error": 6.601879555615774,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 48.8270043244213,
+          "speed_mean_absolute_error_mph": 13.656170991087974
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 5773.0,
+          "flow_mean_absolute_percentage_error": 1.0955096836248475,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 56.27515933702165,
+          "speed_mean_absolute_error_mph": 24.57258139903743
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 6058.5,
+          "flow_mean_absolute_percentage_error": 6.005080555895144,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 55.372449254745504,
+          "speed_mean_absolute_error_mph": 23.2157597600367
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 5773.0,
+          "flow_mean_absolute_percentage_error": 0.4545062542352238,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 56.33425749962791,
+          "speed_mean_absolute_error_mph": 26.163424166294575
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 6054.0,
+          "flow_mean_absolute_percentage_error": 10.904523636051293,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 55.38505989712189,
+          "speed_mean_absolute_error_mph": 27.751726563788555
+        },
+        {
+          "station_id": 402377,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 6005.5,
+          "simulated_mean_flow_vehicles_per_hour": 7031.0,
+          "flow_mean_absolute_percentage_error": 17.447501993250437,
+          "observed_mean_speed_mph": 55.85,
+          "simulated_mean_speed_mph": 43.19843799533108,
+          "speed_mean_absolute_error_mph": 12.651562004668923
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    },
+    {
+      "case": "tau14",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": false,
+      "treatment_sha256": "888fbfb795c1f947cac15bf8149a745780daddfbff928cf02f6ee9cef9076c4e",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 1.4,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_entrances": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured entrance-group sensitivity before station 401998",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Calibration-only group hypothesis: 401996 to 401998 net +235 veh/h, while measured Mathilda exit minus entrance is about -462 veh/h. Other unmeasured entries and exits remain unresolved; 700 is not a count for this ramp."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured SR-85-area entrance-group sensitivity before station 401507",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 2000.0,
+            "basis": "Calibration-only group hypothesis: the observed 401948 to 401507 net increase is about 2047 veh/h across five weekdays. The 401948 lane mismatch and unmeasured HOV/other movements prevent assigning this number to the GP ramp."
+          }
+        ],
+        "detector_lane_indices": {
+          "402377": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "manifest_file": "outputs/us101_corridor/m3/experiment/candidates/tau14/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 20914,
+        "average_travel_time_seconds": 776.6329731280482,
+        "average_waiting_time_seconds": 42.94013579420484,
+        "average_time_loss_seconds": 443.1301874342546,
+        "average_trip_speed_mph": 37.459604528615245
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "9899.50",
+          "loaded": "21647",
+          "inserted": "21015",
+          "running": "101",
+          "waiting": "632",
+          "ended": "20914",
+          "arrived": "20914",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "222.27",
+          "meanTravelTime": "776.63",
+          "meanSpeed": "27.01",
+          "meanSpeedRelative": "0.93",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 20072,
+          "human_truck": 842
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 7227.0,
+          "flow_mean_absolute_percentage_error": 12.52651686702744,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 43.07432095065806,
+          "speed_mean_absolute_error_mph": 2.69934737468239
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 5788.0,
+          "flow_mean_absolute_percentage_error": 8.273685845441333,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 41.69397840127377,
+          "speed_mean_absolute_error_mph": 6.899574556030976
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 5773.5,
+          "flow_mean_absolute_percentage_error": 1.0938666808285875,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 55.388257281083504,
+          "speed_mean_absolute_error_mph": 23.924867405411444
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 5901.5,
+          "flow_mean_absolute_percentage_error": 7.8674488418916875,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 44.36053815651016,
+          "speed_mean_absolute_error_mph": 12.295987270313107
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 5771.5,
+          "flow_mean_absolute_percentage_error": 0.4924986330632086,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 55.50355665412665,
+          "speed_mean_absolute_error_mph": 25.34484210389269
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 5860.5,
+          "flow_mean_absolute_percentage_error": 10.240435952100414,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 43.30736065827805,
+          "speed_mean_absolute_error_mph": 15.674027324944717
+        },
+        {
+          "station_id": 402377,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 6005.5,
+          "simulated_mean_flow_vehicles_per_hour": 6618.0,
+          "flow_mean_absolute_percentage_error": 10.761421254138375,
+          "observed_mean_speed_mph": 55.85,
+          "simulated_mean_speed_mph": 42.24252808086663,
+          "speed_mean_absolute_error_mph": 13.607471919133376
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    },
+    {
+      "case": "tau15_split",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": false,
+      "treatment_sha256": "932eb7e6d740015d1f2c86c9f41edd84b1d52e2b11b78a4d2dc2269074c8342e",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 1.5,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_entrances": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured pre-401998 group",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Rounded calibration net residual; gross entry/exit volumes unknown."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured GP share of pre-401507 group",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 1000.0,
+            "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis."
+          },
+          {
+            "id": "sr85_express_entrance",
+            "name": "Unmeasured express share of pre-401507 group",
+            "sumo_edge_id": "11479095",
+            "merge_edge_id": "509747406",
+            "vehicles_per_hour": 1000.0,
+            "passenger_only": true,
+            "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis; express passengers assumed eligible/toll-paying."
+          }
+        ],
+        "detector_lane_indices": {
+          "402377": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      },
+      "manifest_file": "outputs/us101_corridor/m3/experiment/candidates/tau15_split/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 20575,
+        "average_travel_time_seconds": 1041.650886998785,
+        "average_waiting_time_seconds": 84.98277035236939,
+        "average_time_loss_seconds": 710.7024082624545,
+        "average_trip_speed_mph": 32.79254008864466
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "9899.50",
+          "loaded": "21671",
+          "inserted": "21671",
+          "running": "1096",
+          "waiting": "0",
+          "ended": "20575",
+          "arrived": "20575",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "44",
+          "stopped": "0",
+          "meanWaitingTime": "215.10",
+          "meanTravelTime": "1041.65",
+          "meanSpeed": "11.88",
+          "meanSpeedRelative": "0.41",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 19884,
+          "human_truck": 691
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 6873.0,
+          "flow_mean_absolute_percentage_error": 17.82389667891835,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 38.49162196917742,
+          "speed_mean_absolute_error_mph": 5.599369184936748
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 4839.0,
+          "flow_mean_absolute_percentage_error": 20.759591498411137,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 35.57714244097554,
+          "speed_mean_absolute_error_mph": 5.110528763620743
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 5022.0,
+          "flow_mean_absolute_percentage_error": 14.265908011685921,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 41.69846620448697,
+          "speed_mean_absolute_error_mph": 10.278288960313985
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 4962.0,
+          "flow_mean_absolute_percentage_error": 19.63747699820744,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 35.56245743863747,
+          "speed_mean_absolute_error_mph": 4.829538288670036
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 5046.5,
+          "flow_mean_absolute_percentage_error": 13.189041365811141,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 42.13255147064043,
+          "speed_mean_absolute_error_mph": 11.961718137307097
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 4907.5,
+          "flow_mean_absolute_percentage_error": 16.642031986758713,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 35.38312497806695,
+          "speed_mean_absolute_error_mph": 7.7497916447336195
+        },
+        {
+          "station_id": 402377,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 6005.5,
+          "simulated_mean_flow_vehicles_per_hour": 6348.0,
+          "flow_mean_absolute_percentage_error": 6.548551306643614,
+          "observed_mean_speed_mph": 55.85,
+          "simulated_mean_speed_mph": 39.55626641535796,
+          "speed_mean_absolute_error_mph": 16.293733584642037
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    },
+    {
+      "case": "tau16_split",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": false,
+      "treatment_sha256": "010e01db94301970cdea1cd3787b5549bdfe959edc96605d8ed48dba8bf8ba92",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 1.6,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_entrances": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured pre-401998 group",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Rounded calibration net residual; gross entry/exit volumes unknown."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured GP share of pre-401507 group",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 1000.0,
+            "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis."
+          },
+          {
+            "id": "sr85_express_entrance",
+            "name": "Unmeasured express share of pre-401507 group",
+            "sumo_edge_id": "11479095",
+            "merge_edge_id": "509747406",
+            "vehicles_per_hour": 1000.0,
+            "passenger_only": true,
+            "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis; express passengers assumed eligible/toll-paying."
+          }
+        ],
+        "detector_lane_indices": {
+          "402377": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "provenance": {
+          "mainline_profile_sha256": "bf9dc9e493cf09a66b62c774ed0bd696de76a2275fe956f6424b2143a5214a89",
+          "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+          "metadata_sha256": {
+            "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+            "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+          },
+          "sumo_version": "Eclipse SUMO sumo 1.27.1"
+        },
+        "warmup_seconds": 900,
+        "clearance_seconds": 7200,
+        "mainline_entry_station_id": 402370,
+        "active_ramp_mappings": [
+          {
+            "station_id": 428588,
+            "lane_type": "FR",
+            "name": "Mathilda Ave off-ramp",
+            "sumo_edge_id": "9080606"
+          },
+          {
+            "station_id": 428589,
+            "lane_type": "OR",
+            "name": "Mathilda Ave northbound loop on-ramp",
+            "sumo_edge_id": "509747339",
+            "merge_edge_id": "509747346"
+          },
+          {
+            "station_id": 402919,
+            "lane_type": "OR",
+            "name": "Moffett Blvd northbound loop on-ramp",
+            "sumo_edge_id": "847214392#0",
+            "merge_edge_id": "1047818462"
+          },
+          {
+            "station_id": 425546,
+            "lane_type": "OR",
+            "name": "San Antonio Rd northbound on-ramp",
+            "sumo_edge_id": "9739842#1",
+            "merge_edge_id": "700010299"
+          }
+        ]
+      },
+      "manifest_file": "outputs/us101_corridor/m3/experiment/candidates/tau16_split/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 21671,
+        "average_travel_time_seconds": 1206.6142309999539,
+        "average_waiting_time_seconds": 123.09944165013151,
+        "average_time_loss_seconds": 873.9023852152646,
+        "average_trip_speed_mph": 30.734505844723895
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "15299.50",
+          "loaded": "21671",
+          "inserted": "21671",
+          "running": "0",
+          "waiting": "0",
+          "ended": "21671",
+          "arrived": "21671",
+          "collisions": "0",
+          "teleports": "2",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "387.86",
+          "meanTravelTime": "1206.61",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [
+          "Warning: Teleporting vehicle 'ramp_428589_0800.22'; waited too long (wrong lane), lane='23722215-AddedOnRampEdge_0', time=5609.00.",
+          "Warning: Vehicle 'ramp_428589_0800.22' ends teleporting on edge '509747347-AddedOnRampEdge', time=5901.00.",
+          "Warning: Teleporting vehicle 'mainline_0800.216'; waited too long (jam), lane='1343750048-AddedOffRampEdge_1', time=8186.00.",
+          "Warning: Vehicle 'mainline_0800.216' ends teleporting on edge '23722215-AddedOnRampEdge', time=8347.50."
+        ],
+        "completed_vehicle_types": {
+          "human_passenger": 20910,
+          "human_truck": 761
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 6539.5,
+          "flow_mean_absolute_percentage_error": 21.165496793532757,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 37.22971437803968,
+          "speed_mean_absolute_error_mph": 6.76195228862699
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 4522.5,
+          "flow_mean_absolute_percentage_error": 25.459132537578895,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 33.910000271221186,
+          "speed_mean_absolute_error_mph": 3.6381001157490522
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 4709.5,
+          "flow_mean_absolute_percentage_error": 19.492958344390086,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 38.41270653345051,
+          "speed_mean_absolute_error_mph": 7.6076456123833
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 4664.5,
+          "flow_mean_absolute_percentage_error": 23.569518989628975,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 33.198608082196344,
+          "speed_mean_absolute_error_mph": 3.0386703012093137
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 4733.0,
+          "flow_mean_absolute_percentage_error": 18.576830335610847,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 38.573436183810166,
+          "speed_mean_absolute_error_mph": 8.799404548604912
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 4613.5,
+          "flow_mean_absolute_percentage_error": 19.834347244077332,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 33.29345191685257,
+          "speed_mean_absolute_error_mph": 5.660118583519235
+        },
+        {
+          "station_id": 402377,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 6005.5,
+          "simulated_mean_flow_vehicles_per_hour": 5957.0,
+          "flow_mean_absolute_percentage_error": 4.498747112584017,
+          "observed_mean_speed_mph": 55.85,
+          "simulated_mean_speed_mph": 38.540347606324765,
+          "speed_mean_absolute_error_mph": 17.30965239367524
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    },
+    {
+      "case": "tau17_split",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": false,
+      "treatment_sha256": "f1c32adaa947419b5b37a7ef99c3b053e96b4233acaa3ff7fab55874cbd5f679",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 1.7,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_entrances": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured pre-401998 group",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Rounded calibration net residual; gross entry/exit volumes unknown."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured GP share of pre-401507 group",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 1000.0,
+            "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis."
+          },
+          {
+            "id": "sr85_express_entrance",
+            "name": "Unmeasured express share of pre-401507 group",
+            "sumo_edge_id": "11479095",
+            "merge_edge_id": "509747406",
+            "vehicles_per_hour": 1000.0,
+            "passenger_only": true,
+            "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis; express passengers assumed eligible/toll-paying."
+          }
+        ],
+        "detector_lane_indices": {
+          "402377": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "provenance": {
+          "mainline_profile_sha256": "bf9dc9e493cf09a66b62c774ed0bd696de76a2275fe956f6424b2143a5214a89",
+          "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+          "metadata_sha256": {
+            "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+            "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+          },
+          "sumo_version": "Eclipse SUMO sumo 1.27.1"
+        },
+        "warmup_seconds": 900,
+        "clearance_seconds": 7200,
+        "mainline_entry_station_id": 402370,
+        "active_ramp_mappings": [
+          {
+            "station_id": 428588,
+            "lane_type": "FR",
+            "name": "Mathilda Ave off-ramp",
+            "sumo_edge_id": "9080606"
+          },
+          {
+            "station_id": 428589,
+            "lane_type": "OR",
+            "name": "Mathilda Ave northbound loop on-ramp",
+            "sumo_edge_id": "509747339",
+            "merge_edge_id": "509747346"
+          },
+          {
+            "station_id": 402919,
+            "lane_type": "OR",
+            "name": "Moffett Blvd northbound loop on-ramp",
+            "sumo_edge_id": "847214392#0",
+            "merge_edge_id": "1047818462"
+          },
+          {
+            "station_id": 425546,
+            "lane_type": "OR",
+            "name": "San Antonio Rd northbound on-ramp",
+            "sumo_edge_id": "9739842#1",
+            "merge_edge_id": "700010299"
+          }
+        ]
+      },
+      "manifest_file": "outputs/us101_corridor/m3/experiment/candidates/tau17_split/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 21671,
+        "average_travel_time_seconds": 1276.7954178395091,
+        "average_waiting_time_seconds": 142.34315444603388,
+        "average_time_loss_seconds": 944.0624299755434,
+        "average_trip_speed_mph": 29.686801311929834
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "15299.50",
+          "loaded": "21671",
+          "inserted": "21671",
+          "running": "0",
+          "waiting": "0",
+          "ended": "21671",
+          "arrived": "21671",
+          "collisions": "0",
+          "teleports": "5",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "583.81",
+          "meanTravelTime": "1276.80",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [
+          "Warning: Teleporting vehicle 'mainline_0735.86'; waited too long (jam), lane=':1970807538_0_0', time=5885.00.",
+          "Warning: Vehicle 'mainline_0735.86' ends teleporting on edge '509747347-AddedOnRampEdge', time=6088.00.",
+          "Warning: Teleporting vehicle 'ramp_428589_0805.14'; waited too long (wrong lane), lane='23722215-AddedOnRampEdge_0', time=6510.00.",
+          "Warning: Vehicle 'ramp_428589_0805.14' ends teleporting on edge '509747347-AddedOnRampEdge', time=6821.50.",
+          "Warning: Teleporting vehicle 'ramp_428588_0805.20'; waited too long (jam), lane='509747310-AddedOnRampEdge_1', time=7644.50.",
+          "Warning: Vehicle 'ramp_428588_0805.20' ends teleporting on edge '973546824', time=7841.50.",
+          "Warning: Teleporting vehicle 'mainline_0740.84'; waited too long (jam), lane='867208766_0', time=8644.00.",
+          "Warning: Vehicle 'mainline_0740.84' ends teleporting on edge '23722215-AddedOnRampEdge', time=8658.50.",
+          "Warning: Teleporting vehicle 'mainline_0815.3'; waited too long (jam), lane='1343750048-AddedOffRampEdge_1', time=8686.00.",
+          "Warning: Vehicle 'mainline_0815.3' ends teleporting on edge '23722215-AddedOnRampEdge', time=8862.00."
+        ],
+        "completed_vehicle_types": {
+          "human_passenger": 20910,
+          "human_truck": 761
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 6210.0,
+          "flow_mean_absolute_percentage_error": 24.410171389951486,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 36.392308022824615,
+          "speed_mean_absolute_error_mph": 7.599358643842052
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 4258.0,
+          "flow_mean_absolute_percentage_error": 28.812815972638052,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 31.64853565426294,
+          "speed_mean_absolute_error_mph": 4.052263764585298
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 4453.5,
+          "flow_mean_absolute_percentage_error": 23.781009286101128,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 34.93525493199678,
+          "speed_mean_absolute_error_mph": 5.9969336101065105
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 4360.5,
+          "flow_mean_absolute_percentage_error": 27.378862545029065,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 32.04071601650791,
+          "speed_mean_absolute_error_mph": 1.7592032940246216
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 4481.0,
+          "flow_mean_absolute_percentage_error": 22.96956739406853,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 34.969355156077754,
+          "speed_mean_absolute_error_mph": 6.5667974028286435
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 4319.0,
+          "flow_mean_absolute_percentage_error": 23.640347862018725,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 31.802404244730763,
+          "speed_mean_absolute_error_mph": 4.386906584338445
+        },
+        {
+          "station_id": 402377,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 6005.5,
+          "simulated_mean_flow_vehicles_per_hour": 5701.0,
+          "flow_mean_absolute_percentage_error": 6.656156943826343,
+          "observed_mean_speed_mph": 55.85,
+          "simulated_mean_speed_mph": 37.94107647517546,
+          "speed_mean_absolute_error_mph": 17.908923524824544
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    },
+    {
+      "case": "tau18_split",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": false,
+      "treatment_sha256": "2201d5b5439191aba973feca248e946f487a488056868dd2bb6bdfa76dc3f2f8",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 1.8,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_entrances": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured pre-401998 group",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Rounded calibration net residual; gross entry/exit volumes unknown."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured GP share of pre-401507 group",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 1000.0,
+            "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis."
+          },
+          {
+            "id": "sr85_express_entrance",
+            "name": "Unmeasured express share of pre-401507 group",
+            "sumo_edge_id": "11479095",
+            "merge_edge_id": "509747406",
+            "vehicles_per_hour": 1000.0,
+            "passenger_only": true,
+            "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis; express passengers assumed eligible/toll-paying."
+          }
+        ],
+        "detector_lane_indices": {
+          "402377": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "provenance": {
+          "mainline_profile_sha256": "bf9dc9e493cf09a66b62c774ed0bd696de76a2275fe956f6424b2143a5214a89",
+          "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+          "metadata_sha256": {
+            "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+            "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+          },
+          "sumo_version": "Eclipse SUMO sumo 1.27.1"
+        },
+        "warmup_seconds": 900,
+        "clearance_seconds": 7200,
+        "mainline_entry_station_id": 402370,
+        "active_ramp_mappings": [
+          {
+            "station_id": 428588,
+            "lane_type": "FR",
+            "name": "Mathilda Ave off-ramp",
+            "sumo_edge_id": "9080606"
+          },
+          {
+            "station_id": 428589,
+            "lane_type": "OR",
+            "name": "Mathilda Ave northbound loop on-ramp",
+            "sumo_edge_id": "509747339",
+            "merge_edge_id": "509747346"
+          },
+          {
+            "station_id": 402919,
+            "lane_type": "OR",
+            "name": "Moffett Blvd northbound loop on-ramp",
+            "sumo_edge_id": "847214392#0",
+            "merge_edge_id": "1047818462"
+          },
+          {
+            "station_id": 425546,
+            "lane_type": "OR",
+            "name": "San Antonio Rd northbound on-ramp",
+            "sumo_edge_id": "9739842#1",
+            "merge_edge_id": "700010299"
+          }
+        ]
+      },
+      "manifest_file": "outputs/us101_corridor/m3/experiment/candidates/tau18_split/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 21671,
+        "average_travel_time_seconds": 1333.2084352360298,
+        "average_waiting_time_seconds": 164.85256794794887,
+        "average_time_loss_seconds": 1000.4080268561673,
+        "average_trip_speed_mph": 29.808958834619123
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "15299.50",
+          "loaded": "21671",
+          "inserted": "21671",
+          "running": "0",
+          "waiting": "0",
+          "ended": "21671",
+          "arrived": "21671",
+          "collisions": "0",
+          "teleports": "10",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "796.08",
+          "meanTravelTime": "1333.21",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [
+          "Warning: Teleporting vehicle 'mainline_0715.225'; waited too long (jam), lane='617335302_0', time=5437.50.",
+          "Warning: Vehicle 'mainline_0715.225' ends teleporting on edge '361615811', time=5475.00.",
+          "Warning: Teleporting vehicle 'mainline_0715.344'; waited too long (jam), lane=':12433243207_0_2', time=5593.50.",
+          "Warning: Teleporting vehicle 'mainline_0715.348'; waited too long (jam), lane='1047818462-AddedOffRampEdge_2', time=5598.00.",
+          "Warning: Teleporting vehicle 'estimated_midcorridor_entrance_0725.29'; waited too long (jam), lane=':1047818462-AddedOffRampNode_0_2', time=5603.50.",
+          "Warning: Vehicle 'estimated_midcorridor_entrance_0725.29' ends teleporting on edge '1047818462-AddedOffRampEdge', time=5603.50.",
+          "Warning: Teleporting vehicle 'ramp_428589_0720.1'; waited too long (jam), lane='1047818462_1', time=5607.50.",
+          "Warning: Vehicle 'ramp_428589_0720.1' ends teleporting on edge '1047818462-AddedOffRampEdge', time=5607.50.",
+          "Warning: Teleporting vehicle 'estimated_midcorridor_entrance_0725.41'; waited too long (jam), lane=':1350115238_0_0', time=5642.50.",
+          "Warning: Vehicle 'estimated_midcorridor_entrance_0725.41' ends teleporting on edge '1047818462', time=5642.50.",
+          "Warning: Teleporting vehicle 'estimated_midcorridor_entrance_0725.27'; waited too long (jam), lane=':1047818462-AddedOffRampNode_0_2', time=5644.00.",
+          "Warning: Vehicle 'estimated_midcorridor_entrance_0725.27' ends teleporting on edge '1047818462-AddedOffRampEdge', time=5644.00.",
+          "Warning: Vehicle 'mainline_0715.344' ends teleporting on edge '361615811', time=5710.00.",
+          "Warning: Vehicle 'mainline_0715.348' ends teleporting on edge '509747406', time=5720.50.",
+          "Warning: Teleporting vehicle 'ramp_428589_0755.20'; waited too long (wrong lane), lane='23722215-AddedOnRampEdge_0', time=5846.00.",
+          "Warning: Teleporting vehicle 'mainline_0730.11'; waited too long (jam), lane='867208766_0', time=6545.50.",
+          "Warning: Vehicle 'ramp_428589_0755.20' ends teleporting on edge '1047818462', time=6890.00.",
+          "Warning: Vehicle 'mainline_0730.11' ends teleporting on edge '1047818462', time=7490.00.",
+          "Warning: Teleporting vehicle 'mainline_0750.214'; waited too long (jam), lane='1343750048_1', time=8210.50.",
+          "Warning: Vehicle 'mainline_0750.214' ends teleporting on edge '509747347-AddedOnRampEdge', time=8591.50."
+        ],
+        "completed_vehicle_types": {
+          "human_passenger": 20910,
+          "human_truck": 761
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 5923.5,
+          "flow_mean_absolute_percentage_error": 27.34202535931153,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 35.375960223759456,
+          "speed_mean_absolute_error_mph": 8.615706442907209
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 4001.5,
+          "flow_mean_absolute_percentage_error": 32.84775789294505,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 29.93218746011887,
+          "speed_mean_absolute_error_mph": 5.317974236291043
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 4186.5,
+          "flow_mean_absolute_percentage_error": 28.22177947424169,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 32.3770871226425,
+          "speed_mean_absolute_error_mph": 4.9425510336026415
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 4123.5,
+          "flow_mean_absolute_percentage_error": 31.36840887599978,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 29.71547075873049,
+          "speed_mean_absolute_error_mph": 3.3937199235708824
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 4210.5,
+          "flow_mean_absolute_percentage_error": 27.334465241208942,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 31.641035660624862,
+          "speed_mean_absolute_error_mph": 5.3304800970616135
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 4072.5,
+          "flow_mean_absolute_percentage_error": 27.820297760938658,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 29.704980526512472,
+          "speed_mean_absolute_error_mph": 4.687738604262623
+        },
+        {
+          "station_id": 402377,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 6005.5,
+          "simulated_mean_flow_vehicles_per_hour": 5447.5,
+          "flow_mean_absolute_percentage_error": 9.728133661107128,
+          "observed_mean_speed_mph": 55.85,
+          "simulated_mean_speed_mph": 37.74060679115223,
+          "speed_mean_absolute_error_mph": 18.10939320884777
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    },
+    {
+      "case": "buffer_tau15",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": true,
+      "treatment_sha256": "dfea0aeb4719265d646d2327fac0dffb7a32c5cfc0638365623fdc0d4eabb1fd",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 1.5,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_entrances": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured entrance-group sensitivity before station 401998",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Calibration-only group hypothesis: 401996 to 401998 net +235 veh/h, while measured Mathilda exit minus entrance is about -462 veh/h. Other unmeasured entries and exits remain unresolved; 700 is not a count for this ramp."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured SR-85-area entrance-group sensitivity before station 401507",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 2000.0,
+            "basis": "Calibration-only group hypothesis: the observed 401948 to 401507 net increase is about 2047 veh/h across five weekdays. The 401948 lane mismatch and unmeasured HOV/other movements prevent assigning this number to the GP ramp."
+          }
+        ],
+        "detector_lane_indices": {
+          "402377": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "provenance": {
+          "mainline_profile_sha256": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+          "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+          "metadata_sha256": {
+            "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+            "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+          },
+          "sumo_version": "Eclipse SUMO sumo 1.27.1"
+        },
+        "warmup_seconds": 900,
+        "clearance_seconds": 7200,
+        "mainline_entry_station_id": 400790,
+        "active_ramp_mappings": [
+          {
+            "station_id": 428588,
+            "lane_type": "FR",
+            "name": "Mathilda Ave off-ramp",
+            "sumo_edge_id": "9080606"
+          },
+          {
+            "station_id": 428589,
+            "lane_type": "OR",
+            "name": "Mathilda Ave northbound loop on-ramp",
+            "sumo_edge_id": "509747339",
+            "merge_edge_id": "509747346"
+          },
+          {
+            "station_id": 402919,
+            "lane_type": "OR",
+            "name": "Moffett Blvd northbound loop on-ramp",
+            "sumo_edge_id": "847214392#0",
+            "merge_edge_id": "1047818462"
+          },
+          {
+            "station_id": 425546,
+            "lane_type": "OR",
+            "name": "San Antonio Rd northbound on-ramp",
+            "sumo_edge_id": "9739842#1",
+            "merge_edge_id": "700010299"
+          }
+        ]
+      },
+      "manifest_file": "outputs/us101_corridor/m3/buffer_experiment/candidates/buffer_tau15/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 22953,
+        "average_travel_time_seconds": 1054.5640874831176,
+        "average_waiting_time_seconds": 69.60619526859234,
+        "average_time_loss_seconds": 696.2006918485602,
+        "average_trip_speed_mph": 31.3778499524189
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "15299.50",
+          "loaded": "22953",
+          "inserted": "22953",
+          "running": "0",
+          "waiting": "0",
+          "ended": "22953",
+          "arrived": "22953",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "632.34",
+          "meanTravelTime": "1054.56",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 22032,
+          "human_truck": 921
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 6836.0,
+          "flow_mean_absolute_percentage_error": 17.61216765643679,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 40.312895901605266,
+          "speed_mean_absolute_error_mph": 3.7149592980393096
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 5557.0,
+          "flow_mean_absolute_percentage_error": 9.852624810244237,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 35.09949168231787,
+          "speed_mean_absolute_error_mph": 3.3912974217427165
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 5742.5,
+          "flow_mean_absolute_percentage_error": 8.135901817942615,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 33.29491062966907,
+          "speed_mean_absolute_error_mph": 7.9488395994636605
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 5631.5,
+          "flow_mean_absolute_percentage_error": 11.382265468979865,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 34.39092354916421,
+          "speed_mean_absolute_error_mph": 4.133688471048859
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 5760.0,
+          "flow_mean_absolute_percentage_error": 7.773672463883585,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 33.553887805973574,
+          "speed_mean_absolute_error_mph": 7.852337560727807
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 5592.5,
+          "flow_mean_absolute_percentage_error": 10.654769387780497,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 34.488958848453684,
+          "speed_mean_absolute_error_mph": 7.691449228716454
+        },
+        {
+          "station_id": 402377,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 6005.5,
+          "simulated_mean_flow_vehicles_per_hour": 6377.5,
+          "flow_mean_absolute_percentage_error": 7.774257150836875,
+          "observed_mean_speed_mph": 55.85,
+          "simulated_mean_speed_mph": 41.017302079907815,
+          "speed_mean_absolute_error_mph": 14.832697920092182
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    },
+    {
+      "case": "buffer_exit_tau15",
+      "date": "2025-10-08",
+      "seed": 42,
+      "clean_and_cleared": true,
+      "treatment_sha256": "5c741aac54f3f01fe8fb73e49977566bfa36aedfb63b0bedbd975b678bd6c5d9",
+      "treatment": {
+        "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "human_parameters": {
+          "accel": 2.6,
+          "decel": 4.5,
+          "emergencyDecel": 9.0,
+          "sigma": 0.5,
+          "tau": 1.5,
+          "length": 5.0,
+          "minGap": 2.5,
+          "speedFactor": 1.0,
+          "speedDev": 0.1
+        },
+        "truck_share": 0.04,
+        "estimated_ramps": [
+          {
+            "id": "midcorridor_entrance",
+            "name": "Unmeasured pre-401998 net-entry group",
+            "sumo_edge_id": "509747350",
+            "merge_edge_id": "509747347-AddedOnRampEdge",
+            "vehicles_per_hour": 700.0,
+            "basis": "Rounded calibration net residual after measured Mathilda movements; not an individual ramp count."
+          },
+          {
+            "id": "sr85_gp_entrance",
+            "name": "Unmeasured pre-401507 net-entry group",
+            "sumo_edge_id": "394387883",
+            "merge_edge_id": "361615811",
+            "vehicles_per_hour": 2000.0,
+            "basis": "Rounded Moffett-to-Shoreline calibration residual after measured Moffett entrance; not a GP ramp count."
+          },
+          {
+            "id": "downstream_net_exit",
+            "lane_type": "FR",
+            "name": "Unmeasured post-Shoreline net-exit group at a San Antonio exit",
+            "sumo_edge_id": "4370043",
+            "diverge_edge_id": "394368089",
+            "vehicles_per_hour": 1500.0,
+            "basis": "Calibration-only hypothesis: 8041 veh/h at 401507 plus 560 measured San Antonio entrance minus 5616 across four 402377 channels leaves 2985 before the missing lane. An assumed 1500 veh/h missing-lane contribution gives a rounded 1500 veh/h net-exit group. Gross ramp flows and field wiring remain unknown."
+          }
+        ],
+        "detector_lane_indices": {
+          "402377": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "provenance": {
+          "mainline_profile_sha256": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+          "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+          "metadata_sha256": {
+            "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+            "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+          },
+          "sumo_version": "Eclipse SUMO sumo 1.27.1"
+        },
+        "warmup_seconds": 900,
+        "clearance_seconds": 7200,
+        "mainline_entry_station_id": 400790,
+        "active_ramp_mappings": [
+          {
+            "station_id": 428588,
+            "lane_type": "FR",
+            "name": "Mathilda Ave off-ramp",
+            "sumo_edge_id": "9080606"
+          },
+          {
+            "station_id": 428589,
+            "lane_type": "OR",
+            "name": "Mathilda Ave northbound loop on-ramp",
+            "sumo_edge_id": "509747339",
+            "merge_edge_id": "509747346"
+          },
+          {
+            "station_id": 402919,
+            "lane_type": "OR",
+            "name": "Moffett Blvd northbound loop on-ramp",
+            "sumo_edge_id": "847214392#0",
+            "merge_edge_id": "1047818462"
+          },
+          {
+            "station_id": 425546,
+            "lane_type": "OR",
+            "name": "San Antonio Rd northbound on-ramp",
+            "sumo_edge_id": "9739842#1",
+            "merge_edge_id": "700010299"
+          }
+        ]
+      },
+      "manifest_file": "outputs/us101_corridor/m3/buffer_exit_experiment/candidates/buffer_exit_tau15/2025-10-08/seed_42/manifest.json",
+      "metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 830.5248573046927,
+        "average_waiting_time_seconds": 33.86340464467779,
+        "average_time_loss_seconds": 488.95216330443117,
+        "average_trip_speed_mph": 35.046726806415045
+      },
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "15299.50",
+          "loaded": "22951",
+          "inserted": "22951",
+          "running": "0",
+          "waiting": "0",
+          "ended": "22951",
+          "arrived": "22951",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "585.16",
+          "meanTravelTime": "830.52",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 22030,
+          "human_truck": 921
+        }
+      },
+      "station_comparisons": [
+        {
+          "station_id": 401507,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 8180.0,
+          "simulated_mean_flow_vehicles_per_hour": 7030.0,
+          "flow_mean_absolute_percentage_error": 13.870855486910846,
+          "observed_mean_speed_mph": 43.99166666666667,
+          "simulated_mean_speed_mph": 38.62075903036853,
+          "speed_mean_absolute_error_mph": 5.378229620660172
+        },
+        {
+          "station_id": 401534,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5903.0,
+          "simulated_mean_flow_vehicles_per_hour": 5655.5,
+          "flow_mean_absolute_percentage_error": 6.117791060564364,
+          "observed_mean_speed_mph": 35.170833333333334,
+          "simulated_mean_speed_mph": 34.58738215813589,
+          "speed_mean_absolute_error_mph": 3.8784104853736387
+        },
+        {
+          "station_id": 401996,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5795.5,
+          "simulated_mean_flow_vehicles_per_hour": 5867.0,
+          "flow_mean_absolute_percentage_error": 6.4628527537472715,
+          "observed_mean_speed_mph": 31.8,
+          "simulated_mean_speed_mph": 31.005849841676,
+          "speed_mean_absolute_error_mph": 6.554577544238391
+        },
+        {
+          "station_id": 401998,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5999.0,
+          "simulated_mean_flow_vehicles_per_hour": 5735.5,
+          "flow_mean_absolute_percentage_error": 8.246190476290584,
+          "observed_mean_speed_mph": 32.15833333333333,
+          "simulated_mean_speed_mph": 34.002657895475004,
+          "speed_mean_absolute_error_mph": 4.854150773892095
+        },
+        {
+          "station_id": 402370,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5757.5,
+          "simulated_mean_flow_vehicles_per_hour": 5879.5,
+          "flow_mean_absolute_percentage_error": 6.592498263273289,
+          "observed_mean_speed_mph": 30.170833333333334,
+          "simulated_mean_speed_mph": 31.129239539265313,
+          "speed_mean_absolute_error_mph": 6.47891640076796
+        },
+        {
+          "station_id": 402372,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 5612.0,
+          "simulated_mean_flow_vehicles_per_hour": 5699.5,
+          "flow_mean_absolute_percentage_error": 9.000156617995861,
+          "observed_mean_speed_mph": 27.633333333333336,
+          "simulated_mean_speed_mph": 34.061678887620495,
+          "speed_mean_absolute_error_mph": 8.41269535209556
+        },
+        {
+          "station_id": 402377,
+          "matched_intervals": 24,
+          "observed_mean_flow_vehicles_per_hour": 6005.5,
+          "simulated_mean_flow_vehicles_per_hour": 6260.5,
+          "flow_mean_absolute_percentage_error": 8.605202123364569,
+          "observed_mean_speed_mph": 55.85,
+          "simulated_mean_speed_mph": 54.01695315276777,
+          "speed_mean_absolute_error_mph": 3.010593868437155
+        }
+      ],
+      "excluded_lane_mismatch_station_ids": [
+        401948
+      ]
+    }
+  ],
+  "limitation": "Ten predeclared calibration candidates. Initial/refined cases used 1800-second clearance; the final split cases used 7200 seconds. Selection compares the same six full-lane stations. 402377 is a separate partial-lane diagnostic."
+}

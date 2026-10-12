@@ -1,0 +1,14 @@
+{
+  "baseline_config": "configs/us101_human_baseline_m3_buffer_trial.json",
+  "calibration_dates": ["2025-10-07", "2025-10-08", "2025-10-09", "2025-10-10", "2025-10-14"],
+  "representative_calibration_date": "2025-10-08",
+  "validation_dates": ["2025-10-15", "2025-10-16"],
+  "seeds": [41, 42, 43],
+  "truck_share": 0.04,
+  "clearance_seconds": 7200,
+  "scoring_excluded_station_ids": [402377],
+  "candidates": {"buffer_tau15": {"tau": 1.5}},
+  "selected_candidate": null,
+  "output_directory": "outputs/us101_corridor/m3/buffer_experiment",
+  "report_directory": "reports/m3/buffer_trial"
+}

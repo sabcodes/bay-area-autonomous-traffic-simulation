@@ -1,0 +1,127 @@
+{
+  "scenario": "M3 candidates tau18_split 2025-10-08",
+  "network_file": "outputs/us101_corridor/us101_corridor.net.xml",
+  "pems_report": "outputs/pems_calibration/us101_corridor_m1_station_profiles.json",
+  "aligned_pems_report_file": "outputs/us101_corridor/m3/replay/tau18_split/observed.json",
+  "mainline_entry_station_id": 402370,
+  "ramp_profile_file": "outputs/pems_calibration/us101_ramp_station_profiles.json",
+  "route_file": "outputs/us101_corridor/m3/replay/tau18_split/h0.rou.xml",
+  "manifest_file": "outputs/us101_corridor/m3/replay/tau18_split/manifest.json",
+  "corridor_config": "configs/us101_corridor.json",
+  "metadata_glob": "data/pems/metadata/d04_text_meta_*.txt",
+  "virtual_detector_station_ids_file": "configs/us101_corridor_station_ids.json",
+  "virtual_detector_station_ids_key": "accepted_corridor_station_ids",
+  "detector_file_template": "outputs/us101_corridor/m3/replay/tau18_split/detectors_seed_{seed}.add.xml",
+  "detector_output_template": "outputs/us101_corridor/m3/replay/tau18_split/detectors_seed_{seed}.xml",
+  "detector_summary_template": "outputs/us101_corridor/m3/replay/tau18_split/detectors_seed_{seed}.json",
+  "active_ramp_mappings": [
+    {
+      "station_id": 428588,
+      "lane_type": "FR",
+      "name": "Mathilda Ave off-ramp",
+      "sumo_edge_id": "9080606"
+    },
+    {
+      "station_id": 428589,
+      "lane_type": "OR",
+      "name": "Mathilda Ave northbound loop on-ramp",
+      "sumo_edge_id": "509747339",
+      "merge_edge_id": "509747346"
+    },
+    {
+      "station_id": 402919,
+      "lane_type": "OR",
+      "name": "Moffett Blvd northbound loop on-ramp",
+      "sumo_edge_id": "847214392#0",
+      "merge_edge_id": "1047818462"
+    },
+    {
+      "station_id": 425546,
+      "lane_type": "OR",
+      "name": "San Antonio Rd northbound on-ramp",
+      "sumo_edge_id": "9739842#1",
+      "merge_edge_id": "700010299"
+    }
+  ],
+  "excluded_reporting_ramps": [
+    {
+      "station_id": 425897,
+      "reason": "The Embarcadero on-ramp merges beyond the corridor analysis endpoint."
+    }
+  ],
+  "checkpoint_edge_ids": [
+    "509747302",
+    "509747310-AddedOnRampEdge",
+    "867208766",
+    "509747346",
+    "867246178",
+    "850032296",
+    "617335302",
+    "509747406-AddedOffRampEdge",
+    "1446453052",
+    "867254754",
+    "394368088",
+    "700010299",
+    "861090931",
+    "361615812"
+  ],
+  "warmup_seconds": 900,
+  "clearance_seconds": 7200,
+  "assumptions": [
+    "Simulation time 00:15 corresponds to observed time 07:00 after a 15-minute warmup.",
+    "PeMS total five-minute station flow is converted to vehicles per hour by multiplying by 12.",
+    "Mainline entry demand uses station 402370; measured Mathilda off-ramp demand is removed from the through flow.",
+    "Measured Mathilda, Moffett, and San Antonio northbound on-ramp flows are injected on visually audited SUMO edges.",
+    "Observed PeMS speed is a validation target, not a commanded vehicle speed.",
+    "The mainline route passes through ordered detector-matched checkpoints so shortest-path routing cannot leave US-101 for a ramp shortcut.",
+    "Any modeled passenger vehicle using a Santa Clara US-101/SR-85 express lane during weekday tolling hours is assumed to carry a valid FasTrak tag and pay the applicable toll; tag ownership and toll choice are not simulated.",
+    "Human behavior uses SUMO's stochastic Krauss following model and default lane-changing model."
+  ],
+  "detector_lane_indices": {
+    "402377": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "observation_dates": [
+    "2025-10-08"
+  ],
+  "estimated_entrance_mappings": [
+    {
+      "id": "midcorridor_entrance",
+      "name": "Unmeasured pre-401998 group",
+      "sumo_edge_id": "509747350",
+      "merge_edge_id": "509747347-AddedOnRampEdge",
+      "vehicles_per_hour": 700.0,
+      "basis": "Rounded calibration net residual; gross entry/exit volumes unknown."
+    },
+    {
+      "id": "sr85_gp_entrance",
+      "name": "Unmeasured GP share of pre-401507 group",
+      "sumo_edge_id": "394387883",
+      "merge_edge_id": "361615811",
+      "vehicles_per_hour": 1000.0,
+      "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis."
+    },
+    {
+      "id": "sr85_express_entrance",
+      "name": "Unmeasured express share of pre-401507 group",
+      "sumo_edge_id": "11479095",
+      "merge_edge_id": "509747406",
+      "vehicles_per_hour": 1000.0,
+      "passenger_only": true,
+      "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis; express passengers assumed eligible/toll-paying."
+    }
+  ],
+  "additional_assumptions": [
+    "Two missing-entrance groups use assumed constant flow; individual counts are unknown.",
+    "4% truck proxy uses 2024 annual both-direction shares near SR-237/SR-85; morning directional share is unknown.",
+    "One 12 m truck type approximates the heavy fleet; ramp meter timing is unknown."
+  ],
+  "human_parameters": {
+    "tau": 1.8
+  },
+  "truck_share": 0.04
+}

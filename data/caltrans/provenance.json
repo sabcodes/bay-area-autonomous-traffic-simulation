@@ -1,0 +1,18 @@
+{
+  "retrieved_on": "2026-10-11",
+  "source_page": "https://dot.ca.gov/programs/traffic-operations/census",
+  "files": [
+    {
+      "file": "2024-d4-ramp-adt-a11y.xlsx",
+      "url": "https://dot.ca.gov/-/media/dot-media/programs/traffic-operations/documents/census/2024/2024-d4-ramp-adt-a11y.xlsx",
+      "sha256": "459228bc5a58ed9533bff07750408f89b5edcf4b78242b225c47c117ea550a94",
+      "meaning": "Annual daily ramp volumes; historical year columns. Blank cells remain unknown. Not October 2025 AM hourly counts."
+    },
+    {
+      "file": "2024-truck-aadt-a11y.xlsx",
+      "url": "https://dot.ca.gov/-/media/dot-media/programs/traffic-operations/documents/census/2024/2024-truck-aadt-a11y.xlsx",
+      "sha256": "c3c0a4f0169585f9d9f0019972c365c078e5adc68c71007c405db1492a5d4e0b",
+      "meaning": "Annual both-direction vehicle and truck volumes by location and back/ahead leg; not directional morning fleet classification."
+    }
+  ]
+}

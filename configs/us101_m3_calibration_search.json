@@ -1,0 +1,92 @@
+{
+  "baseline_config": "configs/us101_human_baseline_m3_demand_sensitivity.json",
+  "reference_baseline_config": "configs/us101_human_baseline_m3_demand_sensitivity.json",
+  "calibration_dates": [
+    "2025-10-07",
+    "2025-10-08",
+    "2025-10-09",
+    "2025-10-10",
+    "2025-10-14"
+  ],
+  "representative_calibration_date": "2025-10-08",
+  "representative_day_rule": "Median 07:00-09:00 upstream station 402370 mean flow among the five predeclared calibration weekdays.",
+  "validation_dates": [
+    "2025-10-15",
+    "2025-10-16"
+  ],
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "truck_share": 0.04,
+  "clearance_seconds": 7200,
+  "scoring_excluded_station_ids": [
+    402377
+  ],
+  "candidates": {
+    "tau12": {
+      "tau": 1.2
+    },
+    "tau15": {
+      "tau": 1.5
+    },
+    "tau18": {
+      "tau": 1.8
+    },
+    "tau20": {
+      "tau": 2.0
+    },
+    "tau13": {
+      "tau": 1.3
+    },
+    "tau14": {
+      "tau": 1.4
+    },
+    "tau15_split": {
+      "tau": 1.5
+    },
+    "tau16_split": {
+      "tau": 1.6
+    },
+    "tau17_split": {
+      "tau": 1.7
+    },
+    "tau18_split": {
+      "tau": 1.8
+    }
+  },
+  "candidate_entrance_mappings": {
+    "tau15_split": [
+      {
+        "id": "midcorridor_entrance",
+        "name": "Unmeasured pre-401998 group",
+        "sumo_edge_id": "509747350",
+        "merge_edge_id": "509747347-AddedOnRampEdge",
+        "vehicles_per_hour": 700,
+        "basis": "Rounded calibration net residual; gross entry/exit volumes unknown."
+      },
+      {
+        "id": "sr85_gp_entrance",
+        "name": "Unmeasured GP share of pre-401507 group",
+        "sumo_edge_id": "394387883",
+        "merge_edge_id": "361615811",
+        "vehicles_per_hour": 1000,
+        "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis."
+      },
+      {
+        "id": "sr85_express_entrance",
+        "name": "Unmeasured express share of pre-401507 group",
+        "sumo_edge_id": "11479095",
+        "merge_edge_id": "509747406",
+        "vehicles_per_hour": 1000,
+        "passenger_only": true,
+        "basis": "Half of the 2000 veh/h group on each connector is a calibration allocation hypothesis; express passengers assumed eligible/toll-paying."
+      }
+    ]
+  },
+  "selected_candidate": "tau15",
+  "selection_reason": "Historical no-buffer calibration search; final selection is recorded in us101_m3_experiment.json.",
+  "output_directory": "outputs/us101_corridor/m3/experiment",
+  "report_directory": "reports/m3"
+}

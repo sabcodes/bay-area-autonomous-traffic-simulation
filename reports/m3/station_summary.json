@@ -1,0 +1,433 @@
+{
+  "calibration": {
+    "401507": {
+      "flow_mape_percent": 13.49232747553371,
+      "speed_mae_mph": 8.620964940817334,
+      "days": [
+        {
+          "date": "2025-10-07",
+          "flow_mape_percent": 12.773338298529902,
+          "speed_mae_mph": 6.503409928974778,
+          "flow_seed_sd_percent": 0.721760518506237,
+          "speed_seed_sd_mph": 0.19379208067395878
+        },
+        {
+          "date": "2025-10-08",
+          "flow_mape_percent": 14.040834859403475,
+          "speed_mae_mph": 5.528480347215095,
+          "flow_seed_sd_percent": 0.3350922654106454,
+          "speed_seed_sd_mph": 0.20917033857592882
+        },
+        {
+          "date": "2025-10-09",
+          "flow_mape_percent": 13.902267178745392,
+          "speed_mae_mph": 7.956734466791789,
+          "flow_seed_sd_percent": 0.6131334480688392,
+          "speed_seed_sd_mph": 0.20128224458245253
+        },
+        {
+          "date": "2025-10-10",
+          "flow_mape_percent": 10.83926403646666,
+          "speed_mae_mph": 11.612930403136813,
+          "flow_seed_sd_percent": 0.6263395207753791,
+          "speed_seed_sd_mph": 0.4736055875804116
+        },
+        {
+          "date": "2025-10-14",
+          "flow_mape_percent": 15.905933004523119,
+          "speed_mae_mph": 11.503269557968196,
+          "flow_seed_sd_percent": 0.3596843934750229,
+          "speed_seed_sd_mph": 0.10041549747593694
+        }
+      ]
+    },
+    "401534": {
+      "flow_mape_percent": 6.91152198744081,
+      "speed_mae_mph": 6.825937539456414,
+      "days": [
+        {
+          "date": "2025-10-07",
+          "flow_mape_percent": 8.925981585850929,
+          "speed_mae_mph": 6.89921747308482,
+          "flow_seed_sd_percent": 0.6600039002411416,
+          "speed_seed_sd_mph": 0.530729497372355
+        },
+        {
+          "date": "2025-10-08",
+          "flow_mape_percent": 6.576454408974999,
+          "speed_mae_mph": 3.9361944673288796,
+          "flow_seed_sd_percent": 0.3997292052353806,
+          "speed_seed_sd_mph": 0.05296632223476792
+        },
+        {
+          "date": "2025-10-09",
+          "flow_mape_percent": 5.411386007911715,
+          "speed_mae_mph": 4.232344240966495,
+          "flow_seed_sd_percent": 0.07880586957777642,
+          "speed_seed_sd_mph": 0.297644775398695
+        },
+        {
+          "date": "2025-10-10",
+          "flow_mape_percent": 5.779397248620776,
+          "speed_mae_mph": 10.440897564829967,
+          "flow_seed_sd_percent": 0.7507586879806574,
+          "speed_seed_sd_mph": 0.06010355377165875
+        },
+        {
+          "date": "2025-10-14",
+          "flow_mape_percent": 7.8643906858456285,
+          "speed_mae_mph": 8.62103395107191,
+          "flow_seed_sd_percent": 0.47635835393450454,
+          "speed_seed_sd_mph": 0.8888955909764074
+        }
+      ]
+    },
+    "401996": {
+      "flow_mape_percent": 6.678900348619325,
+      "speed_mae_mph": 8.16207525178867,
+      "days": [
+        {
+          "date": "2025-10-07",
+          "flow_mape_percent": 8.89385871859706,
+          "speed_mae_mph": 4.881742977533578,
+          "flow_seed_sd_percent": 0.29821590088894584,
+          "speed_seed_sd_mph": 0.4803432807278141
+        },
+        {
+          "date": "2025-10-08",
+          "flow_mape_percent": 5.709554879528543,
+          "speed_mae_mph": 6.211936750912138,
+          "flow_seed_sd_percent": 0.7599464817922538,
+          "speed_seed_sd_mph": 0.3033488626797144
+        },
+        {
+          "date": "2025-10-09",
+          "flow_mape_percent": 7.599433063606766,
+          "speed_mae_mph": 9.481173042704398,
+          "flow_seed_sd_percent": 0.6258177060856068,
+          "speed_seed_sd_mph": 0.2757089379815982
+        },
+        {
+          "date": "2025-10-10",
+          "flow_mape_percent": 6.468412176329413,
+          "speed_mae_mph": 15.641541161633034,
+          "flow_seed_sd_percent": 0.06581049000973842,
+          "speed_seed_sd_mph": 0.25664520543955627
+        },
+        {
+          "date": "2025-10-14",
+          "flow_mape_percent": 4.7232429050348435,
+          "speed_mae_mph": 4.593982326160204,
+          "flow_seed_sd_percent": 0.41420059252798724,
+          "speed_seed_sd_mph": 0.5699540279372971
+        }
+      ]
+    },
+    "401998": {
+      "flow_mape_percent": 8.41322604194291,
+      "speed_mae_mph": 8.378883534870738,
+      "days": [
+        {
+          "date": "2025-10-07",
+          "flow_mape_percent": 12.066580323265569,
+          "speed_mae_mph": 9.50015633076592,
+          "flow_seed_sd_percent": 0.5354964271866512,
+          "speed_seed_sd_mph": 0.20013404900382298
+        },
+        {
+          "date": "2025-10-08",
+          "flow_mape_percent": 8.110657549239413,
+          "speed_mae_mph": 4.842659138184545,
+          "flow_seed_sd_percent": 0.2723189208493203,
+          "speed_seed_sd_mph": 0.18699799946610648
+        },
+        {
+          "date": "2025-10-09",
+          "flow_mape_percent": 6.601581212135257,
+          "speed_mae_mph": 4.302308965038606,
+          "flow_seed_sd_percent": 0.25216153598031593,
+          "speed_seed_sd_mph": 0.2025197327019
+        },
+        {
+          "date": "2025-10-10",
+          "flow_mape_percent": 6.577388843838212,
+          "speed_mae_mph": 14.059557290297208,
+          "flow_seed_sd_percent": 0.8589865758796777,
+          "speed_seed_sd_mph": 0.2509424282000963
+        },
+        {
+          "date": "2025-10-14",
+          "flow_mape_percent": 8.70992228123609,
+          "speed_mae_mph": 9.18973595006741,
+          "flow_seed_sd_percent": 0.4092395274760677,
+          "speed_seed_sd_mph": 0.44081180352913946
+        }
+      ]
+    },
+    "402370": {
+      "flow_mape_percent": 6.459041025245381,
+      "speed_mae_mph": 7.752241780470217,
+      "days": [
+        {
+          "date": "2025-10-07",
+          "flow_mape_percent": 7.242343288362289,
+          "speed_mae_mph": 4.847317146784497,
+          "flow_seed_sd_percent": 0.47726177412707305,
+          "speed_seed_sd_mph": 0.49911489857738456
+        },
+        {
+          "date": "2025-10-08",
+          "flow_mape_percent": 6.12657401206205,
+          "speed_mae_mph": 6.1651211910329105,
+          "flow_seed_sd_percent": 0.519978087966038,
+          "speed_seed_sd_mph": 0.34754965433552465
+        },
+        {
+          "date": "2025-10-09",
+          "flow_mape_percent": 7.412648581274264,
+          "speed_mae_mph": 8.442933369466227,
+          "flow_seed_sd_percent": 0.6583875424614879,
+          "speed_seed_sd_mph": 0.20102550442796285
+        },
+        {
+          "date": "2025-10-10",
+          "flow_mape_percent": 6.847957921260971,
+          "speed_mae_mph": 15.75319869235859,
+          "flow_seed_sd_percent": 0.08703266741171854,
+          "speed_seed_sd_mph": 0.25477912642313655
+        },
+        {
+          "date": "2025-10-14",
+          "flow_mape_percent": 4.665681323267331,
+          "speed_mae_mph": 3.552638502708866,
+          "flow_seed_sd_percent": 0.40786616646607693,
+          "speed_seed_sd_mph": 0.3699024799651845
+        }
+      ]
+    },
+    "402372": {
+      "flow_mape_percent": 7.974856751704924,
+      "speed_mae_mph": 9.16931564533257,
+      "days": [
+        {
+          "date": "2025-10-07",
+          "flow_mape_percent": 11.35524974530162,
+          "speed_mae_mph": 10.839972283034717,
+          "flow_seed_sd_percent": 0.821382274469178,
+          "speed_seed_sd_mph": 0.14908086711924048
+        },
+        {
+          "date": "2025-10-08",
+          "flow_mape_percent": 8.738602343107175,
+          "speed_mae_mph": 8.394348700479505,
+          "flow_seed_sd_percent": 0.29027210388222674,
+          "speed_seed_sd_mph": 0.14116106213326268
+        },
+        {
+          "date": "2025-10-09",
+          "flow_mape_percent": 5.760765735621749,
+          "speed_mae_mph": 6.306779479323794,
+          "flow_seed_sd_percent": 0.6709155585758513,
+          "speed_seed_sd_mph": 0.12950163742511103
+        },
+        {
+          "date": "2025-10-10",
+          "flow_mape_percent": 6.58844675104094,
+          "speed_mae_mph": 13.049195177612285,
+          "flow_seed_sd_percent": 0.6696402050144491,
+          "speed_seed_sd_mph": 0.4117030931345266
+        },
+        {
+          "date": "2025-10-14",
+          "flow_mape_percent": 7.431219183453135,
+          "speed_mae_mph": 7.256282586212548,
+          "flow_seed_sd_percent": 0.35061030810950683,
+          "speed_seed_sd_mph": 0.5377833727476743
+        }
+      ]
+    },
+    "402377": {
+      "flow_mape_percent": 12.836671704848786,
+      "speed_mae_mph": 8.62224355080542,
+      "days": [
+        {
+          "date": "2025-10-07",
+          "flow_mape_percent": 21.77883523306889,
+          "speed_mae_mph": 15.781310425901944,
+          "flow_seed_sd_percent": 1.0528622161426404,
+          "speed_seed_sd_mph": 0.16857035903711767
+        },
+        {
+          "date": "2025-10-08",
+          "flow_mape_percent": 8.45701874868014,
+          "speed_mae_mph": 3.199234607798846,
+          "flow_seed_sd_percent": 0.188525826594155,
+          "speed_seed_sd_mph": 0.24928727840351958
+        },
+        {
+          "date": "2025-10-09",
+          "flow_mape_percent": 5.964634434352626,
+          "speed_mae_mph": 4.266242243695925,
+          "flow_seed_sd_percent": 0.7535736069501303,
+          "speed_seed_sd_mph": 0.2223631429932211
+        },
+        {
+          "date": "2025-10-10",
+          "flow_mape_percent": 7.691115764682667,
+          "speed_mae_mph": 7.635537946839276,
+          "flow_seed_sd_percent": 0.3075852921862689,
+          "speed_seed_sd_mph": 0.3301601486628535
+        },
+        {
+          "date": "2025-10-14",
+          "flow_mape_percent": 20.291754343459605,
+          "speed_mae_mph": 12.22889252979111,
+          "flow_seed_sd_percent": 0.420013486618758,
+          "speed_seed_sd_mph": 0.318854926765671
+        }
+      ]
+    }
+  },
+  "validation": {
+    "401507": {
+      "flow_mape_percent": 20.921143510146774,
+      "speed_mae_mph": 6.721638730100727,
+      "days": [
+        {
+          "date": "2025-10-15",
+          "flow_mape_percent": 26.25900854951371,
+          "speed_mae_mph": 5.762489434068844,
+          "flow_seed_sd_percent": 0.45505743998602993,
+          "speed_seed_sd_mph": 0.2895114396607766
+        },
+        {
+          "date": "2025-10-16",
+          "flow_mape_percent": 15.583278470779836,
+          "speed_mae_mph": 7.6807880261326105,
+          "flow_seed_sd_percent": 0.19331983175444978,
+          "speed_seed_sd_mph": 0.2780265096716061
+        }
+      ]
+    },
+    "401534": {
+      "flow_mape_percent": 18.95448501523657,
+      "speed_mae_mph": 11.489513503426847,
+      "days": [
+        {
+          "date": "2025-10-15",
+          "flow_mape_percent": 30.011659489828144,
+          "speed_mae_mph": 17.094258272537903,
+          "flow_seed_sd_percent": 0.10142118269542186,
+          "speed_seed_sd_mph": 0.49427052664448845
+        },
+        {
+          "date": "2025-10-16",
+          "flow_mape_percent": 7.897310540644997,
+          "speed_mae_mph": 5.8847687343157915,
+          "flow_seed_sd_percent": 0.19462968117695342,
+          "speed_seed_sd_mph": 0.16699119277450525
+        }
+      ]
+    },
+    "401996": {
+      "flow_mape_percent": 9.249885801675742,
+      "speed_mae_mph": 18.05744044027204,
+      "days": [
+        {
+          "date": "2025-10-15",
+          "flow_mape_percent": 12.65661744502095,
+          "speed_mae_mph": 26.98490238205602,
+          "flow_seed_sd_percent": 0.14220856632104323,
+          "speed_seed_sd_mph": 0.14257996800243922
+        },
+        {
+          "date": "2025-10-16",
+          "flow_mape_percent": 5.843154158330535,
+          "speed_mae_mph": 9.129978498488056,
+          "flow_seed_sd_percent": 0.22746172611070214,
+          "speed_seed_sd_mph": 0.7417349870918167
+        }
+      ]
+    },
+    "401998": {
+      "flow_mape_percent": 21.746560677997532,
+      "speed_mae_mph": 16.46645979049004,
+      "days": [
+        {
+          "date": "2025-10-15",
+          "flow_mape_percent": 34.521903890234405,
+          "speed_mae_mph": 23.962497860291588,
+          "flow_seed_sd_percent": 0.25866574082697574,
+          "speed_seed_sd_mph": 1.4239615234655294
+        },
+        {
+          "date": "2025-10-16",
+          "flow_mape_percent": 8.971217465760658,
+          "speed_mae_mph": 8.970421720688487,
+          "flow_seed_sd_percent": 0.4174515530344394,
+          "speed_seed_sd_mph": 0.4322469493087083
+        }
+      ]
+    },
+    "402370": {
+      "flow_mape_percent": 9.690865604817875,
+      "speed_mae_mph": 19.38833496533564,
+      "days": [
+        {
+          "date": "2025-10-15",
+          "flow_mape_percent": 13.494492796153862,
+          "speed_mae_mph": 27.66850135416301,
+          "flow_seed_sd_percent": 0.09962071136973084,
+          "speed_seed_sd_mph": 0.1120749350496681
+        },
+        {
+          "date": "2025-10-16",
+          "flow_mape_percent": 5.887238413481886,
+          "speed_mae_mph": 11.108168576508275,
+          "flow_seed_sd_percent": 0.2426785653738902,
+          "speed_seed_sd_mph": 1.4793850651711824
+        }
+      ]
+    },
+    "402372": {
+      "flow_mape_percent": 35.68120314248058,
+      "speed_mae_mph": 17.301223488141176,
+      "days": [
+        {
+          "date": "2025-10-15",
+          "flow_mape_percent": 62.785027632257425,
+          "speed_mae_mph": 27.54806292507749,
+          "flow_seed_sd_percent": 0.41991328664054,
+          "speed_seed_sd_mph": 1.1281978428424753
+        },
+        {
+          "date": "2025-10-16",
+          "flow_mape_percent": 8.577378652703729,
+          "speed_mae_mph": 7.054384051204857,
+          "flow_seed_sd_percent": 0.12114668732832691,
+          "speed_seed_sd_mph": 0.38723764419052675
+        }
+      ]
+    },
+    "402377": {
+      "flow_mape_percent": 13.60384721389954,
+      "speed_mae_mph": 7.789166988666342,
+      "days": [
+        {
+          "date": "2025-10-15",
+          "flow_mape_percent": 22.648071147850555,
+          "speed_mae_mph": 6.290198290485215,
+          "flow_seed_sd_percent": 0.2954195189492645,
+          "speed_seed_sd_mph": 0.08760924869808669
+        },
+        {
+          "date": "2025-10-16",
+          "flow_mape_percent": 4.559623279948524,
+          "speed_mae_mph": 9.28813568684747,
+          "flow_seed_sd_percent": 0.15841987863903914,
+          "speed_seed_sd_mph": 0.3904527880878005
+        }
+      ]
+    }
+  }
+}

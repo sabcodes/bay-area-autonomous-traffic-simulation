@@ -2,7 +2,68 @@
 
 **Started:** 2026-10-05
 
-**Status:** In progress; date-separated H0 calibration draft started
+**Status:** Complete at the practical experiment standard; held-out fidelity target missed
+
+**Last updated:** 2026-10-12
+
+## Stage checklist and resume point
+
+| Stage | Status | Deliverable / evidence |
+| --- | --- | --- |
+| M3.1 — Inputs and date split | Complete | Five calibration weekdays, two reserved validation weekdays; explicit dates in H0; source hashes; Saturdays excluded |
+| M3.2 — Demand and routes | Complete | Measured ramps, three net-movement group assumptions, 80%-coverage inlet proxy, and every NB branch disposition in [the demand ledger](m3-demand-ledger.md) |
+| M3.3 — Vehicle mix | Complete | 4% annual truck proxy, physical type attributes, and 2%/6% sensitivity cases; public Caltrans snapshots in `data/caltrans/` |
+| M3.4 — Human calibration and alignment | Complete | Twelve recorded candidates; 15/15 final runs clean and cleared; 8.32% flow MAPE / 8.15 mph speed MAE; all five 402377 lane outputs and dual four-lane audit |
+| M3.5 — Freeze and separate-day validation | Complete | 6/6 clean runs; frozen treatment unchanged; October 15 missed both fidelity targets, October 16 met both; combined 19.37% flow / 14.90 mph speed |
+| M3.6 — Report and handoff | Complete | Final tables/figures and versioned five-minute series; acceptance decision and limits; repository/context/Obsidian handoff |
+
+**Resume here: stop. M3 is closed.** Final case `buffer_exit_tau15` is frozen in
+`configs/us101_m3_experiment.json` and
+`configs/us101_human_baseline_m3_frozen.json`. Five-day calibration is complete:
+15/15 clean runs, mean flow MAPE 8.32%, speed MAE 8.15 mph. Sensitivities are
+complete; the high-demand case has an uncleared queue and stays a limitation.
+Validation is complete under `outputs/us101_corridor/m3/experiment/validation/`.
+`reports/m3/validation_report.json` matches the frozen treatment hash. All six
+runs cleared cleanly, but the combined speed target was missed: 14.90 mph MAE.
+The [closeout record](m3-human-baseline-report.md) records the failed October 15
+fit. Do not repeat completed runs or tune against validation errors. Results,
+figures, timing rows, and context handoff are saved. Starting M4 requires a new
+user instruction; this task performs no M4 implementation or policy runs.
+
+The original no-buffer `tau15` model completed all 15 calibration runs cleanly;
+its preserved report is `reports/m3/calibration_no_buffer_report.json` (mean
+flow MAPE 7.67%, speed MAE 12.51 mph). The final inlet-buffer case adds an
+explicitly assumed 1,500 veh/h downstream net-exit group. All 12 bounded
+candidate results remain in `reports/m3/candidates_report.json`; the original
+search configuration is `configs/us101_m3_calibration_search.json`.
+
+**Stop after M3.6. Do not start M4 or later experiments in this task.**
+
+## Experiment contract
+
+- Fixed analysis corridor and network: the accepted M2 US-101 NB network. An
+  inlet buffer, if selected, uses existing upstream motorway edges and does
+  not change the scored analysis reach.
+- Primary observations: 07:00–09:00, five-minute speed/flow, at least 90%
+  reported coverage. A separately labeled 80%-coverage upstream count may
+  condition the inlet; it is never a scored target.
+- Fixed split below; representative October 8 was selected by median
+  study-start flow before candidate fitting. Validation errors never select
+  parameters or exclude poor-fit days.
+- Up to 12 recorded calibration candidates; preserve failed cases. Three
+  fixed seeds per day for the final calibration/validation.
+- Zero unexplained SUMO route/collision/teleport/emergency-braking warnings,
+  and every loaded trip inserted and ended within the documented clearance
+  horizon, are run-health requirements.
+- Report station errors, bottleneck/timing mismatch, seed variation, omitted
+  movements, and detector-subset uncertainty. Performance targets are mean
+  flow MAPE at or below 20% and speed MAE at or below 10 mph on the full-lane
+  stations; report each held-out day against those targets. A miss is recorded
+  as a model limitation and is not a reason to tune on validation data or to
+  claim successful field validation.
+- Completion evidence: reproducible frozen scenario, calibration report,
+  separate-day validation report, sensitivity/health ledger, and updated
+  research context. The closeout must state whether fidelity targets were met.
 
 **Scope:** Northbound US-101, SR-237 to the Oregon Expressway/Page Mill Road connection, 07:00–09:00 observed morning period.
 
@@ -61,16 +122,18 @@ PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim compare-us101-detectors 
   --output outputs/us101_corridor/m3/calibration/comparison_seed_42.json
 ```
 
-The held-out configs are `configs/us101_human_baseline_m3_validation_2025_10_15.json`
-and `configs/us101_human_baseline_m3_validation_2025_10_16.json`. Do not run
-them for parameter selection; use them only after the M3 settings are frozen.
+The early held-out configs `configs/us101_human_baseline_m3_validation_2025_10_15.json`
+and `configs/us101_human_baseline_m3_validation_2025_10_16.json` are retained as
+historical setup. The final validation uses `configs/us101_m3_experiment.json`
+and `configs/us101_human_baseline_m3_frozen.json` through
+`scripts/run_m3_baseline.py`; the early configs do not contain the selected model.
 
-## Immediate next action
+## Historical first action
 
-Build the demand ledger, diagnose the persistent Shoreline flow gap and
-free-flow speed bias, then add the vehicle-mix and bounded behavior candidates.
-No behavior tuning or policy comparison should use the nine-date average as a
-validation target.
+The first implementation action was to build the demand ledger and diagnose
+the Shoreline flow gap and speed bias before adding fleet and behavior cases.
+The stage checklist above is the current resume point. The nine-date average
+remains a diagnostic reference, never a validation target.
 
 ## References
 

@@ -8,7 +8,9 @@ This is a simulation research project, not a prediction system or a safety-criti
 
 For the current milestone state and handoff context, see the
 [project memory](docs/project-memory.md), [roadmap](docs/project-roadmap.md),
-and [domain glossary](CONTEXT.md). M0–M2 are complete; M3 calibration is active.
+and [domain glossary](CONTEXT.md). M0–M3 experiment work is complete. M3's
+held-out speed target was missed; see the [closeout record](docs/m3-human-baseline-report.md).
+Work stops at M3; M4 needs a new instruction.
 
 ## What we will build first
 
@@ -203,7 +205,7 @@ scenario: observed flow and speed for each five-minute slice, averaged across
 the selected days and sensors. Use the [PeMS sensor audit sheet](docs/us101-sensor-audit.md)
 to resolve the remaining locations before treating this as a final calibration target.
 
-## Draft real-corridor human baseline
+## Historical draft real-corridor human baseline
 
 The first H0 scenario converts five-minute PeMS station profiles into
 passenger-car demand on the corrected SR-237-to-Oregon-Expressway network.
@@ -235,13 +237,55 @@ spread captures stochastic driving variation only; it does not represent all
 uncertainty in demand, detector data, network geometry, or model parameters.
 
 The route is forced through ordered, detector-matched freeway checkpoints so
-SUMO cannot choose a one-lane ramp as a geometric shortcut. This is a runnable
-calibration draft, not the finished human baseline. It has human-like
-stochastic following and the four measured, audited ramp movements currently
-inside the study boundary. Eight missing ramp profiles, vehicle mix,
-held-out-day validation, and driver calibration still belong to M3. The
-[M3 execution plan](docs/m3-human-baseline-plan.md) fixes the observation split
-and next implementation steps. The manual network review was completed in M2.
+SUMO cannot choose a one-lane ramp as a geometric shortcut. These commands
+preserve the historical passenger-only draft. For the selected human fleet,
+demand assumptions, and separate-day results, use the M3 package below.
+The manual network review was completed in M2.
+
+## M3 staged experiment and reproduction
+
+The [M3 plan](docs/m3-human-baseline-plan.md) has six named stages and an
+explicit resume point. The [closeout record](docs/m3-human-baseline-report.md),
+[results](reports/m3/README.md), and [demand ledger](docs/m3-demand-ledger.md)
+explain the selected model and its limits. M3 uses five calibration weekdays,
+two separate validation weekdays, three seeds per day, and a 4% truck proxy.
+The accepted M2 network is unchanged; an existing upstream buffer and three
+net-entry/exit hypotheses address missing traffic movements.
+
+Keep the original PeMS downloads and matching metadata available locally.
+Restore the exact accepted network snapshot and prepare inputs:
+
+```bash
+mkdir -p outputs/us101_corridor
+gzip -dc network/us101_corridor/accepted_m2.net.xml.gz > outputs/us101_corridor/us101_corridor.net.xml
+PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim summarize-pems-stations \
+  --station-ids-file configs/us101_corridor_station_ids.json \
+  --station-ids-key accepted_corridor_station_ids --lane-types ML \
+  --output outputs/pems_calibration/us101_corridor_m1_station_profiles.json
+PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim summarize-pems-stations
+PYTHONPATH=src .venv/bin/python scripts/prepare_m3_upstream_proxy.py
+```
+
+The frozen input hashes reject changed source files; do not silently replace
+them or recalibrate using the validation dates. Run the fixed experiment:
+
+```bash
+PYTHONPATH=src .venv/bin/python scripts/run_m3_baseline.py calibration --workers 3
+PYTHONPATH=src .venv/bin/python scripts/run_m3_baseline.py validation --workers 3
+PYTHONPATH=src .venv/bin/python scripts/run_m3_baseline.py sensitivity --workers 2
+.venv/bin/python scripts/summarize_m3_baseline.py
+```
+
+Install the `reports` optional dependency for Matplotlib when regenerating
+figures. The versioned five-minute series also allow figure regeneration
+without large SUMO runtime outputs. The 12 original candidate scenarios are
+saved under `reports/m3/candidate_scenarios/`; failed trials stay in the ledger.
+The network snapshot derives from OpenStreetMap (ODbL); its source, correction
+patches, and hash are in `network/us101_corridor/accepted_m2.provenance.json`.
+Rebuilding from the saved OSM source remains supported, but netconvert's
+timestamp/path header can change its byte hash. Use the accepted snapshot for
+an exact replay of this frozen experiment.
+M3 ends with its report and context handoff. M4 is not started by these commands.
 
 Generate separate observed profiles for the six on-ramp and seven off-ramp
 PeMS candidates with:
