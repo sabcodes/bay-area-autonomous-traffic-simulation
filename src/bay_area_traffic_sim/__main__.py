@@ -11,6 +11,7 @@ from bay_area_traffic_sim.calibration import (
     summarize_detector_comparisons,
 )
 from bay_area_traffic_sim.corridor_junctions import build_lane_connection_audit
+from bay_area_traffic_sim.experiment_harness import run_experiment
 from bay_area_traffic_sim.experiments import repeat, summarize_runs
 from bay_area_traffic_sim.flow_balance import build_flow_balance_report
 from bay_area_traffic_sim.network_audit import audit_network
@@ -56,6 +57,10 @@ def main() -> None:
         default=[41, 42, 43],
         help="One or more SUMO random seeds (default: 41 42 43).",
     )
+    experiment = subcommands.add_parser(
+        "run-us101-experiment", help="Run an explicit multi-seed M4 corridor experiment."
+    )
+    experiment.add_argument("--config", default="configs/us101_m4_experiment.json")
     osm_import = subcommands.add_parser(
         "import-us101-osm", help="Convert a local OSM extract into a SUMO network for auditing."
     )
@@ -514,6 +519,10 @@ def main() -> None:
                 indent=2,
             )
         )
+    elif args.command == "run-us101-experiment":
+        report = run_experiment(Path(args.config))
+        if not report["accepted"]:
+            raise SystemExit(1)
     elif args.command == "run-us101-human-baseline-multi":
         run_records = []
         metrics = []

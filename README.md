@@ -8,9 +8,11 @@ This is a simulation research project, not a prediction system or a safety-criti
 
 For the current milestone state and handoff context, see the
 [project memory](docs/project-memory.md), [roadmap](docs/project-roadmap.md),
-and [domain glossary](CONTEXT.md). M0–M3 experiment work is complete. M3's
+and [domain glossary](CONTEXT.md). M0–M4 experiment work is complete. M3's
 held-out speed target was missed; see the [closeout record](docs/m3-human-baseline-report.md).
-Work stops at M3; M4 needs a new instruction.
+M4 is complete; see the [harness closeout](docs/m4-experiment-harness-report.md).
+See the [M4 plan](docs/m4-experiment-harness-plan.md) and
+[metric specification](docs/m4-experiment-harness-spec.md).
 
 ## What we will build first
 
@@ -285,7 +287,43 @@ patches, and hash are in `network/us101_corridor/accepted_m2.provenance.json`.
 Rebuilding from the saved OSM source remains supported, but netconvert's
 timestamp/path header can change its byte hash. Use the accepted snapshot for
 an exact replay of this frozen experiment.
-M3 ends with its report and context handoff. M4 is not started by these commands.
+M3 ends with its report and context handoff. The separate M4 command below uses
+that frozen baseline.
+
+## M4 reproducible experiment harness
+
+With the frozen M3 inputs prepared as above, run:
+
+```bash
+PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim run-us101-experiment
+```
+
+[The explicit config](configs/us101_m4_experiment.json) selects H0, October 8,
+2025, seeds 41–43, a one-second trajectory sample period, and a 0.1 m/s stopped
+threshold. It creates `report.json` and `summary.md` under
+`outputs/us101_corridor/m4/m4_h0_2025_10_08/`, with isolated raw files and run
+results for every seed. Native compressed SUMO FCD output records speed and
+acceleration; streaming analysis retains one timestep at a time.
+
+The observation window is 07:00–09:00 after warmup. Travel-time statistics
+follow vehicles departing during that window through clearance; exit throughput
+counts arrivals during the window. Queue proxies, variability of domain mean
+speed, and acceleration smoothness use the same observation window. Each
+scenario/date gets seed means and sample standard deviations; failures remain
+visible and make the command exit nonzero. Reported provenance includes source,
+input, network, route, and configuration hashes plus the SUMO version.
+
+Existing experiment directories are preserved. To repeat a run, copy the config
+with a new `experiment_id`, then pass `--config path/to/experiment.json`.
+All runtime outputs must stay under `outputs/`. At least two unique seeds are
+required. Comparisons reject mismatched network, demand, fleet, and data settings.
+
+Read the [metric specification](docs/m4-experiment-harness-spec.md) for exact
+populations, units, and null handling. Queue counts are stopped-vehicle proxies;
+speed variability depends on the traffic distribution; acceleration smoothness
+is not fuel use. M3's held-out fidelity failure remains a limitation.
+
+## Detector and demand diagnostics
 
 Generate separate observed profiles for the six on-ramp and seven off-ramp
 PeMS candidates with:
@@ -405,11 +443,10 @@ lane-level merge has been confirmed. See the [SR-85 lane sensitivity notes](docs
 
 ## Status
 
-**Phase 1 - runnable toy corridor.** The human-like and CACC sensitivity
-scenarios run locally and report multi-seed metrics. They are deliberately
-small, uncalibrated tool checks. In particular, record and investigate SUMO
-emergency-braking warnings before treating any CACC result as a safety or
-performance claim.
+**M0–M4 complete at their documented practical standards.** The audited real
+corridor has a frozen human baseline and a reproducible multi-seed measurement
+harness. M3 retains its held-out fidelity limitation. The toy CACC commands are
+early tool checks; real-corridor policy comparisons belong to M5 and M6.
 
 The full sequence of work and completion criteria live in the
 [project roadmap](docs/project-roadmap.md).

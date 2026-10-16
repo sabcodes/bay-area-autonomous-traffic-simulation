@@ -1,0 +1,10 @@
+{
+  "experiment_id": "m4_h0_2025_10_08",
+  "scenarios": [
+    {"id": "H0", "baseline_config": "configs/us101_human_baseline_m3_frozen.json"}
+  ],
+  "observation_dates": ["2025-10-08"],
+  "seeds": [41, 42, 43],
+  "measurement": {"period_seconds": 1.0, "stop_speed_m_per_s": 0.1},
+  "output_directory": "outputs/us101_corridor/m4"
+}

@@ -23,7 +23,9 @@ class RunMetrics:
 def summarize_tripinfos(root: ElementTree.Element) -> RunMetrics:
     """Summarize SUMO ``tripinfo`` elements from an already-parsed XML tree."""
 
-    trips = root.findall("tripinfo")
+    trips = [
+        trip for trip in root.findall("tripinfo") if float(trip.attrib.get("arrival", "0")) >= 0
+    ]
     if not trips:
         return RunMetrics(0, None, None, None, None)
 

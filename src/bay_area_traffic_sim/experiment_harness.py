@@ -1,0 +1,325 @@
+"""Explicit, isolated multi-seed experiments for the audited real corridor."""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import math
+import re
+import subprocess
+from dataclasses import asdict
+from datetime import UTC, date, datetime
+from pathlib import Path
+from statistics import fmean, stdev
+
+from bay_area_traffic_sim.experiment_metrics import (
+    clean_and_cleared,
+    entrance_queue_edges,
+    read_trajectory_metrics,
+    read_window_trip_metrics,
+)
+from bay_area_traffic_sim.real_corridor import _load_baseline_config, run_human_baseline
+from bay_area_traffic_sim.toy_corridor import repository_root
+
+LIMITATIONS = [
+    "M3 held-out fidelity remains limited: October 15 missed both flow and speed targets; "
+    "combined held-out speed MAE was 14.90 mph. M4 instrumentation does not revalidate H0.",
+    "Seed spread describes stochastic simulation variation, not total model uncertainty.",
+    "Trajectory scope includes modeled ramps, upstream buffer, and internal junction links.",
+    "Queues are stopped-vehicle count proxies, not contiguous queue lengths in meters. "
+    "Entrance counts omit internal junction links and vehicles waiting to insert.",
+    "Temporal variability of domain mean speed depends on demand and spatial composition; "
+    "it does not establish wave stability or disturbance recovery.",
+    "Acceleration squared is a smoothness proxy, not energy or fuel use. "
+    "FCD speed and acceleration use SUMO's default two-decimal output precision.",
+    "Unknown gross ramp movements and the annual truck proxy remain M3 assumptions.",
+]
+METRIC_CONTRACT = {
+    "window_exit_vehicles": ["vehicles", "arrivals in window, all modeled exits"],
+    "network_exit_throughput_vehicles_per_hour": ["veh/h", "window arrivals / window hours"],
+    "cohort_completed_vehicles": ["vehicles", "window departures completed by run end"],
+    "cohort_unfinished_vehicles": ["vehicles", "window departures unfinished at run end"],
+    "cohort_mean_travel_time_seconds": ["s", "completed departure cohort, arithmetic mean"],
+    "cohort_p95_travel_time_seconds": ["s", "completed departure cohort, linear p95"],
+    "cohort_mean_waiting_time_seconds": ["s", "completed departure cohort, mean waitingTime"],
+    "cohort_mean_time_loss_seconds": ["s", "completed departure cohort, mean SUMO timeLoss"],
+    "trajectory_timesteps": ["samples", "all expected window timesteps including empty"],
+    "populated_timesteps": ["samples", "window timesteps with vehicles"],
+    "vehicle_samples": ["samples", "all vehicle observations in window"],
+    "mean_stopped_vehicles": ["vehicles", "time mean, speed < stop threshold"],
+    "peak_stopped_vehicles": ["vehicles", "time maximum, speed < stop threshold"],
+    "stopped_vehicle_seconds": ["vehicle s", "sum stopped counts times sample period"],
+    "mean_ramp_stopped_vehicles": ["vehicles", "time mean on entrance approach edges"],
+    "peak_ramp_stopped_vehicles": ["vehicles", "time maximum on entrance approach edges"],
+    "mean_timestep_speed_mph": ["mph", "mean of nonempty timestep mean speeds"],
+    "temporal_mean_speed_stddev_mph": ["mph", "population stddev of timestep mean speeds"],
+    "mean_squared_acceleration_m2_per_s4": ["m^2/s^4", "mean a squared over vehicle samples"],
+    "rms_acceleration_m_per_s2": ["m/s^2", "square root of mean squared acceleration"],
+}
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _json_hash(value: dict) -> str:
+    return hashlib.sha256(json.dumps(value, sort_keys=True).encode()).hexdigest()
+
+
+def validate_experiment(config: dict, root: Path) -> tuple[Path, dict[str, dict]]:
+    """Reject invalid matrices and incompatible comparisons before launching SUMO."""
+
+    def identifier(value: object) -> bool:
+        return isinstance(value, str) and re.fullmatch(r"[A-Za-z0-9_-]+", value) is not None
+
+    if not identifier(config.get("experiment_id")):
+        raise ValueError("experiment_id must contain only letters, digits, underscores or dashes.")
+    scenarios = config.get("scenarios")
+    if not isinstance(scenarios, list) or not scenarios:
+        raise ValueError("Declare at least one named scenario.")
+    ids = [scenario.get("id") for scenario in scenarios]
+    if not all(identifier(name) for name in ids) or len(set(ids)) != len(ids):
+        raise ValueError("Scenario IDs must be safe and unique.")
+    dates = config.get("observation_dates")
+    if not isinstance(dates, list) or not dates:
+        raise ValueError("Declare at least one observation date.")
+    if any(not isinstance(day, str) or date.fromisoformat(day).isoformat() != day for day in dates):
+        raise ValueError("Observation dates must be ISO dates.")
+    if len(dates) != len(set(dates)):
+        raise ValueError("Observation dates must be unique.")
+    seeds = config.get("seeds")
+    if (
+        not isinstance(seeds, list)
+        or len(seeds) < 2
+        or any(type(seed) is not int or not 0 <= seed <= 2147483647 for seed in seeds)
+        or len(seeds) != len(set(seeds))
+    ):
+        raise ValueError("Declare at least two unique nonnegative integer SUMO seeds.")
+    measurement = config.get("measurement", {})
+    period = measurement.get("period_seconds")
+    threshold = measurement.get("stop_speed_m_per_s")
+    if (
+        type(period) not in (int, float)
+        or not math.isfinite(period)
+        or period <= 0
+        or not math.isclose(period / 0.5, round(period / 0.5))
+    ):
+        raise ValueError("Sampling period must be a positive multiple of the 0.5 s step.")
+    if type(threshold) not in (int, float) or not math.isfinite(threshold) or threshold < 0:
+        raise ValueError("Stop threshold must be finite and nonnegative.")
+    output = (root / config["output_directory"] / config["experiment_id"]).resolve()
+    if not output.is_relative_to((root / "outputs").resolve()) or output.exists():
+        raise ValueError(
+            "Use a new experiment directory under outputs/; existing runs are preserved."
+        )
+    bases = {
+        scenario["id"]: _load_baseline_config(Path(scenario["baseline_config"]), root)
+        for scenario in scenarios
+    }
+    # Compare all input settings except labels, output locations, and driver parameters.
+    ignored = {
+        "scenario",
+        "assumptions",
+        "additional_assumptions",
+        "freeze_note",
+        "human_parameters",
+        "route_file",
+        "manifest_file",
+        "aligned_pems_report_file",
+        "detector_file_template",
+        "detector_output_template",
+        "detector_summary_template",
+    }
+    comparison = None
+    for base in bases.values():
+        comparable = {key: value for key, value in base.items() if key not in ignored}
+        if comparison is not None and comparable != comparison:
+            raise ValueError(
+                "Scenarios differ in network, demand, fleet, windows, or data settings."
+            )
+        comparison = comparable
+    return output, bases
+
+
+def summarize_seed_metrics(runs: list[dict]) -> dict:
+    """Require every planned run for each mean; retain numeric seed counts."""
+    summary = {}
+    accepted = all(run["accepted"] for run in runs)
+    for name in METRIC_CONTRACT:
+        values = [run.get("metrics", {}).get(name) for run in runs]
+        numeric = [value for value in values if value is not None]
+        complete = accepted and len(numeric) == len(runs)
+        summary[name] = {
+            "valid_seed_count": len(numeric),
+            "mean": fmean(numeric) if complete else None,
+            "sample_standard_deviation": stdev(numeric) if complete and len(numeric) > 1 else None,
+        }
+    return summary
+
+
+def _markdown(report: dict) -> str:
+    lines = [
+        f"# {report['experiment']['experiment_id']}",
+        "",
+        f"Accepted: {report['accepted']}. Seeds: {report['experiment']['seeds']}.",
+        "",
+        "Means and sample standard deviations are across seeds within each scenario/date.",
+        "",
+        "| Scenario | Date | Metric | Mean | Sample SD | Valid seeds |",
+        "| --- | --- | --- | ---: | ---: | ---: |",
+    ]
+    for group in report["groups"]:
+        for metric, stats in group["metric_summary"].items():
+            mean, spread = stats["mean"], stats["sample_standard_deviation"]
+            lines.append(
+                f"| {group['scenario']} | {group['date']} | {metric} | "
+                f"{mean if mean is None else round(mean, 6)} | "
+                f"{spread if spread is None else round(spread, 6)} | {stats['valid_seed_count']} |"
+            )
+    lines += ["", "## Runs", ""]
+    for run in report["runs"]:
+        lines.append(
+            f"- {run['scenario']} {run['date']} seed {run['seed']}: "
+            f"accepted={run['accepted']}; {run.get('error', 'measured')}."
+        )
+    lines += ["", "## Metric contract", ""]
+    for name, (unit, population) in METRIC_CONTRACT.items():
+        lines.append(f"- `{name}` ({unit}): {population}.")
+    lines += ["", "## Limitations", "", *[f"- {note}" for note in LIMITATIONS]]
+    return "\n".join(lines) + "\n"
+
+
+def run_experiment(config_path: Path) -> dict:
+    """Execute a declared matrix, retain failures, and write JSON/Markdown reports."""
+    root = repository_root()
+    config_path = root / config_path
+    config = json.loads(config_path.read_text())
+    output, bases = validate_experiment(config, root)
+    output.mkdir(parents=True, exist_ok=False)
+    (output / "experiment.json").write_text(json.dumps(config, indent=2) + "\n")
+    revision = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    source_hashes = {
+        str(path.relative_to(root)): _sha256(path)
+        for path in sorted((root / "src/bay_area_traffic_sim").glob("*.py"))
+    }
+    runs = []
+    period = config["measurement"]["period_seconds"]
+    threshold = config["measurement"]["stop_speed_m_per_s"]
+    for name, base in bases.items():
+        for day in sorted(config["observation_dates"]):
+            for seed in sorted(config["seeds"]):
+                directory = output / name / day / f"seed_{seed}"
+                directory.mkdir(parents=True)
+                run = {
+                    "scenario": name,
+                    "date": day,
+                    "seed": seed,
+                    "accepted": False,
+                    "directory": str(directory.relative_to(root)),
+                }
+                try:
+                    scenario = {
+                        **base,
+                        "scenario": f"M4 {name} {day}",
+                        "observation_dates": [day],
+                        "route_file": str(directory / "h0.rou.xml"),
+                        "manifest_file": str(directory / "manifest.json"),
+                        "aligned_pems_report_file": str(directory / "observed.json"),
+                        "detector_file_template": str(directory / "detectors_seed_{seed}.add.xml"),
+                        "detector_output_template": str(directory / "detectors_seed_{seed}.xml"),
+                        "detector_summary_template": str(directory / "detectors_seed_{seed}.json"),
+                    }
+                    scenario_file = directory / "scenario.json"
+                    scenario_file.write_text(json.dumps(scenario, indent=2) + "\n")
+                    trajectory = directory / "trajectory.fcd.xml.gz"
+                    prepared, legacy_metrics, detector_file = run_human_baseline(
+                        scenario_file,
+                        seed,
+                        trajectory_output=trajectory,
+                        trajectory_period_seconds=period,
+                    )
+                    health = json.loads((directory / f"h0_run_health_seed_{seed}.json").read_text())
+                    run["health"] = health
+                    begin = float(base["warmup_seconds"])
+                    end = float(prepared.demand_profile[-1].end_seconds)
+                    trip_file = directory / f"h0_human_baseline_seed_{seed}.tripinfo.xml"
+                    ramp_edges = entrance_queue_edges(Path(prepared.route_file))
+                    run.update(
+                        {
+                            "measurement": {
+                                "begin_seconds": begin,
+                                "end_seconds_exclusive": end,
+                                **config["measurement"],
+                                "ramp_approach_edge_ids": sorted(ramp_edges),
+                            },
+                            "resolved_scenario_sha256": _json_hash(scenario),
+                            "route_sha256": _sha256(Path(prepared.route_file)),
+                            "network_sha256": prepared.network_sha256,
+                            "provenance": prepared.provenance,
+                            "manifest_file": str(Path(prepared.manifest_file).relative_to(root)),
+                            "detector_summary_file": str(detector_file.relative_to(root)),
+                            "legacy_whole_run_metrics": asdict(legacy_metrics),
+                            "metrics": {
+                                **read_window_trip_metrics(trip_file, begin, end),
+                                **read_trajectory_metrics(
+                                    trajectory,
+                                    begin,
+                                    end,
+                                    period,
+                                    threshold,
+                                    ramp_edges,
+                                ),
+                            },
+                            "accepted": clean_and_cleared(health),
+                        }
+                    )
+                    if not run["accepted"]:
+                        run["error"] = "Run health failed the clean-and-cleared requirement."
+                except Exception as error:
+                    run["error"] = f"{type(error).__name__}: {error}"
+                runs.append(run)
+                (directory / "result.json").write_text(json.dumps(run, indent=2) + "\n")
+                print(
+                    f"{name} {day} seed {seed}: accepted={run['accepted']} {run.get('error', '')}",
+                    flush=True,
+                )
+    runs.sort(key=lambda run: (run["scenario"], run["date"], run["seed"]))
+    groups = []
+    for name in sorted(bases):
+        for day in sorted(config["observation_dates"]):
+            matching = [run for run in runs if run["scenario"] == name and run["date"] == day]
+            groups.append(
+                {
+                    "scenario": name,
+                    "date": day,
+                    "planned_seeds": sorted(config["seeds"]),
+                    "accepted": all(run["accepted"] for run in matching),
+                    "metric_summary": summarize_seed_metrics(matching),
+                }
+            )
+    report = {
+        "schema_version": 1,
+        "generated_at_utc": datetime.now(UTC).isoformat(),
+        "accepted": all(run["accepted"] for run in runs),
+        "experiment": config,
+        "experiment_config_sha256": _sha256(config_path),
+        "source_revision": revision.stdout.strip() if revision.returncode == 0 else None,
+        "source_sha256": source_hashes,
+        "resolved_baseline_configs": bases,
+        "resolved_baseline_sha256": {name: _json_hash(base) for name, base in bases.items()},
+        "metric_contract": METRIC_CONTRACT,
+        "limitations": LIMITATIONS,
+        "groups": groups,
+        "runs": runs,
+        "report_file": str((output / "report.json").relative_to(root)),
+    }
+    (output / "report.json").write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
+    (output / "summary.md").write_text(_markdown(report))
+    print(f"Report: {output / 'report.json'}", flush=True)
+    return report

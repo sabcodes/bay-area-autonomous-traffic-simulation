@@ -1,0 +1,77 @@
+{
+  "accepted": true,
+  "reference_report": "reports/m3/calibration_report.json",
+  "frozen_m3_artifact_hashes_unchanged": true,
+  "implementation_source_hashes_match_runtime_report": true,
+  "runs": [
+    {
+      "date": "2025-10-08",
+      "seed": 41,
+      "completed_vehicles": 22951,
+      "trip_metrics_identical": true,
+      "route_sha256_identical": true,
+      "detector_summary_sha256_identical": true,
+      "frozen_manifest_fields_identical": true,
+      "m4_legacy_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 822.9121171190798,
+        "average_waiting_time_seconds": 35.87900309354712,
+        "average_time_loss_seconds": 480.7691059213106,
+        "average_trip_speed_mph": 35.404842949486365
+      },
+      "m3_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 822.9121171190798,
+        "average_waiting_time_seconds": 35.87900309354712,
+        "average_time_loss_seconds": 480.7691059213106,
+        "average_trip_speed_mph": 35.404842949486365
+      }
+    },
+    {
+      "date": "2025-10-08",
+      "seed": 42,
+      "completed_vehicles": 22951,
+      "trip_metrics_identical": true,
+      "route_sha256_identical": true,
+      "detector_summary_sha256_identical": true,
+      "frozen_manifest_fields_identical": true,
+      "m4_legacy_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 830.5248573046927,
+        "average_waiting_time_seconds": 33.86340464467779,
+        "average_time_loss_seconds": 488.95216330443117,
+        "average_trip_speed_mph": 35.046726806415045
+      },
+      "m3_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 830.5248573046927,
+        "average_waiting_time_seconds": 33.86340464467779,
+        "average_time_loss_seconds": 488.95216330443117,
+        "average_trip_speed_mph": 35.046726806415045
+      }
+    },
+    {
+      "date": "2025-10-08",
+      "seed": 43,
+      "completed_vehicles": 22951,
+      "trip_metrics_identical": true,
+      "route_sha256_identical": true,
+      "detector_summary_sha256_identical": true,
+      "frozen_manifest_fields_identical": true,
+      "m4_legacy_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 840.5313929676266,
+        "average_waiting_time_seconds": 34.76876824539236,
+        "average_time_loss_seconds": 498.5808683717485,
+        "average_trip_speed_mph": 35.0172968683832
+      },
+      "m3_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 840.5313929676266,
+        "average_waiting_time_seconds": 34.76876824539236,
+        "average_time_loss_seconds": 498.5808683717485,
+        "average_trip_speed_mph": 35.0172968683832
+      }
+    }
+  ]
+}

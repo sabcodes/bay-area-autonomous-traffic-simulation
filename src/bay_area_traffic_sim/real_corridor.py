@@ -847,7 +847,8 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
 
 
 def run_human_baseline(
-    config_path: Path, seed: int = 42
+    config_path: Path, seed: int = 42, *,
+    trajectory_output: Path | None = None, trajectory_period_seconds: float = 1.0,
 ) -> tuple[PreparedBaseline, RunMetrics, Path]:
     """Run the draft real-corridor human baseline and read completed-trip metrics."""
 
@@ -865,6 +866,25 @@ def run_human_baseline(
         detector_output_file,
         prepared.virtual_detectors,
     )
+    trajectory_options = []
+    if trajectory_output is not None:
+        span = prepared.demand_profile[-1].end_seconds - raw["warmup_seconds"]
+        period = trajectory_period_seconds
+        if (not math.isfinite(period) or period <= 0
+                or not math.isclose(period / 0.5, round(period / 0.5))
+                or not math.isclose(span / period, round(span / period))):
+            raise ValueError("Trajectory period must divide the window and match the 0.5 s step.")
+        trajectory_options = [
+            "--fcd-output", str(trajectory_output),
+            "--fcd-output.attributes", "id,speed,acceleration,lane",
+            "--fcd-output.skip-empty", "false",
+            "--device.fcd.begin", str(raw["warmup_seconds"]),
+            "--device.fcd.period", str(trajectory_period_seconds),
+            "--device.fcd.probability", "1",
+            "--device.fcd.deterministic", "true",
+            "--tripinfo-output.write-unfinished", "true",
+            "--tripinfo-output.write-undeparted", "true",
+        ]
     subprocess.run(
         [
             str(binary("sumo")),
@@ -892,6 +912,7 @@ def run_human_baseline(
             "true",
             "--xml-validation",
             "never",
+            *trajectory_options,
         ],
         check=True,
         stdout=subprocess.DEVNULL,
@@ -908,7 +929,7 @@ def run_human_baseline(
     ]
     vehicle_types: dict[str, int] = defaultdict(int)
     for _, trip in ElementTree.iterparse(tripinfo_file, events=("end",)):
-        if trip.tag == "tripinfo":
+        if trip.tag == "tripinfo" and float(trip.attrib.get("arrival", "0")) >= 0:
             vehicle_types[trip.attrib.get("vType", "unknown")] += 1
             trip.clear()
     (output_directory / f"h0_run_health_seed_{seed}.json").write_text(

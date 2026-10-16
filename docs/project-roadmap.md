@@ -74,7 +74,8 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   Held-out combined errors: 19.37% / 14.90 mph. October 15 missed both
   fidelity targets; October 16 met both. This is a completed evaluation,
   not a successfully field-validated H0. Settings were not retuned after
-  viewing validation. Work stops after M3; M4 needs a new user instruction.
+  viewing validation. M4 was authorized separately on October 16, 2026; M3
+  remains frozen.
 - The remaining observed-data findings below describe the earlier audit and
   diagnostic draft. The former nine-date average, which included Saturdays,
   is preserved as historical evidence and is not independent validation.
@@ -111,11 +112,17 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   the endpoint. M3 added the vehicle mix, three bounded net-movement hypotheses,
   driver calibration, and held-out evaluation. Individual gross ramp flows
   remain unknown. See the [ramp detector audit](us101-ramp-audit.md).
-- M4 has a partial harness. One command runs the real baseline across multiple seeds
-  and writes per-run results plus sample mean and standard deviation for trip
-  metrics and station calibration errors. Queue, stability, and smoothness
-  metrics still need to be added before M4 is complete. No M4 work is active
-  after this M3 closeout.
+- M4 is complete. The [plan](m4-experiment-harness-plan.md) and
+  [specification](m4-experiment-harness-spec.md) preceded implementation.
+  One command reports windowed throughput, departure-cohort travel time,
+  stopped-queue proxies, temporal speed variability, and acceleration smoothness
+  with per-seed values, sample spread, explicit populations, and provenance.
+  All three H0 seeds on October 8, 2025 cleared 22,951 vehicles without SUMO
+  warnings. Their legacy trip metrics match M3 exactly; route and detector
+  summaries are byte-identical to the matching M3 runs. All 67 tests and lint
+  passed. See the [closeout](m4-experiment-harness-report.md) and
+  [results](../reports/m4/README.md). M3's fidelity limit remains in force;
+  M5–M8 remain.
 
 ## Guardrails
 

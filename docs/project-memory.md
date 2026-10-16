@@ -1,6 +1,6 @@
 # Project memory and handoff
 
-**Updated:** 2026-10-12
+**Updated:** 2026-10-16
 **Repository:** `sabcodes/bay-area-autonomous-traffic-simulation`
 **Local Obsidian vault:** `Auto-Car Traffic Research`
 
@@ -10,8 +10,9 @@ This project compares human-like traffic with explainable autonomous-vehicle
 coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
-of truth: **M0–M3 experiment work is complete. M3 has a held-out fidelity limit.**
-M4 has a partial runnable multi-seed harness.
+of truth: **M0–M4 experiment work is complete. M3 has a held-out fidelity limit.**
+M4 is complete; the [harness closeout](m4-experiment-harness-report.md) records
+its acceptance evidence.
 
 ## M2 decision to preserve
 
@@ -61,7 +62,9 @@ This closes the practical M3 experiment, not a successful field-validation
 claim. See the [closeout record](m3-human-baseline-report.md) and
 [results](../reports/m3/README.md). Do not tune against these held-out errors.
 The [staged plan](m3-human-baseline-plan.md) records the exact resume point.
-Stop after M3 closeout; do not start M4 without a new user instruction.
+M4 was authorized by a new user instruction on October 16, 2026. Its
+[plan](m4-experiment-harness-plan.md) and [spec](m4-experiment-harness-spec.md)
+preceded implementation; M3 settings and validation results remain frozen.
 The [demand ledger](m3-demand-ledger.md) distinguishes measured
 flows, group estimates, and omitted movements. Public 2024 Caltrans annual
 truck/ramp inputs and their hashes are saved in `data/caltrans/`.
@@ -77,6 +80,28 @@ only. Provisional lane mappings remain modeling choices, not field-wiring
 proof. See the [sensor audit](us101-sensor-audit.md) and
 [ramp detector audit](us101-ramp-audit.md).
 
+## M4 closeout and resume point
+
+The spec-driven M4 sequence is complete: plan, specification, implementation,
+checks, and real-run acceptance. Run `PYTHONPATH=src .venv/bin/python -m
+bay_area_traffic_sim run-us101-experiment` with
+`configs/us101_m4_experiment.json`. This declares H0 on October 8, 2025, seeds
+41–43, 1 s samples, and a 0.1 m/s stop threshold. The report includes windowed
+exit throughput, actual-departure travel times through clearance, stopped-queue
+proxies, temporal variability of domain mean speed, and acceleration smoothness.
+
+All three runs cleared 22,951 vehicles without SUMO warnings. Their legacy trip
+metrics match M3 exactly; route files and detector summaries are byte-identical.
+All 67 tests and lint passed. The [closeout](m4-experiment-harness-report.md) and
+[versioned evidence](../reports/m4/README.md) record the exact acceptance checks.
+Runtime traces stay under `outputs/us101_corridor/m4/m4_h0_2025_10_08/`; existing
+experiment directories are preserved, so repeat with a new experiment ID.
+
+Queue proxies exclude temporary insertion backlogs, travel-time cohorts use
+actual departures, temporal speed variability is not a wave-stability test,
+and acceleration smoothness is not energy use. M3's held-out failure remains
+unchanged. M5–M8 remain; the next roadmap milestone is cooperative CACC.
+
 ## Working rules
 
 - Keep the repository documentation and versioned inputs authoritative for
@@ -89,3 +114,12 @@ proof. See the [sensor audit](us101-sensor-audit.md) and
   vehicle mix, and seed set. Treat controller effects as unproven until M3
   calibration and separate-day evaluation are complete. M3's failed October 15
   fit remains a limitation of any later policy interpretation.
+
+## Context synchronization
+
+The M4 closeout, roadmap, README, and `CONTEXT.md` were synchronized on
+2026-10-16. The matching Obsidian project area is
+`Auto-Car Traffic Research/US-101 Traffic Simulation`; its project home,
+milestones, source index, decisions, and M4 handoff should point back to these
+versioned records. GitHub's current branch remains the publication source of
+truth; Obsidian publication checkpoints record the verified commit separately.
