@@ -17,7 +17,7 @@ def audit(report_path: Path, root: Path) -> dict:
     runs = report["runs"]
     assert len(runs) == 6 and report["accepted"]
     checks = []
-    fleets = {}
+    fleets, schedules = {}, {}
     for run in runs:
         seed, scenario = run["seed"], run["scenario"]
         folder = root / run["directory"]
@@ -97,6 +97,10 @@ def audit(report_path: Path, root: Path) -> dict:
                 for key in ["cooperative_commands", "acc_commands", "cruise_commands"]
             )
             assert diagnostics["speed_mode"] == 31 and diagnostics["lane_change_mode"] == 1621
+        schedules[(scenario, seed)] = {
+            trip["id"]: round(float(trip["depart"]) - float(trip["departDelay"]), 2)
+            for trip in trips
+        }
         fleets[(scenario, seed)] = {
             trip["id"]: (trip["vType"], trip["speedFactor"]) for trip in trips
         }
@@ -113,6 +117,7 @@ def audit(report_path: Path, root: Path) -> dict:
     for seed in report["experiment"]["seeds"]:
         before, after = fleets[("H0", seed)], fleets[("CACC", seed)]
         assert before.keys() == after.keys()
+        assert schedules[("H0", seed)] == schedules[("CACC", seed)]
         differences = sum(before[key] != after[key] for key in before)
         fleet_checks.append(
             {

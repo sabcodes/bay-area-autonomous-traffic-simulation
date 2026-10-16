@@ -142,14 +142,31 @@ def test_comparison_guard_and_seed_summary_fail_closed(tmp_path, monkeypatch):
     assert not clean_and_cleared({"final_summary": {}, "warning_lines": []})
 
 
-def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkeypatch):
+@pytest.mark.parametrize("controlled", [False, True])
+def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkeypatch, controlled):
     monkeypatch.setattr(harness, "repository_root", lambda: tmp_path)
-    monkeypatch.setattr(harness, "_load_baseline_config", lambda path, root: {"warmup_seconds": 0})
+    monkeypatch.setattr(
+        harness,
+        "_load_baseline_config",
+        lambda path, root: {
+            "warmup_seconds": 0,
+            "human_parameters": {"tau": 1.5, "accel": 2.6, "decel": 4.5},
+        },
+    )
     calls = []
 
     def run(path, seed, **kwargs):
         calls.append(path)
         assert path.parent.name == f"seed_{seed}"
+        if controlled:
+            assert kwargs["controller"] == harness_policy
+            diagnostics = {
+                "completed": seed != 43,
+                "commands": 1,
+                "cooperative_commands": 1,
+                "native_fallbacks": 0,
+            }
+            (path.parent / "controller_diagnostics.json").write_text(json.dumps(diagnostics))
         if seed == 43:
             raise RuntimeError("intentional acceptance failure")
         scenario = json.loads(path.read_text())
@@ -196,13 +213,24 @@ def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkey
 
     monkeypatch.setattr(harness, "run_human_baseline", run)
     config_file = tmp_path / "experiment.json"
-    config_file.write_text(json.dumps(_config()))
+    from bay_area_traffic_sim.cooperative import DEFAULT_CONTROLLER
+
+    harness_policy = dict(DEFAULT_CONTROLLER)
+    config = _config()
+    if controlled:
+        config["scenarios"][0]["controller"] = harness_policy
+    config_file.write_text(json.dumps(config))
     report = harness.run_experiment(config_file)
     assert [run["seed"] for run in report["runs"]] == [41, 43]
     assert len(calls) == 2 and len(set(calls)) == 2
     assert report["runs"][0]["accepted"]
     assert "intentional acceptance failure" in report["runs"][1]["error"]
     assert not report["accepted"]
+    if controlled:
+        assert report["runs"][0]["controller"] == harness_policy
+        resolved = json.loads(calls[0].read_text())
+        assert resolved["controller"] == harness_policy
+        assert not report["runs"][1]["controller_diagnostics"]["completed"]
     assert report["groups"][0]["metric_summary"]["mean_stopped_vehicles"]["mean"] is None
     assert (tmp_path / report["report_file"]).is_file()
     assert (tmp_path / report["report_file"]).with_name("summary.md").is_file()
