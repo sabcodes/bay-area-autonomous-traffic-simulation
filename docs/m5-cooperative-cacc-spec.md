@@ -111,3 +111,25 @@ must improve outcomes. Preserve M3's held-out fidelity caveat.
 - Installed SUMO/TraCI 1.27.1 `_vehicle.py` and `domain.py` confirm subscribe
   parameters and gap semantics. The native CACC model is a separate policy:
   https://sumo.dlr.de/docs/Car-Following-Models/CACC.html
+
+## Runtime addendum, 2026-10-16 (before backend implementation)
+
+The original socket matrix completed all three H0 seeds with exact M4 replay.
+Its first CACC run exposed substantial per-command socket overhead. Evaluate
+SUMO's official in-process libsumo 1.27.1 backend using the same subscription API
+and command law. Add an explicit `backend` policy setting (`traci` or `libsumo`),
+record the actual backend/engine version, and require matching numeric trips
+and diagnostics on the small integration case across backends before selecting
+libsumo for the accepted matrix. Install only in the project environment; pin
+libsumo to 1.27.1. No gains, physical settings or measurement definitions change.
+
+Preserve the initial socket-run outputs and mark any runtime interruption
+explicitly. Run the final complete six-run matrix in a new experiment directory;
+do not mix the interrupted CACC output with accepted results. The default
+configuration will select the verified in-process backend. Native H0 subprocess
+execution remains unchanged. This is a runtime revision motivated by measured
+execution cost, not tuning against policy performance.
+
+Primary sources checked 2026-10-16:
+https://sumo.dlr.de/docs/Libsumo.html
+https://pypi.org/project/libsumo/1.27.1/
