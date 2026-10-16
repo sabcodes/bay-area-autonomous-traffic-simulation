@@ -14,6 +14,23 @@ M4 is complete; see the [harness closeout](docs/m4-experiment-harness-report.md)
 See the [M4 plan](docs/m4-experiment-harness-plan.md) and
 [metric specification](docs/m4-experiment-harness-spec.md).
 
+M5 cooperative CACC is in validation. Its [plan](docs/m5-cooperative-cacc-plan.md)
+and [specification](docs/m5-cooperative-cacc-spec.md) were committed before source
+implementation. Run the matched H0/CACC experiment with:
+
+```bash
+PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim run-us101-experiment --config configs/us101_m5_experiment.json
+```
+
+The conservative passenger overlay uses bounded leader subscriptions and ideal
+passenger acceleration messages. Human trucks, frozen route/fleet generation,
+1.5 s safety headway, native lane changing and SUMO safety constraints remain.
+Reports include paired seed differences, scheduled-cohort total travel time,
+insertion delays and backlog alongside M4 metrics. The treatment combines
+cruise/follow control and feedforward; it does not isolate the benefit of V2V
+alone. Use a new experiment ID when repeating to preserve existing outputs.
+
+
 ## What we will build first
 
 We will begin with a small, reproducible corridor simulation rather than the entire Bay Area:

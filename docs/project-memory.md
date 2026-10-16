@@ -102,6 +102,24 @@ actual departures, temporal speed variability is not a wave-stability test,
 and acceleration smoothness is not energy use. M3's held-out failure remains
 unchanged. M5–M8 remain; the next roadmap milestone is cooperative CACC.
 
+## M5 active implementation, 2026-10-16
+
+The user authorized M5 plan → specification → implementation and data-driven
+verification. The [plan](m5-cooperative-cacc-plan.md) was committed at c276d1f,
+the [specification](m5-cooperative-cacc-spec.md) at 9fe5c69, then source at
+0a1e542. The implementation and independent audit are published in
+[PR #1](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/1).
+All 83 tests and lint pass. Corridor validation is still pending; do not mark
+M5 complete until the full matrix and independent output audit pass.
+
+The custom passenger CACC overlay uses bounded leader subscriptions, gap and
+relative-speed feedback, ideal passenger acceleration feedforward, and ACC
+behind human trucks. It retains 1.5 s headway, the frozen safety layer and fleet,
+route generation, and native lane changes. This is a combined longitudinal
+policy comparison, not an isolated V2V ablation. Short-headway and imperfect
+communication sensitivities remain M7 work. The harness adds paired differences,
+scheduled-cohort total time, insertion delays and peak insertion backlog.
+
 ## Working rules
 
 - Keep the repository documentation and versioned inputs authoritative for

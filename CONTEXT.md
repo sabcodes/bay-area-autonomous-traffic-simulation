@@ -4,8 +4,7 @@ This glossary names the project-specific concepts used in the corridor model,
 observed-data audit, and scenario comparisons.
 
 As of 2026-10-16, M0–M4 are complete at their documented practical standards.
-M3 retains its held-out fidelity limitation. The next milestone is M5
-cooperative CACC. See [project memory](docs/project-memory.md), the
+M3 retains its held-out fidelity limitation. M5 cooperative CACC is in validation, using a conservative passenger overlay. See [project memory](docs/project-memory.md), the
 [roadmap](docs/project-roadmap.md), and the [M4 closeout](docs/m4-experiment-harness-report.md)
 for current evidence and the resume point.
 
@@ -116,3 +115,42 @@ confidence interval for observed traffic.
 Complete measurement output and a clean, cleared simulation: no SUMO warnings,
 loaded = inserted = ended, and zero remaining running/waiting/discarded vehicles,
 collisions, or teleports. Acceptance does not remove M3's traffic-fidelity limit.
+
+## M5 cooperative-control language
+
+**Custom CACC overlay**:
+A deterministic longitudinal command law using gap error, relative speed and
+passenger-leader acceleration feedforward, applied through TraCI under the
+unchanged native Krauss safety layer. It is distinct from SUMO's native CACC
+model. The passenger controller is deterministic given state; fleet sampling
+and native traffic behavior remain seed dependent.
+
+**Cooperative leader**:
+A passenger leader whose previous-step acceleration is available in the same
+subscription snapshot. Trucks do not broadcast; passenger followers behind
+trucks use ACC without acceleration feedforward.
+
+**Ideal communication**:
+No packet loss or additional network latency within the declared leader-query
+range. The 0.5 s simulation/control timing and previous-step acceleration still
+apply. The 250 m cutoff uses the TraCI gap, which excludes ego minGap.
+
+**Scheduled-departure cohort**:
+Trips whose intended departure falls in the measurement window, reconstructed
+from actual departure minus insertion delay at native output precision. This
+population differs from actual-window departures. Uninserted trips make the
+schedule reconstruction incomplete and the scheduled metrics null.
+
+**Scheduled-cohort total time**:
+Completed trip duration plus SUMO departDelay, measured from intended departure
+to arrival. This includes insertion delay that actual-departure travel time
+excludes; it is not delay relative to a field-observed free-flow trip.
+
+**Insertion backlog**:
+SUMO summary vehicles waiting to enter the modeled network. Report its peak
+separately from on-road stopped-vehicle queue proxies.
+
+**Paired seed difference**:
+CACC minus H0 for matching date and seed, followed by the mean and sample SD of
+those differences. Matching seeds and generated inputs do not make the two
+scenarios' realized lane changes or actual departure cohorts identical.
