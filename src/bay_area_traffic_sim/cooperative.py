@@ -1,4 +1,4 @@
-"""Conservative deterministic CACC commands inside SUMO's native safety envelope."""
+"""Native SUMO CACC treatment and bounded leader/mode evidence."""
 
 from __future__ import annotations
 
@@ -6,68 +6,84 @@ import json
 import math
 import os
 import subprocess
+from collections import Counter
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
 STEP_SECONDS = 0.5
+NATIVE_PARAMETERS = {
+    "collisionAvoidanceOverride": 0.0,
+    "collisionMinGapFactor": 1.0,
+    "tauCACCToACC": 1.5,
+    "applyDriverState": 0,
+    "speedControlGainCACC": -0.4,
+    "gapClosingControlGainGap": 0.005,
+    "gapClosingControlGainGapDot": 0.05,
+    "gapControlGainGap": 0.45,
+    "gapControlGainGapDot": 0.0125,
+    "collisionAvoidanceGainGap": 0.45,
+    "collisionAvoidanceGainGapDot": 0.05,
+    "speedControlMinGap": 1.66,
+    "speedControlGain": -0.4,
+    "gapClosingControlGainSpeed": 0.8,
+    "gapClosingControlGainSpace": 0.04,
+    "gapControlGainSpeed": 0.07,
+    "gapControlGainSpace": 0.23,
+    "collisionAvoidanceGainSpeed": 0.23,
+    "collisionAvoidanceGainSpace": 0.8,
+}
 DEFAULT_CONTROLLER = {
-    "policy": "cacc_overlay",
+    "policy": "sumo_cacc",
     "backend": "libsumo",
-    "headway_seconds": 1.5,
-    "cruise_gain": 0.4,
-    "gap_gain": 0.2,
-    "relative_speed_gain": 0.8,
-    "feedforward_gain": 0.5,
-    "max_acceleration": 2.6,
-    "max_deceleration": 4.5,
-    "communication_range_meters": 250.0,
+    "observation_period_seconds": 1.0,
+    "leader_lookahead_meters": 250.0,
+    "vehicle_parameters": NATIVE_PARAMETERS,
 }
 
 
 def validate_controller(config: dict, human_parameters: dict) -> None:
-    """Require explicit finite settings compatible with the frozen safety layer."""
+    """Reject implicit, unknown or unsafe native-CACC settings before simulation."""
     if not isinstance(config, dict) or set(config) != set(DEFAULT_CONTROLLER):
         raise ValueError("Controller requires exactly the documented policy and parameter keys.")
-    if config["policy"] != "cacc_overlay":
-        raise ValueError("Unsupported controller policy.")
-    if config["backend"] not in ("traci", "libsumo"):
-        raise ValueError("Controller backend must be traci or libsumo.")
-    for key in set(config) - {"policy", "backend"}:
+    if config["policy"] != "sumo_cacc" or config["backend"] not in ("traci", "libsumo"):
+        raise ValueError("Unsupported controller policy or backend.")
+    for key in ["observation_period_seconds", "leader_lookahead_meters"]:
         value = config[key]
-        if type(value) not in (int, float) or not math.isfinite(value) or value < 0:
-            raise ValueError(f"Controller {key} must be finite and nonnegative.")
-    if config["headway_seconds"] < max(STEP_SECONDS, human_parameters["tau"]):
-        raise ValueError("Controller headway must retain the frozen safety headway.")
-    for setting, physical in [("max_acceleration", "accel"), ("max_deceleration", "decel")]:
-        if not 0 < config[setting] <= human_parameters[physical]:
-            raise ValueError(f"Controller {setting} must respect frozen passenger limits.")
-    if config["communication_range_meters"] <= 0 or config["feedforward_gain"] > 1:
-        raise ValueError("Controller needs positive range and feedforward gain in [0, 1].")
-
-
-def requested_speed(
-    config: dict,
-    speed: float,
-    allowed_speed: float,
-    leader: tuple[float, float, float, bool] | None = None,
-) -> float:
-    """Return next-step speed; leader tuple is (TraCI gap, speed, accel, cooperative)."""
-    acceleration = config["cruise_gain"] * (allowed_speed - speed)
-    if leader is not None:
-        gap, leader_speed, leader_acceleration, cooperative = leader
-        follow = (
-            config["gap_gain"] * (gap - config["headway_seconds"] * speed)
-            + config["relative_speed_gain"] * (leader_speed - speed)
-            + (config["feedforward_gain"] * leader_acceleration if cooperative else 0)
+        if type(value) not in (int, float) or not math.isfinite(value) or value <= 0:
+            raise ValueError(f"Controller {key} must be finite and positive.")
+    period = config["observation_period_seconds"]
+    if not math.isclose(period / STEP_SECONDS, round(period / STEP_SECONDS)):
+        raise ValueError("Controller observation period must match the 0.5 s step.")
+    parameters = config["vehicle_parameters"]
+    if not isinstance(parameters, dict) or set(parameters) != set(NATIVE_PARAMETERS):
+        raise ValueError("Declare exactly the native CACC and ACC fallback parameters.")
+    for key, value in parameters.items():
+        if type(value) not in (int, float) or not math.isfinite(value):
+            raise ValueError(f"Native parameter {key} must be finite.")
+    expected = {**NATIVE_PARAMETERS, "tauCACCToACC": human_parameters["tau"]}
+    if parameters != expected:
+        raise ValueError(
+            "M5 fixes native gains, full minGap checking, zero override and frozen tau."
         )
-        acceleration = min(acceleration, follow)
-    acceleration = max(-config["max_deceleration"], min(config["max_acceleration"], acceleration))
-    return max(0.0, min(allowed_speed, speed + STEP_SECONDS * acceleration))
 
 
-def needs_native_maneuver(lane_id: str, best_lanes: tuple | list) -> bool:
-    """Yield speed authority when the current lane requires a strategic transition."""
-    current = next((lane for lane in best_lanes if lane[0] == lane_id), None)
-    return current is None or current[3] != 0 or not current[4]
+def apply_native_cacc(route_file: Path, config: dict) -> list[dict]:
+    """Change only passenger following attributes in a generated, isolated route file."""
+    tree = ET.parse(route_file)
+    passenger = next(
+        (kind for kind in tree.iter("vType") if kind.attrib["id"] == "human_passenger"), None
+    )
+    if passenger is None:
+        raise ValueError("Native CACC requires the frozen passenger vType.")
+    passenger.attrib.update(
+        {
+            "carFollowModel": "CACC",
+            **{key: str(value) for key, value in config["vehicle_parameters"].items()},
+        }
+    )
+    ET.indent(tree, space="    ")
+    tree.write(route_file, encoding="utf-8", xml_declaration=True)
+    return [kind.attrib for kind in tree.iter("vType")]
 
 
 def run_controlled(
@@ -77,11 +93,10 @@ def run_controlled(
     diagnostics_path: Path,
     min_gap: float,
 ) -> dict:
-    """Subscribe to bounded leaders and command passengers from one snapshot per step."""
+    """Observe native CACC; never override speed, acceleration or lane-change decisions."""
     import traci
     from traci import constants as tc
 
-    label = f"m5-{os.getpid()}-{diagnostics_path.resolve()}"
     connection = None
     diagnostics = {
         "controller": config,
@@ -90,19 +105,22 @@ def run_controlled(
         "control_step_seconds": STEP_SECONDS,
         "speed_mode": 31,
         "lane_change_mode": 1621,
-        "controlled_vehicles": 0,
-        "commands": 0,
-        "cooperative_commands": 0,
-        "acc_commands": 0,
-        "cruise_commands": 0,
-        "native_fallbacks": 0,
-        "strategic_native_releases": 0,
+        "external_control_commands": 0,
+        "equipped_vehicles": 0,
+        "passenger_samples": 0,
+        "passenger_leader_samples": 0,
+        "truck_leader_samples": 0,
+        "no_leader_samples": 0,
+        "missing_state_samples": 0,
+        "mode_sample_counts": {},
         "minimum_queried_bumper_gap_meters": None,
         "minimum_realized_acceleration_m_per_s2": None,
         "maximum_realized_acceleration_m_per_s2": None,
         "completed": False,
     }
     passengers = set()
+    modes = Counter()
+    sample_steps = round(config["observation_period_seconds"] / STEP_SECONDS)
     try:
         if config["backend"] == "libsumo":
             import libsumo
@@ -110,24 +128,18 @@ def run_controlled(
             libsumo.start(command)
             connection = libsumo
         else:
+            label = f"m5-{os.getpid()}-{diagnostics_path.resolve()}"
             traci.start(command, label=label, doSwitch=False, stdout=subprocess.DEVNULL)
             connection = traci.getConnection(label)
         diagnostics["engine_version"] = connection.getVersion()[1]
         connection.simulation.subscribe([tc.VAR_DEPARTED_VEHICLES_IDS, tc.VAR_ARRIVED_VEHICLES_IDS])
-        for _ in range(round(end_seconds / STEP_SECONDS)):
+        for step in range(round(end_seconds / STEP_SECONDS)):
             connection.simulationStep()
             events = connection.simulation.getSubscriptionResults()
             passengers.difference_update(events[tc.VAR_ARRIVED_VEHICLES_IDS])
             for vehicle in sorted(events[tc.VAR_DEPARTED_VEHICLES_IDS]):
                 connection.vehicle.subscribe(
-                    vehicle,
-                    [
-                        tc.VAR_SPEED,
-                        tc.VAR_ACCELERATION,
-                        tc.VAR_ALLOWED_SPEED,
-                        tc.VAR_TYPE,
-                        tc.VAR_LANE_ID,
-                    ],
+                    vehicle, [tc.VAR_SPEED, tc.VAR_ACCELERATION, tc.VAR_TYPE]
                 )
                 state = connection.vehicle.getSubscriptionResults(vehicle)
                 if state[tc.VAR_TYPE] == "human_passenger":
@@ -137,64 +149,50 @@ def run_controlled(
                     ):
                         raise ValueError("Unexpected native safety or lane-change mode.")
                     passengers.add(vehicle)
-                    diagnostics["controlled_vehicles"] += 1
+                    diagnostics["equipped_vehicles"] += 1
+            if (step + 1) % sample_steps:
+                continue
             snapshot = connection.vehicle.getAllSubscriptionResults()
-            for vehicle in sorted(passengers):
-                if vehicle in snapshot:
-                    snapshot[vehicle][tc.VAR_BEST_LANES] = connection.vehicle.getBestLanes(vehicle)
-                    snapshot[vehicle][tc.VAR_LEADER] = connection.vehicle.getLeader(
-                        vehicle, config["communication_range_meters"]
-                    )
             for vehicle in sorted(passengers):
                 state = snapshot.get(vehicle)
                 if state is None:
-                    connection.vehicle.setSpeed(vehicle, -1)
-                    diagnostics["native_fallbacks"] += 1
+                    diagnostics["missing_state_samples"] += 1
                     continue
-                speed = state[tc.VAR_SPEED]
-                realized = state[tc.VAR_ACCELERATION]
+                diagnostics["passenger_samples"] += 1
+                modes[
+                    connection.vehicle.getParameter(vehicle, "caccVehicleMode") or "unreported"
+                ] += 1
+                acceleration = state[tc.VAR_ACCELERATION]
                 for key, operation in [
                     ("minimum_realized_acceleration_m_per_s2", min),
                     ("maximum_realized_acceleration_m_per_s2", max),
                 ]:
                     previous = diagnostics[key]
                     diagnostics[key] = (
-                        realized if previous is None else operation(previous, realized)
+                        acceleration if previous is None else operation(previous, acceleration)
                     )
-                if needs_native_maneuver(state[tc.VAR_LANE_ID], state[tc.VAR_BEST_LANES]):
-                    connection.vehicle.setSpeed(vehicle, -1)
-                    diagnostics["strategic_native_releases"] += 1
+                leader = connection.vehicle.getLeader(vehicle, config["leader_lookahead_meters"])
+                if not leader or not leader[0] or leader[1] > config["leader_lookahead_meters"]:
+                    diagnostics["no_leader_samples"] += 1
                     continue
-                leader = state[tc.VAR_LEADER]
-                following = None
-                mode = "cruise_commands"
-                if leader and leader[0] and leader[1] <= config["communication_range_meters"]:
-                    ahead = snapshot.get(leader[0])
-                    if ahead is None:
-                        connection.vehicle.setSpeed(vehicle, -1)
-                        diagnostics["native_fallbacks"] += 1
-                        continue
-                    cooperative = ahead[tc.VAR_TYPE] == "human_passenger"
-                    following = (
-                        leader[1],
-                        ahead[tc.VAR_SPEED],
-                        ahead[tc.VAR_ACCELERATION],
-                        cooperative,
-                    )
-                    mode = "cooperative_commands" if cooperative else "acc_commands"
-                    bumper_gap = leader[1] + min_gap
-                    previous = diagnostics["minimum_queried_bumper_gap_meters"]
-                    diagnostics["minimum_queried_bumper_gap_meters"] = (
-                        bumper_gap if previous is None else min(previous, bumper_gap)
-                    )
-                target = requested_speed(config, speed, state[tc.VAR_ALLOWED_SPEED], following)
-                if not math.isfinite(target):
-                    raise ValueError("Nonfinite controller command.")
-                connection.vehicle.setSpeed(vehicle, target)
-                diagnostics["commands"] += 1
-                diagnostics[mode] += 1
+                ahead = snapshot.get(leader[0])
+                if ahead is None:
+                    diagnostics["missing_state_samples"] += 1
+                    continue
+                key = (
+                    "passenger_leader_samples"
+                    if ahead[tc.VAR_TYPE] == "human_passenger"
+                    else "truck_leader_samples"
+                )
+                diagnostics[key] += 1
+                gap = leader[1] + min_gap
+                previous = diagnostics["minimum_queried_bumper_gap_meters"]
+                diagnostics["minimum_queried_bumper_gap_meters"] = (
+                    gap if previous is None else min(previous, gap)
+                )
         diagnostics["completed"] = True
     finally:
+        diagnostics["mode_sample_counts"] = dict(sorted(modes.items()))
         try:
             if connection is not None:
                 connection.close()

@@ -1,0 +1,2227 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-10-16T09:48:07.181759+00:00",
+  "accepted": false,
+  "experiment": {
+    "experiment_id": "m5_h0_cacc_2025_10_08_libsumo",
+    "reference_scenario": "H0",
+    "scenarios": [
+      {
+        "id": "H0",
+        "baseline_config": "configs/us101_human_baseline_m3_frozen.json"
+      },
+      {
+        "id": "CACC",
+        "baseline_config": "configs/us101_human_baseline_m3_frozen.json",
+        "controller": {
+          "policy": "cacc_overlay",
+          "headway_seconds": 1.5,
+          "cruise_gain": 0.4,
+          "gap_gain": 0.2,
+          "relative_speed_gain": 0.8,
+          "feedforward_gain": 0.5,
+          "max_acceleration": 2.6,
+          "max_deceleration": 4.5,
+          "communication_range_meters": 250.0,
+          "backend": "libsumo"
+        }
+      }
+    ],
+    "observation_dates": [
+      "2025-10-08"
+    ],
+    "seeds": [
+      41,
+      42,
+      43
+    ],
+    "measurement": {
+      "period_seconds": 1.0,
+      "stop_speed_m_per_s": 0.1
+    },
+    "output_directory": "outputs/us101_corridor/m5",
+    "workers": 3
+  },
+  "experiment_config_sha256": "a1eca3227ddad796fc9177ab99341f3704d5fc256bfc9934ac0079553b471d7f",
+  "source_revision": "29d25841117654536b6d397c393909c583078d18",
+  "source_sha256": {
+    "src/bay_area_traffic_sim/__init__.py": "13f8d53a1974f4c9d209bb0969a292a156b1a49e9d4730e2db7ba87dedd0855c",
+    "src/bay_area_traffic_sim/__main__.py": "2c64d2271cba4febf206b6e055c2f702950ad1b8489988b39f172a7d0bc20cd2",
+    "src/bay_area_traffic_sim/calibration.py": "77153562702dfcf6f87f946aeff1becc72c0ee590528ddc486d5179f7fd9ff02",
+    "src/bay_area_traffic_sim/cooperative.py": "6031565f7b734507766836f0400ccefd13ae5d14a607c7e83832d685dcf4f28a",
+    "src/bay_area_traffic_sim/corridor_junctions.py": "d8ac1aad46ce4dfd483456ced2a584db1aca68a08dbb666955d46a82c67db9a8",
+    "src/bay_area_traffic_sim/detectors.py": "897fd001642766700b91931f471c57777e21ce5a91f8f789da175dc7a4c902ad",
+    "src/bay_area_traffic_sim/experiment_harness.py": "05ad673225175401b9b1185314d477ad2cf29eed9829902eedd6b96ef2c8178b",
+    "src/bay_area_traffic_sim/experiment_metrics.py": "2e8a9cb0333f2e3faa9551b5ff3b29bef78c96a9e4e8804f9bf22d2f6b998310",
+    "src/bay_area_traffic_sim/experiments.py": "eb8b424c72a927ed698f81d4aaa0bca586d6d6b7b4c1b0e851ebfa176c0bc36e",
+    "src/bay_area_traffic_sim/flow_balance.py": "e23ab8e3defef6dcd0af677fdb160e9fd6ced4022f498789eac4b38925df8433",
+    "src/bay_area_traffic_sim/metrics.py": "3aaa9165ce119bdfd295fd0af978c933036e50b6bb9d2668275742cd0f0e5c3a",
+    "src/bay_area_traffic_sim/network_audit.py": "60637da59770737838e6864becc1b86faa80be4dbd1efc3ce1e4aced48dbf4ee",
+    "src/bay_area_traffic_sim/network_variants.py": "6e450deed17016b42b0891cf6de5a5d95976953dd355c90f910eba5a5317c4ae",
+    "src/bay_area_traffic_sim/osm_import.py": "1baf7d0e3014c0ded23e2d681625636fb361f7fd44db3d9478c688463fec7c5b",
+    "src/bay_area_traffic_sim/pems.py": "6ff73a2f12588424889b5dbc69ccd168f063cba333f9b14b899926502c24c9bd",
+    "src/bay_area_traffic_sim/pems_metadata.py": "ff24c0a49aae5f12296f8b975c12b8cf4a54acd3c56f4c4dbec72c9c89ea1813",
+    "src/bay_area_traffic_sim/real_corridor.py": "2a4da80d4f112d8f6dc429a4c92e5edbca52dff8f840acfd3fe9359e190a1063",
+    "src/bay_area_traffic_sim/sumo_install.py": "4d6358462ee62684bf4bafad49e8d2976ba46974da0c312a4663184bd853a6ca",
+    "src/bay_area_traffic_sim/toy_corridor.py": "80b1cba33dde23b780cd7dd579181ad30be8beb2057ac4525bbca731eb613a59"
+  },
+  "resolved_baseline_configs": {
+    "H0": {
+      "scenario": "M3 frozen human baseline",
+      "network_file": "outputs/us101_corridor/us101_corridor.net.xml",
+      "pems_report": "outputs/pems_calibration/us101_m3_upstream_proxy_profiles.json",
+      "aligned_pems_report_file": "outputs/us101_corridor/m3/frozen/observed.json",
+      "mainline_entry_station_id": 400790,
+      "ramp_profile_file": "outputs/pems_calibration/us101_ramp_station_profiles.json",
+      "route_file": "outputs/us101_corridor/m3/frozen/h0.rou.xml",
+      "manifest_file": "outputs/us101_corridor/m3/frozen/manifest.json",
+      "corridor_config": "configs/us101_corridor.json",
+      "metadata_glob": "data/pems/metadata/d04_text_meta_*.txt",
+      "virtual_detector_station_ids_file": "configs/us101_corridor_station_ids.json",
+      "virtual_detector_station_ids_key": "accepted_corridor_station_ids",
+      "detector_file_template": "outputs/us101_corridor/m3/frozen/detectors_seed_{seed}.add.xml",
+      "detector_output_template": "outputs/us101_corridor/m3/frozen/detectors_seed_{seed}.xml",
+      "detector_summary_template": "outputs/us101_corridor/m3/frozen/detectors_seed_{seed}.json",
+      "active_ramp_mappings": [
+        {
+          "station_id": 428588,
+          "lane_type": "FR",
+          "name": "Mathilda Ave off-ramp",
+          "sumo_edge_id": "9080606"
+        },
+        {
+          "station_id": 428589,
+          "lane_type": "OR",
+          "name": "Mathilda Ave northbound loop on-ramp",
+          "sumo_edge_id": "509747339",
+          "merge_edge_id": "509747346"
+        },
+        {
+          "station_id": 402919,
+          "lane_type": "OR",
+          "name": "Moffett Blvd northbound loop on-ramp",
+          "sumo_edge_id": "847214392#0",
+          "merge_edge_id": "1047818462"
+        },
+        {
+          "station_id": 425546,
+          "lane_type": "OR",
+          "name": "San Antonio Rd northbound on-ramp",
+          "sumo_edge_id": "9739842#1",
+          "merge_edge_id": "700010299"
+        }
+      ],
+      "excluded_reporting_ramps": [
+        {
+          "station_id": 425897,
+          "reason": "The Embarcadero on-ramp merges beyond the corridor analysis endpoint."
+        }
+      ],
+      "checkpoint_edge_ids": [
+        "395354963",
+        "28485321",
+        "28485321-AddedOffRampEdge",
+        "509747302",
+        "509747310-AddedOnRampEdge",
+        "867208766",
+        "509747346",
+        "867246178",
+        "850032296",
+        "617335302",
+        "509747406-AddedOffRampEdge",
+        "1446453052",
+        "867254754",
+        "394368088",
+        "700010299",
+        "861090931",
+        "361615812"
+      ],
+      "warmup_seconds": 900,
+      "clearance_seconds": 7200,
+      "assumptions": [
+        "Simulation time 00:15 corresponds to 07:00 after a 15-minute warmup.",
+        "Mainline inlet uses station 400790 at at least 80% reported coverage; comparison targets retain at least 90% coverage.",
+        "The existing motorway buffer is about 1 km upstream of the M2 analysis start; omitted upstream exits and inlet imputation are uncertainties.",
+        "PeMS five-minute flow is multiplied by 12 to obtain vehicles per hour.",
+        "Measured Mathilda exit demand is removed from the through flow; measured Mathilda, Moffett, and San Antonio entrances are injected on audited edges.",
+        "Missing-entrance groups are assumed demand, and other omitted ramps remain unknown.",
+        "PeMS speed is a comparison target and is not imposed on vehicles.",
+        "Mainline routes follow ordered motorway checkpoints; passengers in managed lanes are assumed eligible or toll-paying.",
+        "Human behavior uses stochastic Krauss following and the default lane-changing model."
+      ],
+      "detector_lane_indices": {
+        "402377": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "observation_dates": [
+        "2025-10-08"
+      ],
+      "additional_assumptions": [
+        "Station 400790 with at least 80% reported coverage supplies an inlet proxy; comparison targets retain 90% coverage.",
+        "The 1.008 km existing motorway buffer precedes the M2 analysis start. Its flow may include omitted upstream exits; its exact lane paint is not certified.",
+        "Measured speed is not imposed on vehicles; the buffer tests whether the prior inlet suppressed upstream congestion."
+      ],
+      "estimated_ramp_mappings": [
+        {
+          "id": "midcorridor_entrance",
+          "name": "Unmeasured pre-401998 net-entry group",
+          "sumo_edge_id": "509747350",
+          "merge_edge_id": "509747347-AddedOnRampEdge",
+          "vehicles_per_hour": 700,
+          "basis": "Rounded calibration net residual after measured Mathilda movements; not an individual ramp count."
+        },
+        {
+          "id": "sr85_gp_entrance",
+          "name": "Unmeasured pre-401507 net-entry group",
+          "sumo_edge_id": "394387883",
+          "merge_edge_id": "361615811",
+          "vehicles_per_hour": 2000,
+          "basis": "Rounded Moffett-to-Shoreline calibration residual after measured Moffett entrance; not a GP ramp count."
+        },
+        {
+          "id": "downstream_net_exit",
+          "lane_type": "FR",
+          "name": "Unmeasured post-Shoreline net-exit group at a San Antonio exit",
+          "sumo_edge_id": "4370043",
+          "diverge_edge_id": "394368089",
+          "vehicles_per_hour": 1500,
+          "basis": "Calibration-only hypothesis: 8041 veh/h at 401507 plus 560 measured San Antonio entrance minus 5616 across four 402377 channels leaves 2985 before the missing lane. An assumed 1500 veh/h missing-lane contribution gives a rounded 1500 veh/h net-exit group. Gross ramp flows and field wiring remain unknown."
+        }
+      ],
+      "human_parameters": {
+        "accel": 2.6,
+        "decel": 4.5,
+        "emergencyDecel": 9.0,
+        "sigma": 0.5,
+        "tau": 1.5,
+        "length": 5.0,
+        "minGap": 2.5,
+        "speedFactor": 1.0,
+        "speedDev": 0.1
+      },
+      "truck_share": 0.04,
+      "expected_input_sha256": {
+        "outputs/us101_corridor/us101_corridor.net.xml": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "outputs/pems_calibration/us101_m3_upstream_proxy_profiles.json": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+        "outputs/pems_calibration/us101_ramp_station_profiles.json": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+        "configs/us101_corridor.json": "3756012f0f376ed00e8a3ea7180124bf2850938d8f21249f28880b6225dac774",
+        "configs/us101_corridor_station_ids.json": "5c696bd22accb4f66b8fd5d5d591aa9f9f303a00de4916d7f2255b8aefd8c24b",
+        "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+        "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f",
+        "data/caltrans/2024-d4-ramp-adt-a11y.xlsx": "459228bc5a58ed9533bff07750408f89b5edcf4b78242b225c47c117ea550a94",
+        "data/caltrans/2024-truck-aadt-a11y.xlsx": "c3c0a4f0169585f9d9f0019972c365c078e5adc68c71007c405db1492a5d4e0b"
+      },
+      "frozen_vehicle_types": [
+        {
+          "id": "human_passenger",
+          "vClass": "passenger",
+          "carFollowModel": "Krauss",
+          "accel": "2.6",
+          "decel": "4.5",
+          "emergencyDecel": "9.0",
+          "sigma": "0.5",
+          "tau": "1.5",
+          "length": "5.0",
+          "minGap": "2.5",
+          "speedFactor": "1.0",
+          "speedDev": "0.1",
+          "probability": "0.96"
+        },
+        {
+          "id": "human_truck",
+          "vClass": "truck",
+          "carFollowModel": "Krauss",
+          "accel": "1.2",
+          "decel": "4.0",
+          "emergencyDecel": "9.0",
+          "sigma": "0.5",
+          "tau": "1.5",
+          "length": "12.0",
+          "minGap": "2.5",
+          "speedFactor": "1.0",
+          "speedDev": "0.1",
+          "probability": "0.04",
+          "maxSpeed": "24.59"
+        }
+      ],
+      "freeze_note": "Selected on calibration only before held-out validation. Driver/fleet attributes and network/input/engine hashes are checked through the treatment ledger."
+    },
+    "CACC": {
+      "scenario": "M3 frozen human baseline",
+      "network_file": "outputs/us101_corridor/us101_corridor.net.xml",
+      "pems_report": "outputs/pems_calibration/us101_m3_upstream_proxy_profiles.json",
+      "aligned_pems_report_file": "outputs/us101_corridor/m3/frozen/observed.json",
+      "mainline_entry_station_id": 400790,
+      "ramp_profile_file": "outputs/pems_calibration/us101_ramp_station_profiles.json",
+      "route_file": "outputs/us101_corridor/m3/frozen/h0.rou.xml",
+      "manifest_file": "outputs/us101_corridor/m3/frozen/manifest.json",
+      "corridor_config": "configs/us101_corridor.json",
+      "metadata_glob": "data/pems/metadata/d04_text_meta_*.txt",
+      "virtual_detector_station_ids_file": "configs/us101_corridor_station_ids.json",
+      "virtual_detector_station_ids_key": "accepted_corridor_station_ids",
+      "detector_file_template": "outputs/us101_corridor/m3/frozen/detectors_seed_{seed}.add.xml",
+      "detector_output_template": "outputs/us101_corridor/m3/frozen/detectors_seed_{seed}.xml",
+      "detector_summary_template": "outputs/us101_corridor/m3/frozen/detectors_seed_{seed}.json",
+      "active_ramp_mappings": [
+        {
+          "station_id": 428588,
+          "lane_type": "FR",
+          "name": "Mathilda Ave off-ramp",
+          "sumo_edge_id": "9080606"
+        },
+        {
+          "station_id": 428589,
+          "lane_type": "OR",
+          "name": "Mathilda Ave northbound loop on-ramp",
+          "sumo_edge_id": "509747339",
+          "merge_edge_id": "509747346"
+        },
+        {
+          "station_id": 402919,
+          "lane_type": "OR",
+          "name": "Moffett Blvd northbound loop on-ramp",
+          "sumo_edge_id": "847214392#0",
+          "merge_edge_id": "1047818462"
+        },
+        {
+          "station_id": 425546,
+          "lane_type": "OR",
+          "name": "San Antonio Rd northbound on-ramp",
+          "sumo_edge_id": "9739842#1",
+          "merge_edge_id": "700010299"
+        }
+      ],
+      "excluded_reporting_ramps": [
+        {
+          "station_id": 425897,
+          "reason": "The Embarcadero on-ramp merges beyond the corridor analysis endpoint."
+        }
+      ],
+      "checkpoint_edge_ids": [
+        "395354963",
+        "28485321",
+        "28485321-AddedOffRampEdge",
+        "509747302",
+        "509747310-AddedOnRampEdge",
+        "867208766",
+        "509747346",
+        "867246178",
+        "850032296",
+        "617335302",
+        "509747406-AddedOffRampEdge",
+        "1446453052",
+        "867254754",
+        "394368088",
+        "700010299",
+        "861090931",
+        "361615812"
+      ],
+      "warmup_seconds": 900,
+      "clearance_seconds": 7200,
+      "assumptions": [
+        "Simulation time 00:15 corresponds to 07:00 after a 15-minute warmup.",
+        "Mainline inlet uses station 400790 at at least 80% reported coverage; comparison targets retain at least 90% coverage.",
+        "The existing motorway buffer is about 1 km upstream of the M2 analysis start; omitted upstream exits and inlet imputation are uncertainties.",
+        "PeMS five-minute flow is multiplied by 12 to obtain vehicles per hour.",
+        "Measured Mathilda exit demand is removed from the through flow; measured Mathilda, Moffett, and San Antonio entrances are injected on audited edges.",
+        "Missing-entrance groups are assumed demand, and other omitted ramps remain unknown.",
+        "PeMS speed is a comparison target and is not imposed on vehicles.",
+        "Mainline routes follow ordered motorway checkpoints; passengers in managed lanes are assumed eligible or toll-paying.",
+        "Human behavior uses stochastic Krauss following and the default lane-changing model."
+      ],
+      "detector_lane_indices": {
+        "402377": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "observation_dates": [
+        "2025-10-08"
+      ],
+      "additional_assumptions": [
+        "Station 400790 with at least 80% reported coverage supplies an inlet proxy; comparison targets retain 90% coverage.",
+        "The 1.008 km existing motorway buffer precedes the M2 analysis start. Its flow may include omitted upstream exits; its exact lane paint is not certified.",
+        "Measured speed is not imposed on vehicles; the buffer tests whether the prior inlet suppressed upstream congestion."
+      ],
+      "estimated_ramp_mappings": [
+        {
+          "id": "midcorridor_entrance",
+          "name": "Unmeasured pre-401998 net-entry group",
+          "sumo_edge_id": "509747350",
+          "merge_edge_id": "509747347-AddedOnRampEdge",
+          "vehicles_per_hour": 700,
+          "basis": "Rounded calibration net residual after measured Mathilda movements; not an individual ramp count."
+        },
+        {
+          "id": "sr85_gp_entrance",
+          "name": "Unmeasured pre-401507 net-entry group",
+          "sumo_edge_id": "394387883",
+          "merge_edge_id": "361615811",
+          "vehicles_per_hour": 2000,
+          "basis": "Rounded Moffett-to-Shoreline calibration residual after measured Moffett entrance; not a GP ramp count."
+        },
+        {
+          "id": "downstream_net_exit",
+          "lane_type": "FR",
+          "name": "Unmeasured post-Shoreline net-exit group at a San Antonio exit",
+          "sumo_edge_id": "4370043",
+          "diverge_edge_id": "394368089",
+          "vehicles_per_hour": 1500,
+          "basis": "Calibration-only hypothesis: 8041 veh/h at 401507 plus 560 measured San Antonio entrance minus 5616 across four 402377 channels leaves 2985 before the missing lane. An assumed 1500 veh/h missing-lane contribution gives a rounded 1500 veh/h net-exit group. Gross ramp flows and field wiring remain unknown."
+        }
+      ],
+      "human_parameters": {
+        "accel": 2.6,
+        "decel": 4.5,
+        "emergencyDecel": 9.0,
+        "sigma": 0.5,
+        "tau": 1.5,
+        "length": 5.0,
+        "minGap": 2.5,
+        "speedFactor": 1.0,
+        "speedDev": 0.1
+      },
+      "truck_share": 0.04,
+      "expected_input_sha256": {
+        "outputs/us101_corridor/us101_corridor.net.xml": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+        "outputs/pems_calibration/us101_m3_upstream_proxy_profiles.json": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+        "outputs/pems_calibration/us101_ramp_station_profiles.json": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+        "configs/us101_corridor.json": "3756012f0f376ed00e8a3ea7180124bf2850938d8f21249f28880b6225dac774",
+        "configs/us101_corridor_station_ids.json": "5c696bd22accb4f66b8fd5d5d591aa9f9f303a00de4916d7f2255b8aefd8c24b",
+        "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+        "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f",
+        "data/caltrans/2024-d4-ramp-adt-a11y.xlsx": "459228bc5a58ed9533bff07750408f89b5edcf4b78242b225c47c117ea550a94",
+        "data/caltrans/2024-truck-aadt-a11y.xlsx": "c3c0a4f0169585f9d9f0019972c365c078e5adc68c71007c405db1492a5d4e0b"
+      },
+      "frozen_vehicle_types": [
+        {
+          "id": "human_passenger",
+          "vClass": "passenger",
+          "carFollowModel": "Krauss",
+          "accel": "2.6",
+          "decel": "4.5",
+          "emergencyDecel": "9.0",
+          "sigma": "0.5",
+          "tau": "1.5",
+          "length": "5.0",
+          "minGap": "2.5",
+          "speedFactor": "1.0",
+          "speedDev": "0.1",
+          "probability": "0.96"
+        },
+        {
+          "id": "human_truck",
+          "vClass": "truck",
+          "carFollowModel": "Krauss",
+          "accel": "1.2",
+          "decel": "4.0",
+          "emergencyDecel": "9.0",
+          "sigma": "0.5",
+          "tau": "1.5",
+          "length": "12.0",
+          "minGap": "2.5",
+          "speedFactor": "1.0",
+          "speedDev": "0.1",
+          "probability": "0.04",
+          "maxSpeed": "24.59"
+        }
+      ],
+      "freeze_note": "Selected on calibration only before held-out validation. Driver/fleet attributes and network/input/engine hashes are checked through the treatment ledger."
+    }
+  },
+  "resolved_baseline_sha256": {
+    "H0": "9367e07e4f3cfb37a0418e0d8e889a801ed93cf9eacd5cf65bfb934dbdd36643",
+    "CACC": "9367e07e4f3cfb37a0418e0d8e889a801ed93cf9eacd5cf65bfb934dbdd36643"
+  },
+  "metric_contract": {
+    "window_exit_vehicles": [
+      "vehicles",
+      "arrivals in window, all modeled exits"
+    ],
+    "network_exit_throughput_vehicles_per_hour": [
+      "veh/h",
+      "window arrivals / window hours"
+    ],
+    "cohort_completed_vehicles": [
+      "vehicles",
+      "window departures completed by run end"
+    ],
+    "cohort_unfinished_vehicles": [
+      "vehicles",
+      "window departures unfinished at run end"
+    ],
+    "cohort_mean_travel_time_seconds": [
+      "s",
+      "completed departure cohort, arithmetic mean"
+    ],
+    "cohort_p95_travel_time_seconds": [
+      "s",
+      "completed departure cohort, linear p95"
+    ],
+    "cohort_mean_waiting_time_seconds": [
+      "s",
+      "completed departure cohort, mean waitingTime"
+    ],
+    "cohort_mean_time_loss_seconds": [
+      "s",
+      "completed departure cohort, mean SUMO timeLoss"
+    ],
+    "trajectory_timesteps": [
+      "samples",
+      "all expected window timesteps including empty"
+    ],
+    "populated_timesteps": [
+      "samples",
+      "window timesteps with vehicles"
+    ],
+    "vehicle_samples": [
+      "samples",
+      "all vehicle observations in window"
+    ],
+    "mean_stopped_vehicles": [
+      "vehicles",
+      "time mean, speed < stop threshold"
+    ],
+    "peak_stopped_vehicles": [
+      "vehicles",
+      "time maximum, speed < stop threshold"
+    ],
+    "stopped_vehicle_seconds": [
+      "vehicle s",
+      "sum stopped counts times sample period"
+    ],
+    "mean_ramp_stopped_vehicles": [
+      "vehicles",
+      "time mean on entrance approach edges"
+    ],
+    "peak_ramp_stopped_vehicles": [
+      "vehicles",
+      "time maximum on entrance approach edges"
+    ],
+    "mean_timestep_speed_mph": [
+      "mph",
+      "mean of nonempty timestep mean speeds"
+    ],
+    "temporal_mean_speed_stddev_mph": [
+      "mph",
+      "population stddev of timestep mean speeds"
+    ],
+    "mean_squared_acceleration_m2_per_s4": [
+      "m^2/s^4",
+      "mean a squared over vehicle samples"
+    ],
+    "rms_acceleration_m_per_s2": [
+      "m/s^2",
+      "square root of mean squared acceleration"
+    ],
+    "window_actual_departures": [
+      "vehicles",
+      "actual departures in window"
+    ],
+    "unreconstructed_scheduled_departures": [
+      "vehicles",
+      "trips lacking reconstructable schedule"
+    ],
+    "scheduled_cohort_vehicles": [
+      "vehicles",
+      "scheduled departures in window"
+    ],
+    "scheduled_cohort_completed_vehicles": [
+      "vehicles",
+      "completed scheduled-window cohort"
+    ],
+    "scheduled_cohort_mean_depart_delay_seconds": [
+      "s",
+      "scheduled-window cohort insertion delay"
+    ],
+    "scheduled_cohort_mean_total_time_seconds": [
+      "s",
+      "completed scheduled cohort duration + delay"
+    ],
+    "whole_run_mean_depart_delay_seconds": [
+      "s",
+      "all inserted trips mean insertion delay"
+    ],
+    "whole_run_max_depart_delay_seconds": [
+      "s",
+      "all inserted trips maximum insertion delay"
+    ],
+    "peak_insertion_backlog_vehicles": [
+      "vehicles",
+      "maximum waiting to insert, whole run"
+    ],
+    "window_peak_insertion_backlog_vehicles": [
+      "vehicles",
+      "maximum waiting to insert in window"
+    ]
+  },
+  "limitations": [
+    "M3 held-out fidelity remains limited: October 15 missed both flow and speed targets; combined held-out speed MAE was 14.90 mph. M4 instrumentation does not revalidate H0.",
+    "Seed spread describes stochastic simulation variation, not total model uncertainty.",
+    "Trajectory scope includes modeled ramps, upstream buffer, and internal junction links.",
+    "Queues are stopped-vehicle count proxies, not contiguous queue lengths in meters. Entrance counts omit internal junction links and vehicles waiting to insert.",
+    "Temporal variability of domain mean speed depends on demand and spatial composition; it does not establish wave stability or disturbance recovery.",
+    "Acceleration squared is a smoothness proxy, not energy or fuel use. FCD speed and acceleration use SUMO's default two-decimal output precision.",
+    "CACC is a conservative passenger overlay with ideal acceleration messages and native Krauss safety constraints; 1.5 s headway is retained. Trucks are human driven. Policy comparisons do not establish real-world safety or string stability.",
+    "Unknown gross ramp movements and the annual truck proxy remain M3 assumptions."
+  ],
+  "groups": [
+    {
+      "scenario": "CACC",
+      "date": "2025-10-08",
+      "planned_seeds": [
+        41,
+        42,
+        43
+      ],
+      "accepted": false,
+      "metric_summary": {
+        "window_exit_vehicles": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "network_exit_throughput_vehicles_per_hour": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "cohort_completed_vehicles": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "cohort_unfinished_vehicles": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "cohort_mean_travel_time_seconds": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "cohort_p95_travel_time_seconds": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "cohort_mean_waiting_time_seconds": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "cohort_mean_time_loss_seconds": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "trajectory_timesteps": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "populated_timesteps": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "vehicle_samples": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "mean_stopped_vehicles": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "peak_stopped_vehicles": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "stopped_vehicle_seconds": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "mean_ramp_stopped_vehicles": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "peak_ramp_stopped_vehicles": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "mean_timestep_speed_mph": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "temporal_mean_speed_stddev_mph": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "mean_squared_acceleration_m2_per_s4": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "rms_acceleration_m_per_s2": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "window_actual_departures": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "unreconstructed_scheduled_departures": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "scheduled_cohort_vehicles": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "scheduled_cohort_completed_vehicles": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "scheduled_cohort_mean_depart_delay_seconds": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "scheduled_cohort_mean_total_time_seconds": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "whole_run_mean_depart_delay_seconds": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "whole_run_max_depart_delay_seconds": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "peak_insertion_backlog_vehicles": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        },
+        "window_peak_insertion_backlog_vehicles": {
+          "valid_seed_count": 3,
+          "mean": null,
+          "sample_standard_deviation": null
+        }
+      }
+    },
+    {
+      "scenario": "H0",
+      "date": "2025-10-08",
+      "planned_seeds": [
+        41,
+        42,
+        43
+      ],
+      "accepted": true,
+      "metric_summary": {
+        "window_exit_vehicles": {
+          "valid_seed_count": 3,
+          "mean": 16549.0,
+          "sample_standard_deviation": 58.88972745734183
+        },
+        "network_exit_throughput_vehicles_per_hour": {
+          "valid_seed_count": 3,
+          "mean": 8274.5,
+          "sample_standard_deviation": 29.444863728670914
+        },
+        "cohort_completed_vehicles": {
+          "valid_seed_count": 3,
+          "mean": 17707.666666666668,
+          "sample_standard_deviation": 49.903239707791855
+        },
+        "cohort_unfinished_vehicles": {
+          "valid_seed_count": 3,
+          "mean": 0.0,
+          "sample_standard_deviation": 0.0
+        },
+        "cohort_mean_travel_time_seconds": {
+          "valid_seed_count": 3,
+          "mean": 917.5052474669677,
+          "sample_standard_deviation": 8.888538307864488
+        },
+        "cohort_p95_travel_time_seconds": {
+          "valid_seed_count": 3,
+          "mean": 2472.7749999999996,
+          "sample_standard_deviation": 39.067497680297045
+        },
+        "cohort_mean_waiting_time_seconds": {
+          "valid_seed_count": 3,
+          "mean": 41.34609770833961,
+          "sample_standard_deviation": 1.2886837838687712
+        },
+        "cohort_mean_time_loss_seconds": {
+          "valid_seed_count": 3,
+          "mean": 569.65051292101,
+          "sample_standard_deviation": 8.756655823388197
+        },
+        "trajectory_timesteps": {
+          "valid_seed_count": 3,
+          "mean": 7200.0,
+          "sample_standard_deviation": 0.0
+        },
+        "populated_timesteps": {
+          "valid_seed_count": 3,
+          "mean": 7200.0,
+          "sample_standard_deviation": 0.0
+        },
+        "vehicle_samples": {
+          "valid_seed_count": 3,
+          "mean": 14754138.333333334,
+          "sample_standard_deviation": 67099.85317668984
+        },
+        "mean_stopped_vehicles": {
+          "valid_seed_count": 3,
+          "mean": 88.91962962962964,
+          "sample_standard_deviation": 1.2975906443079357
+        },
+        "peak_stopped_vehicles": {
+          "valid_seed_count": 3,
+          "mean": 211.0,
+          "sample_standard_deviation": 29.206163733020468
+        },
+        "stopped_vehicle_seconds": {
+          "valid_seed_count": 3,
+          "mean": 640221.3333333334,
+          "sample_standard_deviation": 9342.652639017108
+        },
+        "mean_ramp_stopped_vehicles": {
+          "valid_seed_count": 3,
+          "mean": 10.136111111111111,
+          "sample_standard_deviation": 0.1716722850572859
+        },
+        "peak_ramp_stopped_vehicles": {
+          "valid_seed_count": 3,
+          "mean": 41.666666666666664,
+          "sample_standard_deviation": 2.0816659994661326
+        },
+        "mean_timestep_speed_mph": {
+          "valid_seed_count": 3,
+          "mean": 25.99012614432033,
+          "sample_standard_deviation": 0.10785444846912322
+        },
+        "temporal_mean_speed_stddev_mph": {
+          "valid_seed_count": 3,
+          "mean": 6.055110500827176,
+          "sample_standard_deviation": 0.21836850362867855
+        },
+        "mean_squared_acceleration_m2_per_s4": {
+          "valid_seed_count": 3,
+          "mean": 0.6636362878683948,
+          "sample_standard_deviation": 0.001498966699318889
+        },
+        "rms_acceleration_m_per_s2": {
+          "valid_seed_count": 3,
+          "mean": 0.8146384006099582,
+          "sample_standard_deviation": 0.0009198804629606686
+        },
+        "window_actual_departures": {
+          "valid_seed_count": 3,
+          "mean": 17707.666666666668,
+          "sample_standard_deviation": 49.903239707791855
+        },
+        "unreconstructed_scheduled_departures": {
+          "valid_seed_count": 3,
+          "mean": 0.0,
+          "sample_standard_deviation": 0.0
+        },
+        "scheduled_cohort_vehicles": {
+          "valid_seed_count": 3,
+          "mean": 20449.0,
+          "sample_standard_deviation": 0.0
+        },
+        "scheduled_cohort_completed_vehicles": {
+          "valid_seed_count": 3,
+          "mean": 20449.0,
+          "sample_standard_deviation": 0.0
+        },
+        "scheduled_cohort_mean_depart_delay_seconds": {
+          "valid_seed_count": 3,
+          "mean": 660.2789528420298,
+          "sample_standard_deviation": 7.076862439524128
+        },
+        "scheduled_cohort_mean_total_time_seconds": {
+          "valid_seed_count": 3,
+          "mean": 1533.9019824930317,
+          "sample_standard_deviation": 6.488140535956742
+        },
+        "whole_run_mean_depart_delay_seconds": {
+          "valid_seed_count": 3,
+          "mean": 589.1094321235095,
+          "sample_standard_deviation": 6.16466719485352
+        },
+        "whole_run_max_depart_delay_seconds": {
+          "valid_seed_count": 3,
+          "mean": 3939.533333333333,
+          "sample_standard_deviation": 45.487177680455545
+        },
+        "peak_insertion_backlog_vehicles": {
+          "valid_seed_count": 3,
+          "mean": 2800.6666666666665,
+          "sample_standard_deviation": 45.74203027122138
+        },
+        "window_peak_insertion_backlog_vehicles": {
+          "valid_seed_count": 3,
+          "mean": 2800.6666666666665,
+          "sample_standard_deviation": 45.74203027122138
+        }
+      }
+    }
+  ],
+  "runs": [
+    {
+      "scenario": "CACC",
+      "date": "2025-10-08",
+      "seed": 41,
+      "accepted": false,
+      "directory": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/CACC/2025-10-08/seed_41",
+      "health": {
+        "seed": 41,
+        "final_summary": {
+          "time": "15299.50",
+          "loaded": "22951",
+          "inserted": "22951",
+          "running": "0",
+          "waiting": "0",
+          "ended": "22951",
+          "arrived": "22951",
+          "collisions": "0",
+          "teleports": "2",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "797.28",
+          "meanTravelTime": "693.92",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [
+          "Warning: Teleporting vehicle 'estimated_sr85_gp_entrance_0815.166'; waited too long (wrong lane), lane='867254755_0', time=8856.50.",
+          "Warning: Vehicle 'estimated_sr85_gp_entrance_0815.166' ends teleporting on edge '867254754', time=8857.00.",
+          "Warning: Teleporting vehicle 'estimated_sr85_gp_entrance_0830.39'; waited too long (wrong lane), lane='867254755_0', time=10122.50.",
+          "Warning: Vehicle 'estimated_sr85_gp_entrance_0830.39' ends teleporting on edge '867254754', time=10122.50."
+        ],
+        "completed_vehicle_types": {
+          "human_passenger": 22018,
+          "human_truck": 933
+        }
+      },
+      "measurement": {
+        "begin_seconds": 900.0,
+        "end_seconds_exclusive": 8100.0,
+        "period_seconds": 1.0,
+        "stop_speed_m_per_s": 0.1,
+        "ramp_approach_edge_ids": [
+          "394387883",
+          "509747339",
+          "509747350",
+          "777748240",
+          "847214392#0",
+          "9739842#1"
+        ]
+      },
+      "resolved_scenario_sha256": "d83487d76c3407fd838464bf1f501b419a6cc4bb3a662af53e9e0729ad48ef65",
+      "route_sha256": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+      "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+      "provenance": {
+        "mainline_profile_sha256": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+        "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+        "metadata_sha256": {
+          "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+          "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+        },
+        "sumo_version": "Eclipse SUMO sumo 1.27.1"
+      },
+      "manifest_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/CACC/2025-10-08/seed_41/manifest.json",
+      "detector_summary_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/CACC/2025-10-08/seed_41/detectors_seed_41.json",
+      "legacy_whole_run_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 693.9158424469522,
+        "average_waiting_time_seconds": 10.178641453531437,
+        "average_time_loss_seconds": 351.776918652782,
+        "average_trip_speed_mph": 34.37301179805864
+      },
+      "metrics": {
+        "window_exit_vehicles": 16501,
+        "network_exit_throughput_vehicles_per_hour": 8250.5,
+        "cohort_completed_vehicles": 17068,
+        "cohort_unfinished_vehicles": 0,
+        "cohort_mean_travel_time_seconds": 728.4919439887509,
+        "cohort_p95_travel_time_seconds": 1293.8249999999998,
+        "cohort_mean_waiting_time_seconds": 11.108419264119991,
+        "cohort_mean_time_loss_seconds": 384.4345523787204,
+        "window_actual_departures": 17068,
+        "unreconstructed_scheduled_departures": 0,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 894.3740104650594,
+        "scheduled_cohort_mean_total_time_seconds": 1609.0115966550932,
+        "whole_run_mean_depart_delay_seconds": 797.0617580933292,
+        "whole_run_max_depart_delay_seconds": 3355.7,
+        "peak_insertion_backlog_vehicles": 3403,
+        "window_peak_insertion_backlog_vehicles": 3403,
+        "trajectory_timesteps": 7200,
+        "populated_timesteps": 7200,
+        "vehicle_samples": 11894927,
+        "mean_stopped_vehicles": 21.117083333333333,
+        "peak_stopped_vehicles": 117,
+        "stopped_vehicle_seconds": 152043.0,
+        "mean_ramp_stopped_vehicles": 0.13972222222222222,
+        "peak_ramp_stopped_vehicles": 5,
+        "mean_timestep_speed_mph": 30.858637396429625,
+        "temporal_mean_speed_stddev_mph": 2.492296062781785,
+        "mean_squared_acceleration_m2_per_s4": 0.43323681066279934,
+        "rms_acceleration_m_per_s2": 0.6582072702901415
+      },
+      "controller": {
+        "policy": "cacc_overlay",
+        "headway_seconds": 1.5,
+        "cruise_gain": 0.4,
+        "gap_gain": 0.2,
+        "relative_speed_gain": 0.8,
+        "feedforward_gain": 0.5,
+        "max_acceleration": 2.6,
+        "max_deceleration": 4.5,
+        "communication_range_meters": 250.0,
+        "backend": "libsumo"
+      },
+      "controller_diagnostics": {
+        "controller": {
+          "policy": "cacc_overlay",
+          "headway_seconds": 1.5,
+          "cruise_gain": 0.4,
+          "gap_gain": 0.2,
+          "relative_speed_gain": 0.8,
+          "feedforward_gain": 0.5,
+          "max_acceleration": 2.6,
+          "max_deceleration": 4.5,
+          "communication_range_meters": 250.0,
+          "backend": "libsumo"
+        },
+        "backend": "libsumo",
+        "engine_version": "SUMO 1.27.1",
+        "control_step_seconds": 0.5,
+        "speed_mode": 31,
+        "lane_change_mode": 1621,
+        "controlled_vehicles": 22018,
+        "commands": 25990847,
+        "cooperative_commands": 24345784,
+        "acc_commands": 1352175,
+        "cruise_commands": 292888,
+        "native_fallbacks": 0,
+        "strategic_native_releases": 4072672,
+        "minimum_queried_bumper_gap_meters": 2.50013924210549,
+        "minimum_realized_acceleration_m_per_s2": -1073741824.0,
+        "maximum_realized_acceleration_m_per_s2": 2.6000000000000014,
+        "completed": true
+      },
+      "error": "Run health failed the clean-and-cleared requirement."
+    },
+    {
+      "scenario": "CACC",
+      "date": "2025-10-08",
+      "seed": 42,
+      "accepted": false,
+      "directory": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/CACC/2025-10-08/seed_42",
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "15299.50",
+          "loaded": "22951",
+          "inserted": "22951",
+          "running": "0",
+          "waiting": "0",
+          "ended": "22951",
+          "arrived": "22951",
+          "collisions": "0",
+          "teleports": "1",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "747.07",
+          "meanTravelTime": "680.16",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [
+          "Warning: Teleporting vehicle 'estimated_sr85_gp_entrance_0810.162'; waited too long (wrong lane), lane='867254755_0', time=8564.50.",
+          "Warning: Vehicle 'estimated_sr85_gp_entrance_0810.162' ends teleporting on edge '867254754', time=8565.00."
+        ],
+        "completed_vehicle_types": {
+          "human_passenger": 22030,
+          "human_truck": 921
+        }
+      },
+      "measurement": {
+        "begin_seconds": 900.0,
+        "end_seconds_exclusive": 8100.0,
+        "period_seconds": 1.0,
+        "stop_speed_m_per_s": 0.1,
+        "ramp_approach_edge_ids": [
+          "394387883",
+          "509747339",
+          "509747350",
+          "777748240",
+          "847214392#0",
+          "9739842#1"
+        ]
+      },
+      "resolved_scenario_sha256": "e9e510bec0d17e73f4242f0943633c350abe455cd52b22d43d96e5aad0d671b8",
+      "route_sha256": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+      "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+      "provenance": {
+        "mainline_profile_sha256": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+        "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+        "metadata_sha256": {
+          "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+          "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+        },
+        "sumo_version": "Eclipse SUMO sumo 1.27.1"
+      },
+      "manifest_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/CACC/2025-10-08/seed_42/manifest.json",
+      "detector_summary_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/CACC/2025-10-08/seed_42/detectors_seed_42.json",
+      "legacy_whole_run_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 680.159012679186,
+        "average_waiting_time_seconds": 10.35192366345693,
+        "average_time_loss_seconds": 338.5894279116378,
+        "average_trip_speed_mph": 34.86791852684225
+      },
+      "metrics": {
+        "window_exit_vehicles": 16681,
+        "network_exit_throughput_vehicles_per_hour": 8340.5,
+        "cohort_completed_vehicles": 17140,
+        "cohort_unfinished_vehicles": 0,
+        "cohort_mean_travel_time_seconds": 721.8785880980163,
+        "cohort_p95_travel_time_seconds": 1297.0249999999996,
+        "cohort_mean_waiting_time_seconds": 11.289614935822637,
+        "cohort_mean_time_loss_seconds": 377.04525145857644,
+        "window_actual_departures": 17140,
+        "unreconstructed_scheduled_departures": 0,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 838.0350452344858,
+        "scheduled_cohort_mean_total_time_seconds": 1539.2748613624137,
+        "whole_run_mean_depart_delay_seconds": 746.8497194022048,
+        "whole_run_max_depart_delay_seconds": 3351.8,
+        "peak_insertion_backlog_vehicles": 3328,
+        "window_peak_insertion_backlog_vehicles": 3328,
+        "trajectory_timesteps": 7200,
+        "populated_timesteps": 7200,
+        "vehicle_samples": 11976822,
+        "mean_stopped_vehicles": 24.190833333333334,
+        "peak_stopped_vehicles": 109,
+        "stopped_vehicle_seconds": 174174.0,
+        "mean_ramp_stopped_vehicles": 0.22402777777777777,
+        "peak_ramp_stopped_vehicles": 5,
+        "mean_timestep_speed_mph": 30.99042183641183,
+        "temporal_mean_speed_stddev_mph": 2.35544812889502,
+        "mean_squared_acceleration_m2_per_s4": 0.4376028265138976,
+        "rms_acceleration_m_per_s2": 0.6615155527377248
+      },
+      "controller": {
+        "policy": "cacc_overlay",
+        "headway_seconds": 1.5,
+        "cruise_gain": 0.4,
+        "gap_gain": 0.2,
+        "relative_speed_gain": 0.8,
+        "feedforward_gain": 0.5,
+        "max_acceleration": 2.6,
+        "max_deceleration": 4.5,
+        "communication_range_meters": 250.0,
+        "backend": "libsumo"
+      },
+      "controller_diagnostics": {
+        "controller": {
+          "policy": "cacc_overlay",
+          "headway_seconds": 1.5,
+          "cruise_gain": 0.4,
+          "gap_gain": 0.2,
+          "relative_speed_gain": 0.8,
+          "feedforward_gain": 0.5,
+          "max_acceleration": 2.6,
+          "max_deceleration": 4.5,
+          "communication_range_meters": 250.0,
+          "backend": "libsumo"
+        },
+        "backend": "libsumo",
+        "engine_version": "SUMO 1.27.1",
+        "control_step_seconds": 0.5,
+        "speed_mode": 31,
+        "lane_change_mode": 1621,
+        "controlled_vehicles": 22030,
+        "commands": 25638492,
+        "cooperative_commands": 24089197,
+        "acc_commands": 1257599,
+        "cruise_commands": 291696,
+        "native_fallbacks": 0,
+        "strategic_native_releases": 3925520,
+        "minimum_queried_bumper_gap_meters": 2.500026445473255,
+        "minimum_realized_acceleration_m_per_s2": -1073741824.0,
+        "maximum_realized_acceleration_m_per_s2": 2.6000000000000014,
+        "completed": true
+      },
+      "error": "Run health failed the clean-and-cleared requirement."
+    },
+    {
+      "scenario": "CACC",
+      "date": "2025-10-08",
+      "seed": 43,
+      "accepted": false,
+      "directory": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/CACC/2025-10-08/seed_43",
+      "health": {
+        "seed": 43,
+        "final_summary": {
+          "time": "15299.50",
+          "loaded": "22951",
+          "inserted": "22951",
+          "running": "0",
+          "waiting": "0",
+          "ended": "22951",
+          "arrived": "22951",
+          "collisions": "0",
+          "teleports": "2",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "764.46",
+          "meanTravelTime": "676.69",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [
+          "Warning: Teleporting vehicle 'estimated_sr85_gp_entrance_0710.16'; waited too long (wrong lane), lane='867254755_0', time=2072.00.",
+          "Warning: Vehicle 'estimated_sr85_gp_entrance_0710.16' ends teleporting on edge '867254754', time=2077.00.",
+          "Warning: Teleporting vehicle 'estimated_sr85_gp_entrance_0815.109'; waited too long (wrong lane), lane='867254755_0', time=8488.50.",
+          "Warning: Vehicle 'estimated_sr85_gp_entrance_0815.109' ends teleporting on edge '867254754', time=8488.50."
+        ],
+        "completed_vehicle_types": {
+          "human_passenger": 22060,
+          "human_truck": 891
+        }
+      },
+      "measurement": {
+        "begin_seconds": 900.0,
+        "end_seconds_exclusive": 8100.0,
+        "period_seconds": 1.0,
+        "stop_speed_m_per_s": 0.1,
+        "ramp_approach_edge_ids": [
+          "394387883",
+          "509747339",
+          "509747350",
+          "777748240",
+          "847214392#0",
+          "9739842#1"
+        ]
+      },
+      "resolved_scenario_sha256": "6015f76b34603ff0b8dd8a9056fda79406890abf7c0b7f1656c7df104bc86372",
+      "route_sha256": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+      "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+      "provenance": {
+        "mainline_profile_sha256": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+        "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+        "metadata_sha256": {
+          "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+          "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+        },
+        "sumo_version": "Eclipse SUMO sumo 1.27.1"
+      },
+      "manifest_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/CACC/2025-10-08/seed_43/manifest.json",
+      "detector_summary_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/CACC/2025-10-08/seed_43/detectors_seed_43.json",
+      "legacy_whole_run_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 676.690078863666,
+        "average_waiting_time_seconds": 10.121650472746285,
+        "average_time_loss_seconds": 334.74510740272757,
+        "average_trip_speed_mph": 34.59287881287958
+      },
+      "metrics": {
+        "window_exit_vehicles": 16689,
+        "network_exit_throughput_vehicles_per_hour": 8344.5,
+        "cohort_completed_vehicles": 17015,
+        "cohort_unfinished_vehicles": 0,
+        "cohort_mean_travel_time_seconds": 711.6059359388775,
+        "cohort_p95_travel_time_seconds": 1260.7999999999993,
+        "cohort_mean_waiting_time_seconds": 11.490949162503673,
+        "cohort_mean_time_loss_seconds": 367.08431266529533,
+        "window_actual_departures": 17015,
+        "unreconstructed_scheduled_departures": 0,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 857.7085989534941,
+        "scheduled_cohort_mean_total_time_seconds": 1552.571110567754,
+        "whole_run_mean_depart_delay_seconds": 764.2400291926277,
+        "whole_run_max_depart_delay_seconds": 3105.5,
+        "peak_insertion_backlog_vehicles": 3441,
+        "window_peak_insertion_backlog_vehicles": 3441,
+        "trajectory_timesteps": 7200,
+        "populated_timesteps": 7200,
+        "vehicle_samples": 11864240,
+        "mean_stopped_vehicles": 26.298055555555557,
+        "peak_stopped_vehicles": 139,
+        "stopped_vehicle_seconds": 189346.0,
+        "mean_ramp_stopped_vehicles": 0.14597222222222223,
+        "peak_ramp_stopped_vehicles": 5,
+        "mean_timestep_speed_mph": 31.118248814154136,
+        "temporal_mean_speed_stddev_mph": 1.9558011871393417,
+        "mean_squared_acceleration_m2_per_s4": 0.4433130105380363,
+        "rms_acceleration_m_per_s2": 0.6658175504881471
+      },
+      "controller": {
+        "policy": "cacc_overlay",
+        "headway_seconds": 1.5,
+        "cruise_gain": 0.4,
+        "gap_gain": 0.2,
+        "relative_speed_gain": 0.8,
+        "feedforward_gain": 0.5,
+        "max_acceleration": 2.6,
+        "max_deceleration": 4.5,
+        "communication_range_meters": 250.0,
+        "backend": "libsumo"
+      },
+      "controller_diagnostics": {
+        "controller": {
+          "policy": "cacc_overlay",
+          "headway_seconds": 1.5,
+          "cruise_gain": 0.4,
+          "gap_gain": 0.2,
+          "relative_speed_gain": 0.8,
+          "feedforward_gain": 0.5,
+          "max_acceleration": 2.6,
+          "max_deceleration": 4.5,
+          "communication_range_meters": 250.0,
+          "backend": "libsumo"
+        },
+        "backend": "libsumo",
+        "engine_version": "SUMO 1.27.1",
+        "control_step_seconds": 0.5,
+        "speed_mode": 31,
+        "lane_change_mode": 1621,
+        "controlled_vehicles": 22060,
+        "commands": 25508631,
+        "cooperative_commands": 24029211,
+        "acc_commands": 1186928,
+        "cruise_commands": 292492,
+        "native_fallbacks": 0,
+        "strategic_native_releases": 3972374,
+        "minimum_queried_bumper_gap_meters": 2.500015518063128,
+        "minimum_realized_acceleration_m_per_s2": -1073741824.0,
+        "maximum_realized_acceleration_m_per_s2": 2.6000000000000014,
+        "completed": true
+      },
+      "error": "Run health failed the clean-and-cleared requirement."
+    },
+    {
+      "scenario": "H0",
+      "date": "2025-10-08",
+      "seed": 41,
+      "accepted": true,
+      "directory": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/H0/2025-10-08/seed_41",
+      "health": {
+        "seed": 41,
+        "final_summary": {
+          "time": "15299.50",
+          "loaded": "22951",
+          "inserted": "22951",
+          "running": "0",
+          "waiting": "0",
+          "ended": "22951",
+          "arrived": "22951",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "596.41",
+          "meanTravelTime": "822.91",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 22018,
+          "human_truck": 933
+        }
+      },
+      "measurement": {
+        "begin_seconds": 900.0,
+        "end_seconds_exclusive": 8100.0,
+        "period_seconds": 1.0,
+        "stop_speed_m_per_s": 0.1,
+        "ramp_approach_edge_ids": [
+          "394387883",
+          "509747339",
+          "509747350",
+          "777748240",
+          "847214392#0",
+          "9739842#1"
+        ]
+      },
+      "resolved_scenario_sha256": "5c7596d99ecc036e324fa593715e4bd302a9f7c76c74f043ad4eaabfe6c6e3bd",
+      "route_sha256": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+      "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+      "provenance": {
+        "mainline_profile_sha256": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+        "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+        "metadata_sha256": {
+          "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+          "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+        },
+        "sumo_version": "Eclipse SUMO sumo 1.27.1"
+      },
+      "manifest_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/H0/2025-10-08/seed_41/manifest.json",
+      "detector_summary_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/H0/2025-10-08/seed_41/detectors_seed_41.json",
+      "legacy_whole_run_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 822.9121171190798,
+        "average_waiting_time_seconds": 35.87900309354712,
+        "average_time_loss_seconds": 480.7691059213106,
+        "average_trip_speed_mph": 35.404842949486365
+      },
+      "metrics": {
+        "window_exit_vehicles": 16583,
+        "network_exit_throughput_vehicles_per_hour": 8291.5,
+        "cohort_completed_vehicles": 17684,
+        "cohort_unfinished_vehicles": 0,
+        "cohort_mean_travel_time_seconds": 910.3133906356028,
+        "cohort_p95_travel_time_seconds": 2471.4249999999993,
+        "cohort_mean_waiting_time_seconds": 42.79300497624972,
+        "cohort_mean_time_loss_seconds": 562.2127934856367,
+        "window_actual_departures": 17684,
+        "unreconstructed_scheduled_departures": 0,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 668.4046965621791,
+        "scheduled_cohort_mean_total_time_seconds": 1532.4502489119272,
+        "whole_run_mean_depart_delay_seconds": 596.1903581543288,
+        "whole_run_max_depart_delay_seconds": 3980.7,
+        "peak_insertion_backlog_vehicles": 2817,
+        "window_peak_insertion_backlog_vehicles": 2817,
+        "trajectory_timesteps": 7200,
+        "populated_timesteps": 7200,
+        "vehicle_samples": 14701399,
+        "mean_stopped_vehicles": 90.21291666666667,
+        "peak_stopped_vehicles": 215,
+        "stopped_vehicle_seconds": 649533.0,
+        "mean_ramp_stopped_vehicles": 10.328333333333333,
+        "peak_ramp_stopped_vehicles": 44,
+        "mean_timestep_speed_mph": 26.08066200486596,
+        "temporal_mean_speed_stddev_mph": 5.937099205295479,
+        "mean_squared_acceleration_m2_per_s4": 0.6633585381468834,
+        "rms_acceleration_m_per_s2": 0.8144682548429272
+      },
+      "controller": null
+    },
+    {
+      "scenario": "H0",
+      "date": "2025-10-08",
+      "seed": 42,
+      "accepted": true,
+      "directory": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/H0/2025-10-08/seed_42",
+      "health": {
+        "seed": 42,
+        "final_summary": {
+          "time": "15299.50",
+          "loaded": "22951",
+          "inserted": "22951",
+          "running": "0",
+          "waiting": "0",
+          "ended": "22951",
+          "arrived": "22951",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "585.16",
+          "meanTravelTime": "830.52",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 22030,
+          "human_truck": 921
+        }
+      },
+      "measurement": {
+        "begin_seconds": 900.0,
+        "end_seconds_exclusive": 8100.0,
+        "period_seconds": 1.0,
+        "stop_speed_m_per_s": 0.1,
+        "ramp_approach_edge_ids": [
+          "394387883",
+          "509747339",
+          "509747350",
+          "777748240",
+          "847214392#0",
+          "9739842#1"
+        ]
+      },
+      "resolved_scenario_sha256": "6f7b0e5ed4a33e3d410903faf24f2080355612604d11295b3917f75d78693af0",
+      "route_sha256": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+      "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+      "provenance": {
+        "mainline_profile_sha256": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+        "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+        "metadata_sha256": {
+          "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+          "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+        },
+        "sumo_version": "Eclipse SUMO sumo 1.27.1"
+      },
+      "manifest_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/H0/2025-10-08/seed_42/manifest.json",
+      "detector_summary_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/H0/2025-10-08/seed_42/detectors_seed_42.json",
+      "legacy_whole_run_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 830.5248573046927,
+        "average_waiting_time_seconds": 33.86340464467779,
+        "average_time_loss_seconds": 488.95216330443117,
+        "average_trip_speed_mph": 35.046726806415045
+      },
+      "metrics": {
+        "window_exit_vehicles": 16583,
+        "network_exit_throughput_vehicles_per_hour": 8291.5,
+        "cohort_completed_vehicles": 17765,
+        "cohort_unfinished_vehicles": 0,
+        "cohort_mean_travel_time_seconds": 914.759724176752,
+        "cohort_p95_travel_time_seconds": 2434.3999999999996,
+        "cohort_mean_waiting_time_seconds": 40.321728117084156,
+        "cohort_mean_time_loss_seconds": 567.4373183225443,
+        "window_actual_departures": 17765,
+        "unreconstructed_scheduled_departures": 0,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 655.4669489950609,
+        "scheduled_cohort_mean_total_time_seconds": 1528.2626847278596,
+        "whole_run_mean_depart_delay_seconds": 584.9377112108405,
+        "whole_run_max_depart_delay_seconds": 3890.7,
+        "peak_insertion_backlog_vehicles": 2749,
+        "window_peak_insertion_backlog_vehicles": 2749,
+        "trajectory_timesteps": 7200,
+        "populated_timesteps": 7200,
+        "vehicle_samples": 14731352,
+        "mean_stopped_vehicles": 87.61777777777777,
+        "peak_stopped_vehicles": 238,
+        "stopped_vehicle_seconds": 630848.0,
+        "mean_ramp_stopped_vehicles": 9.998055555555556,
+        "peak_ramp_stopped_vehicles": 40,
+        "mean_timestep_speed_mph": 26.01891917219029,
+        "temporal_mean_speed_stddev_mph": 5.921139973969768,
+        "mean_squared_acceleration_m2_per_s4": 0.6652547040380761,
+        "rms_acceleration_m_per_s2": 0.8156314756298191
+      },
+      "controller": null
+    },
+    {
+      "scenario": "H0",
+      "date": "2025-10-08",
+      "seed": 43,
+      "accepted": true,
+      "directory": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/H0/2025-10-08/seed_43",
+      "health": {
+        "seed": 43,
+        "final_summary": {
+          "time": "15299.50",
+          "loaded": "22951",
+          "inserted": "22951",
+          "running": "0",
+          "waiting": "0",
+          "ended": "22951",
+          "arrived": "22951",
+          "collisions": "0",
+          "teleports": "0",
+          "halting": "0",
+          "stopped": "0",
+          "meanWaitingTime": "586.42",
+          "meanTravelTime": "840.53",
+          "meanSpeed": "-1.00",
+          "meanSpeedRelative": "-1.00",
+          "discarded": "0"
+        },
+        "warning_lines": [],
+        "completed_vehicle_types": {
+          "human_passenger": 22060,
+          "human_truck": 891
+        }
+      },
+      "measurement": {
+        "begin_seconds": 900.0,
+        "end_seconds_exclusive": 8100.0,
+        "period_seconds": 1.0,
+        "stop_speed_m_per_s": 0.1,
+        "ramp_approach_edge_ids": [
+          "394387883",
+          "509747339",
+          "509747350",
+          "777748240",
+          "847214392#0",
+          "9739842#1"
+        ]
+      },
+      "resolved_scenario_sha256": "fea9fcab87acdc7b1649af84c279154338a15fec3ffa82adaba062a6a502aae9",
+      "route_sha256": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+      "network_sha256": "13103c0b31d22dff15159b56e5ba03f0becd9594868c4cdfeac60497e86b9bc6",
+      "provenance": {
+        "mainline_profile_sha256": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+        "ramp_profile_sha256": "c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9",
+        "metadata_sha256": {
+          "data/pems/metadata/d04_text_meta_2025_08_27.txt": "f62b79b36e1e39860657687d92a3dab882117531b7d702983d518a068d22f48f",
+          "data/pems/metadata/d04_text_meta_2025_10_16.txt": "7e0f8ba57ed4e3d073557f0990c3b8526c88d6433f12d5d17d28e9ff4590f96f"
+        },
+        "sumo_version": "Eclipse SUMO sumo 1.27.1"
+      },
+      "manifest_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/H0/2025-10-08/seed_43/manifest.json",
+      "detector_summary_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/H0/2025-10-08/seed_43/detectors_seed_43.json",
+      "legacy_whole_run_metrics": {
+        "completed_vehicles": 22951,
+        "average_travel_time_seconds": 840.5313929676266,
+        "average_waiting_time_seconds": 34.76876824539236,
+        "average_time_loss_seconds": 498.5808683717485,
+        "average_trip_speed_mph": 35.0172968683832
+      },
+      "metrics": {
+        "window_exit_vehicles": 16481,
+        "network_exit_throughput_vehicles_per_hour": 8240.5,
+        "cohort_completed_vehicles": 17674,
+        "cohort_unfinished_vehicles": 0,
+        "cohort_mean_travel_time_seconds": 927.4426275885481,
+        "cohort_p95_travel_time_seconds": 2512.5,
+        "cohort_mean_waiting_time_seconds": 40.923560031684964,
+        "cohort_mean_time_loss_seconds": 579.3014269548489,
+        "window_actual_departures": 17674,
+        "unreconstructed_scheduled_departures": 0,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 656.9652129688494,
+        "scheduled_cohort_mean_total_time_seconds": 1540.9930138393077,
+        "whole_run_mean_depart_delay_seconds": 586.2002270053592,
+        "whole_run_max_depart_delay_seconds": 3947.2,
+        "peak_insertion_backlog_vehicles": 2836,
+        "window_peak_insertion_backlog_vehicles": 2836,
+        "trajectory_timesteps": 7200,
+        "populated_timesteps": 7200,
+        "vehicle_samples": 14829664,
+        "mean_stopped_vehicles": 88.92819444444444,
+        "peak_stopped_vehicles": 180,
+        "stopped_vehicle_seconds": 640283.0,
+        "mean_ramp_stopped_vehicles": 10.081944444444444,
+        "peak_ramp_stopped_vehicles": 41,
+        "mean_timestep_speed_mph": 25.870797255904744,
+        "temporal_mean_speed_stddev_mph": 6.307092323216283,
+        "mean_squared_acceleration_m2_per_s4": 0.6622956214202249,
+        "rms_acceleration_m_per_s2": 0.8138154713571283
+      },
+      "controller": null
+    }
+  ],
+  "report_file": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo/report.json",
+  "paired_comparisons": [
+    {
+      "reference": "H0",
+      "treatment": "CACC",
+      "date": "2025-10-08",
+      "metrics": {
+        "window_exit_vehicles": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "network_exit_throughput_vehicles_per_hour": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "cohort_completed_vehicles": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "cohort_unfinished_vehicles": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "cohort_mean_travel_time_seconds": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "cohort_p95_travel_time_seconds": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "cohort_mean_waiting_time_seconds": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "cohort_mean_time_loss_seconds": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "trajectory_timesteps": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "populated_timesteps": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "vehicle_samples": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "mean_stopped_vehicles": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "peak_stopped_vehicles": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "stopped_vehicle_seconds": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "mean_ramp_stopped_vehicles": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "peak_ramp_stopped_vehicles": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "mean_timestep_speed_mph": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "temporal_mean_speed_stddev_mph": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "mean_squared_acceleration_m2_per_s4": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "rms_acceleration_m_per_s2": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "window_actual_departures": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "unreconstructed_scheduled_departures": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "scheduled_cohort_vehicles": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "scheduled_cohort_completed_vehicles": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "scheduled_cohort_mean_depart_delay_seconds": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "scheduled_cohort_mean_total_time_seconds": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "whole_run_mean_depart_delay_seconds": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "whole_run_max_depart_delay_seconds": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "peak_insertion_backlog_vehicles": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        },
+        "window_peak_insertion_backlog_vehicles": {
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": null
+            },
+            {
+              "seed": 42,
+              "difference": null
+            },
+            {
+              "seed": 43,
+              "difference": null
+            }
+          ],
+          "mean_difference": null,
+          "sample_standard_deviation": null,
+          "percent_of_reference_mean": null
+        }
+      }
+    }
+  ]
+}

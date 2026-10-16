@@ -75,11 +75,11 @@ def audit(report_path: Path, root: Path) -> dict:
         route = folder / "h0.rou.xml"
         assert hashlib.sha256(route.read_bytes()).hexdigest() == run["route_sha256"]
         matching_m4 = next(previous for previous in m4["runs"] if previous["seed"] == seed)
-        assert run["route_sha256"] == matching_m4["route_sha256"]
         assert run["network_sha256"] == matching_m4["network_sha256"]
         assert run["provenance"] == matching_m4["provenance"]
         replay = None
         if scenario == "H0":
+            assert run["route_sha256"] == matching_m4["route_sha256"]
             assert run["legacy_whole_run_metrics"] == matching_m4["legacy_whole_run_metrics"]
             assert all(metrics[key] == value for key, value in matching_m4["metrics"].items())
             old_detector = root / matching_m4["detector_summary_file"]
@@ -90,13 +90,58 @@ def audit(report_path: Path, root: Path) -> dict:
             )
         else:
             diagnostics = run["controller_diagnostics"]
-            assert diagnostics["completed"] and diagnostics["native_fallbacks"] == 0
-            assert diagnostics["cooperative_commands"] > 0 and diagnostics["acc_commands"] > 0
-            assert diagnostics["commands"] == sum(
-                diagnostics[key]
-                for key in ["cooperative_commands", "acc_commands", "cruise_commands"]
+            assert diagnostics["completed"] and diagnostics["missing_state_samples"] == 0
+            assert diagnostics["backend"] == "libsumo"
+            assert (
+                diagnostics["engine_version"].split()[-1]
+                == (run["provenance"]["sumo_version"].split()[-1])
+            )
+            assert diagnostics["equipped_vehicles"] == sum(
+                trip["vType"] == "human_passenger" for trip in trips
+            )
+            assert diagnostics["external_control_commands"] == 0
+            assert (
+                sum(diagnostics["mode_sample_counts"].values()) == diagnostics["passenger_samples"]
+            )
+            assert diagnostics["mode_sample_counts"].get("ACC", 0) > 0
+            assert (
+                sum(
+                    value
+                    for key, value in diagnostics["mode_sample_counts"].items()
+                    if key.startswith("CACC_")
+                )
+                > 0
             )
             assert diagnostics["speed_mode"] == 31 and diagnostics["lane_change_mode"] == 1621
+            manifest = json.loads((root / run["manifest_file"]).read_text())
+            assert manifest["unmodified_route_sha256"] == matching_m4["route_sha256"]
+            baseline_run = next(
+                item for item in runs if item["scenario"] == "H0" and item["seed"] == seed
+            )
+            baseline_xml = ET.parse(root / baseline_run["directory"] / "h0.rou.xml").getroot()
+            treated_xml = ET.parse(route).getroot()
+            original = next(
+                t for t in baseline_xml.iter("vType") if t.attrib["id"] == "human_passenger"
+            )
+            treated = next(
+                t for t in treated_xml.iter("vType") if t.attrib["id"] == "human_passenger"
+            )
+            expected_type = {
+                **original.attrib,
+                "carFollowModel": "CACC",
+                **{
+                    key: str(value)
+                    for key, value in run["controller"]["vehicle_parameters"].items()
+                },
+            }
+            assert treated.attrib == expected_type
+            treated.attrib.clear()
+            treated.attrib.update(original.attrib)
+
+            def signature(element):
+                return (element.tag, element.attrib, [signature(child) for child in element])
+
+            assert signature(treated_xml) == signature(baseline_xml)
         schedules[(scenario, seed)] = {
             trip["id"]: round(float(trip["depart"]) - float(trip["departDelay"]), 2)
             for trip in trips

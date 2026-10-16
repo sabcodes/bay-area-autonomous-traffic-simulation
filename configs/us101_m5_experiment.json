@@ -1,5 +1,5 @@
 {
-  "experiment_id": "m5_h0_cacc_2025_10_08_libsumo",
+  "experiment_id": "m5_h0_native_cacc_2025_10_08",
   "reference_scenario": "H0",
   "scenarios": [
     {
@@ -10,16 +10,31 @@
       "id": "CACC",
       "baseline_config": "configs/us101_human_baseline_m3_frozen.json",
       "controller": {
-        "policy": "cacc_overlay",
-        "headway_seconds": 1.5,
-        "cruise_gain": 0.4,
-        "gap_gain": 0.2,
-        "relative_speed_gain": 0.8,
-        "feedforward_gain": 0.5,
-        "max_acceleration": 2.6,
-        "max_deceleration": 4.5,
-        "communication_range_meters": 250.0,
-        "backend": "libsumo"
+        "policy": "sumo_cacc",
+        "backend": "libsumo",
+        "observation_period_seconds": 1.0,
+        "leader_lookahead_meters": 250.0,
+        "vehicle_parameters": {
+          "collisionAvoidanceOverride": 0.0,
+          "collisionMinGapFactor": 1.0,
+          "tauCACCToACC": 1.5,
+          "applyDriverState": 0,
+          "speedControlGainCACC": -0.4,
+          "gapClosingControlGainGap": 0.005,
+          "gapClosingControlGainGapDot": 0.05,
+          "gapControlGainGap": 0.45,
+          "gapControlGainGapDot": 0.0125,
+          "collisionAvoidanceGainGap": 0.45,
+          "collisionAvoidanceGainGapDot": 0.05,
+          "speedControlMinGap": 1.66,
+          "speedControlGain": -0.4,
+          "gapClosingControlGainSpeed": 0.8,
+          "gapClosingControlGainSpace": 0.04,
+          "gapControlGainSpeed": 0.07,
+          "gapControlGainSpace": 0.23,
+          "collisionAvoidanceGainSpeed": 0.23,
+          "collisionAvoidanceGainSpace": 0.8
+        }
       }
     }
   ],
