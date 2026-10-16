@@ -133,3 +133,26 @@ execution cost, not tuning against policy performance.
 Primary sources checked 2026-10-16:
 https://sumo.dlr.de/docs/Libsumo.html
 https://pypi.org/project/libsumo/1.27.1/
+
+## Policy revision 2, 2026-10-16 (before correction implementation)
+
+The first full socket CACC seed produced a wrong-lane teleport at simulation
+2123 s for `estimated_downstream_net_exit_warmup.255` on lane `394368089_4`.
+The original policy therefore fails M5; retain its report and warnings. The
+run was subsequently interrupted; its remaining CACC jobs show cleanup/startup
+failures and are not valid simulation comparisons.
+
+Correct the longitudinal/native lane-change interface: include current lane ID
+and best-lane information in subscriptions. If the current lane has nonzero
+best-lane offset (a strategic lane transition is needed), lacks continuing
+route permission, or is an internal lane without a matching best-lane entry,
+release the speed request with setSpeed(-1). Native car-following/lane changing
+then owns the maneuver. Resume the unchanged CACC law once a continuing best
+lane is reached. Count these intentional strategic releases separately from
+missing-state fallbacks; they do not fail acceptance. Passenger acceleration
+messages remain available while a passenger is under native maneuver control.
+
+Add a real SUMO strategic-exit case and cross-backend replay gate. Check cleanup
+and preserve explicit incomplete diagnostics on interruption. Do not change
+controller gains or demand to hide the failed lane transition. Final results
+must come from a fresh complete matrix after this correction.
