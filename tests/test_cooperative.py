@@ -211,3 +211,59 @@ def test_real_sumo_controller_clears_and_replays_deterministically(tmp_path):
         )
         assert json.loads((tmp_path / f"diagnostics{replay}.json").read_text()) == diagnostics
     assert results[0] == results[1]
+
+
+def test_missing_state_releases_control_and_errors_close_connection(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+
+    import traci
+    from traci import constants as tc
+
+    from bay_area_traffic_sim import cooperative
+
+    closed, commands = [], []
+    state = {
+        tc.VAR_SPEED: 10,
+        tc.VAR_ACCELERATION: 0,
+        tc.VAR_ALLOWED_SPEED: 20,
+        tc.VAR_TYPE: "human_passenger",
+        tc.VAR_LEADER: ("missing", 20),
+    }
+    vehicle = SimpleNamespace(
+        subscribe=lambda *args, **kwargs: None,
+        getSubscriptionResults=lambda _: state,
+        getSpeedMode=lambda _: 31,
+        getLaneChangeMode=lambda _: 1621,
+        getAllSubscriptionResults=lambda: {"ego": state},
+        setSpeed=lambda *args: commands.append(args),
+    )
+    connection = SimpleNamespace(
+        simulationStep=lambda: None,
+        vehicle=vehicle,
+        simulation=SimpleNamespace(
+            subscribe=lambda *args: None,
+            getSubscriptionResults=lambda: {
+                tc.VAR_DEPARTED_VEHICLES_IDS: ["ego"],
+                tc.VAR_ARRIVED_VEHICLES_IDS: [],
+            },
+        ),
+        close=lambda: closed.append(True),
+    )
+    monkeypatch.setattr(traci, "start", lambda *args, **kwargs: None)
+    monkeypatch.setattr(traci, "getConnection", lambda _: connection)
+    path = tmp_path / "diagnostics.json"
+    diagnostics = run_controlled([], 0.5, DEFAULT_CONTROLLER, path, 2.5)
+    assert commands == [("ego", -1)] and diagnostics["native_fallbacks"] == 1
+    vehicle.getAllSubscriptionResults = lambda: {}  # missing ego also releases native control
+    assert run_controlled([], 0.5, DEFAULT_CONTROLLER, path, 2.5)["native_fallbacks"] == 1
+    state[tc.VAR_LEADER] = ("", -1)
+    vehicle.getAllSubscriptionResults = lambda: {"ego": state}
+
+    def fail(*args):
+        raise RuntimeError("controller failure")
+
+    monkeypatch.setattr(cooperative, "requested_speed", fail)
+    with pytest.raises(RuntimeError, match="controller failure"):
+        run_controlled([], 0.5, DEFAULT_CONTROLLER, path, 2.5)
+    assert len(closed) == 3
+    assert not json.loads(path.read_text())["completed"]
