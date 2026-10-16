@@ -73,10 +73,14 @@ All health gates remain: no SUMO warnings, collisions, emergency braking,
 teleports, missing measurements, or uncleared demand.
 
 Add window departure count, scheduled-departure cohort count/completions and
-mean departDelay (including unfinished insertion where reported), plus whole-run
+mean departDelay, completed scheduled-cohort duration + departDelay, plus whole-run
 mean/max departDelay and peak insertion backlog from summary output. These
 complement actual-departure metrics and expose selection effects; do not mix
-scheduled and actual cohorts. Null unavailable means rather than invent zero.
+scheduled and actual cohorts. Reconstruct scheduled time as depart - departDelay
+rounded to two decimals, matching SUMO output precision. Uninserted trips have
+no reconstructable schedule in this output: count them explicitly and set
+scheduled-cohort metrics null if any exist. Null unavailable means rather than
+invent zero. This output clarification was recorded before corridor execution.
 For each date, report paired CACC-minus-H0 differences for each seed, their mean,
 sample SD, and percent of H0 mean when nonzero. Failed/incomplete pairs yield
 null aggregates. Describe metric direction and tradeoffs without assuming CACC

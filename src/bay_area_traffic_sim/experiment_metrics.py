@@ -146,3 +146,54 @@ def clean_and_cleared(health: dict) -> bool:
         )
     except (KeyError, TypeError, ValueError):
         return False
+
+
+def read_insertion_metrics(trips: Path, summary: Path, begin: float, end: float) -> dict:
+    """Keep actual and scheduled cohorts separate; expose temporary insertion backlog."""
+    delays, scheduled_delays, scheduled_totals = [], [], []
+    scheduled_count = actual_count = unknown_schedule = 0
+    for _, trip in ET.iterparse(trips, events=("end",)):
+        if trip.tag != "tripinfo":
+            continue
+        depart = float(trip.attrib["depart"])
+        delay = float(trip.attrib["departDelay"])
+        arrival = float(trip.attrib["arrival"])
+        actual_count += begin <= depart < end
+        if depart < 0 or delay < 0:
+            unknown_schedule += 1
+        else:
+            delays.append(delay)
+            # Native tripinfo rounds seconds to two decimals; tolerate its boundary rounding.
+            scheduled = round(depart - delay, 2)
+            if begin <= scheduled < end:
+                scheduled_count += 1
+                scheduled_delays.append(delay)
+                if arrival >= 0:
+                    scheduled_totals.append(float(trip.attrib["duration"]) + delay)
+        trip.clear()
+    peak = window_peak = 0
+    for _, step in ET.iterparse(summary, events=("end",)):
+        if step.tag == "step":
+            waiting = int(step.attrib["waiting"])
+            peak = max(peak, waiting)
+            if begin <= float(step.attrib["time"]) < end:
+                window_peak = max(window_peak, waiting)
+            step.clear()
+    return {
+        "window_actual_departures": actual_count,
+        "unreconstructed_scheduled_departures": unknown_schedule,
+        "scheduled_cohort_vehicles": scheduled_count if not unknown_schedule else None,
+        "scheduled_cohort_completed_vehicles": len(scheduled_totals)
+        if not unknown_schedule
+        else None,
+        "scheduled_cohort_mean_depart_delay_seconds": (
+            fmean(scheduled_delays) if scheduled_delays and not unknown_schedule else None
+        ),
+        "scheduled_cohort_mean_total_time_seconds": (
+            fmean(scheduled_totals) if scheduled_totals and not unknown_schedule else None
+        ),
+        "whole_run_mean_depart_delay_seconds": fmean(delays) if delays else None,
+        "whole_run_max_depart_delay_seconds": max(delays) if delays else None,
+        "peak_insertion_backlog_vehicles": peak,
+        "window_peak_insertion_backlog_vehicles": window_peak,
+    }

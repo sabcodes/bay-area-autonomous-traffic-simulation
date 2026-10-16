@@ -1,0 +1,38 @@
+{
+  "experiment_id": "m5_h0_cacc_2025_10_08",
+  "reference_scenario": "H0",
+  "scenarios": [
+    {
+      "id": "H0",
+      "baseline_config": "configs/us101_human_baseline_m3_frozen.json"
+    },
+    {
+      "id": "CACC",
+      "baseline_config": "configs/us101_human_baseline_m3_frozen.json",
+      "controller": {
+        "policy": "cacc_overlay",
+        "headway_seconds": 1.5,
+        "cruise_gain": 0.4,
+        "gap_gain": 0.2,
+        "relative_speed_gain": 0.8,
+        "feedforward_gain": 0.5,
+        "max_acceleration": 2.6,
+        "max_deceleration": 4.5,
+        "communication_range_meters": 250.0
+      }
+    }
+  ],
+  "observation_dates": [
+    "2025-10-08"
+  ],
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "measurement": {
+    "period_seconds": 1.0,
+    "stop_speed_m_per_s": 0.1
+  },
+  "output_directory": "outputs/us101_corridor/m5"
+}

@@ -178,6 +178,9 @@ def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkey
             '<routes><route id="us101_northbound" edges="m"/></routes>'
         )
         (directory / "h0_human_baseline_seed_41.tripinfo.xml").write_text("<tripinfos/>")
+        (directory / "h0_summary_seed_41.xml").write_text(
+            '<summary><step time="0" waiting="0"/></summary>'
+        )
         _trajectory(kwargs["trajectory_output"], '<timestep time="0"/>')
         return (
             SimpleNamespace(
