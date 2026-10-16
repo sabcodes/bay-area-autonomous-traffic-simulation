@@ -9,7 +9,7 @@ import re
 import subprocess
 from collections import defaultdict
 from copy import deepcopy
-from dataclasses import asdict, dataclass, replace
+from dataclasses import asdict, dataclass
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -17,11 +17,7 @@ from xml.etree import ElementTree
 
 import sumolib
 
-from bay_area_traffic_sim.cooperative import (
-    apply_native_cacc,
-    run_controlled,
-    validate_controller,
-)
+from bay_area_traffic_sim.cooperative import run_controlled, validate_controller
 from bay_area_traffic_sim.detectors import (
     VirtualDetectorSpec,
     build_virtual_detector_specs,
@@ -865,20 +861,6 @@ def run_human_baseline(
     raw = _load_baseline_config(config_path, repository_root())
     if controller is not None:
         validate_controller(controller, prepared.human_parameters)
-        unmodified_hash = hashlib.sha256(Path(prepared.route_file).read_bytes()).hexdigest()
-        vehicle_types = apply_native_cacc(Path(prepared.route_file), controller)
-        prepared = replace(prepared, vehicle_types=vehicle_types)
-        Path(prepared.manifest_file).write_text(
-            json.dumps(
-                {
-                    **prepared.as_dict(),
-                    "controller": controller,
-                    "unmodified_route_sha256": unmodified_hash,
-                },
-                indent=2,
-            )
-            + "\n"
-        )
     output_directory = Path(prepared.manifest_file).parent
     tripinfo_file = output_directory / f"h0_human_baseline_seed_{seed}.tripinfo.xml"
     log_file = output_directory / f"h0_human_baseline_seed_{seed}.log"

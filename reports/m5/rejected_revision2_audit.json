@@ -1,0 +1,31 @@
+{
+  "rejected_as_required": true,
+  "runs": [
+    {
+      "seed": 41,
+      "same_route_hash": true,
+      "same_realized_fleet_and_schedule": true,
+      "vehicles": 22951,
+      "cacc_teleports": 2,
+      "cacc_warning_lines": 4
+    },
+    {
+      "seed": 42,
+      "same_route_hash": true,
+      "same_realized_fleet_and_schedule": true,
+      "vehicles": 22951,
+      "cacc_teleports": 1,
+      "cacc_warning_lines": 2
+    },
+    {
+      "seed": 43,
+      "same_route_hash": true,
+      "same_realized_fleet_and_schedule": true,
+      "vehicles": 22951,
+      "cacc_teleports": 2,
+      "cacc_warning_lines": 4
+    }
+  ],
+  "failed_group_means_suppressed": true,
+  "failed_paired_aggregates_suppressed": true
+}

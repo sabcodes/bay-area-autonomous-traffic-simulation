@@ -1,17 +1,16 @@
-"""M5 native policy, paired measurement and actual SUMO contract checks."""
+"""M5 formula, comparison and real-SUMO acceptance checks."""
 
 import json
-import subprocess
 from copy import deepcopy
-from pathlib import Path
-from types import SimpleNamespace
 from xml.etree import ElementTree as ET
 
 import pytest
 
 from bay_area_traffic_sim.cooperative import (
     DEFAULT_CONTROLLER,
-    apply_native_cacc,
+    needs_native_maneuver,
+    requested_speed,
+    requires_native_control,
     run_controlled,
     validate_controller,
 )
@@ -23,69 +22,41 @@ from bay_area_traffic_sim.toy_corridor import build_network
 PARAMETERS = {"tau": 1.5, "accel": 2.6, "decel": 4.5}
 
 
+def test_hand_calculated_commands_and_gap_convention():
+    c = DEFAULT_CONTROLLER
+    # TraCI r=30 means bumper gap 32.5 m; desired gap=2.5+1.5*20=32.5.
+    assert requested_speed(c, 20, 30, (30, 20, 0, True)) == 20
+    assert requested_speed(c, 20, 30) == 21.3  # cruise clipped to 2.6 m/s²
+    assert requested_speed(c, 29, 30) == 29.2
+    assert requested_speed(c, 20, 30, (30, 20, 2, True)) == 20.5
+    assert requested_speed(c, 20, 30, (30, 20, 2, False)) == 20
+    assert requested_speed(c, 20, 30, (0, 10, -4, True)) == 17.75
+    assert requested_speed(c, 1, 30, (-2, 0, -4, True)) == 0
+    assert requested_speed(c, 30, 25) == 25
+
+
 @pytest.mark.parametrize(
     "key,value",
     [
         ("policy", "unknown"),
         ("backend", "unknown"),
+        ("headway_seconds", 1.0),
+        ("gap_gain", -1),
+        ("relative_speed_gain", float("nan")),
+        ("cruise_gain", True),
+        ("max_acceleration", 3),
+        ("max_deceleration", 0),
+        ("feedforward_gain", 1.1),
+        ("communication_range_meters", 0),
         ("unknown", 0),
-        ("observation_period_seconds", 0.7),
-        ("observation_period_seconds", True),
-        ("leader_lookahead_meters", float("nan")),
-        ("leader_lookahead_meters", 0),
     ],
 )
-def test_invalid_native_policy_rejected(key, value):
+def test_invalid_policy_rejected(key, value):
     with pytest.raises(ValueError):
         validate_controller({**DEFAULT_CONTROLLER, key: value}, PARAMETERS)
 
 
-@pytest.mark.parametrize(
-    "key,value",
-    [
-        ("collisionAvoidanceOverride", 2),
-        ("collisionMinGapFactor", 0.1),
-        ("tauCACCToACC", 1),
-        ("speedControlGainCACC", float("nan")),
-        ("gapControlGainGap", 0.46),
-        ("unknown", 0),
-    ],
-)
-def test_native_safety_and_fixed_gains_rejected(key, value):
-    config = deepcopy(DEFAULT_CONTROLLER)
-    config["vehicle_parameters"][key] = value
-    with pytest.raises(ValueError):
-        validate_controller(config, PARAMETERS)
-
-
-def test_native_route_transform_changes_only_declared_passenger_attributes(tmp_path):
-    route = tmp_path / "route.xml"
-    route.write_text(
-        '<routes><vType id="human_passenger" carFollowModel="Krauss" '
-        'tau="1.5" length="5" probability="0.96"/>'
-        '<vType id="human_truck" carFollowModel="Krauss" probability="0.04"/>'
-        '<route id="r" edges="a b"/><flow id="f" route="r" number="10"/></routes>'
-    )
-    original = ET.parse(route).getroot()
-    kinds = apply_native_cacc(route, DEFAULT_CONTROLLER)
-    treated = ET.parse(route).getroot()
-    passenger = treated.find("vType")
-    assert passenger.attrib["carFollowModel"] == "CACC"
-    for key, value in DEFAULT_CONTROLLER["vehicle_parameters"].items():
-        assert float(passenger.attrib[key]) == value
-    for key, value in original.find("vType").attrib.items():
-        if key != "carFollowModel":
-            assert passenger.attrib[key] == value
-    assert [child.attrib for child in list(original)[1:]] == [
-        child.attrib for child in list(treated)[1:]
-    ]
-    assert kinds == [kind.attrib for kind in treated.iter("vType")]
-    route.write_text("<routes/>")
-    with pytest.raises(ValueError, match="passenger"):
-        apply_native_cacc(route, DEFAULT_CONTROLLER)
-
-
-def test_physical_comparison_guard(tmp_path, monkeypatch):
+def test_policy_and_physical_comparison_guard(tmp_path, monkeypatch):
     from bay_area_traffic_sim import experiment_harness as harness
 
     monkeypatch.setattr(
@@ -106,12 +77,14 @@ def test_physical_comparison_guard(tmp_path, monkeypatch):
             {"id": "H0", "baseline_config": "base"},
             {
                 "id": "CACC",
-                "baseline_config": "other",
-                "controller": deepcopy(DEFAULT_CONTROLLER),
+                "baseline_config": "base",
+                "controller": DEFAULT_CONTROLLER,
             },
         ],
     }
-    config["scenarios"][1]["controller"]["vehicle_parameters"]["tauCACCToACC"] = 2
+    validate_experiment(config, tmp_path)
+    config["scenarios"][1]["baseline_config"] = "other"
+    config["scenarios"][1]["controller"] = {**DEFAULT_CONTROLLER, "headway_seconds": 2}
     with pytest.raises(ValueError, match="Scenarios differ"):
         validate_experiment(config, tmp_path)
 
@@ -184,24 +157,6 @@ def test_insertion_populations_and_half_open_boundaries(tmp_path):
 
 def test_real_sumo_controller_clears_and_replays_deterministically(tmp_path):
     network = build_network(tmp_path)
-    source = Path(__file__).resolve().parents[1] / "network/toy_corridor"
-    edges = tmp_path / "single_lane.edg.xml"
-    edges.write_text(
-        (source / "toy_corridor.edg.xml").read_text().replace('numLanes="2"', 'numLanes="1"')
-    )
-    subprocess.run(
-        [
-            str(binary("netconvert")),
-            "--node-files",
-            str(source / "toy_corridor.nod.xml"),
-            "--edge-files",
-            str(edges),
-            "--output-file",
-            str(network),
-        ],
-        check=True,
-        capture_output=True,
-    )
     # Truck departs first, then passenger leaders/followers. Natural leader changes
     # occur as vehicles exit; no controller lane-change or safety-mode override.
     route = tmp_path / "routes.xml"
@@ -215,7 +170,6 @@ def test_real_sumo_controller_clears_and_replays_deterministically(tmp_path):
       <flow id="passengers" type="human_passenger" route="route" begin="4" end="35"
         period="3" departLane="0"/>
     </routes>""")
-    apply_native_cacc(route, DEFAULT_CONTROLLER)
     results = []
     for replay, backend in enumerate(["traci", "traci", "libsumo"]):
         trips, log = tmp_path / f"trips{replay}.xml", tmp_path / f"run{replay}.log"
@@ -250,20 +204,14 @@ def test_real_sumo_controller_clears_and_replays_deterministically(tmp_path):
         records = [trip.attrib for trip in ET.parse(trips).getroot().findall("tripinfo")]
         results.append((diagnostics, records))
         assert len(records) == 12
-        assert diagnostics["equipped_vehicles"] == 11
-        assert diagnostics["passenger_samples"] > 0
-        assert diagnostics["passenger_leader_samples"] > 0
-        assert diagnostics["truck_leader_samples"] > 0
-        assert diagnostics["no_leader_samples"] > 0
-        assert diagnostics["missing_state_samples"] == 0
+        assert diagnostics["controlled_vehicles"] == 11
+        assert diagnostics["commands"] > 0
+        assert diagnostics["cooperative_commands"] > 0
+        assert diagnostics["acc_commands"] > 0
+        assert diagnostics["cruise_commands"] > 0
+        assert diagnostics["native_fallbacks"] == 0
         assert diagnostics["minimum_queried_bumper_gap_meters"] >= 0
         assert diagnostics["completed"]
-        assert diagnostics["mode_sample_counts"]["ACC"] > 0
-        assert (
-            sum(v for k, v in diagnostics["mode_sample_counts"].items() if k.startswith("CACC_"))
-            > 0
-        )
-        assert diagnostics["external_control_commands"] == 0
         assert not any(
             word in log.read_text().lower()
             for word in ["warning", "collision", "teleport", "emergency", "error"]
@@ -276,54 +224,13 @@ def test_real_sumo_controller_clears_and_replays_deterministically(tmp_path):
             assert results[0][0][key] == results[2][0][key], key
 
 
-def test_native_missing_state_and_error_cleanup_without_speed_commands(tmp_path, monkeypatch):
-    import traci
-    from traci import constants as tc
-
-    closed = []
-    state = {tc.VAR_SPEED: 10, tc.VAR_ACCELERATION: 0, tc.VAR_TYPE: "human_passenger"}
-    vehicle = SimpleNamespace(
-        subscribe=lambda *args: None,
-        getSubscriptionResults=lambda _: state,
-        getSpeedMode=lambda _: 31,
-        getLaneChangeMode=lambda _: 1621,
-        getAllSubscriptionResults=lambda: {},
-        getLeader=lambda *args: ("", -1),
-        getParameter=lambda *args: "CC",
-    )
-    connection = SimpleNamespace(
-        simulationStep=lambda: None,
-        vehicle=vehicle,
-        simulation=SimpleNamespace(
-            subscribe=lambda *args: None,
-            getSubscriptionResults=lambda: {
-                tc.VAR_DEPARTED_VEHICLES_IDS: ["ego"],
-                tc.VAR_ARRIVED_VEHICLES_IDS: [],
-            },
-        ),
-        close=lambda: closed.append(True),
-        getVersion=lambda: (22, "SUMO 1.27.1"),
-    )
-    monkeypatch.setattr(traci, "start", lambda *args, **kwargs: None)
-    monkeypatch.setattr(traci, "getConnection", lambda _: connection)
-    path = tmp_path / "diagnostics.json"
-    config = {**DEFAULT_CONTROLLER, "backend": "traci", "observation_period_seconds": 0.5}
-    result = run_controlled([], 0.5, config, path, 2.5)
-    assert result["missing_state_samples"] == 1
-    assert result["external_control_commands"] == 0
-    vehicle.getAllSubscriptionResults = lambda: {"ego": state}
-
-    def fail(*args):
-        raise RuntimeError("query failure")
-
-    vehicle.getParameter = fail
-    with pytest.raises(RuntimeError, match="query failure"):
-        run_controlled([], 0.5, config, path, 2.5)
-    assert len(closed) == 2
-    assert not json.loads(path.read_text())["completed"]
+def test_strategic_lane_offset_releases_and_best_lane_resumes():
+    assert needs_native_maneuver("approach_2", [("approach_2", 100, 0, -2, False, ())])
+    assert not needs_native_maneuver("approach_0", [("approach_0", 100, 0, 0, True, ())])
+    assert needs_native_maneuver(":internal_0", [("approach_0", 100, 0, 0, True, ())])
 
 
-def test_native_cacc_preserves_strategic_exit(tmp_path):
+def test_real_sumo_strategic_exit_releases_native_speed_authority(tmp_path):
     import subprocess
 
     nodes, edges, links = [tmp_path / name for name in ["nodes.xml", "edges.xml", "links.xml"]]
@@ -390,12 +297,85 @@ def test_native_cacc_preserves_strategic_exit(tmp_path):
         "--duration-log.disable",
         "true",
     ]
-    apply_native_cacc(route, DEFAULT_CONTROLLER)
     result = run_controlled(command, 150, DEFAULT_CONTROLLER, tmp_path / "diagnostics.json", 2.5)
-    assert result["equipped_vehicles"] == 1
-    assert result["passenger_samples"] > 0 and result["missing_state_samples"] == 0
+    assert result["supervised_native_samples"] > 0
+    assert result["commands"] > 0 and result["native_fallbacks"] == 0
     assert len(ET.parse(trips).getroot().findall("tripinfo")) == 1
     assert not any(
         word in log.read_text().lower()
         for word in ["warning", "collision", "teleport", "emergency", "error"]
     )
+
+
+@pytest.mark.parametrize(
+    "flag", [2, 4, 8, 16, 32, 64, 256, 512, 1 << 16, 1 << 17, 1 << 21, 1 << 30]
+)
+def test_all_native_lane_change_and_help_flags_take_authority(flag):
+    lanes = [("m_0", 100, 0, 0, True, ()), ("m_1", 100, 0, 0, True, ())]
+    assert requires_native_control("m_0", lanes, [(flag, flag)])
+    assert not requires_native_control("m_0", lanes, [(0, 1)])
+
+
+def test_supervisor_quiet_handoff_missing_states_and_cleanup(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+
+    import traci
+    from traci import constants as tc
+
+    ticks, commands, closed = [0], [], []
+    state = {
+        tc.VAR_TYPE: "human_passenger",
+        tc.VAR_SPEED: 10,
+        tc.VAR_ACCELERATION: 0,
+        tc.VAR_ALLOWED_SPEED: 20,
+        tc.VAR_LANE_ID: "m_0",
+    }
+    lanes = [("m_0", 100, 0, 0, True, ()), ("m_1", 100, 0, 0, True, ())]
+    vehicle = SimpleNamespace(
+        subscribe=lambda *args, **kwargs: None,
+        getSubscriptionResults=lambda _: state,
+        getSpeedMode=lambda _: 31,
+        getLaneChangeMode=lambda _: 1621,
+        getAllSubscriptionResults=lambda: {"ego": state},
+        getBestLanes=lambda _: lanes,
+        getLeader=lambda *args: ("", -1),
+        getLaneChangeState=lambda *args: (16, 16) if ticks[0] == 3 else (0, 1),
+        setSpeed=lambda vehicle, speed: commands.append((ticks[0], speed)),
+    )
+    connection = SimpleNamespace(
+        simulationStep=lambda: ticks.__setitem__(0, ticks[0] + 1),
+        vehicle=vehicle,
+        simulation=SimpleNamespace(
+            subscribe=lambda *args: None,
+            getSubscriptionResults=lambda: {
+                tc.VAR_DEPARTED_VEHICLES_IDS: ["ego"] if ticks[0] == 1 else [],
+                tc.VAR_ARRIVED_VEHICLES_IDS: [],
+            },
+        ),
+        close=lambda: closed.append(True),
+        getVersion=lambda: (22, "SUMO 1.27.1"),
+    )
+    monkeypatch.setattr(traci, "start", lambda *args, **kwargs: None)
+    monkeypatch.setattr(traci, "getConnection", lambda _: connection)
+    config = {**DEFAULT_CONTROLLER, "backend": "traci"}
+    path = tmp_path / "diagnostics.json"
+    diagnostics = run_controlled([], 5, config, path, 2.5)
+    assert diagnostics["supervised_native_samples"] == 6
+    assert diagnostics["maneuver_native_samples"] == 1
+    assert diagnostics["quiet_period_native_samples"] == 5
+    assert diagnostics["commands"] == 4 and diagnostics["native_fallbacks"] == 0
+    assert [speed for _, speed in commands[:6]] == [-1] * 6
+    assert [speed for _, speed in commands[6:]] == [11.3] * 4
+    ticks[0] = 0
+    vehicle.getAllSubscriptionResults = lambda: {}
+    assert run_controlled([], 5, config, path, 2.5)["native_fallbacks"] == 10
+    ticks[0] = 0
+    vehicle.getAllSubscriptionResults = lambda: {"ego": state}
+
+    def fail(*args):
+        raise RuntimeError("query failure")
+
+    vehicle.getBestLanes = fail
+    with pytest.raises(RuntimeError, match="query failure"):
+        run_controlled([], 5, config, path, 2.5)
+    assert len(closed) == 3 and not json.loads(path.read_text())["completed"]

@@ -35,8 +35,8 @@ LIMITATIONS = [
     "it does not establish wave stability or disturbance recovery.",
     "Acceleration squared is a smoothness proxy, not energy or fuel use. "
     "FCD speed and acceleration use SUMO's default two-decimal output precision.",
-    "M5 uses native SUMO CACC for passengers with ideal leader knowledge, 1.5 s CACC/ACC "
-    "headways and zero safe-speed override margin. Trucks are human driven. "
+    "M5 uses supervised passenger CACC during steady lane following with ideal acceleration "
+    "messages and native maneuver/cooperation handoff. It retains 1.5 s headway; trucks are human. "
     "Policy comparisons do not establish real-world safety or string stability.",
     "Unknown gross ramp movements and the annual truck proxy remain M3 assumptions.",
 ]
@@ -364,15 +364,9 @@ def _run_job(job: tuple) -> dict:
             run["controller_diagnostics"] = diagnostics
             run["accepted"] = run["accepted"] and (
                 diagnostics["completed"]
-                and diagnostics["passenger_samples"] > 0
-                and sum(
-                    value
-                    for key, value in diagnostics["mode_sample_counts"].items()
-                    if key.startswith("CACC_")
-                )
-                > 0
-                and diagnostics["missing_state_samples"] == 0
-                and diagnostics["external_control_commands"] == 0
+                and diagnostics["commands"] > 0
+                and diagnostics["cooperative_commands"] > 0
+                and diagnostics["native_fallbacks"] == 0
                 and diagnostics["engine_version"].split()[-1]
                 == prepared.provenance["sumo_version"].split()[-1]
             )

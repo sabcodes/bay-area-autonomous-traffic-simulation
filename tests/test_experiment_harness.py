@@ -165,10 +165,9 @@ def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkey
             assert kwargs["controller"] == harness_policy
             diagnostics = {
                 "completed": seed != 43,
-                "passenger_samples": 1,
-                "mode_sample_counts": {"CACC_GAP": 1},
-                "external_control_commands": 0,
-                "missing_state_samples": 0,
+                "commands": 1,
+                "cooperative_commands": 1,
+                "native_fallbacks": 0,
                 "engine_version": "SUMO 1.27.1",
             }
             (path.parent / "controller_diagnostics.json").write_text(json.dumps(diagnostics))

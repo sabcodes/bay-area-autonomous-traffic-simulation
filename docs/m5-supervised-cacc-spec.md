@@ -86,3 +86,14 @@ https://raw.githubusercontent.com/eclipse-sumo/sumo/v1_27_1/src/microsim/MSVehic
 https://raw.githubusercontent.com/eclipse-sumo/sumo/v1_27_1/src/microsim/lcmodels/MSLCM_LC2013.cpp
 https://sumo.dlr.de/docs/TraCI/Vehicle_Value_Retrieval.html
 https://sumo.dlr.de/docs/TraCI/Change_Vehicle_State.html
+
+
+## Preflight disclosure before final matrix
+
+All three 3,000 s supervised probes passed without warnings or missing states.
+Active CACC commands represent approximately 1.3–1.5% of passenger timestep
+observations in these probes. The all-flag supervisor is deliberately very
+conservative, including hypothetical blocked lane changes; do not interpret
+this treatment as continuous CACC or assume full-fleet coordination benefits.
+The final report must state its actual engagement fraction. No activation-rule
+or gain tuning is made to improve measured traffic outcomes.
