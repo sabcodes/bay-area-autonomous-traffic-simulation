@@ -107,6 +107,9 @@ def _config():
 @pytest.mark.parametrize(
     "field,value",
     [
+        ("workers", 0),
+        ("workers", True),
+        ("workers", 9),
         ("seeds", [41]),
         ("seeds", [41, 41]),
         ("seeds", [True, 42]),
@@ -165,6 +168,7 @@ def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkey
                 "commands": 1,
                 "cooperative_commands": 1,
                 "native_fallbacks": 0,
+                "engine_version": "SUMO 1.27.1",
             }
             (path.parent / "controller_diagnostics.json").write_text(json.dumps(diagnostics))
         if seed == 43:
@@ -204,7 +208,7 @@ def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkey
                 demand_profile=[SimpleNamespace(end_seconds=1)],
                 route_file=scenario["route_file"],
                 network_sha256="network",
-                provenance={},
+                provenance={"sumo_version": "Eclipse SUMO sumo 1.27.1"},
                 manifest_file=scenario["manifest_file"],
             ),
             RunMetrics(0, None, None, None),

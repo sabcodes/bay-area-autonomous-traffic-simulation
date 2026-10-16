@@ -11,6 +11,7 @@ from pathlib import Path
 STEP_SECONDS = 0.5
 DEFAULT_CONTROLLER = {
     "policy": "cacc_overlay",
+    "backend": "libsumo",
     "headway_seconds": 1.5,
     "cruise_gain": 0.4,
     "gap_gain": 0.2,
@@ -28,7 +29,9 @@ def validate_controller(config: dict, human_parameters: dict) -> None:
         raise ValueError("Controller requires exactly the documented policy and parameter keys.")
     if config["policy"] != "cacc_overlay":
         raise ValueError("Unsupported controller policy.")
-    for key in set(config) - {"policy"}:
+    if config["backend"] not in ("traci", "libsumo"):
+        raise ValueError("Controller backend must be traci or libsumo.")
+    for key in set(config) - {"policy", "backend"}:
         value = config[key]
         if type(value) not in (int, float) or not math.isfinite(value) or value < 0:
             raise ValueError(f"Controller {key} must be finite and nonnegative.")
@@ -61,6 +64,12 @@ def requested_speed(
     return max(0.0, min(allowed_speed, speed + STEP_SECONDS * acceleration))
 
 
+def needs_native_maneuver(lane_id: str, best_lanes: tuple | list) -> bool:
+    """Yield speed authority when the current lane requires a strategic transition."""
+    current = next((lane for lane in best_lanes if lane[0] == lane_id), None)
+    return current is None or current[3] != 0 or not current[4]
+
+
 def run_controlled(
     command: list[str],
     end_seconds: float,
@@ -72,10 +81,12 @@ def run_controlled(
     import traci
     from traci import constants as tc
 
-    label = f"m5-{os.getpid()}"
+    label = f"m5-{os.getpid()}-{diagnostics_path.resolve()}"
     connection = None
     diagnostics = {
         "controller": config,
+        "backend": config["backend"],
+        "engine_version": None,
         "control_step_seconds": STEP_SECONDS,
         "speed_mode": 31,
         "lane_change_mode": 1621,
@@ -85,6 +96,7 @@ def run_controlled(
         "acc_commands": 0,
         "cruise_commands": 0,
         "native_fallbacks": 0,
+        "strategic_native_releases": 0,
         "minimum_queried_bumper_gap_meters": None,
         "minimum_realized_acceleration_m_per_s2": None,
         "maximum_realized_acceleration_m_per_s2": None,
@@ -92,9 +104,16 @@ def run_controlled(
     }
     passengers = set()
     try:
-        traci.start(command, label=label, doSwitch=False, stdout=subprocess.DEVNULL)
-        connection = traci.getConnection(label)
-        connection.simulation.subscribe((tc.VAR_DEPARTED_VEHICLES_IDS, tc.VAR_ARRIVED_VEHICLES_IDS))
+        if config["backend"] == "libsumo":
+            import libsumo
+
+            libsumo.start(command)
+            connection = libsumo
+        else:
+            traci.start(command, label=label, doSwitch=False, stdout=subprocess.DEVNULL)
+            connection = traci.getConnection(label)
+        diagnostics["engine_version"] = connection.getVersion()[1]
+        connection.simulation.subscribe([tc.VAR_DEPARTED_VEHICLES_IDS, tc.VAR_ARRIVED_VEHICLES_IDS])
         for _ in range(round(end_seconds / STEP_SECONDS)):
             connection.simulationStep()
             events = connection.simulation.getSubscriptionResults()
@@ -102,14 +121,13 @@ def run_controlled(
             for vehicle in sorted(events[tc.VAR_DEPARTED_VEHICLES_IDS]):
                 connection.vehicle.subscribe(
                     vehicle,
-                    (
+                    [
                         tc.VAR_SPEED,
                         tc.VAR_ACCELERATION,
                         tc.VAR_ALLOWED_SPEED,
                         tc.VAR_TYPE,
-                        tc.VAR_LEADER,
-                    ),
-                    parameters={tc.VAR_LEADER: ("d", config["communication_range_meters"])},
+                        tc.VAR_LANE_ID,
+                    ],
                 )
                 state = connection.vehicle.getSubscriptionResults(vehicle)
                 if state[tc.VAR_TYPE] == "human_passenger":
@@ -121,6 +139,12 @@ def run_controlled(
                     passengers.add(vehicle)
                     diagnostics["controlled_vehicles"] += 1
             snapshot = connection.vehicle.getAllSubscriptionResults()
+            for vehicle in sorted(passengers):
+                if vehicle in snapshot:
+                    snapshot[vehicle][tc.VAR_BEST_LANES] = connection.vehicle.getBestLanes(vehicle)
+                    snapshot[vehicle][tc.VAR_LEADER] = connection.vehicle.getLeader(
+                        vehicle, config["communication_range_meters"]
+                    )
             for vehicle in sorted(passengers):
                 state = snapshot.get(vehicle)
                 if state is None:
@@ -137,6 +161,10 @@ def run_controlled(
                     diagnostics[key] = (
                         realized if previous is None else operation(previous, realized)
                     )
+                if needs_native_maneuver(state[tc.VAR_LANE_ID], state[tc.VAR_BEST_LANES]):
+                    connection.vehicle.setSpeed(vehicle, -1)
+                    diagnostics["strategic_native_releases"] += 1
+                    continue
                 leader = state[tc.VAR_LEADER]
                 following = None
                 mode = "cruise_commands"

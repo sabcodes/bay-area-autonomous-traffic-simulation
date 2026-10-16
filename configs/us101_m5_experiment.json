@@ -1,5 +1,5 @@
 {
-  "experiment_id": "m5_h0_cacc_2025_10_08",
+  "experiment_id": "m5_h0_cacc_2025_10_08_libsumo",
   "reference_scenario": "H0",
   "scenarios": [
     {
@@ -18,7 +18,8 @@
         "feedforward_gain": 0.5,
         "max_acceleration": 2.6,
         "max_deceleration": 4.5,
-        "communication_range_meters": 250.0
+        "communication_range_meters": 250.0,
+        "backend": "libsumo"
       }
     }
   ],
@@ -34,5 +35,6 @@
     "period_seconds": 1.0,
     "stop_speed_m_per_s": 0.1
   },
-  "output_directory": "outputs/us101_corridor/m5"
+  "output_directory": "outputs/us101_corridor/m5",
+  "workers": 3
 }

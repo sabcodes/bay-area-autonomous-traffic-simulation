@@ -8,6 +8,7 @@ import pytest
 
 from bay_area_traffic_sim.cooperative import (
     DEFAULT_CONTROLLER,
+    needs_native_maneuver,
     requested_speed,
     run_controlled,
     validate_controller,
@@ -37,6 +38,7 @@ def test_hand_calculated_commands_and_gap_convention():
     "key,value",
     [
         ("policy", "unknown"),
+        ("backend", "unknown"),
         ("headway_seconds", 1.0),
         ("gap_gain", -1),
         ("relative_speed_gain", float("nan")),
@@ -168,7 +170,7 @@ def test_real_sumo_controller_clears_and_replays_deterministically(tmp_path):
         period="3" departLane="0"/>
     </routes>""")
     results = []
-    for replay in range(2):
+    for replay, backend in enumerate(["traci", "traci", "libsumo"]):
         trips, log = tmp_path / f"trips{replay}.xml", tmp_path / f"run{replay}.log"
         command = [
             str(binary("sumo")),
@@ -192,7 +194,11 @@ def test_real_sumo_controller_clears_and_replays_deterministically(tmp_path):
             "true",
         ]
         diagnostics = run_controlled(
-            command, 500, DEFAULT_CONTROLLER, tmp_path / f"diagnostics{replay}.json", 2.5
+            command,
+            500,
+            {**DEFAULT_CONTROLLER, "backend": backend},
+            tmp_path / f"diagnostics{replay}.json",
+            2.5,
         )
         records = [trip.attrib for trip in ET.parse(trips).getroot().findall("tripinfo")]
         results.append((diagnostics, records))
@@ -211,6 +217,10 @@ def test_real_sumo_controller_clears_and_replays_deterministically(tmp_path):
         )
         assert json.loads((tmp_path / f"diagnostics{replay}.json").read_text()) == diagnostics
     assert results[0] == results[1]
+    assert results[0][1] == results[2][1]  # Same numeric trip attributes across engines.
+    for key in results[0][0]:
+        if key not in {"controller", "backend"}:
+            assert results[0][0][key] == results[2][0][key], key
 
 
 def test_missing_state_releases_control_and_errors_close_connection(tmp_path, monkeypatch):
@@ -228,10 +238,14 @@ def test_missing_state_releases_control_and_errors_close_connection(tmp_path, mo
         tc.VAR_ALLOWED_SPEED: 20,
         tc.VAR_TYPE: "human_passenger",
         tc.VAR_LEADER: ("missing", 20),
+        tc.VAR_LANE_ID: "main_0",
+        tc.VAR_BEST_LANES: [("main_0", 100, 0, 0, True, ())],
     }
     vehicle = SimpleNamespace(
         subscribe=lambda *args, **kwargs: None,
         getSubscriptionResults=lambda _: state,
+        getLeader=lambda *args: state[tc.VAR_LEADER],
+        getBestLanes=lambda _: state[tc.VAR_BEST_LANES],
         getSpeedMode=lambda _: 31,
         getLaneChangeMode=lambda _: 1621,
         getAllSubscriptionResults=lambda: {"ego": state},
@@ -248,14 +262,20 @@ def test_missing_state_releases_control_and_errors_close_connection(tmp_path, mo
             },
         ),
         close=lambda: closed.append(True),
+        getVersion=lambda: (22, "SUMO 1.27.1"),
     )
     monkeypatch.setattr(traci, "start", lambda *args, **kwargs: None)
     monkeypatch.setattr(traci, "getConnection", lambda _: connection)
     path = tmp_path / "diagnostics.json"
-    diagnostics = run_controlled([], 0.5, DEFAULT_CONTROLLER, path, 2.5)
+    diagnostics = run_controlled([], 0.5, {**DEFAULT_CONTROLLER, "backend": "traci"}, path, 2.5)
     assert commands == [("ego", -1)] and diagnostics["native_fallbacks"] == 1
     vehicle.getAllSubscriptionResults = lambda: {}  # missing ego also releases native control
-    assert run_controlled([], 0.5, DEFAULT_CONTROLLER, path, 2.5)["native_fallbacks"] == 1
+    assert (
+        run_controlled([], 0.5, {**DEFAULT_CONTROLLER, "backend": "traci"}, path, 2.5)[
+            "native_fallbacks"
+        ]
+        == 1
+    )
     state[tc.VAR_LEADER] = ("", -1)
     vehicle.getAllSubscriptionResults = lambda: {"ego": state}
 
@@ -264,6 +284,89 @@ def test_missing_state_releases_control_and_errors_close_connection(tmp_path, mo
 
     monkeypatch.setattr(cooperative, "requested_speed", fail)
     with pytest.raises(RuntimeError, match="controller failure"):
-        run_controlled([], 0.5, DEFAULT_CONTROLLER, path, 2.5)
+        run_controlled([], 0.5, {**DEFAULT_CONTROLLER, "backend": "traci"}, path, 2.5)
     assert len(closed) == 3
     assert not json.loads(path.read_text())["completed"]
+
+
+def test_strategic_lane_offset_releases_and_best_lane_resumes():
+    assert needs_native_maneuver("approach_2", [("approach_2", 100, 0, -2, False, ())])
+    assert not needs_native_maneuver("approach_0", [("approach_0", 100, 0, 0, True, ())])
+    assert needs_native_maneuver(":internal_0", [("approach_0", 100, 0, 0, True, ())])
+
+
+def test_real_sumo_strategic_exit_releases_native_speed_authority(tmp_path):
+    import subprocess
+
+    nodes, edges, links = [tmp_path / name for name in ["nodes.xml", "edges.xml", "links.xml"]]
+    nodes.write_text(
+        '<nodes><node id="s" x="0" y="0"/>'
+        '<node id="j" x="1000" y="0"/>'
+        '<node id="e" x="2000" y="0"/>'
+        '<node id="x" x="1300" y="-300"/></nodes>'
+    )
+    edges.write_text(
+        '<edges><edge id="approach" from="s" to="j" numLanes="3" speed="30"/>'
+        '<edge id="through" from="j" to="e" numLanes="3" speed="30"/>'
+        '<edge id="exit" from="j" to="x" numLanes="1" speed="20"/></edges>'
+    )
+    links.write_text(
+        "<connections>"
+        + "".join(
+            f'<connection from="approach" to="through" fromLane="{lane}" toLane="{lane}"/>'
+            for lane in range(3)
+        )
+        + '<connection from="approach" to="exit" fromLane="0" toLane="0"/></connections>'
+    )
+    network, route, trips = [tmp_path / name for name in ["network.xml", "routes.xml", "trips.xml"]]
+    subprocess.run(
+        [
+            str(binary("netconvert")),
+            "-n",
+            str(nodes),
+            "-e",
+            str(edges),
+            "-x",
+            str(links),
+            "-o",
+            str(network),
+        ],
+        check=True,
+        capture_output=True,
+    )
+    route.write_text(
+        '<routes><vType id="human_passenger" tau="1.5" accel="2.6" decel="4.5"/>'
+        '<route id="exit_route" edges="approach exit"/>'
+        '<vehicle id="exit_car" type="human_passenger" route="exit_route" '
+        'depart="0" departLane="2"/></routes>'
+    )
+    log = tmp_path / "sumo.log"
+    command = [
+        str(binary("sumo")),
+        "-n",
+        str(network),
+        "-r",
+        str(route),
+        "--step-length",
+        "0.5",
+        "--end",
+        "150",
+        "--seed",
+        "41",
+        "--tripinfo-output",
+        str(trips),
+        "--log",
+        str(log),
+        "--no-step-log",
+        "true",
+        "--duration-log.disable",
+        "true",
+    ]
+    result = run_controlled(command, 150, DEFAULT_CONTROLLER, tmp_path / "diagnostics.json", 2.5)
+    assert result["strategic_native_releases"] > 0
+    assert result["commands"] > 0 and result["native_fallbacks"] == 0
+    assert len(ET.parse(trips).getroot().findall("tripinfo")) == 1
+    assert not any(
+        word in log.read_text().lower()
+        for word in ["warning", "collision", "teleport", "emergency", "error"]
+    )

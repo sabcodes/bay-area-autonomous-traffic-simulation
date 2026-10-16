@@ -156,3 +156,23 @@ Add a real SUMO strategic-exit case and cross-backend replay gate. Check cleanup
 and preserve explicit incomplete diagnostics on interruption. Do not change
 controller gains or demand to hide the failed lane transition. Final results
 must come from a fresh complete matrix after this correction.
+
+Backend contract clarification before final matrix: libsumo 1.27.1 rejects
+VAR_LEADER in the generic subscription with TraCI's encoded parameter tuple.
+Use direct getLeader(vehicle, range) queries for passengers, collected for the
+entire step before issuing any commands. Keep speed/acceleration/type/lane
+subscriptions. This remains O(vehicles), uses the same snapshot timing and gap
+semantics, and performs no all-pairs scan. The cross-backend replay is required.
+
+The best-lane subscription also returns an opaque TraCIResult in libsumo
+1.27.1; use direct getBestLanes in that same pre-command query phase for both
+backends. Keep lane ID and scalar states subscribed. Distinct connection labels
+per run prevent a failed socket startup from poisoning subsequent jobs.
+
+Final execution addendum (before parallel runner implementation): run independent
+matrix jobs in three worker processes using the standard-library process pool.
+Declare `workers: 3` in the experiment; allow integers 1–8, default 1. Each job
+keeps its existing unique scenario/date/seed directory and returns a complete
+run record. Sort final reports as before; retain all job failures. Separate
+processes are required for libsumo's global engine state. This changes execution
+scheduling only, with unchanged seeds, inputs, controller and measurement.

@@ -1,0 +1,13 @@
+{
+  "accepted": false,
+  "reason": "Original persistent overlay failed a strategic exit; remainder interrupted and not accepted.",
+  "warning_lines": [
+    "Warning: Teleporting vehicle 'estimated_downstream_net_exit_warmup.255'; waited too long (wrong lane), lane='394368089_4', time=2123.00.",
+    "Warning: Vehicle 'estimated_downstream_net_exit_warmup.255' ends teleporting on edge '4370043', time=2123.00."
+  ],
+  "failed_vehicle_id": "estimated_downstream_net_exit_warmup.255",
+  "first_wrong_lane_teleport_seconds": 2123.0,
+  "subsequent_startup_failures": "Cancellation damaged the socket connection; seeds 42/43 did not simulate valid CACC runs.",
+  "correction": "Release native speed authority for strategic lane transitions; gains and demand unchanged.",
+  "final_matrix_directory": "outputs/us101_corridor/m5/m5_h0_cacc_2025_10_08_libsumo"
+}

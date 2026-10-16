@@ -1,0 +1,35 @@
+{
+  "accepted": true,
+  "runs": [
+    {
+      "seed": 41,
+      "accepted": true,
+      "all_original_metrics_equal": true,
+      "legacy_metrics_equal": true,
+      "route_hash_equal": true,
+      "network_hash_equal": true,
+      "provenance_equal": true,
+      "detector_summary_bytes_equal": true
+    },
+    {
+      "seed": 42,
+      "accepted": true,
+      "all_original_metrics_equal": true,
+      "legacy_metrics_equal": true,
+      "route_hash_equal": true,
+      "network_hash_equal": true,
+      "provenance_equal": true,
+      "detector_summary_bytes_equal": true
+    },
+    {
+      "seed": 43,
+      "accepted": true,
+      "all_original_metrics_equal": true,
+      "legacy_metrics_equal": true,
+      "route_hash_equal": true,
+      "network_hash_equal": true,
+      "provenance_equal": true,
+      "detector_summary_bytes_equal": true
+    }
+  ]
+}
