@@ -1,0 +1,153 @@
+{
+  "accepted": true,
+  "report_sha256": "1ab558292f0949266303224110488573943800759ff7f85803656edd4c017389",
+  "runs": [
+    {
+      "scenario": "CACC",
+      "seed": 41,
+      "accepted": true,
+      "independent_metrics": {
+        "window_actual_departures": 17616,
+        "cohort_completed_vehicles": 17616,
+        "cohort_mean_travel_time_seconds": 928.9709638964578,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 660.2813408968653,
+        "scheduled_cohort_mean_total_time_seconds": 1544.8207315761163,
+        "whole_run_mean_depart_delay_seconds": 588.8622678750381,
+        "whole_run_max_depart_delay_seconds": 3687.2,
+        "network_exit_throughput_vehicles_per_hour": 8260.5,
+        "peak_insertion_backlog_vehicles": 2879,
+        "window_peak_insertion_backlog_vehicles": 2879
+      },
+      "m4_replay": null,
+      "all_run_passenger_active_command_fraction": 0.020603382265718277
+    },
+    {
+      "scenario": "CACC",
+      "seed": 42,
+      "accepted": true,
+      "independent_metrics": {
+        "window_actual_departures": 17688,
+        "cohort_completed_vehicles": 17688,
+        "cohort_mean_travel_time_seconds": 932.7929669832655,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 669.3054252041665,
+        "scheduled_cohort_mean_total_time_seconds": 1557.7175480463593,
+        "whole_run_mean_depart_delay_seconds": 597.1404910461417,
+        "whole_run_max_depart_delay_seconds": 3857.7,
+        "network_exit_throughput_vehicles_per_hour": 8236.0,
+        "peak_insertion_backlog_vehicles": 2819,
+        "window_peak_insertion_backlog_vehicles": 2819
+      },
+      "m4_replay": null,
+      "all_run_passenger_active_command_fraction": 0.020598605872227338
+    },
+    {
+      "scenario": "CACC",
+      "seed": 43,
+      "accepted": true,
+      "independent_metrics": {
+        "window_actual_departures": 17759,
+        "cohort_completed_vehicles": 17759,
+        "cohort_mean_travel_time_seconds": 928.0802691592995,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 645.214858428285,
+        "scheduled_cohort_mean_total_time_seconds": 1530.5623815345493,
+        "whole_run_mean_depart_delay_seconds": 575.7084183695699,
+        "whole_run_max_depart_delay_seconds": 3790.2,
+        "network_exit_throughput_vehicles_per_hour": 8253.5,
+        "peak_insertion_backlog_vehicles": 2749,
+        "window_peak_insertion_backlog_vehicles": 2749
+      },
+      "m4_replay": null,
+      "all_run_passenger_active_command_fraction": 0.019939013415102815
+    },
+    {
+      "scenario": "H0",
+      "seed": 41,
+      "accepted": true,
+      "independent_metrics": {
+        "window_actual_departures": 17684,
+        "cohort_completed_vehicles": 17684,
+        "cohort_mean_travel_time_seconds": 910.3133906356028,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 668.4046965621791,
+        "scheduled_cohort_mean_total_time_seconds": 1532.4502489119272,
+        "whole_run_mean_depart_delay_seconds": 596.1903581543288,
+        "whole_run_max_depart_delay_seconds": 3980.7,
+        "network_exit_throughput_vehicles_per_hour": 8291.5,
+        "peak_insertion_backlog_vehicles": 2817,
+        "window_peak_insertion_backlog_vehicles": 2817
+      },
+      "m4_replay": "all M4 metrics and legacy trip metrics equal; detector summaries byte-identical",
+      "all_run_passenger_active_command_fraction": null
+    },
+    {
+      "scenario": "H0",
+      "seed": 42,
+      "accepted": true,
+      "independent_metrics": {
+        "window_actual_departures": 17765,
+        "cohort_completed_vehicles": 17765,
+        "cohort_mean_travel_time_seconds": 914.759724176752,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 655.4669489950609,
+        "scheduled_cohort_mean_total_time_seconds": 1528.2626847278596,
+        "whole_run_mean_depart_delay_seconds": 584.9377112108405,
+        "whole_run_max_depart_delay_seconds": 3890.7,
+        "network_exit_throughput_vehicles_per_hour": 8291.5,
+        "peak_insertion_backlog_vehicles": 2749,
+        "window_peak_insertion_backlog_vehicles": 2749
+      },
+      "m4_replay": "all M4 metrics and legacy trip metrics equal; detector summaries byte-identical",
+      "all_run_passenger_active_command_fraction": null
+    },
+    {
+      "scenario": "H0",
+      "seed": 43,
+      "accepted": true,
+      "independent_metrics": {
+        "window_actual_departures": 17674,
+        "cohort_completed_vehicles": 17674,
+        "cohort_mean_travel_time_seconds": 927.4426275885481,
+        "scheduled_cohort_vehicles": 20449,
+        "scheduled_cohort_completed_vehicles": 20449,
+        "scheduled_cohort_mean_depart_delay_seconds": 656.9652129688493,
+        "scheduled_cohort_mean_total_time_seconds": 1540.9930138393077,
+        "whole_run_mean_depart_delay_seconds": 586.2002270053592,
+        "whole_run_max_depart_delay_seconds": 3947.2,
+        "network_exit_throughput_vehicles_per_hour": 8240.5,
+        "peak_insertion_backlog_vehicles": 2836,
+        "window_peak_insertion_backlog_vehicles": 2836
+      },
+      "m4_replay": "all M4 metrics and legacy trip metrics equal; detector summaries byte-identical",
+      "all_run_passenger_active_command_fraction": null
+    }
+  ],
+  "fleet_checks": [
+    {
+      "seed": 41,
+      "same_vehicle_ids": true,
+      "type_or_speed_factor_differences": 0
+    },
+    {
+      "seed": 42,
+      "same_vehicle_ids": true,
+      "type_or_speed_factor_differences": 0
+    },
+    {
+      "seed": 43,
+      "same_vehicle_ids": true,
+      "type_or_speed_factor_differences": 0
+    }
+  ],
+  "paired_metric_checks": 30,
+  "limitations": [
+    "Independent trip and summary audit; controller formula and trajectories are covered separately by tests and the M4 measurement checks."
+  ]
+}

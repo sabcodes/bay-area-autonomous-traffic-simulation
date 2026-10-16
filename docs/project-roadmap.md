@@ -122,7 +122,7 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   summaries are byte-identical to the matching M3 runs. All 67 tests and lint
   passed. See the [closeout](m4-experiment-harness-report.md) and
   [results](../reports/m4/README.md). M3's fidelity limit remains in force;
-  M5–M8 remain.
+  M6–M8 remain.
 
 ## Guardrails
 
@@ -134,3 +134,20 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
   validated energy model is added.
 - Treat ideal V2V communication, short headways, and full AV penetration as
   explicit sensitivity assumptions.
+
+
+## M5 closeout, 2026-10-16
+
+M5 is complete for the [supervised CACC comparison](m5-cooperative-cacc-report.md).
+The [active spec](m5-supervised-cacc-spec.md) preceded final implementation.
+Six runs accepted, 22,951 vehicles each, with zero SUMO warnings or final
+backlog/collisions/teleports. All 102 tests and the independent 30-metric audit
+pass; H0 exactly replays M4 and exported fleets/schedules match across pairs.
+
+The supervisor retains the frozen baseline and original gains, yields to native
+maneuver/cooperation state and waits 2 s of quiet state before engaging.
+Active requests cover 1.99–2.06% of passenger timesteps. Mean throughput changes
+-0.30%, scheduled total time +0.68%, RMS acceleration -0.80%; no demonstrated
+overall traffic benefit. Earlier overlays and native CACC failed their health gates
+and remain versioned as rejected evidence. Continuous CACC is unresolved.
+M3's held-out failure remains; M6–M8 remain, with centralized control next.

@@ -3,10 +3,11 @@
 This glossary names the project-specific concepts used in the corridor model,
 observed-data audit, and scenario comparisons.
 
-As of 2026-10-16, M0–M4 are complete at their documented practical standards.
-M3 retains its held-out fidelity limitation. M5 cooperative CACC is in validation, using a conservative passenger overlay. See [project memory](docs/project-memory.md), the
-[roadmap](docs/project-roadmap.md), and the [M4 closeout](docs/m4-experiment-harness-report.md)
-for current evidence and the resume point.
+As of 2026-10-16, M0–M5 are complete at their documented practical standards.
+M3 retains its held-out fidelity limit. M5 accepts a supervised CACC comparison
+with about 2% active passenger timesteps; continuous CACC remains unresolved.
+M6 is next. See [project memory](docs/project-memory.md), the
+[roadmap](docs/project-roadmap.md), and the [M5 closeout](docs/m5-cooperative-cacc-report.md).
 
 ## Network and movements
 
@@ -118,12 +119,13 @@ collisions, or teleports. Acceptance does not remove M3's traffic-fidelity limit
 
 ## M5 cooperative-control language
 
-**Custom CACC overlay**:
+**Supervised CACC overlay**:
 A deterministic longitudinal command law using gap error, relative speed and
-passenger-leader acceleration feedforward, applied through TraCI under the
-unchanged native Krauss safety layer. It is distinct from SUMO's native CACC
-model. The passenger controller is deterministic given state; fleet sampling
-and native traffic behavior remain seed dependent.
+passenger-leader acceleration feedforward within the unchanged native Krauss
+safety envelope. It engages only after 2 s of quiet native maneuver state and
+hands speed authority back for native lane changes/cooperation. Report its
+active command fraction; equipped passengers are not continuously controlled.
+The policy differs from SUMO's native CACC model, which failed a separate probe.
 
 **Cooperative leader**:
 A passenger leader whose previous-step acceleration is available in the same
@@ -154,3 +156,8 @@ separately from on-road stopped-vehicle queue proxies.
 CACC minus H0 for matching date and seed, followed by the mean and sample SD of
 those differences. Matching seeds and generated inputs do not make the two
 scenarios' realized lane changes or actual departure cohorts identical.
+
+**M5 acceptance**:
+A clean, matched H0/supervised-CACC comparison with explicit active command share
+(about 2% of all-run passenger timesteps). It does not accept the rejected
+continuous variants, establish a traffic benefit, or remove M3's fidelity limit.

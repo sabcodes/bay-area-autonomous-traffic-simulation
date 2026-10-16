@@ -10,7 +10,7 @@ This project compares human-like traffic with explainable autonomous-vehicle
 coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
-of truth: **M0–M4 experiment work is complete. M3 has a held-out fidelity limit.**
+of truth: **M0–M5 practical experiment work is complete. M3 retains its fidelity limit; M5 is a supervised comparison.**
 M4 is complete; the [harness closeout](m4-experiment-harness-report.md) records
 its acceptance evidence.
 
@@ -100,25 +100,34 @@ experiment directories are preserved, so repeat with a new experiment ID.
 Queue proxies exclude temporary insertion backlogs, travel-time cohorts use
 actual departures, temporal speed variability is not a wave-stability test,
 and acceleration smoothness is not energy use. M3's held-out failure remains
-unchanged. M5–M8 remain; the next roadmap milestone is cooperative CACC.
+unchanged. At the M4 checkpoint, M5–M8 remained. The later M5 closeout below is the current resume point.
 
-## M5 active implementation, 2026-10-16
+## M5 closeout and current resume point, 2026-10-16
 
-The user authorized M5 plan → specification → implementation and data-driven
-verification. The [plan](m5-cooperative-cacc-plan.md) was committed at c276d1f,
-the [specification](m5-cooperative-cacc-spec.md) at 9fe5c69, then source at
-0a1e542. The implementation and independent audit are published in
-[PR #1](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/1).
-All 83 tests and lint pass. Corridor validation is still pending; do not mark
-M5 complete until the full matrix and independent output audit pass.
+M5 is complete for the [supervised comparison](m5-cooperative-cacc-report.md).
+The original plan/spec commits c276d1f/9fe5c69 preceded source. The final
+[revision-4 spec](m5-supervised-cacc-spec.md) at 75d4ad4 preceded runtime source
+643d0da. All six runs accepted and each cleared 22,951 vehicles without SUMO
+warnings. All 102 tests passed; the independent audit checked six raw outputs,
+30 paired metrics, every aggregate, matching exported fleets/schedules and
+unchanged source/route/network/input hashes. All H0 metrics and detector
+summaries exactly replay M4. See [versioned results](../reports/m5/README.md).
 
-The custom passenger CACC overlay uses bounded leader subscriptions, gap and
-relative-speed feedback, ideal passenger acceleration feedforward, and ACC
-behind human trucks. It retains 1.5 s headway, the frozen safety layer and fleet,
-route generation, and native lane changes. This is a combined longitudinal
-policy comparison, not an isolated V2V ablation. Short-headway and imperfect
-communication sensitivities remain M7 work. The harness adds paired differences,
-scheduled-cohort total time, insertion delays and peak insertion backlog.
+This is a low-engagement supervisor: retain frozen physical treatment and
+original gains, yield to all native maneuver/cooperation flags, and engage only
+after 2 s of quiet state. Active requests cover 1.99–2.06% of all-run passenger
+timesteps. Throughput changes -0.30%, scheduled total time +0.68%, RMS
+acceleration -0.80%. These mixed changes do not demonstrate a traffic benefit.
+Continuous CACC remains unresolved. The rejected overlay matrix had 2/1/2
+teleports; a native-CACC probe had 40 emergency-braking warnings. All failures
+and their correctly suppressed aggregates are preserved under reports/m5/.
+
+Reproduce with configs/us101_m5_experiment.json and a new experiment ID. Final
+raw outputs are under outputs/us101_corridor/m5/m5_h0_supervised_cacc_2025_10_08/.
+libsumo 1.27.1 is project-local; three workers isolate engine state. The accepted
+package is published in [PR #1](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/1)
+on codex/m5-cooperative-cacc; do not assume main contains it until merged.
+M6 centralized control is next. M3's failed held-out fit remains unchanged.
 
 ## Working rules
 
@@ -135,9 +144,9 @@ scheduled-cohort total time, insertion delays and peak insertion backlog.
 
 ## Context synchronization
 
-The M4 closeout, roadmap, README, and `CONTEXT.md` were synchronized on
+The M5 closeout, roadmap, README, and `CONTEXT.md` were synchronized on
 2026-10-16. The matching Obsidian project area is
 `Auto-Car Traffic Research/US-101 Traffic Simulation`; its project home,
-milestones, source index, decisions, and M4 handoff should point back to these
+milestones, source index, decisions, and M5 handoff point back to these
 versioned records. GitHub's current branch remains the publication source of
 truth; Obsidian publication checkpoints record the verified commit separately.

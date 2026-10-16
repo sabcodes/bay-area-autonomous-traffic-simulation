@@ -8,23 +8,26 @@ This is a simulation research project, not a prediction system or a safety-criti
 
 For the current milestone state and handoff context, see the
 [project memory](docs/project-memory.md), [roadmap](docs/project-roadmap.md),
-and [domain glossary](CONTEXT.md). M0–M4 experiment work is complete. M3's
+and [domain glossary](CONTEXT.md). M0–M5 experiment work is complete at the documented practical standards. M3's
 held-out speed target was missed; see the [closeout record](docs/m3-human-baseline-report.md).
 M4 is complete; see the [harness closeout](docs/m4-experiment-harness-report.md).
 See the [M4 plan](docs/m4-experiment-harness-plan.md) and
 [metric specification](docs/m4-experiment-harness-spec.md).
 
-M5 cooperative CACC is in validation. Its [plan](docs/m5-cooperative-cacc-plan.md)
-and [specification](docs/m5-cooperative-cacc-spec.md) were committed before source
+M5 is complete for the supervised CACC comparison; continuous CACC remains unresolved. See the [closeout](docs/m5-cooperative-cacc-report.md) and [results](reports/m5/README.md). Its [plan](docs/m5-cooperative-cacc-plan.md)
+and [active specification](docs/m5-supervised-cacc-spec.md) were committed before source
 implementation. Run the matched H0/CACC experiment with:
 
 ```bash
 PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim run-us101-experiment --config configs/us101_m5_experiment.json
 ```
 
-The conservative passenger overlay uses bounded leader subscriptions and ideal
-passenger acceleration messages. Human trucks, frozen route/fleet generation,
-1.5 s safety headway, native lane changing and SUMO safety constraints remain.
+The supervised passenger overlay uses bounded leader queries and ideal passenger
+acceleration messages only during steady lane following. It yields to native
+maneuver/cooperation requests and requires a 2 s quiet interval before engaging.
+Human trucks, frozen route/fleet generation, 1.5 s safety headway and SUMO safety
+constraints remain. Final engagement is only 1.99–2.06% of all-run passenger timesteps;
+this is a deliberately conservative policy, not continuous CACC.
 Reports include paired seed differences, scheduled-cohort total travel time,
 insertion delays and backlog alongside M4 metrics. The treatment combines
 cruise/follow control and feedforward; it does not isolate the benefit of V2V
@@ -460,10 +463,12 @@ lane-level merge has been confirmed. See the [SR-85 lane sensitivity notes](docs
 
 ## Status
 
-**M0–M4 complete at their documented practical standards.** The audited real
-corridor has a frozen human baseline and a reproducible multi-seed measurement
-harness. M3 retains its held-out fidelity limitation. The toy CACC commands are
-early tool checks; real-corridor policy comparisons belong to M5 and M6.
+**M0–M5 complete at their documented practical standards.** The audited corridor
+has a frozen human baseline, a reproducible harness and an accepted supervised
+CACC comparison. The supervisor is active for about 2% of passenger timesteps;
+continuous CACC remains unresolved. Results are mixed rather than evidence of
+an overall traffic benefit. M3's fidelity limitation remains. M6 centralized
+control is next; see the [M5 closeout](docs/m5-cooperative-cacc-report.md).
 
 The full sequence of work and completion criteria live in the
 [project roadmap](docs/project-roadmap.md).

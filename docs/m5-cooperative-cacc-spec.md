@@ -1,5 +1,8 @@
 # M5 cooperative CACC specification
 
+**Historical/rejected policy.** The active final contract is
+[supervised CACC revision 4](m5-supervised-cacc-spec.md). Failed evidence is retained.
+
 Version 1. Written 2026-10-16 after the plan and before source implementation.
 
 ## Treatment and reproducible command

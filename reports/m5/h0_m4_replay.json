@@ -1,9 +1,10 @@
 {
   "accepted": true,
+  "experiment_id": "m5_h0_supervised_cacc_2025_10_08",
+  "report_sha256": "1ab558292f0949266303224110488573943800759ff7f85803656edd4c017389",
   "runs": [
     {
       "seed": 41,
-      "accepted": true,
       "all_original_metrics_equal": true,
       "legacy_metrics_equal": true,
       "route_hash_equal": true,
@@ -13,7 +14,6 @@
     },
     {
       "seed": 42,
-      "accepted": true,
       "all_original_metrics_equal": true,
       "legacy_metrics_equal": true,
       "route_hash_equal": true,
@@ -23,7 +23,6 @@
     },
     {
       "seed": 43,
-      "accepted": true,
       "all_original_metrics_equal": true,
       "legacy_metrics_equal": true,
       "route_hash_equal": true,

@@ -46,3 +46,13 @@ M5 closes only with a reproducible matched comparison, passing relevant checks,
 clean and cleared accepted SUMO runs, explicit controller assumptions and
 limitations, synchronized context, and verified GitHub publication. If a
 criterion fails, retain and explain its evidence without calling it passed.
+
+
+## Closeout, 2026-10-16
+
+Complete for the supervised comparison. The [revision-4 spec](m5-supervised-cacc-spec.md)
+supersedes the rejected earlier policies. All six full runs and 102 tests pass;
+independent audits preserve failures, exact H0 replay, matched exported fleets
+and paired metrics. Low engagement (about 2%) and mixed outcomes limit the
+conclusion. See the [closeout](m5-cooperative-cacc-report.md) and
+[results](../reports/m5/README.md). Continuous CACC remains unresolved; M6 is next.

@@ -1,5 +1,8 @@
 # M5 native CACC specification (revision 3)
 
+**Historical/rejected policy.** The active final contract is
+[supervised CACC revision 4](m5-supervised-cacc-spec.md). Failed evidence is retained.
+
 Written 2026-10-16 before native-policy implementation. This supersedes the
 custom-overlay policy in [the original spec](m5-cooperative-cacc-spec.md), whose
 rejected results remain evidence. The original plan and spec preceded source

@@ -1,10 +1,10 @@
 # M5 supervised CACC specification (revision 4)
 
-Written 2026-10-16 before implementation. This is the active M5 contract.
+Written 2026-10-16 before implementation. This is the active M5 contract. Implemented and accepted for the supervised comparison; see the [closeout](m5-cooperative-cacc-report.md).
 The [original overlay spec](m5-cooperative-cacc-spec.md) and
 [native-model spec](m5-native-cacc-spec.md) are rejected historical approaches.
-The user was offered scope choices after the failures; absent a preference,
-proceed with the stated recommendation that preserves the frozen baseline.
+This revision preserves the frozen numerical baseline and evaluates steady
+lane following with native authority during maneuvers.
 
 ## Evidence and scope
 
