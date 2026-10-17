@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import os
 import subprocess
+from collections import deque
 from pathlib import Path
 
 STEP_SECONDS = 0.5
@@ -31,7 +33,12 @@ def validate_controller(config: dict, human_parameters: dict) -> None:
 
         validate_central(config)
         return
-    if not isinstance(config, dict) or set(config) != set(DEFAULT_CONTROLLER):
+    optional = {"penetration", "message_delay_seconds", "message_loss_probability"}
+    if (
+        not isinstance(config, dict)
+        or not set(DEFAULT_CONTROLLER) <= set(config)
+        or set(config) - set(DEFAULT_CONTROLLER) - optional
+    ):
         raise ValueError("Controller requires exactly the documented policy and parameter keys.")
     if config["policy"] != "supervised_cacc":
         raise ValueError("Unsupported controller policy.")
@@ -41,6 +48,12 @@ def validate_controller(config: dict, human_parameters: dict) -> None:
         value = config[key]
         if type(value) not in (int, float) or not math.isfinite(value) or value < 0:
             raise ValueError(f"Controller {key} must be finite and nonnegative.")
+    for key in ("penetration", "message_loss_probability"):
+        if not 0 <= config.get(key, 1 if key == "penetration" else 0) <= 1:
+            raise ValueError(f"Controller {key} must be in [0, 1].")
+    delay = config.get("message_delay_seconds", 0)
+    if delay > 5 or not math.isclose(delay / STEP_SECONDS, round(delay / STEP_SECONDS)):
+        raise ValueError("Message delay must align to 0.5 s and be at most 5 s.")
     handoff = config["native_handoff_seconds"]
     if handoff < STEP_SECONDS or not math.isclose(
         handoff / STEP_SECONDS, round(handoff / STEP_SECONDS)
@@ -53,6 +66,26 @@ def validate_controller(config: dict, human_parameters: dict) -> None:
             raise ValueError(f"Controller {setting} must respect frozen passenger limits.")
     if config["communication_range_meters"] <= 0 or config["feedforward_gain"] > 1:
         raise ValueError("Controller needs positive range and feedforward gain in [0, 1].")
+
+
+def hash_fraction(key: str) -> float:
+    return int.from_bytes(hashlib.sha256(key.encode()).digest()[:8], "big") / 2**64
+
+
+def is_equipped(vehicle: str, penetration: float) -> bool:
+    return hash_fraction(f"equipment|{vehicle}") < penetration
+
+
+def received_acceleration(config, follower, leader, step, history):
+    """A missing same-leader sample or dropped packet means ACC, never stale hold."""
+    delay = round(config.get("message_delay_seconds", 0) / STEP_SECONDS)
+    if len(history) <= delay or leader not in history[0]:
+        return None, "unavailable"
+    if hash_fraction(f"message|{follower}|{leader}|{step}") < config.get(
+        "message_loss_probability", 0
+    ):
+        return None, "lost"
+    return history[0][leader], "delivered"
 
 
 def requested_speed(
@@ -130,6 +163,18 @@ def run_controlled(
         "completed": False,
     }
     passengers = set()
+    all_passengers, equipped_ids = set(), set()
+    history = deque(maxlen=1 + round(config.get("message_delay_seconds", 0) / STEP_SECONDS))
+    diagnostics.update(
+        eligible_vehicles=0,
+        passenger_samples=0,
+        equipped_samples=0,
+        message_opportunities=0,
+        messages_delivered=0,
+        messages_lost=0,
+        messages_unavailable=0,
+        equipped_ids_sha256=None,
+    )
     native_until = {}
     handoff_steps = round(config["native_handoff_seconds"] / STEP_SECONDS)
     try:
@@ -147,6 +192,7 @@ def run_controlled(
             connection.simulationStep()
             events = connection.simulation.getSubscriptionResults()
             passengers.difference_update(events[tc.VAR_ARRIVED_VEHICLES_IDS])
+            all_passengers.difference_update(events[tc.VAR_ARRIVED_VEHICLES_IDS])
             for vehicle in events[tc.VAR_ARRIVED_VEHICLES_IDS]:
                 native_until.pop(vehicle, None)
             for vehicle in sorted(events[tc.VAR_DEPARTED_VEHICLES_IDS]):
@@ -162,6 +208,11 @@ def run_controlled(
                 )
                 state = connection.vehicle.getSubscriptionResults(vehicle)
                 if state[tc.VAR_TYPE] == "human_passenger":
+                    all_passengers.add(vehicle)
+                    diagnostics["eligible_vehicles"] += 1
+                    if not is_equipped(vehicle, config.get("penetration", 1)):
+                        continue
+                    equipped_ids.add(vehicle)
                     if (
                         connection.vehicle.getSpeedMode(vehicle) != 31
                         or connection.vehicle.getLaneChangeMode(vehicle) != 1621
@@ -171,6 +222,15 @@ def run_controlled(
                     native_until[vehicle] = step + handoff_steps
                     diagnostics["controlled_vehicles"] += 1
             snapshot = connection.vehicle.getAllSubscriptionResults()
+            diagnostics["passenger_samples"] += len(all_passengers)
+            diagnostics["equipped_samples"] += len(passengers)
+            history.append(
+                {
+                    vehicle: snapshot[vehicle][tc.VAR_ACCELERATION]
+                    for vehicle in passengers
+                    if vehicle in snapshot
+                }
+            )
             native_intents = {}
             for vehicle in sorted(passengers):
                 if vehicle in snapshot:
@@ -227,11 +287,20 @@ def run_controlled(
                         connection.vehicle.setSpeed(vehicle, -1)
                         diagnostics["native_fallbacks"] += 1
                         continue
-                    cooperative = ahead[tc.VAR_TYPE] == "human_passenger"
+                    cooperative = leader[0] in passengers
+                    acceleration = 0
+                    if cooperative:
+                        diagnostics["message_opportunities"] += 1
+                        message, status = received_acceleration(
+                            config, vehicle, leader[0], step, history
+                        )
+                        diagnostics[f"messages_{status}"] += 1
+                        cooperative = message is not None
+                        acceleration = message if cooperative else 0
                     following = (
                         leader[1],
                         ahead[tc.VAR_SPEED],
-                        ahead[tc.VAR_ACCELERATION],
+                        acceleration,
                         cooperative,
                     )
                     mode = "cooperative_commands" if cooperative else "acc_commands"
@@ -252,5 +321,8 @@ def run_controlled(
             if connection is not None:
                 connection.close()
         finally:
+            diagnostics["equipped_ids_sha256"] = hashlib.sha256(
+                "\n".join(sorted(equipped_ids)).encode()
+            ).hexdigest()
             diagnostics_path.write_text(json.dumps(diagnostics, indent=2, allow_nan=False) + "\n")
     return diagnostics
