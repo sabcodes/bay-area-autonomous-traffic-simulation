@@ -1,0 +1,99 @@
+# M7 sensitivity and uncertainty closeout
+
+**In progress, 2026-10-17. Final acceptance pending.**
+
+The [plan](m7-sensitivity-uncertainty-plan.md) at 655758b and
+[specification](m7-sensitivity-uncertainty-spec.md) at b4e968e precede runtime
+implementation 1fb436c. [PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3)
+is the publication surface. The frozen config is
+`configs/us101_m7_sensitivity.json`.
+
+## Question and design
+
+Evaluate whether the fixed M6 comparison is sensitive to operating demand,
+passenger equipment, acceleration-message assumptions, requested controller
+settings and random seeds. This is a bounded OFAT screen on 2025-10-08, not an
+optimizer or a model of total uncertainty. Fifty-four fresh full-window runs
+use the unchanged M3/M6 network, observed inputs, native behavior, physical
+limits, fleet mix, measurement window [900,8100), 0.5 s step and 7200 s clearance.
+
+The base comparison uses H0/CACC/CENTRAL seeds 41-45. Demand x0.8/x1.2 uses all
+three policies on 41-43. Other factors use 41-43: passenger equipment 0/50%,
+leader range 50 m, extra acceleration-message delay 1 s, 20% message loss,
+requested CACC headway 2 s, and congested VSL target 22 m/s. Every policy pairs
+with H0 at the same demand, date and seed. Non-demand factors also compare
+with the same base policy using the identical three-seed subset.
+
+Equipment is selected by a stable SHA-256 rule on passenger ID; trucks remain
+native. Messages use a separate hash of follower, leader and simulation step.
+These selections do not consume SUMO RNG. A delayed message must belong to the
+current leader; unavailable or dropped acceleration uses ACC, without stale
+hold. Current local gap and speed remain available. The range case changes
+both sensed leader following and communication, so it is not a pure packet
+range experiment. Requested headway changes leave native Krauss tau at 1.5 s.
+VSL still controls the original 14 lane segments using nine downstream lanes.
+
+## Acceptance traceability
+
+| AC | Evidence | Status |
+| --- | --- | --- |
+| AC1 | Plan 655758b, spec b4e968e, runtime 1fb436c; frozen 54-run config | Verified |
+| AC2 | Hand calculations, hash/message/delay boundaries, invalid settings, real SUMO deterministic and zero-equipment tests | Verified |
+| AC3 | Existing strict M6 gates, valid-inactive M7 versus failed restoration, nonfinite/missing/failed aggregation checks | Tests pass; final regression pending |
+| AC4 | Fresh matrix, matching-demand route/fleet/schedule checks, exact M6 and zero-equipment replay | In progress |
+| AC5 | Independent raw trips/summary/trajectory metrics, VSL ledger, equipment/message accounting, inputs, aggregates and fingerprints | In progress |
+| AC6 | Machine report, plots, validity/activity table, interpretation, context/Obsidian/GitHub | In progress |
+
+M7 distinguishes execution validity from activity. Zero equipment and
+nonactivating VSL are intentional null cases, while warnings, collisions,
+teleports, incomplete clearance, wrong engines, CACC native fallbacks or VSL
+restoration failures still reject the run. Means are null unless every planned
+seed and metric qualifies. Individual outcomes and failure reasons remain.
+
+## Preliminary H0 seed expansion
+
+All five H0 seeds are clean and independently audited; original seeds 41-43
+match all 90 M6 metrics exactly. Throughput mean/sample SD changes from
+8274.50/29.44 to 8266.00/46.99 veh/h. Scheduled total time changes from
+1533.90/6.49 to 1540.50/13.99 s. These describe H0 only; controller and full
+sensitivity results remain pending. The wider observed spread illustrates
+why three seeds should not be mistaken for a complete uncertainty estimate.
+
+## Reproduce and audit
+
+Prerequisites remain the project-local SUMO/libsumo 1.27.1 environment, frozen
+M3 observed profiles and metadata, and accepted M2 network. Raw PeMS files are
+local prerequisites and are not published by M7. Use a new campaign ID and
+output/audit directory for an exact replay; existing runs are never overwritten.
+
+```sh
+PYTHONPATH=src .venv/bin/python scripts/run_m7_sensitivity.py --config PATH_TO_NEW_CAMPAIGN_CONFIG
+.venv/bin/python scripts/audit_m7_results.py --config PATH_TO_NEW_CAMPAIGN_CONFIG --report PATH_TO_NEW_REPORT --output PATH_TO_NEW_AUDIT
+.venv/bin/python scripts/summarize_m7_results.py --report PATH_TO_NEW_REPORT --audit PATH_TO_NEW_AUDIT --output PATH_TO_PRESENTATION
+```
+
+The shipped raw path is `outputs/us101_corridor/m7/m7_ofat_2025_10_08/`.
+The auditor imports no production metric/controller implementation. It reuses
+the independent M6 NumPy trajectory parser, independently reconstructs trips,
+health, VSL decisions from recorded interval totals, equipment selection and
+message accounting, and verifies every group/pair. Full-corridor packet and
+live sensor histories are not exported; communication timing and loss behavior
+also have deterministic real-engine integration checks. Fingerprinted caches
+reuse a raw audit only when run metadata, every raw file and both auditors match.
+
+## Limits and next milestone
+
+M3 failed held-out fidelity remains (combined speed MAE 14.90 mph; October 15
+missed both targets). Supervised CACC remains low-engagement; continuous CACC
+and its rejected variants remain unresolved. Demand factors and communication
+settings are illustrative assumptions, not fitted probability distributions.
+OFAT does not identify interactions. One calibration date and five/three seeds
+cannot establish total uncertainty, confidence intervals, an optimal policy,
+field safety or deployment readiness. VSL sensing and actuation remain ideal.
+
+All-exit throughput is not mainline capacity; stopped counts are queue proxies;
+temporal speed variability is not wave stability; acceleration squared is not
+energy. Scheduled total time and insertion backlog help expose displaced delay.
+[Primary-source notes](../research/m7-methodology.md) explain SUMO semantics,
+not empirical justification for the chosen numerical sensitivities. M8 final
+research packaging follows after M7 acceptance.
