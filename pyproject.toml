@@ -12,6 +12,7 @@ license = { text = "MIT" }
 authors = [{ name = "Bay Area Autonomous Traffic Simulation contributors" }]
 dependencies = [
   "eclipse-sumo>=1.27,<1.28",
+  "libsumo==1.27.1",
   "numpy>=2.0,<3.0",
   "pyproj>=3.7,<4",
   "sumolib>=1.27,<1.28",

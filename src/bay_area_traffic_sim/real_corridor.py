@@ -17,6 +17,7 @@ from xml.etree import ElementTree
 
 import sumolib
 
+from bay_area_traffic_sim.cooperative import run_controlled, validate_controller
 from bay_area_traffic_sim.detectors import (
     VirtualDetectorSpec,
     build_virtual_detector_specs,
@@ -847,13 +848,19 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
 
 
 def run_human_baseline(
-    config_path: Path, seed: int = 42, *,
-    trajectory_output: Path | None = None, trajectory_period_seconds: float = 1.0,
+    config_path: Path,
+    seed: int = 42,
+    *,
+    trajectory_output: Path | None = None,
+    trajectory_period_seconds: float = 1.0,
+    controller: dict | None = None,
 ) -> tuple[PreparedBaseline, RunMetrics, Path]:
     """Run the draft real-corridor human baseline and read completed-trip metrics."""
 
     prepared = prepare_human_baseline(config_path)
     raw = _load_baseline_config(config_path, repository_root())
+    if controller is not None:
+        validate_controller(controller, prepared.human_parameters)
     output_directory = Path(prepared.manifest_file).parent
     tripinfo_file = output_directory / f"h0_human_baseline_seed_{seed}.tripinfo.xml"
     log_file = output_directory / f"h0_human_baseline_seed_{seed}.log"
@@ -870,53 +877,71 @@ def run_human_baseline(
     if trajectory_output is not None:
         span = prepared.demand_profile[-1].end_seconds - raw["warmup_seconds"]
         period = trajectory_period_seconds
-        if (not math.isfinite(period) or period <= 0
-                or not math.isclose(period / 0.5, round(period / 0.5))
-                or not math.isclose(span / period, round(span / period))):
+        if (
+            not math.isfinite(period)
+            or period <= 0
+            or not math.isclose(period / 0.5, round(period / 0.5))
+            or not math.isclose(span / period, round(span / period))
+        ):
             raise ValueError("Trajectory period must divide the window and match the 0.5 s step.")
         trajectory_options = [
-            "--fcd-output", str(trajectory_output),
-            "--fcd-output.attributes", "id,speed,acceleration,lane",
-            "--fcd-output.skip-empty", "false",
-            "--device.fcd.begin", str(raw["warmup_seconds"]),
-            "--device.fcd.period", str(trajectory_period_seconds),
-            "--device.fcd.probability", "1",
-            "--device.fcd.deterministic", "true",
-            "--tripinfo-output.write-unfinished", "true",
-            "--tripinfo-output.write-undeparted", "true",
+            "--fcd-output",
+            str(trajectory_output),
+            "--fcd-output.attributes",
+            "id,speed,acceleration,lane",
+            "--fcd-output.skip-empty",
+            "false",
+            "--device.fcd.begin",
+            str(raw["warmup_seconds"]),
+            "--device.fcd.period",
+            str(trajectory_period_seconds),
+            "--device.fcd.probability",
+            "1",
+            "--device.fcd.deterministic",
+            "true",
+            "--tripinfo-output.write-unfinished",
+            "true",
+            "--tripinfo-output.write-undeparted",
+            "true",
         ]
-    subprocess.run(
-        [
-            str(binary("sumo")),
-            "--net-file",
-            prepared.network_file,
-            "--route-files",
-            prepared.route_file,
-            "--additional-files",
-            str(detector_file),
-            "--step-length",
-            "0.5",
-            "--end",
-            str(prepared.simulation_end_seconds),
-            "--seed",
-            str(seed),
-            "--tripinfo-output",
-            str(tripinfo_file),
-            "--summary-output",
-            str(summary_file),
-            "--log",
-            str(log_file),
-            "--no-step-log",
-            "true",
-            "--duration-log.disable",
-            "true",
-            "--xml-validation",
-            "never",
-            *trajectory_options,
-        ],
-        check=True,
-        stdout=subprocess.DEVNULL,
-    )
+    command = [
+        str(binary("sumo")),
+        "--net-file",
+        prepared.network_file,
+        "--route-files",
+        prepared.route_file,
+        "--additional-files",
+        str(detector_file),
+        "--step-length",
+        "0.5",
+        "--end",
+        str(prepared.simulation_end_seconds),
+        "--seed",
+        str(seed),
+        "--tripinfo-output",
+        str(tripinfo_file),
+        "--summary-output",
+        str(summary_file),
+        "--log",
+        str(log_file),
+        "--no-step-log",
+        "true",
+        "--duration-log.disable",
+        "true",
+        "--xml-validation",
+        "never",
+        *trajectory_options,
+    ]
+    if controller is None:
+        subprocess.run(command, check=True, stdout=subprocess.DEVNULL)
+    else:
+        run_controlled(
+            command,
+            prepared.simulation_end_seconds,
+            controller,
+            output_directory / "controller_diagnostics.json",
+            prepared.human_parameters["minGap"],
+        )
     final_step = ElementTree.parse(summary_file).getroot().findall("step")[-1].attrib
     log_lines = log_file.read_text().splitlines()
     warning_lines = [

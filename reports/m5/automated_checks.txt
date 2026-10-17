@@ -1,0 +1,6 @@
+........................................................................ [ 70%]
+..............................                                           [100%]
+102 passed in 8.54s
+
+Lint: src, tests, audit_m5_results.py and plot_m5_results.py passed.
+Installed package matches source; libsumo 1.27.1.
