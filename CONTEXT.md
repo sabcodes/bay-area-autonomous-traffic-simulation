@@ -6,7 +6,9 @@ observed-data audit, and scenario comparisons.
 As of 2026-10-16, M0–M5 are complete at their documented practical standards.
 M3 retains its held-out fidelity limit. M5 accepts a supervised CACC comparison
 with about 2% active passenger timesteps; continuous CACC remains unresolved.
-M6 is next. See [project memory](docs/project-memory.md), the
+M6 is in progress as of 2026-10-17: the [plan](docs/m6-centralized-control-plan.md)
+and [frozen specification](docs/m6-centralized-control-spec.md) precede the implementation;
+full matrix acceptance is pending. See [project memory](docs/project-memory.md), the
 [roadmap](docs/project-roadmap.md), and the [M5 closeout](docs/m5-cooperative-cacc-report.md).
 
 ## Network and movements

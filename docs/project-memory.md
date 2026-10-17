@@ -160,3 +160,22 @@ GitHub reported the PR mergeable with no configured status checks; the accepted
 102-test and six-run evidence remains in the M5 closeout. Local main was
 fast-forwarded to the merge commit. Obsidian publication records now distinguish
 the historical PR checkpoint from the merged main state. M6 remains next.
+
+## M6 implementation checkpoint, 2026-10-17
+
+The [plan](m6-centralized-control-plan.md) at f1550ca and
+[spec](m6-centralized-control-spec.md) at b50a22c preceded source 26a71d6.
+M5 PR #1 merged while M6 was starting; use the attached isolated worktree
+`/Users/sabarnoislam/.codex/worktrees/m6-centralized-control/Self Driving Cars Bay Area Traffic Simulation`
+for M6. Do not switch or modify the shared primary checkout.
+[PR #2](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/2)
+is the M6 publication surface.
+
+The frozen rule uses downstream simulated speed and upstream native lane limits:
+30 s vehicle-timestep weighting, 15/20 m/s hysteresis, 25 m/s congestion target,
+1 m/s limit changes and native clearance recovery. No network/demand/fleet/
+physical-parameter changes. All 120 tests and lint passed. The 3000 s preflight
+had zero SUMO warnings but no actuation (minimum interval speed 18.3452 m/s);
+its false actuation acceptance is preserved without threshold tuning. Full
+H0/CACC/CENTRAL seeds 41-43 are running. Final acceptance is pending; preserve
+M3's held-out failure and M5's low engagement.

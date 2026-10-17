@@ -212,9 +212,11 @@ def audit_run(job):
     else:
         assert run["metrics"] == old["metrics"]
         assert run["legacy_whole_run_metrics"] == old["legacy_whole_run_metrics"]
-        assert (root / run["detector_summary_file"]).read_bytes() == (
-            root / "reports/m6/replay_detectors" / f"{name}_{seed}.json"
-        ).read_bytes()
+        detector_hashes = json.loads((root / "reports/m6/m5_detector_hashes.json").read_text())
+        assert (
+            hashlib.sha256((root / run["detector_summary_file"]).read_bytes()).hexdigest()
+            == (detector_hashes[f"{name}_{seed}"])
+        )
         if name == "CACC":
             assert run["controller_diagnostics"] == old["controller_diagnostics"]
     fleet = {
