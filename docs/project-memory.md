@@ -126,7 +126,8 @@ Reproduce with configs/us101_m5_experiment.json and a new experiment ID. Final
 raw outputs are under outputs/us101_corridor/m5/m5_h0_supervised_cacc_2025_10_08/.
 libsumo 1.27.1 is project-local; three workers isolate engine state. The accepted
 package is published in [PR #1](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/1)
-on codex/m5-cooperative-cacc; do not assume main contains it until merged.
+and was merged into main at `0a56d5afe54d9b04f0a6326ebec5977dabbec77f`
+on 2026-10-17 at 07:28:49 UTC. The pre-merge publication commit is `70409b8`.
 M6 centralized control is next. M3's failed held-out fit remains unchanged.
 
 ## Working rules
@@ -150,3 +151,12 @@ The M5 closeout, roadmap, README, and `CONTEXT.md` were synchronized on
 milestones, source index, decisions, and M5 handoff point back to these
 versioned records. GitHub's current branch remains the publication source of
 truth; Obsidian publication checkpoints record the verified commit separately.
+
+
+### M5 merge checkpoint
+
+PR #1 was merged on explicit user request at 2026-10-17 07:28:49 UTC.
+GitHub reported the PR mergeable with no configured status checks; the accepted
+102-test and six-run evidence remains in the M5 closeout. Local main was
+fast-forwarded to the merge commit. Obsidian publication records now distinguish
+the historical PR checkpoint from the merged main state. M6 remains next.
