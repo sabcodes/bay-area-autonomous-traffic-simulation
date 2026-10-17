@@ -206,3 +206,69 @@ def test_real_sumo_zero_equipment_exactly_matches_native_and_degraded_replays(tm
     assert json.loads((tmp_path / "2.json").read_text()) == json.loads(
         (tmp_path / "3.json").read_text()
     )
+
+
+def test_runtime_delivers_old_same_leader_acceleration_and_cold_start_acc(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+
+    import traci
+    from traci import constants as tc
+
+    from bay_area_traffic_sim import cooperative
+
+    tick, captured = [0], []
+    lanes = [("m_0", 100, 0, 0, True, ())]
+
+    def state(vehicle):
+        return {
+            tc.VAR_TYPE: "human_passenger",
+            tc.VAR_SPEED: 20,
+            tc.VAR_ACCELERATION: tick[0] if vehicle == "lead" else 0,
+            tc.VAR_ALLOWED_SPEED: 30,
+            tc.VAR_LANE_ID: "m_0",
+        }
+
+    vehicle = SimpleNamespace(
+        subscribe=lambda *args: None,
+        getSubscriptionResults=state,
+        getSpeedMode=lambda _: 31,
+        getLaneChangeMode=lambda _: 1621,
+        getAllSubscriptionResults=lambda: {v: state(v) for v in ["ego", "lead"]},
+        getBestLanes=lambda _: lanes,
+        getLeader=lambda v, _: ("lead", 30) if v == "ego" else ("", -1),
+        setSpeed=lambda *args: None,
+    )
+    connection = SimpleNamespace(
+        vehicle=vehicle,
+        simulationStep=lambda: tick.__setitem__(0, tick[0] + 1),
+        getVersion=lambda: (22, "SUMO 1.27.1"),
+        close=lambda: None,
+        simulation=SimpleNamespace(
+            subscribe=lambda *args: None,
+            getSubscriptionResults=lambda: {
+                tc.VAR_DEPARTED_VEHICLES_IDS: ["ego", "lead"] if tick[0] == 1 else [],
+                tc.VAR_ARRIVED_VEHICLES_IDS: [],
+            },
+        ),
+    )
+    monkeypatch.setattr(traci, "start", lambda *args, **kwargs: None)
+    monkeypatch.setattr(traci, "getConnection", lambda _: connection)
+    original = cooperative.requested_speed
+
+    def record(config, speed, allowed, leader=None):
+        if leader is not None:
+            captured.append((leader[2], leader[3]))
+        return original(config, speed, allowed, leader)
+
+    monkeypatch.setattr(cooperative, "requested_speed", record)
+    config = {
+        **DEFAULT_CONTROLLER,
+        "backend": "traci",
+        "native_handoff_seconds": 0.5,
+        "message_delay_seconds": 1,
+    }
+    d = run_controlled([], 2.5, config, tmp_path / "diagnostics.json", 2.5)
+    # At ticks 2,3,4,5 the current acceleration is 2,3,4,5. A two-step
+    # message delay yields unavailable,1,2,3, independently of the formula.
+    assert captured == [(0, False), (1, True), (2, True), (3, True)]
+    assert d["messages_unavailable"] == 1 and d["messages_delivered"] == 3
