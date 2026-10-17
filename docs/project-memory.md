@@ -193,7 +193,16 @@ window satisfies actuation without changing thresholds, geography or gains.
 M3 field-fidelity and M5 low-engagement caveats remain. M7 sensitivity and M8
 research packaging are next; no further policy is authorized by this closeout.
 
-Use the attached M6 worktree and PR #2; do not assume main contains the M6
-implementation until merged. Runtime source 26a71d6 is pinned by report hashes.
+M6 PR #2 is merged into main at [ef8d20c](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ef8d20c196298de88509097c06e5a7c40782de3f).
+The attached M6 worktree retains the accepted raw outputs. Runtime source 26a71d6 is pinned by report hashes.
 The accepted raw path is outputs/us101_corridor/m6/m6_h0_cacc_central_vsl_2025_10_08/.
 The publication checkpoint is recorded separately in Obsidian after Git push.
+
+## M6 merge checkpoint, 2026-10-17
+
+[PR #2](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/2)
+merged into main at [ef8d20c](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ef8d20c196298de88509097c06e5a7c40782de3f) on
+2026-10-17 at 01:07:35 America/Los_Angeles (08:07:35 UTC), on explicit user
+request. Runtime, tests, configurations and accepted reports exactly match the
+reviewed PR head 1c9dfde. The 125-test and independent audit evidence remains
+applicable. M7 sensitivity is next; no M7 implementation has started.

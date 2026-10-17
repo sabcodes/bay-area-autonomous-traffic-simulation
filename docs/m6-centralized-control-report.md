@@ -99,7 +99,7 @@ reproducible comparison, not an optimized or field-validated control policy.
 
 Runtime source: 26a71d6; exact source and input hashes are in the report.
 [PR #2](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/2)
-targets merged M5 on main. Plan f1550ca and spec b50a22c precede implementation.
+merged into main at [ef8d20c](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ef8d20c196298de88509097c06e5a7c40782de3f) on 2026-10-17. Plan f1550ca and spec b50a22c precede implementation.
 Raw native files remain under the ignored experiment directory in the attached
 isolated worktree. Versioned results include the accepted report, full summary,
 independent audit, figure and nonactivating preflight. Context and Obsidian

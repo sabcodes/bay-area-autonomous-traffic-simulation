@@ -6,7 +6,8 @@ observed-data audit, and scenario comparisons.
 As of 2026-10-17, M0–M6 are complete at their documented practical standards.
 M3 retains its held-out fidelity limit. M5 accepts a supervised comparison
 with about 2% active passenger timesteps; continuous CACC remains unresolved.
-M6 accepts the fixed centralized VSL comparison; M7 sensitivity is next.
+M6 accepts the fixed centralized VSL comparison and is merged into main at
+`ef8d20c` (2026-10-17). M7 sensitivity is next.
 See [project memory](docs/project-memory.md), the [roadmap](docs/project-roadmap.md),
 and the [M6 closeout](docs/m6-centralized-control-report.md).
 
