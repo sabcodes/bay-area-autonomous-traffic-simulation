@@ -484,3 +484,26 @@ The full sequence of work and completion criteria live in the
 ## Research background
 
 See [local feasibility research](research/local-feasibility.md) for the source-backed feasibility assessment and constraints that guide the initial scope.
+
+
+## M7 sensitivity and uncertainty
+
+M7 is in progress under its [plan](docs/m7-sensitivity-uncertainty-plan.md) and
+[frozen specification](docs/m7-sensitivity-uncertainty-spec.md). The bounded
+54-run OFAT screen varies demand, passenger equipment penetration,
+acceleration-message range/delay/loss, CACC headway, VSL target and seeds.
+Default numerical behavior preserves M6; zero-equipment CACC is a null control.
+The same-demand H0 comparison is mandatory. Failed or inactive cases are kept,
+and incomplete seed groups have null aggregates.
+
+```sh
+PYTHONPATH=src .venv/bin/python scripts/run_m7_sensitivity.py --config configs/us101_m7_sensitivity.json
+.venv/bin/python scripts/audit_m7_results.py
+.venv/bin/python scripts/summarize_m7_results.py
+```
+
+Use a new campaign ID for a repeat run; existing outputs are preserved. Final
+results/audit are pending. M3 field-fidelity and M5 low-engagement limits remain;
+seed spread is descriptive, and OFAT does not identify interactions or total
+uncertainty. See [methodology](research/m7-methodology.md) and
+[PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3).

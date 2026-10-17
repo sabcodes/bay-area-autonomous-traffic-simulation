@@ -164,3 +164,13 @@ and [frozen spec](m6-centralized-control-spec.md). Parameters were not retuned
 following the nonactivating short probe. One date and three seeds describe
 seed spread only; M3 fidelity and M5 approximately 2% engagement remain limits.
 M0–M6 practical experiment work is complete. M7 and M8 remain.
+
+## M7 in progress, 2026-10-17
+
+The [plan](m7-sensitivity-uncertainty-plan.md) and
+[spec](m7-sensitivity-uncertainty-spec.md) freeze a 54-run OFAT campaign before
+implementation. Demand, passenger equipment, communication and controller
+settings are varied; base seeds expand to 41-45. Implementation and initial
+140-test regression pass are complete; full measured results and independent
+audit are pending. [PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3)
+tracks publication. No policy-benefit or general-uncertainty claim is implied.

@@ -155,6 +155,8 @@ def test_comparison_guard_and_seed_summary_fail_closed(tmp_path, monkeypatch):
         "central_no_exposure",
         "central_not_restored",
         "central_wrong_engine",
+        "central_m7_inactive",
+        "central_m7_not_restored",
     ],
 )
 def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkeypatch, controlled):
@@ -183,6 +185,10 @@ def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkey
             }
             if isinstance(controlled, str):
                 diagnostics.update(restored=True, updates=1, limited_lane_seconds=1)
+                if controlled in {"central_m7_inactive", "central_m7_not_restored"}:
+                    diagnostics.update(commands=0, limited_lane_seconds=0)
+                    if controlled == "central_m7_not_restored":
+                        diagnostics["restored"] = False
                 if controlled == "central_no_commands":
                     diagnostics["commands"] = 0
                 elif controlled == "central_no_exposure":
@@ -247,13 +253,17 @@ def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkey
     else:
         harness_policy = dict(DEFAULT_CONTROLLER)
     config = _config()
+    if controlled in {"central_m7_inactive", "central_m7_not_restored"}:
+        config["allow_inactive_controllers"] = True
     if controlled:
         config["scenarios"][0]["controller"] = harness_policy
     config_file.write_text(json.dumps(config))
     report = harness.run_experiment(config_file)
     assert [run["seed"] for run in report["runs"]] == [41, 43]
     assert len(calls) == 2 and len(set(calls)) == 2
-    assert report["runs"][0]["accepted"] == (controlled in [False, True, "central"])
+    assert report["runs"][0]["accepted"] == (
+        controlled in [False, True, "central", "central_m7_inactive"]
+    )
     assert "intentional acceptance failure" in report["runs"][1]["error"]
     assert not report["accepted"]
     if controlled:

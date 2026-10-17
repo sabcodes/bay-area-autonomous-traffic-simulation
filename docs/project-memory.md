@@ -206,3 +206,23 @@ merged into main at [ef8d20c](https://github.com/sabcodes/bay-area-autonomous-tr
 request. Runtime, tests, configurations and accepted reports exactly match the
 reviewed PR head 1c9dfde. The 125-test and independent audit evidence remains
 applicable. M7 sensitivity is next; no M7 implementation has started.
+
+## M7 implementation checkpoint, 2026-10-17
+
+The user authorized M7 through plan, specification, implementation, measured
+verification and Obsidian/context/GitHub updates. Plan 655758b and specification
+b4e968e precede implementation 1fb436c. The frozen OFAT campaign has 54 runs:
+base H0/CACC/CENTRAL seeds 41-45; demand 0.8/1.2, penetration 0/0.5, range 50 m,
+extra delay 1 s, loss 20%, requested headway 2 s and VSL target 22 m/s on 41-43.
+All 140 initial tests and lint passed; strengthened inactivity tests follow.
+
+Run: `PYTHONPATH=src .venv/bin/python scripts/run_m7_sensitivity.py`.
+Raw path: `outputs/us101_corridor/m7/m7_ofat_2025_10_08/`. Existing campaign
+paths are never overwritten. Independent raw audit and final acceptance are
+pending. The working branch is `codex/m7-sensitivity-uncertainty` in the primary
+checkout; no other chat should switch it during this campaign.
+[Draft PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3)
+is the publication surface. The initial push approval block was resolved by
+verifying the existing private repository and account admin access. Obsidian
+plan/spec/decisions and implementation checkpoint were verified through CLI.
+M3 fidelity, M5 low engagement, and all M6 limitations remain.

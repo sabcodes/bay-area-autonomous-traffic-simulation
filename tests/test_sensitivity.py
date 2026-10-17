@@ -192,6 +192,9 @@ def test_real_sumo_zero_equipment_exactly_matches_native_and_degraded_replays(tm
                 d["messages_delivered"] + d["messages_lost"] + d["messages_unavailable"]
                 == d["message_opportunities"]
             )
+            if i >= 2:
+                assert 0 < d["controlled_vehicles"] < d["eligible_vehicles"]
+                assert d["messages_delivered"] > 0 and d["messages_lost"] > 0
             if i == 1:
                 assert d["controlled_vehicles"] == d["commands"] == d["equipped_samples"] == 0
                 assert d["eligible_vehicles"] == 20

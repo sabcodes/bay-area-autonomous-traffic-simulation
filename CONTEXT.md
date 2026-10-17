@@ -188,3 +188,22 @@ A clean, fully cleared H0/CACC/CENTRAL comparison with nonzero central actuation
 restored native limits, matching inputs/fleets/schedules, exact reference replay
 and an independent metric/decision audit. Acceptance does not establish a
 traffic benefit, field compliance or an optimized controller.
+
+## M7 sensitivity language
+
+**OFAT screen**: A bounded one-factor-at-a-time sensitivity evaluation around
+M6. It varies demand, equipment, communication and controller settings without
+estimating interactions or total model uncertainty.
+
+**Passenger equipment penetration**: A target fraction of passenger IDs selected
+by a stable SHA-256 rule. Trucks remain native. Equipment does not imply active
+control: the native maneuver supervisor still decides whether commands engage.
+
+**Extra message age**: Added delay for a same-leader acceleration message beyond
+SUMO's previous-step acceleration semantics. Current local gap and speed remain
+available. Missing/dropped messages use ACC, without stale-message hold.
+
+**M7 execution validity**: Clean clearance, complete outputs and completed native
+controller operation. Unlike M5/M6 actuation acceptance, M7 intentionally retains
+valid inactive/null controls. Activity, exposure, failures and all planned seeds
+are reported separately. See docs/m7-sensitivity-uncertainty-spec.md.
