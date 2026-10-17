@@ -59,6 +59,19 @@ match all 90 M6 metrics exactly. Throughput mean/sample SD changes from
 sensitivity results remain pending. The wider observed spread illustrates
 why three seeds should not be mistaken for a complete uncertainty estimate.
 
+## Expanded base comparison checkpoint
+
+All 15 base runs pass clean clearance. All nine original M6 runs match every
+one of their 270 metric values exactly. Five-seed paired CENTRAL minus H0:
+throughput +43.20 +/- 91.50 veh/h (+0.52%), scheduled total time -17.65 +/-
+38.24 s (-1.15%), RMS acceleration +0.49%, peak insertion backlog -2.33%.
+Throughput improves on 3/5 seeds and total time falls on 3/5; spreads exceed
+mean effects. Five-seed CACC changes throughput -0.21%, scheduled total time
++0.71%, RMS acceleration -0.77% and peak backlog +0.81%. RMS acceleration
+falls on all five CACC seeds, but the traffic tradeoffs remain mixed.
+These are base-case findings; sensitivity conclusions remain pending. A
+separate calculation checked all 90 base group/paired metric summaries.
+
 ## Reproduce and audit
 
 Prerequisites remain the project-local SUMO/libsumo 1.27.1 environment, frozen
