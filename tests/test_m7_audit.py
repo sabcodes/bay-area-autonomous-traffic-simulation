@@ -62,3 +62,35 @@ def test_factor_contrast_audit_rejects_wrong_means_missing_pairs_and_failed_seed
             bad_report["runs"][-1]["accepted"] = False
         with pytest.raises(AssertionError):
             audit_factor_effects(bad_report, bad_effects)
+
+
+def test_raw_audit_cache_invalidates_on_evidence_run_or_auditor_change(tmp_path, monkeypatch):
+    monkeypatch.syspath_prepend(str(repository_root() / "scripts"))
+    import audit_m7_results as auditor
+
+    folder = tmp_path / "run"
+    folder.mkdir()
+    (tmp_path / "scripts").mkdir()
+    dependency = tmp_path / "scripts/audit_m6_results.py"
+    dependency.write_text("first auditor version")
+    raw = folder / "trips.xml"
+    raw.write_text("original raw data")
+    calls = []
+
+    def calculate(job):
+        calls.append(job)
+        return {"raw_metric_checks": 30}, {"vehicle": ["passenger", 1.0, 900]}
+
+    monkeypatch.setattr(auditor, "_audit_run", calculate)
+    run = {"directory": "run", "metrics": {"example": 10}}
+    expected = auditor.audit_run((tmp_path, run))
+    assert auditor.audit_run((tmp_path, run)) == expected and len(calls) == 1
+    raw.write_text("changed raw data")
+    auditor.audit_run((tmp_path, run))
+    assert len(calls) == 2
+    run["metrics"]["example"] = 20
+    auditor.audit_run((tmp_path, run))
+    assert len(calls) == 3
+    dependency.write_text("new auditor version")
+    auditor.audit_run((tmp_path, run))
+    assert len(calls) == 4

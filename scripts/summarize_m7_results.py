@@ -92,6 +92,8 @@ def render(report_path, audit_path, output):
         "",
         "Frozen OFAT screen on 2025-10-08. Base seeds 41-45; sensitivities 41-43.",
         "All differences below pair against H0 at matching demand, date and seed.",
+        "The original three-seed base summary remains in [M6 results](../m6/README.md); "
+        "compare it with the five-seed base groups below.",
         "Means +/- sample SD describe simulation seed spread, not confidence intervals.",
         "",
         "![Paired sensitivity](paired_sensitivity.png)",
