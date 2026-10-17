@@ -145,7 +145,18 @@ def test_comparison_guard_and_seed_summary_fail_closed(tmp_path, monkeypatch):
     assert not clean_and_cleared({"final_summary": {}, "warning_lines": []})
 
 
-@pytest.mark.parametrize("controlled", [False, True])
+@pytest.mark.parametrize(
+    "controlled",
+    [
+        False,
+        True,
+        "central",
+        "central_no_commands",
+        "central_no_exposure",
+        "central_not_restored",
+        "central_wrong_engine",
+    ],
+)
 def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkeypatch, controlled):
     monkeypatch.setattr(harness, "repository_root", lambda: tmp_path)
     monkeypatch.setattr(
@@ -170,6 +181,16 @@ def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkey
                 "native_fallbacks": 0,
                 "engine_version": "SUMO 1.27.1",
             }
+            if isinstance(controlled, str):
+                diagnostics.update(restored=True, updates=1, limited_lane_seconds=1)
+                if controlled == "central_no_commands":
+                    diagnostics["commands"] = 0
+                elif controlled == "central_no_exposure":
+                    diagnostics["limited_lane_seconds"] = 0
+                elif controlled == "central_not_restored":
+                    diagnostics["restored"] = False
+                elif controlled == "central_wrong_engine":
+                    diagnostics["engine_version"] = "SUMO 0.0"
             (path.parent / "controller_diagnostics.json").write_text(json.dumps(diagnostics))
         if seed == 43:
             raise RuntimeError("intentional acceptance failure")
@@ -219,7 +240,12 @@ def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkey
     config_file = tmp_path / "experiment.json"
     from bay_area_traffic_sim.cooperative import DEFAULT_CONTROLLER
 
-    harness_policy = dict(DEFAULT_CONTROLLER)
+    if isinstance(controlled, str):
+        from bay_area_traffic_sim.centralized import DEFAULT_CONTROLLER as CENTRAL
+
+        harness_policy = dict(CENTRAL)
+    else:
+        harness_policy = dict(DEFAULT_CONTROLLER)
     config = _config()
     if controlled:
         config["scenarios"][0]["controller"] = harness_policy
@@ -227,7 +253,7 @@ def test_orchestrator_isolates_runs_and_retains_failure_reports(tmp_path, monkey
     report = harness.run_experiment(config_file)
     assert [run["seed"] for run in report["runs"]] == [41, 43]
     assert len(calls) == 2 and len(set(calls)) == 2
-    assert report["runs"][0]["accepted"]
+    assert report["runs"][0]["accepted"] == (controlled in [False, True, "central"])
     assert "intentional acceptance failure" in report["runs"][1]["error"]
     assert not report["accepted"]
     if controlled:

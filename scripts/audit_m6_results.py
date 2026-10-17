@@ -237,7 +237,7 @@ def audit_run(job):
     }, fleet
 
 
-def audit(root, report_path):
+def audit(root, report_path, config_path):
     report = json.loads(report_path.read_text())
     old = json.loads((root / "reports/m5/report.json").read_text())
     assert report["accepted"] and len(report["runs"]) == 9
@@ -247,7 +247,7 @@ def audit(root, report_path):
     }
     assert (
         report["experiment_config_sha256"]
-        == hashlib.sha256((root / "configs/us101_m6_experiment.json").read_bytes()).hexdigest()
+        == hashlib.sha256(config_path.read_bytes()).hexdigest()
     )
     old_index = {(r["scenario"], r["seed"]): r for r in old["runs"]}
     jobs = [
@@ -316,8 +316,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--output", type=Path, default=Path("reports/m6/independent_audit.json"))
+    parser.add_argument("--config", type=Path, default=Path("configs/us101_m6_experiment.json"))
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    result = audit(root, root / args.report)
+    result = audit(root, root / args.report, root / args.config)
     (root / args.output).write_text(json.dumps(result, indent=2) + "\n")
     print("M6 independent audit accepted: 270 raw metrics, 90 paired metrics.")
