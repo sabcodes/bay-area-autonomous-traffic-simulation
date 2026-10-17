@@ -72,6 +72,17 @@ falls on all five CACC seeds, but the traffic tradeoffs remain mixed.
 These are base-case findings; sensitivity conclusions remain pending. A
 separate calculation checked all 90 base group/paired metric summaries.
 
+## Reduced-demand checkpoint
+
+All nine demand x0.8 runs pass clean clearance. The VSL never activates in
+any of the three CENTRAL seeds: zero commands and zero limited-lane exposure,
+with completed/restored controllers. All 90 CENTRAL metric values exactly
+match same-demand H0. This is a valid inactive/null control under the frozen
+M7 rule, not a reason to change the trigger. CACC minus H0 changes throughput
+-0.12%, scheduled total time +1.59%, RMS acceleration -0.58% and peak insertion
+backlog -5.93%. Active commands remain 2.13-2.19% of passenger timesteps.
+Higher-demand and other sensitivity outcomes remain pending.
+
 ## Reproduce and audit
 
 Prerequisites remain the project-local SUMO/libsumo 1.27.1 environment, frozen
