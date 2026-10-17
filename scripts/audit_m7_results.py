@@ -62,7 +62,7 @@ def ledger_audit(d, network, config):
     return {"updates": 510, "commands": int(commands), "limited_lane_seconds": exposure}
 
 
-def audit_run(job):
+def _audit_run(job):
     root, run = job
     directory, seed = root / run["directory"], run["seed"]
     if "metrics" not in run:
@@ -218,11 +218,11 @@ def audit_run(job):
             }
     assert run["accepted"] == bool(healthy and valid)
     fleet = {
-        t["id"]: (
+        t["id"]: [
             t["vType"],
             t["speedFactor"],
             round(float(t["depart"]) - float(t["departDelay"]), 2),
-        )
+        ]
         for t in inserted
     }
     print(f"Audited {run['case']}/{run['scenario']}/{seed}: {len(values)} raw metrics", flush=True)
@@ -240,6 +240,30 @@ def audit_run(job):
             if p.suffix in {".xml", ".gz", ".log"} or p.name == "controller_diagnostics.json"
         },
     }, fleet
+
+
+def audit_run(job):
+    """Reuse a completed audit only when the code, run and every raw file match."""
+    root, run = job
+    directory = root / run["directory"]
+    fingerprints = {
+        p.name: sha(p)
+        for p in sorted(directory.iterdir())
+        if p.suffix in {".xml", ".gz", ".log"} or p.name == "controller_diagnostics.json"
+    }
+    key = {
+        "run": hashlib.sha256(json.dumps(run, sort_keys=True).encode()).hexdigest(),
+        "raw": fingerprints,
+        "auditors": [sha(Path(__file__).resolve()), sha(root / "scripts/audit_m6_results.py")],
+    }
+    path = directory / "independent_audit_cache.json"
+    if path.exists():
+        cached = json.loads(path.read_text())
+        if cached["fingerprints"] == key:
+            return cached["checked"], cached["fleet"]
+    checked, fleet = _audit_run(job)
+    path.write_text(json.dumps({"fingerprints": key, "checked": checked, "fleet": fleet}) + "\n")
+    return checked, fleet
 
 
 def audit(root, report_path, config_path, workers=3):
@@ -432,6 +456,44 @@ def audit(root, report_path, config_path, workers=3):
             "scheduled-cohort aggregates.",
         ],
     }
+
+
+def audit_factor_effects(report, effects):
+    """Check the presentation-only contrasts separately from their producer."""
+    index = {(r["case"], r["scenario"], r["seed"]): r for r in report["runs"]}
+    expected = {
+        (c["id"], policy, metric)
+        for c in report["campaign"]["cases"]
+        if c["id"] != "base" and not c["id"].startswith("demand_")
+        for policy in c["policies"]
+        for metric in (
+            "network_exit_throughput_vehicles_per_hour",
+            "scheduled_cohort_mean_total_time_seconds",
+            "rms_acceleration_m_per_s2",
+            "peak_insertion_backlog_vehicles",
+        )
+    }
+    assert len(effects) == len(expected)
+    assert {(e["case"], e["scenario"], e["metric"]) for e in effects} == expected
+    for effect in effects:
+        case = next(c for c in report["campaign"]["cases"] if c["id"] == effect["case"])
+        delta = []
+        for seed in case["seeds"]:
+            a = index[case["id"], effect["scenario"], seed]
+            b = index["base", effect["scenario"], seed]
+            delta.append(
+                a["metrics"][effect["metric"]] - b["metrics"][effect["metric"]]
+                if a["accepted"] and b["accepted"]
+                else None
+            )
+        assert effect["pairs"] == [
+            {"seed": seed, "difference": value}
+            for seed, value in zip(case["seeds"], delta, strict=True)
+        ]
+        complete = all(x is not None for x in delta)
+        equal(effect["mean"], mean(delta) if complete else None)
+        equal(effect["sample_standard_deviation"], stdev(delta) if complete else None)
+    return {"accepted": True, "factor_metric_checks": len(effects)}
 
 
 if __name__ == "__main__":
