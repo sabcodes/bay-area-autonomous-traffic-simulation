@@ -34,6 +34,12 @@ cruise/follow control and feedforward; it does not isolate the benefit of V2V
 alone. Use a new experiment ID when repeating to preserve existing outputs.
 
 
+M6 centralized control is in progress on [PR #2](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/2).
+Its [plan](docs/m6-centralized-control-plan.md) and [frozen specification](docs/m6-centralized-control-spec.md)
+precede implementation. See the [acceptance record](docs/m6-centralized-control-report.md)
+for the full H0/CACC/CENTRAL comparison status and preserved preflight evidence.
+
+
 ## What we will build first
 
 We will begin with a small, reproducible corridor simulation rather than the entire Bay Area:
