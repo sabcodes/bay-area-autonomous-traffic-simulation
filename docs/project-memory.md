@@ -11,7 +11,8 @@ coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
 of truth: **M0–M6 practical experiment work is complete. M3 retains its fidelity limit; M5 is a supervised comparison; M6 is a fixed centralized VSL comparison.**
-M7 is in progress under the [frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md).
+M7 is paused by user at 27/54 valid, independently audited runs under the
+[frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md), as of 2026-10-17.
 M4 is complete; the [harness closeout](m4-experiment-harness-report.md) records
 its acceptance evidence.
 
@@ -250,3 +251,22 @@ session changed to 86160; campaign session 78457 continues. This runtime session
 reference is a temporary handoff aid, not scientific evidence.
 
 Primary API source: https://developer.apple.com/documentation/foundation/filemanager/startdownloadingubiquitousitem(at:)
+
+## M7 paused by user, 2026-10-17 02:43 America/Los_Angeles
+
+User requested an overnight pause, including the run. SIGSTOP suspended both
+process trees; all nine processes report stopped status T. Completed: 27/54,
+all valid and independently audited. Higher-demand CACC seeds 41/42/43 are
+paused at summary times 7223.0/7218.5/7275.0 s. The current simulation state is
+in process memory, not a serialized SUMO checkpoint. Keep Codex open and do not
+reboot/terminate these processes. Resume only after the user requests it.
+
+Local identities and start times are saved in outputs/m7_pause_state.json;
+outputs/resume_m7.py validates every identity before sending SIGCONT. Campaign
+session 78457, audit session 38010. Do not start a second campaign. If processes
+are lost, preserve existing evidence and design a documented recovery rather
+than invoking the non-resumable runner against its existing directory.
+
+Fresh regression: 145 tests pass (16.45 s), lint and whitespace pass. Runtime
+source remains unchanged. Final audit, remaining 27 runs and closeout/publication
+remain pending. Draft PR #3 stays unmerged. No automatic morning restart set.
