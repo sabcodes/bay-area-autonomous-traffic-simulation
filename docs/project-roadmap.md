@@ -151,3 +151,16 @@ Active requests cover 1.99–2.06% of passenger timesteps. Mean throughput chang
 overall traffic benefit. Earlier overlays and native CACC failed their health gates
 and remain versioned as rejected evidence. Continuous CACC is unresolved.
 M3's held-out failure remains; M6–M8 remain, with centralized control next.
+
+## M6 closeout, 2026-10-17
+
+Nine of nine runs accepted, each clearing 22,951 vehicles with zero SUMO warnings, collisions, teleports or final running/waiting/discarded vehicles. All 125 tests and lint pass. The independent audit verifies 270 raw metrics, 90 paired metrics, every VSL decision, matching exported fleets/schedules, and exact H0/CACC replay against M5. Every central run has nonzero actuation and restored native limits.
+
+CENTRAL versus H0 changes mean all-exit throughput +0.36%, scheduled-cohort total time -0.98%, RMS acceleration +0.47%, and peak insertion backlog -1.63%.
+
+See the [central-control closeout](m6-centralized-control-report.md),
+[three-policy results](../reports/m6/README.md), [plan](m6-centralized-control-plan.md),
+and [frozen spec](m6-centralized-control-spec.md). Parameters were not retuned
+following the nonactivating short probe. One date and three seeds describe
+seed spread only; M3 fidelity and M5 approximately 2% engagement remain limits.
+M0–M6 practical experiment work is complete. M7 and M8 remain.

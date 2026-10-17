@@ -186,6 +186,17 @@ def audit_run(job):
     assert run["route_sha256"] == old["route_sha256"]
     assert run["network_sha256"] == old["network_sha256"]
     assert run["provenance"] == old["provenance"]
+    for relative, expected in {
+        "outputs/us101_corridor/us101_corridor.net.xml": run["network_sha256"],
+        "outputs/pems_calibration/us101_m3_upstream_proxy_profiles.json": run["provenance"][
+            "mainline_profile_sha256"
+        ],
+        "outputs/pems_calibration/us101_ramp_station_profiles.json": run["provenance"][
+            "ramp_profile_sha256"
+        ],
+        **run["provenance"]["metadata_sha256"],
+    }.items():
+        assert hashlib.sha256((root / relative).read_bytes()).hexdigest() == expected
     routes = {
         r.get("id"): r.get("edges").split() for r in ET.parse(route).getroot().findall("route")
     }
@@ -246,8 +257,7 @@ def audit(root, report_path, config_path):
         for p in sorted((root / "src/bay_area_traffic_sim").glob("*.py"))
     }
     assert (
-        report["experiment_config_sha256"]
-        == hashlib.sha256(config_path.read_bytes()).hexdigest()
+        report["experiment_config_sha256"] == hashlib.sha256(config_path.read_bytes()).hexdigest()
     )
     old_index = {(r["scenario"], r["seed"]): r for r in old["runs"]}
     jobs = [

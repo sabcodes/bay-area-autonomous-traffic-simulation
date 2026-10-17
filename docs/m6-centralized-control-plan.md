@@ -20,3 +20,11 @@ will use a stacked PR until M5 is merged.
 Completion requires clean simulations and an auditable comparison, not a
 positive performance result. M3 held-out fit remains limited; continuous CACC,
 policy optimization and broader sensitivity belong to later milestones.
+
+## Accepted checkpoint, 2026-10-17
+
+Nine of nine runs accepted, each clearing 22,951 vehicles with zero SUMO warnings, collisions, teleports or final running/waiting/discarded vehicles. All 125 tests and lint pass. The independent audit verifies 270 raw metrics, 90 paired metrics, every VSL decision, matching exported fleets/schedules, and exact H0/CACC replay against M5. Every central run has nonzero actuation and restored native limits.
+
+See [closeout](m6-centralized-control-report.md) and [results](../reports/m6/README.md).
+M5 merged before implementation; PR #2 targets main directly. No settings changed
+after the short nonactivating probe.

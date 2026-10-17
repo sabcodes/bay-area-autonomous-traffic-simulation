@@ -3,13 +3,12 @@
 This glossary names the project-specific concepts used in the corridor model,
 observed-data audit, and scenario comparisons.
 
-As of 2026-10-16, M0–M5 are complete at their documented practical standards.
-M3 retains its held-out fidelity limit. M5 accepts a supervised CACC comparison
+As of 2026-10-17, M0–M6 are complete at their documented practical standards.
+M3 retains its held-out fidelity limit. M5 accepts a supervised comparison
 with about 2% active passenger timesteps; continuous CACC remains unresolved.
-M6 is in progress as of 2026-10-17: the [plan](docs/m6-centralized-control-plan.md)
-and [frozen specification](docs/m6-centralized-control-spec.md) precede the implementation;
-full matrix acceptance is pending. See [project memory](docs/project-memory.md), the
-[roadmap](docs/project-roadmap.md), and the [M5 closeout](docs/m5-cooperative-cacc-report.md).
+M6 accepts the fixed centralized VSL comparison; M7 sensitivity is next.
+See [project memory](docs/project-memory.md), the [roadmap](docs/project-roadmap.md),
+and the [M6 closeout](docs/m6-centralized-control-report.md).
 
 ## Network and movements
 
@@ -163,3 +162,28 @@ scenarios' realized lane changes or actual departure cohorts identical.
 A clean, matched H0/supervised-CACC comparison with explicit active command share
 (about 2% of all-run passenger timesteps). It does not accept the rejected
 continuous variants, establish a traffic benefit, or remove M3's fidelity limit.
+
+## M6 centralized-control language
+
+**Centralized VSL**:
+An illustrative central feedback policy that observes simulated lane traffic
+downstream and changes native lane speed limits on the existing upstream buffer.
+It retains human-like following and lane changing, independently of CACC.
+
+**Vehicle-timestep-weighted speed**:
+Sum of lane vehicle count times last-step mean speed divided by the sum of counts
+across observed lanes and simulation steps. Empty lanes carry zero weight.
+
+**VSL hysteresis**:
+The frozen policy activates below 15 m/s and releases above 20 m/s; it retains
+mode at equality/in the band and releases on an empty interval.
+
+**Limited-lane seconds**:
+Time-integrated number of controlled lanes below their original native limit.
+This measures actuation exposure, not vehicle compliance or distance controlled.
+
+**M6 acceptance**:
+A clean, fully cleared H0/CACC/CENTRAL comparison with nonzero central actuation,
+restored native limits, matching inputs/fleets/schedules, exact reference replay
+and an independent metric/decision audit. Acceptance does not establish a
+traffic benefit, field compliance or an optimized controller.

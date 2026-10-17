@@ -1,6 +1,8 @@
 # M6 centralized variable speed limit closeout
 
-Status as of 2026-10-17: implementation verified; full acceptance pending.
+**Complete for the fixed centralized VSL comparison, 2026-10-17.**
+
+Nine of nine runs accepted, each clearing 22,951 vehicles with zero SUMO warnings, collisions, teleports or final running/waiting/discarded vehicles. All 125 tests and lint pass. The independent audit verifies 270 raw metrics, 90 paired metrics, every VSL decision, matching exported fleets/schedules, and exact H0/CACC replay against M5. Every central run has nonzero actuation and restored native limits.
 
 ## Question and frozen intervention
 
@@ -24,11 +26,11 @@ simulated actuation, not guaranteed vehicle speeds or field compliance.
 
 | Contract | Evidence | Status |
 | --- | --- | --- |
-| SC1 geography and native authority | Exact edge/lane resolution; 14 control and 9 observation lanes | Verified in probe; final audit pending |
+| SC1 geography and native authority | Exact edge/lane resolution; 14 control and 9 observation lanes | Verified in probe and all three full runs |
 | SC2 weighting, boundaries, timing, recovery | Hand calculations, injected runtime and real SUMO replay | Tests pass |
 | SC3 validation, failure and restoration evidence | Invalid inputs, cleanup, engine mismatch and no-actuation gates | Tests pass |
-| SC4 fair complete matrix | H0/CACC/CENTRAL, October 8, 2025, seeds 41-43 | Running; H0 accepted and exactly replays M5 |
-| SC5 independent audit/publication | All 30 raw metrics, 3 paired comparisons, VSL ledger, context and Obsidian | Final evidence pending |
+| SC4 fair complete matrix | H0/CACC/CENTRAL, October 8, 2025, seeds 41-43 | 9/9 accepted; H0 and CACC exactly replay M5 |
+| SC5 independent audit/publication | All 30 raw metrics, 3 paired comparisons, VSL ledger, context and Obsidian | 270 raw and 90 paired checks pass; publication synchronized |
 
 All 125 tests pass without skips; lint passes. Negative harness cases prove
 that zero commands, zero limited-lane exposure, failed restoration and wrong
@@ -39,11 +41,24 @@ this result; no trigger, geography or gain retuning followed it.
 
 ## Results
 
-Pending the complete matrix and independent audit. A traffic benefit is not an
-acceptance condition. Report the complete [result matrix](../reports/m6/README.md),
-including scheduled-cohort total time, insertion delay/backlog and all proxy
-metrics, with paired seed spread. An on-road queue reduction alone cannot show
-an overall benefit if delay moves into vehicles waiting to enter.
+CENTRAL versus H0 changes mean all-exit throughput +0.36%, scheduled-cohort total time -0.98%, RMS acceleration +0.47%, and peak insertion backlog -1.63%.
+
+Paired throughput change is +29.50 +/- 78.67 veh/h and scheduled total-time
+change is -15.08 +/- 37.34 s (mean +/- sample SD). Both spreads exceed the
+mean changes; these three seeds do not establish a consistent overall benefit.
+Mean stopped vehicles also rises 0.79%, while peak insertion backlog falls
+1.63%. Preserve these mixed tradeoffs rather than selecting a single proxy.
+The first central activations occur at 3510, 3270 and 3300 s for seeds 41-43,
+all after the 3000 s probe ended. The short-probe null and full-run actuation
+are consistent; no settings changed between them.
+
+
+The complete [result matrix](../reports/m6/README.md) reports all three policies
+and paired seed spread. These results describe a fixed illustrative policy on
+one calibration day; a positive numerical change does not establish a general
+traffic benefit. Compare scheduled total time and insertion backlog alongside
+on-road queues, since the intervention can relocate delay.
+
 
 ## Reproduce and audit
 
@@ -77,4 +92,15 @@ temporal mean-speed variation is not wave stability, and acceleration squared
 is not energy. No field safety, optimality or deployment claim follows.
 Primary-source interpretation notes are saved in [M6 VSL methodology](../research/m6-vsl-methodology.md);
 they support the general concept, not these numerical settings or a benefit claim.
-M7 sensitivity and M8 final research packaging remain after M6 acceptance.
+M7 sensitivity and M8 final research packaging remain. M6 is accepted as a
+reproducible comparison, not an optimized or field-validated control policy.
+
+## Publication and raw evidence
+
+Runtime source: 26a71d6; exact source and input hashes are in the report.
+[PR #2](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/2)
+targets merged M5 on main. Plan f1550ca and spec b50a22c precede implementation.
+Raw native files remain under the ignored experiment directory in the attached
+isolated worktree. Versioned results include the accepted report, full summary,
+independent audit, figure and nonactivating preflight. Context and Obsidian
+project/decision/research/result/handoff notes are synchronized.
