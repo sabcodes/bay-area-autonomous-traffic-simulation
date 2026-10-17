@@ -291,6 +291,10 @@ def audit(root, report_path, config_path, workers=3):
             if name != "H0"
             else None
         )
+        scenario = json.loads((root / run["directory"] / "scenario.json").read_text())
+        assert scenario.get("controller") == expected_controller
+        if "metrics" not in run:
+            continue
         assert run.get("controller") == expected_controller
         reference_case = case if case.startswith("demand_") else "base"
         ref = index[reference_case, "H0", seed]
@@ -352,12 +356,14 @@ def audit(root, report_path, config_path, workers=3):
         reference_case = case if "H0" in expected_case["policies"] else "base"
         assert group["reference_case"] == reference_case and group["reference_scenario"] == "H0"
         assert (
-            group["metrics"].keys() == group["paired_metrics"].keys() == runs[0]["metrics"].keys()
+            group["metrics"].keys()
+            == group["paired_metrics"].keys()
+            == next(r["metrics"] for r in runs if "metrics" in r).keys()
         )
         for metric in group["metrics"]:
-            values = [r["metrics"].get(metric) if r["accepted"] else None for r in rows]
+            values = [r.get("metrics", {}).get(metric) if r["accepted"] else None for r in rows]
             refs = [index[reference_case, "H0", s] for s in seeds]
-            before = [r["metrics"].get(metric) if r["accepted"] else None for r in refs]
+            before = [r.get("metrics", {}).get(metric) if r["accepted"] else None for r in refs]
             differences = [
                 a - b
                 if a is not None and b is not None and math.isfinite(a) and math.isfinite(b)
@@ -399,6 +405,12 @@ def audit(root, report_path, config_path, workers=3):
     return {
         "accepted": True,
         "report_sha256": sha(report_path),
+        "source_sha256": hashes,
+        "experiment_reports_sha256": {p: sha(root / p) for p in report["experiment_reports"]},
+        "auditor_sha256": {
+            str(p.relative_to(root)): sha(p)
+            for p in [Path(__file__).resolve(), root / "scripts/audit_m6_results.py"]
+        },
         "campaign_config_sha256": sha(config_path),
         "runs": [r for r, _ in checked],
         "raw_metric_checks": sum(r["raw_metric_checks"] for r, _ in checked),
