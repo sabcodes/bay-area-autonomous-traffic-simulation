@@ -90,3 +90,20 @@ Primary API references checked 2026-10-17:
 https://sumo.dlr.de/docs/TraCI/Change_Lane_State.html
 https://sumo.dlr.de/docs/TraCI/Lane_Value_Retrieval.html
 Installed SUMO/libsumo 1.27.1 is the runtime authority for integration checks.
+
+## Preflight disclosure, before the full matrix
+
+The 3000 s seed-41 probe completed/restored with zero SUMO warnings, but its
+actuation gate is false: the minimum observed 30 s mean was 18.3452 m/s, above
+the frozen 15 m/s trigger. No commands were issued. This nonactivating probe is
+preserved in reports/m6/preflight_seed41.json. The full window will be evaluated
+without changing thresholds or geography; final acceptance still requires
+nonzero lane-limit actuation. All 120 tests and lint pass before that matrix.
+
+## Accepted checkpoint, 2026-10-17
+
+Nine of nine runs accepted, each clearing 22,951 vehicles with zero SUMO warnings, collisions, teleports or final running/waiting/discarded vehicles. All 125 tests and lint pass. The independent audit verifies 270 raw metrics, 90 paired metrics, every VSL decision, matching exported fleets/schedules, and exact H0/CACC replay against M5. Every central run has nonzero actuation and restored native limits.
+
+See [closeout](m6-centralized-control-report.md) and [results](../reports/m6/README.md).
+M5 merged before implementation; PR #2 targets main directly. No settings changed
+after the short nonactivating probe.

@@ -1,6 +1,6 @@
 # Project memory and handoff
 
-**Updated:** 2026-10-16
+**Updated:** 2026-10-17
 **Repository:** `sabcodes/bay-area-autonomous-traffic-simulation`
 **Local Obsidian vault:** `Auto-Car Traffic Research`
 
@@ -10,7 +10,7 @@ This project compares human-like traffic with explainable autonomous-vehicle
 coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
-of truth: **M0–M5 practical experiment work is complete. M3 retains its fidelity limit; M5 is a supervised comparison.**
+of truth: **M0–M6 practical experiment work is complete. M3 retains its fidelity limit; M5 is a supervised comparison; M6 is a fixed centralized VSL comparison.**
 M4 is complete; the [harness closeout](m4-experiment-harness-report.md) records
 its acceptance evidence.
 
@@ -102,7 +102,7 @@ actual departures, temporal speed variability is not a wave-stability test,
 and acceleration smoothness is not energy use. M3's held-out failure remains
 unchanged. At the M4 checkpoint, M5–M8 remained. The later M5 closeout below is the current resume point.
 
-## M5 closeout and current resume point, 2026-10-16
+## Historical M5 closeout and resume point, 2026-10-16
 
 M5 is complete for the [supervised comparison](m5-cooperative-cacc-report.md).
 The original plan/spec commits c276d1f/9fe5c69 preceded source. The final
@@ -160,3 +160,40 @@ GitHub reported the PR mergeable with no configured status checks; the accepted
 102-test and six-run evidence remains in the M5 closeout. Local main was
 fast-forwarded to the merge commit. Obsidian publication records now distinguish
 the historical PR checkpoint from the merged main state. M6 remains next.
+
+## M6 implementation checkpoint, 2026-10-17
+
+The [plan](m6-centralized-control-plan.md) at f1550ca and
+[spec](m6-centralized-control-spec.md) at b50a22c preceded source 26a71d6.
+M5 PR #1 merged while M6 was starting; use the attached isolated worktree
+`/Users/sabarnoislam/.codex/worktrees/m6-centralized-control/Self Driving Cars Bay Area Traffic Simulation`
+for M6. Do not switch or modify the shared primary checkout.
+[PR #2](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/2)
+is the M6 publication surface.
+
+The frozen rule uses downstream simulated speed and upstream native lane limits:
+30 s vehicle-timestep weighting, 15/20 m/s hysteresis, 25 m/s congestion target,
+1 m/s limit changes and native clearance recovery. No network/demand/fleet/
+physical-parameter changes. All 120 tests and lint passed. The 3000 s preflight
+had zero SUMO warnings but no actuation (minimum interval speed 18.3452 m/s);
+its false actuation acceptance is preserved without threshold tuning. Full
+H0/CACC/CENTRAL seeds 41-43 are running. Final acceptance is pending; preserve
+M3's held-out failure and M5's low engagement.
+
+## M6 closeout and current resume point, 2026-10-17
+
+Nine of nine runs accepted, each clearing 22,951 vehicles with zero SUMO warnings, collisions, teleports or final running/waiting/discarded vehicles. All 125 tests and lint pass. The independent audit verifies 270 raw metrics, 90 paired metrics, every VSL decision, matching exported fleets/schedules, and exact H0/CACC replay against M5. Every central run has nonzero actuation and restored native limits.
+
+CENTRAL versus H0 changes mean all-exit throughput +0.36%, scheduled-cohort total time -0.98%, RMS acceleration +0.47%, and peak insertion backlog -1.63%.
+
+The [closeout](m6-centralized-control-report.md), [plan](m6-centralized-control-plan.md),
+[specification](m6-centralized-control-spec.md) and [results](../reports/m6/README.md)
+are authoritative. The 3000 s preflight did not activate; preserve it. The full
+window satisfies actuation without changing thresholds, geography or gains.
+M3 field-fidelity and M5 low-engagement caveats remain. M7 sensitivity and M8
+research packaging are next; no further policy is authorized by this closeout.
+
+Use the attached M6 worktree and PR #2; do not assume main contains the M6
+implementation until merged. Runtime source 26a71d6 is pinned by report hashes.
+The accepted raw path is outputs/us101_corridor/m6/m6_h0_cacc_central_vsl_2025_10_08/.
+The publication checkpoint is recorded separately in Obsidian after Git push.

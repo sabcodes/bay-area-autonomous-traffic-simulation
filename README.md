@@ -8,7 +8,7 @@ This is a simulation research project, not a prediction system or a safety-criti
 
 For the current milestone state and handoff context, see the
 [project memory](docs/project-memory.md), [roadmap](docs/project-roadmap.md),
-and [domain glossary](CONTEXT.md). M0–M5 experiment work is complete at the documented practical standards. M3's
+and [domain glossary](CONTEXT.md). M0–M6 experiment work is complete at the documented practical standards. M3's
 held-out speed target was missed; see the [closeout record](docs/m3-human-baseline-report.md).
 M4 is complete; see the [harness closeout](docs/m4-experiment-harness-report.md).
 See the [M4 plan](docs/m4-experiment-harness-plan.md) and
@@ -32,6 +32,14 @@ Reports include paired seed differences, scheduled-cohort total travel time,
 insertion delays and backlog alongside M4 metrics. The treatment combines
 cruise/follow control and feedforward; it does not isolate the benefit of V2V
 alone. Use a new experiment ID when repeating to preserve existing outputs.
+
+
+M6 centralized control is complete for the fixed VSL comparison. See the
+[plan](docs/m6-centralized-control-plan.md), [frozen specification](docs/m6-centralized-control-spec.md),
+[closeout](docs/m6-centralized-control-report.md), and [three-policy results](reports/m6/README.md).
+Nine clean runs, 125 tests and the independent raw-output audit pass. H0 and
+supervised CACC exactly replay M5. M7 sensitivity and M8 packaging remain;
+M3 fidelity and M5 low-engagement limitations remain in force.
 
 
 ## What we will build first

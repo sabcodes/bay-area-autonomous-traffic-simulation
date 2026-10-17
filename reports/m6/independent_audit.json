@@ -1,0 +1,1820 @@
+{
+  "accepted": true,
+  "report_sha256": "3bb9712106b3ae3fd222a2740304abd479b4d0c310c6a5edbc75522f52217724",
+  "runs": [
+    {
+      "scenario": "CACC",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "exact_m5_replay": true,
+      "policy": null
+    },
+    {
+      "scenario": "CACC",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "exact_m5_replay": true,
+      "policy": null
+    },
+    {
+      "scenario": "CACC",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "exact_m5_replay": true,
+      "policy": null
+    },
+    {
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "exact_m5_replay": false,
+      "policy": {
+        "updates": 510,
+        "lane_commands": 140,
+        "limited_lane_seconds": 65940.0,
+        "congested_decisions": 153
+      }
+    },
+    {
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "exact_m5_replay": false,
+      "policy": {
+        "updates": 510,
+        "lane_commands": 140,
+        "limited_lane_seconds": 69300.0,
+        "congested_decisions": 161
+      }
+    },
+    {
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "exact_m5_replay": false,
+      "policy": {
+        "updates": 510,
+        "lane_commands": 140,
+        "limited_lane_seconds": 68880.0,
+        "congested_decisions": 160
+      }
+    },
+    {
+      "scenario": "H0",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "exact_m5_replay": true,
+      "policy": null
+    },
+    {
+      "scenario": "H0",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "exact_m5_replay": true,
+      "policy": null
+    },
+    {
+      "scenario": "H0",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "exact_m5_replay": true,
+      "policy": null
+    }
+  ],
+  "matched_exported_fleets_and_schedules": true,
+  "raw_metric_checks": 270,
+  "paired_metric_checks": 90,
+  "paired_comparisons": [
+    {
+      "reference": "H0",
+      "treatment": "CACC",
+      "metrics": {
+        "window_exit_vehicles": {
+          "mean_difference": -49,
+          "sample_standard_deviation": 69.41901756723442,
+          "percent_of_reference_mean": -0.2960903982113723,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -62
+            },
+            {
+              "seed": 42,
+              "difference": -111
+            },
+            {
+              "seed": 43,
+              "difference": 26
+            }
+          ]
+        },
+        "network_exit_throughput_vehicles_per_hour": {
+          "mean_difference": -24.5,
+          "sample_standard_deviation": 34.70950878361721,
+          "percent_of_reference_mean": -0.2960903982113723,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -31.0
+            },
+            {
+              "seed": 42,
+              "difference": -55.5
+            },
+            {
+              "seed": 43,
+              "difference": 13.0
+            }
+          ]
+        },
+        "cohort_completed_vehicles": {
+          "mean_difference": -20,
+          "sample_standard_deviation": 91.04394543296111,
+          "percent_of_reference_mean": -0.11294542853378009,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -68
+            },
+            {
+              "seed": 42,
+              "difference": -77
+            },
+            {
+              "seed": 43,
+              "difference": 85
+            }
+          ]
+        },
+        "cohort_unfinished_vehicles": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": null,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "cohort_mean_travel_time_seconds": {
+          "mean_difference": 12.442819212706619,
+          "sample_standard_deviation": 10.228348424728422,
+          "percent_of_reference_mean": 1.356157825479313,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 18.657573260854974
+            },
+            {
+              "seed": 42,
+              "difference": 18.0332428065135
+            },
+            {
+              "seed": 43,
+              "difference": 0.6376415707513843
+            }
+          ]
+        },
+        "cohort_p95_travel_time_seconds": {
+          "mean_difference": 42.016666666666424,
+          "sample_standard_deviation": 44.26786597898402,
+          "percent_of_reference_mean": 1.699170634880506,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 12.575000000000728
+            },
+            {
+              "seed": 42,
+              "difference": 92.92499999999927
+            },
+            {
+              "seed": 43,
+              "difference": 20.549999999999272
+            }
+          ]
+        },
+        "cohort_mean_waiting_time_seconds": {
+          "mean_difference": -1.4857556109418912,
+          "sample_standard_deviation": 2.786468679274396,
+          "percent_of_reference_mean": -3.593460310142426,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -3.6749021152142944
+            },
+            {
+              "seed": 42,
+              "difference": 1.6509086988362398
+            },
+            {
+              "seed": 43,
+              "difference": -2.4332734164476193
+            }
+          ]
+        },
+        "cohort_mean_time_loss_seconds": {
+          "mean_difference": 12.78809093309807,
+          "sample_standard_deviation": 10.244962996877833,
+          "percent_of_reference_mean": 2.2449011530814365,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 19.565186759595008
+            },
+            {
+              "seed": 42,
+              "difference": 17.796714920332192
+            },
+            {
+              "seed": 43,
+              "difference": 1.0023711193670124
+            }
+          ]
+        },
+        "trajectory_timesteps": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "populated_timesteps": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "vehicle_samples": {
+          "mean_difference": 177518.33333333334,
+          "sample_standard_deviation": 103978.99980925636,
+          "percent_of_reference_mean": 1.2031765550975926,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 259311
+            },
+            {
+              "seed": 42,
+              "difference": 212741
+            },
+            {
+              "seed": 43,
+              "difference": 60503
+            }
+          ]
+        },
+        "mean_stopped_vehicles": {
+          "mean_difference": -2.5561111111111123,
+          "sample_standard_deviation": 6.078269435984207,
+          "percent_of_reference_mean": -2.8746308568286816,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -6.265000000000001
+            },
+            {
+              "seed": 42,
+              "difference": 4.458611111111111
+            },
+            {
+              "seed": 43,
+              "difference": -5.861944444444447
+            }
+          ]
+        },
+        "peak_stopped_vehicles": {
+          "mean_difference": 10.666666666666666,
+          "sample_standard_deviation": 15.307950004273378,
+          "percent_of_reference_mean": 5.0552922590837275,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -7
+            },
+            {
+              "seed": 42,
+              "difference": 20
+            },
+            {
+              "seed": 43,
+              "difference": 19
+            }
+          ]
+        },
+        "stopped_vehicle_seconds": {
+          "mean_difference": -18404.0,
+          "sample_standard_deviation": 43763.53993908628,
+          "percent_of_reference_mean": -2.87463085682868,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -45108.0
+            },
+            {
+              "seed": 42,
+              "difference": 32102.0
+            },
+            {
+              "seed": 43,
+              "difference": -42206.0
+            }
+          ]
+        },
+        "mean_ramp_stopped_vehicles": {
+          "mean_difference": -2.9234722222222222,
+          "sample_standard_deviation": 0.5514016756144021,
+          "percent_of_reference_mean": -28.842148533844888,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -2.4736111111111105
+            },
+            {
+              "seed": 42,
+              "difference": -2.7581944444444453
+            },
+            {
+              "seed": 43,
+              "difference": -3.538611111111111
+            }
+          ]
+        },
+        "peak_ramp_stopped_vehicles": {
+          "mean_difference": -1.6666666666666667,
+          "sample_standard_deviation": 2.0816659994661326,
+          "percent_of_reference_mean": -4.000000000000001,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -4
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": -1
+            }
+          ]
+        },
+        "mean_timestep_speed_mph": {
+          "mean_difference": -0.4394065043366915,
+          "sample_standard_deviation": 0.27663580369220614,
+          "percent_of_reference_mean": -1.6906670706279576,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -0.6396240698959694
+            },
+            {
+              "seed": 42,
+              "difference": -0.5548483251645813
+            },
+            {
+              "seed": 43,
+              "difference": -0.12374711794952375
+            }
+          ]
+        },
+        "temporal_mean_speed_stddev_mph": {
+          "mean_difference": -0.18404354924468733,
+          "sample_standard_deviation": 0.12216450147644681,
+          "percent_of_reference_mean": -3.0394746589603194,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -0.05656623780369774
+            },
+            {
+              "seed": 42,
+              "difference": -0.3000920197404371
+            },
+            {
+              "seed": 43,
+              "difference": -0.19547239018992713
+            }
+          ]
+        },
+        "mean_squared_acceleration_m2_per_s4": {
+          "mean_difference": -0.010526725618230573,
+          "sample_standard_deviation": 0.0067070977039441525,
+          "percent_of_reference_mean": -1.5862191098745522,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -0.014243755649729684
+            },
+            {
+              "seed": 42,
+              "difference": -0.014552335466804789
+            },
+            {
+              "seed": 43,
+              "difference": -0.0027840857381572492
+            }
+          ]
+        },
+        "rms_acceleration_m_per_s2": {
+          "mean_difference": -0.006491399699497784,
+          "sample_standard_deviation": 0.004139771254493939,
+          "percent_of_reference_mean": -0.7968443047415107,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -0.00879165564374873
+            },
+            {
+              "seed": 42,
+              "difference": -0.008970227911006656
+            },
+            {
+              "seed": 43,
+              "difference": -0.0017123155437379634
+            }
+          ]
+        },
+        "window_actual_departures": {
+          "mean_difference": -20,
+          "sample_standard_deviation": 91.04394543296111,
+          "percent_of_reference_mean": -0.11294542853378009,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -68
+            },
+            {
+              "seed": 42,
+              "difference": -77
+            },
+            {
+              "seed": 43,
+              "difference": 85
+            }
+          ]
+        },
+        "unreconstructed_scheduled_departures": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": null,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "scheduled_cohort_vehicles": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "scheduled_cohort_completed_vehicles": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "scheduled_cohort_mean_depart_delay_seconds": {
+          "mean_difference": -2.01174466559083,
+          "sample_standard_deviation": 13.845970769244156,
+          "percent_of_reference_mean": -0.3046810226089602,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -8.123355665313738
+            },
+            {
+              "seed": 42,
+              "difference": 13.838476209105579
+            },
+            {
+              "seed": 43,
+              "difference": -11.75035454056433
+            }
+          ]
+        },
+        "scheduled_cohort_mean_total_time_seconds": {
+          "mean_difference": 10.464904559310147,
+          "sample_standard_deviation": 20.01091230338037,
+          "percent_of_reference_mean": 0.6822407610622988,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 12.370482664189012
+            },
+            {
+              "seed": 42,
+              "difference": 29.454863318499747
+            },
+            {
+              "seed": 43,
+              "difference": -10.43063230475832
+            }
+          ]
+        },
+        "whole_run_mean_depart_delay_seconds": {
+          "mean_difference": -1.872373026592906,
+          "sample_standard_deviation": 12.291652635999665,
+          "percent_of_reference_mean": -0.31783110649641655,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -7.328090279290677
+            },
+            {
+              "seed": 42,
+              "difference": 12.202779835301271
+            },
+            {
+              "seed": 43,
+              "difference": -10.491808635789312
+            }
+          ]
+        },
+        "whole_run_max_depart_delay_seconds": {
+          "mean_difference": -161.16666666666666,
+          "sample_standard_deviation": 130.2999744180072,
+          "percent_of_reference_mean": -4.091009087370755,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -293.5
+            },
+            {
+              "seed": 42,
+              "difference": -33.0
+            },
+            {
+              "seed": 43,
+              "difference": -157.0
+            }
+          ]
+        },
+        "peak_insertion_backlog_vehicles": {
+          "mean_difference": 15,
+          "sample_standard_deviation": 88.42510955605314,
+          "percent_of_reference_mean": 0.535586765055939,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 62
+            },
+            {
+              "seed": 42,
+              "difference": 70
+            },
+            {
+              "seed": 43,
+              "difference": -87
+            }
+          ]
+        },
+        "window_peak_insertion_backlog_vehicles": {
+          "mean_difference": 15,
+          "sample_standard_deviation": 88.42510955605314,
+          "percent_of_reference_mean": 0.535586765055939,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 62
+            },
+            {
+              "seed": 42,
+              "difference": 70
+            },
+            {
+              "seed": 43,
+              "difference": -87
+            }
+          ]
+        }
+      }
+    },
+    {
+      "reference": "H0",
+      "treatment": "CENTRAL",
+      "metrics": {
+        "window_exit_vehicles": {
+          "mean_difference": 59,
+          "sample_standard_deviation": 157.3435731131081,
+          "percent_of_reference_mean": 0.3565170100912442,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 6
+            },
+            {
+              "seed": 42,
+              "difference": -65
+            },
+            {
+              "seed": 43,
+              "difference": 236
+            }
+          ]
+        },
+        "network_exit_throughput_vehicles_per_hour": {
+          "mean_difference": 29.5,
+          "sample_standard_deviation": 78.67178655655405,
+          "percent_of_reference_mean": 0.3565170100912442,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 3.0
+            },
+            {
+              "seed": 42,
+              "difference": -32.5
+            },
+            {
+              "seed": 43,
+              "difference": 118.0
+            }
+          ]
+        },
+        "cohort_completed_vehicles": {
+          "mean_difference": 46.666666666666664,
+          "sample_standard_deviation": 117.7978494427353,
+          "percent_of_reference_mean": 0.26353933324548684,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 37
+            },
+            {
+              "seed": 42,
+              "difference": -66
+            },
+            {
+              "seed": 43,
+              "difference": 169
+            }
+          ]
+        },
+        "cohort_unfinished_vehicles": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": null,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "cohort_mean_travel_time_seconds": {
+          "mean_difference": -10.76455341608524,
+          "sample_standard_deviation": 19.367761364353907,
+          "percent_of_reference_mean": -1.1732416185960606,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -7.731284659642029
+            },
+            {
+              "seed": 42,
+              "difference": 6.907601660865907
+            },
+            {
+              "seed": 43,
+              "difference": -31.469977249479598
+            }
+          ]
+        },
+        "cohort_p95_travel_time_seconds": {
+          "mean_difference": -77.14166666666763,
+          "sample_standard_deviation": 83.2132513986425,
+          "percent_of_reference_mean": -3.1196395412711486,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -12.924999999999272
+            },
+            {
+              "seed": 42,
+              "difference": -47.350000000000364
+            },
+            {
+              "seed": 43,
+              "difference": -171.15000000000327
+            }
+          ]
+        },
+        "cohort_mean_waiting_time_seconds": {
+          "mean_difference": -0.48641140654112053,
+          "sample_standard_deviation": 1.1957905562228095,
+          "percent_of_reference_mean": -1.1764384875504468,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0.8590744775057146
+            },
+            {
+              "seed": 42,
+              "difference": -0.8905173142139375
+            },
+            {
+              "seed": 43,
+              "difference": -1.4277913829151387
+            }
+          ]
+        },
+        "cohort_mean_time_loss_seconds": {
+          "mean_difference": -12.911910350082016,
+          "sample_standard_deviation": 19.34360673912328,
+          "percent_of_reference_mean": -2.266637184942276,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -9.782343736751159
+            },
+            {
+              "seed": 42,
+              "difference": 4.676099384670806
+            },
+            {
+              "seed": 43,
+              "difference": -33.62948669816569
+            }
+          ]
+        },
+        "trajectory_timesteps": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "populated_timesteps": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "vehicle_samples": {
+          "mean_difference": -82835,
+          "sample_standard_deviation": 180244.86165491655,
+          "percent_of_reference_mean": -0.5614357011473504,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -82026
+            },
+            {
+              "seed": 42,
+              "difference": 97004
+            },
+            {
+              "seed": 43,
+              "difference": -263483
+            }
+          ]
+        },
+        "mean_stopped_vehicles": {
+          "mean_difference": 0.6984722222222217,
+          "sample_standard_deviation": 4.905667504935641,
+          "percent_of_reference_mean": 0.7855095945985341,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 6.349444444444444
+            },
+            {
+              "seed": 42,
+              "difference": -1.7872222222222263
+            },
+            {
+              "seed": 43,
+              "difference": -2.4668055555555526
+            }
+          ]
+        },
+        "peak_stopped_vehicles": {
+          "mean_difference": 0.3333333333333333,
+          "sample_standard_deviation": 34.486712417006835,
+          "percent_of_reference_mean": 0.15797788309636648,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 31
+            },
+            {
+              "seed": 42,
+              "difference": -37
+            },
+            {
+              "seed": 43,
+              "difference": 7
+            }
+          ]
+        },
+        "stopped_vehicle_seconds": {
+          "mean_difference": 5029.0,
+          "sample_standard_deviation": 35320.80603553662,
+          "percent_of_reference_mean": 0.7855095945985346,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 45716.0
+            },
+            {
+              "seed": 42,
+              "difference": -12868.0
+            },
+            {
+              "seed": 43,
+              "difference": -17761.0
+            }
+          ]
+        },
+        "mean_ramp_stopped_vehicles": {
+          "mean_difference": -0.16976851851851885,
+          "sample_standard_deviation": 0.41957265179435244,
+          "percent_of_reference_mean": -1.6748880971955817,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -0.4413888888888895
+            },
+            {
+              "seed": 42,
+              "difference": -0.381388888888889
+            },
+            {
+              "seed": 43,
+              "difference": 0.31347222222222193
+            }
+          ]
+        },
+        "peak_ramp_stopped_vehicles": {
+          "mean_difference": -0.6666666666666666,
+          "sample_standard_deviation": 2.516611478423583,
+          "percent_of_reference_mean": -1.5999999999999999,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -3
+            },
+            {
+              "seed": 42,
+              "difference": 2
+            },
+            {
+              "seed": 43,
+              "difference": -1
+            }
+          ]
+        },
+        "mean_timestep_speed_mph": {
+          "mean_difference": 0.1935264249974793,
+          "sample_standard_deviation": 0.42333207278544893,
+          "percent_of_reference_mean": 0.7446151816380121,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0.16239788669660982
+            },
+            {
+              "seed": 42,
+              "difference": -0.21338215045427233
+            },
+            {
+              "seed": 43,
+              "difference": 0.6315635387501004
+            }
+          ]
+        },
+        "temporal_mean_speed_stddev_mph": {
+          "mean_difference": -0.12266850045921777,
+          "sample_standard_deviation": 0.2818737941668655,
+          "percent_of_reference_mean": -2.025867247880287,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -0.03653914932148883
+            },
+            {
+              "seed": 42,
+              "difference": 0.10609238750939998
+            },
+            {
+              "seed": 43,
+              "difference": -0.43755873956556446
+            }
+          ]
+        },
+        "mean_squared_acceleration_m2_per_s4": {
+          "mean_difference": 0.0062096179974554895,
+          "sample_standard_deviation": 0.0085234076409117,
+          "percent_of_reference_mean": 0.9356959694595415,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0.0039854410543305185
+            },
+            {
+              "seed": 42,
+              "difference": -0.0009811999803770455
+            },
+            {
+              "seed": 43,
+              "difference": 0.015624612918412994
+            }
+          ]
+        },
+        "rms_acceleration_m_per_s2": {
+          "mean_difference": 0.003794971381234117,
+          "sample_standard_deviation": 0.0052060538111205245,
+          "percent_of_reference_mean": 0.46584734753390494,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0.0024429883170711264
+            },
+            {
+              "seed": 42,
+              "difference": -0.0006017190824283425
+            },
+            {
+              "seed": 43,
+              "difference": 0.009543644909059568
+            }
+          ]
+        },
+        "window_actual_departures": {
+          "mean_difference": 46.666666666666664,
+          "sample_standard_deviation": 117.7978494427353,
+          "percent_of_reference_mean": 0.26353933324548684,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 37
+            },
+            {
+              "seed": 42,
+              "difference": -66
+            },
+            {
+              "seed": 43,
+              "difference": 169
+            }
+          ]
+        },
+        "unreconstructed_scheduled_departures": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": null,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "scheduled_cohort_vehicles": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "scheduled_cohort_completed_vehicles": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "scheduled_cohort_mean_depart_delay_seconds": {
+          "mean_difference": -4.315239539015768,
+          "sample_standard_deviation": 19.543345700948446,
+          "percent_of_reference_mean": -0.6535479467339889,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -8.474668687955386
+            },
+            {
+              "seed": 42,
+              "difference": 16.9729815638907
+            },
+            {
+              "seed": 43,
+              "difference": -21.444031492982617
+            }
+          ]
+        },
+        "scheduled_cohort_mean_total_time_seconds": {
+          "mean_difference": -15.07852054705207,
+          "sample_standard_deviation": 37.34436584668141,
+          "percent_of_reference_mean": -0.9830172148643516,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -13.513765954325436
+            },
+            {
+              "seed": 42,
+              "difference": 21.458873294537625
+            },
+            {
+              "seed": 43,
+              "difference": -53.1806689813684
+            }
+          ]
+        },
+        "whole_run_mean_depart_delay_seconds": {
+          "mean_difference": -3.8431586132775615,
+          "sample_standard_deviation": 17.41395012876527,
+          "percent_of_reference_mean": -0.6523675235387889,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -7.551130669687609
+            },
+            {
+              "seed": 42,
+              "difference": 15.126138294627708
+            },
+            {
+              "seed": 43,
+              "difference": -19.104483464772784
+            }
+          ]
+        },
+        "whole_run_max_depart_delay_seconds": {
+          "mean_difference": -5.0,
+          "sample_standard_deviation": 115.4003899473481,
+          "percent_of_reference_mean": -0.12691858595772765,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -59.0
+            },
+            {
+              "seed": 42,
+              "difference": 127.5
+            },
+            {
+              "seed": 43,
+              "difference": -83.5
+            }
+          ]
+        },
+        "peak_insertion_backlog_vehicles": {
+          "mean_difference": -45.666666666666664,
+          "sample_standard_deviation": 117.68743914850613,
+          "percent_of_reference_mean": -1.6305641513925255,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -38
+            },
+            {
+              "seed": 42,
+              "difference": 68
+            },
+            {
+              "seed": 43,
+              "difference": -167
+            }
+          ]
+        },
+        "window_peak_insertion_backlog_vehicles": {
+          "mean_difference": -45.666666666666664,
+          "sample_standard_deviation": 117.68743914850613,
+          "percent_of_reference_mean": -1.6305641513925255,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -38
+            },
+            {
+              "seed": 42,
+              "difference": 68
+            },
+            {
+              "seed": 43,
+              "difference": -167
+            }
+          ]
+        }
+      }
+    },
+    {
+      "reference": "CACC",
+      "treatment": "CENTRAL",
+      "metrics": {
+        "window_exit_vehicles": {
+          "mean_difference": 108,
+          "sample_standard_deviation": 89.01685233707154,
+          "percent_of_reference_mean": 0.6545454545454545,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 68
+            },
+            {
+              "seed": 42,
+              "difference": 46
+            },
+            {
+              "seed": 43,
+              "difference": 210
+            }
+          ]
+        },
+        "network_exit_throughput_vehicles_per_hour": {
+          "mean_difference": 54.0,
+          "sample_standard_deviation": 44.50842616853577,
+          "percent_of_reference_mean": 0.6545454545454545,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 34.0
+            },
+            {
+              "seed": 42,
+              "difference": 23.0
+            },
+            {
+              "seed": 43,
+              "difference": 105.0
+            }
+          ]
+        },
+        "cohort_completed_vehicles": {
+          "mean_difference": 66.66666666666667,
+          "sample_standard_deviation": 49.3389636426763,
+          "percent_of_reference_mean": 0.3769104649190585,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 105
+            },
+            {
+              "seed": 42,
+              "difference": 11
+            },
+            {
+              "seed": 43,
+              "difference": 84
+            }
+          ]
+        },
+        "cohort_unfinished_vehicles": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": null,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "cohort_mean_travel_time_seconds": {
+          "mean_difference": -23.20737262879186,
+          "sample_standard_deviation": 10.846761418975762,
+          "percent_of_reference_mean": -2.4955557692218706,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -26.388857920497003
+            },
+            {
+              "seed": 42,
+              "difference": -11.125641145647592
+            },
+            {
+              "seed": 43,
+              "difference": -32.10761882023098
+            }
+          ]
+        },
+        "cohort_p95_travel_time_seconds": {
+          "mean_difference": -119.15833333333406,
+          "sample_standard_deviation": 85.08845520006524,
+          "percent_of_reference_mean": -4.738298401126697,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -25.5
+            },
+            {
+              "seed": 42,
+              "difference": -140.27499999999964
+            },
+            {
+              "seed": 43,
+              "difference": -191.70000000000255
+            }
+          ]
+        },
+        "cohort_mean_waiting_time_seconds": {
+          "mean_difference": 0.9993442044007708,
+          "sample_standard_deviation": 3.5377052962541584,
+          "percent_of_reference_mean": 2.5071139679606835,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 4.533976592720009
+            },
+            {
+              "seed": 42,
+              "difference": -2.5414260130501773
+            },
+            {
+              "seed": 43,
+              "difference": 1.0054820335324806
+            }
+          ]
+        },
+        "cohort_mean_time_loss_seconds": {
+          "mean_difference": -25.700001283180086,
+          "sample_standard_deviation": 11.209894653743053,
+          "percent_of_reference_mean": -4.412482468215233,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -29.347530496346167
+            },
+            {
+              "seed": 42,
+              "difference": -13.120615535661386
+            },
+            {
+              "seed": 43,
+              "difference": -34.631857817532705
+            }
+          ]
+        },
+        "trajectory_timesteps": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "populated_timesteps": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "vehicle_samples": {
+          "mean_difference": -260353.33333333334,
+          "sample_standard_deviation": 125541.53575742705,
+          "percent_of_reference_mean": -1.7436332695389685,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -341337
+            },
+            {
+              "seed": 42,
+              "difference": -115737
+            },
+            {
+              "seed": 43,
+              "difference": -323986
+            }
+          ]
+        },
+        "mean_stopped_vehicles": {
+          "mean_difference": 3.254583333333334,
+          "sample_standard_deviation": 9.430924470161065,
+          "percent_of_reference_mean": 3.7684700544425707,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 12.614444444444445
+            },
+            {
+              "seed": 42,
+              "difference": -6.245833333333337
+            },
+            {
+              "seed": 43,
+              "difference": 3.3951388888888943
+            }
+          ]
+        },
+        "peak_stopped_vehicles": {
+          "mean_difference": -10.333333333333334,
+          "sample_standard_deviation": 47.521924764610844,
+          "percent_of_reference_mean": -4.661654135338347,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 38
+            },
+            {
+              "seed": 42,
+              "difference": -57
+            },
+            {
+              "seed": 43,
+              "difference": -12
+            }
+          ]
+        },
+        "stopped_vehicle_seconds": {
+          "mean_difference": 23433.0,
+          "sample_standard_deviation": 67902.65618515965,
+          "percent_of_reference_mean": 3.7684700544425693,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 90824.0
+            },
+            {
+              "seed": 42,
+              "difference": -44970.0
+            },
+            {
+              "seed": 43,
+              "difference": 24445.0
+            }
+          ]
+        },
+        "mean_ramp_stopped_vehicles": {
+          "mean_difference": 2.7537037037037035,
+          "sample_standard_deviation": 0.9667020101829569,
+          "percent_of_reference_mean": 38.178865545948796,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 2.032222222222221
+            },
+            {
+              "seed": 42,
+              "difference": 2.3768055555555563
+            },
+            {
+              "seed": 43,
+              "difference": 3.852083333333333
+            }
+          ]
+        },
+        "peak_ramp_stopped_vehicles": {
+          "mean_difference": 1,
+          "sample_standard_deviation": 1.0,
+          "percent_of_reference_mean": 2.5,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 1
+            },
+            {
+              "seed": 42,
+              "difference": 2
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "mean_timestep_speed_mph": {
+          "mean_difference": 0.6329329293341708,
+          "sample_standard_deviation": 0.2534958346258322,
+          "percent_of_reference_mean": 2.4771628284931393,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0.8020219565925792
+            },
+            {
+              "seed": 42,
+              "difference": 0.34146617471030893
+            },
+            {
+              "seed": 43,
+              "difference": 0.7553106566996242
+            }
+          ]
+        },
+        "temporal_mean_speed_stddev_mph": {
+          "mean_difference": 0.061375048785469545,
+          "sample_standard_deviation": 0.32610731951287336,
+          "percent_of_reference_mean": 1.045381517390574,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0.02002708848220891
+            },
+            {
+              "seed": 42,
+              "difference": 0.40618440724983707
+            },
+            {
+              "seed": 43,
+              "difference": -0.24208634937563733
+            }
+          ]
+        },
+        "mean_squared_acceleration_m2_per_s4": {
+          "mean_difference": 0.016736343615686062,
+          "sample_standard_deviation": 0.0027426195714828814,
+          "percent_of_reference_mean": 2.5625629424294734,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0.018229196704060202
+            },
+            {
+              "seed": 42,
+              "difference": 0.013571135486427743
+            },
+            {
+              "seed": 43,
+              "difference": 0.018408698656570244
+            }
+          ]
+        },
+        "rms_acceleration_m_per_s2": {
+          "mean_difference": 0.010286371080731901,
+          "sample_standard_deviation": 0.0016609516283999,
+          "percent_of_reference_mean": 1.2728341587784464,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0.011234643960819857
+            },
+            {
+              "seed": 42,
+              "difference": 0.008368508828578314
+            },
+            {
+              "seed": 43,
+              "difference": 0.011255960452797531
+            }
+          ]
+        },
+        "window_actual_departures": {
+          "mean_difference": 66.66666666666667,
+          "sample_standard_deviation": 49.3389636426763,
+          "percent_of_reference_mean": 0.3769104649190585,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 105
+            },
+            {
+              "seed": 42,
+              "difference": 11
+            },
+            {
+              "seed": 43,
+              "difference": 84
+            }
+          ]
+        },
+        "unreconstructed_scheduled_departures": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": null,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "scheduled_cohort_vehicles": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "scheduled_cohort_completed_vehicles": {
+          "mean_difference": 0,
+          "sample_standard_deviation": 0.0,
+          "percent_of_reference_mean": 0.0,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 0
+            },
+            {
+              "seed": 42,
+              "difference": 0
+            },
+            {
+              "seed": 43,
+              "difference": 0
+            }
+          ]
+        },
+        "scheduled_cohort_mean_depart_delay_seconds": {
+          "mean_difference": -2.3034948734249383,
+          "sample_standard_deviation": 6.633161072264669,
+          "percent_of_reference_mean": -0.349933103884391,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -0.3513130226416479
+            },
+            {
+              "seed": 42,
+              "difference": 3.1345053547851194
+            },
+            {
+              "seed": 43,
+              "difference": -9.693676952418286
+            }
+          ]
+        },
+        "scheduled_cohort_mean_total_time_seconds": {
+          "mean_difference": -25.543425106362218,
+          "sample_standard_deviation": 17.3795299183676,
+          "percent_of_reference_mean": -1.6539738918590596,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -25.884248618514448
+            },
+            {
+              "seed": 42,
+              "difference": -7.995990023962122
+            },
+            {
+              "seed": 43,
+              "difference": -42.75003667661008
+            }
+          ]
+        },
+        "whole_run_mean_depart_delay_seconds": {
+          "mean_difference": -1.9707855866846558,
+          "sample_standard_deviation": 5.9633024374593555,
+          "percent_of_reference_mean": -0.3356030679867908,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -0.2230403903969318
+            },
+            {
+              "seed": 42,
+              "difference": 2.923358459326437
+            },
+            {
+              "seed": 43,
+              "difference": -8.612674828983472
+            }
+          ]
+        },
+        "whole_run_max_depart_delay_seconds": {
+          "mean_difference": 156.16666666666666,
+          "sample_standard_deviation": 80.58742664543479,
+          "percent_of_reference_mean": 4.1331792397067515,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": 234.5
+            },
+            {
+              "seed": 42,
+              "difference": 160.5
+            },
+            {
+              "seed": 43,
+              "difference": 73.5
+            }
+          ]
+        },
+        "peak_insertion_backlog_vehicles": {
+          "mean_difference": -60.666666666666664,
+          "sample_standard_deviation": 51.781592611017025,
+          "percent_of_reference_mean": -2.154611104534154,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -100
+            },
+            {
+              "seed": 42,
+              "difference": -2
+            },
+            {
+              "seed": 43,
+              "difference": -80
+            }
+          ]
+        },
+        "window_peak_insertion_backlog_vehicles": {
+          "mean_difference": -60.666666666666664,
+          "sample_standard_deviation": 51.781592611017025,
+          "percent_of_reference_mean": -2.154611104534154,
+          "pairs": [
+            {
+              "seed": 41,
+              "difference": -100
+            },
+            {
+              "seed": 42,
+              "difference": -2
+            },
+            {
+              "seed": 43,
+              "difference": -80
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Policy observations are audited from the recorded interval totals; they are not an independent live sensor feed. FCD uses 1 s/0.01 precision."
+  ]
+}
