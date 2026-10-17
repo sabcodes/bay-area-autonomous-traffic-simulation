@@ -105,6 +105,17 @@ live sensor histories are not exported; communication timing and loss behavior
 also have deterministic real-engine integration checks. Fingerprinted caches
 reuse a raw audit only when run metadata, every raw file and both auditors match.
 
+## Local evidence availability
+
+During the sweep, iCloud evicted 86 runtime evidence files and a raw-audit
+fingerprint read timed out. Apple's documented
+[FileManager download API](https://developer.apple.com/documentation/foundation/filemanager/startdownloadingubiquitousitem(at:))
+restored them through a native CLI. Cloud-only count returned to zero; raw
+checks and cache fingerprints were retained. No simulation reruns or policy
+changes followed. Mac operations remain CLI-only at the user's request.
+Keep raw evidence locally available when reproducing audits in cloud-managed
+folders; local availability is separate from scientific run acceptance.
+
 ## Limits and next milestone
 
 M3 failed held-out fidelity remains (combined speed MAE 14.90 mph; October 15

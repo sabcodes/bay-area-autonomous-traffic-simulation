@@ -133,6 +133,9 @@ M6 centralized control is next. M3's failed held-out fit remains unchanged.
 
 ## Working rules
 
+- Use CLI access for Mac operations. If a GUI-only action is necessary, ask
+  the user to perform it; the user explicitly declined Mac UI control during M7.
+
 - Keep the repository documentation and versioned inputs authoritative for
   reproducibility. Obsidian is a navigable research notebook and handoff
   surface; link back to the relevant repository record when a finding changes.
@@ -227,3 +230,23 @@ is the publication surface. The initial push approval block was resolved by
 verifying the existing private repository and account admin access. Obsidian
 plan/spec/decisions and implementation checkpoint were verified through CLI.
 M3 fidelity, M5 low engagement, and all M6 limitations remain.
+
+## M7 evidence-storage checkpoint, 2026-10-17
+
+At 24/54 clean runs, iCloud optimization evicted 86 M7 files. An independent
+raw audit encountered `TimeoutError: [Errno 60]` during SHA-256 fingerprinting,
+after its numeric checks. This was a local-file availability problem, not a
+simulation failure. Mac UI access was declined; the user explicitly requested
+CLI access or a request for their help. Do not use Mac UI control.
+
+Apple's documented FileManager `startDownloadingUbiquitousItem(at:)` API restored
+all 86 files through a small native Objective-C CLI under outputs/; the Swift
+command-line toolchain had an unrelated module-definition error. Cloud-only
+file count returned to zero. No global settings, simulation reruns or treatment
+changes were needed. The incremental audit now restores cloud-only M7 files
+through CLI and retries transient reads at most three times. Auditor source,
+raw metric checks and cache fingerprint rules are unchanged. Active audit
+session changed to 86160; campaign session 78457 continues. This runtime session
+reference is a temporary handoff aid, not scientific evidence.
+
+Primary API source: https://developer.apple.com/documentation/foundation/filemanager/startdownloadingubiquitousitem(at:)
