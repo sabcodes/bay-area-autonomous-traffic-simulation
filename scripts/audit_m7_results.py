@@ -234,6 +234,11 @@ def audit_run(job):
         "accepted": run["accepted"],
         "policy": policy,
         "fleet_complete": unknown == 0,
+        "raw_file_sha256": {
+            p.name: sha(p)
+            for p in sorted(directory.iterdir())
+            if p.suffix in {".xml", ".gz", ".log"} or p.name == "controller_diagnostics.json"
+        },
     }, fleet
 
 
