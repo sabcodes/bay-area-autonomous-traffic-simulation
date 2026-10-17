@@ -90,3 +90,12 @@ Primary API references checked 2026-10-17:
 https://sumo.dlr.de/docs/TraCI/Change_Lane_State.html
 https://sumo.dlr.de/docs/TraCI/Lane_Value_Retrieval.html
 Installed SUMO/libsumo 1.27.1 is the runtime authority for integration checks.
+
+## Preflight disclosure, before the full matrix
+
+The 3000 s seed-41 probe completed/restored with zero SUMO warnings, but its
+actuation gate is false: the minimum observed 30 s mean was 18.3452 m/s, above
+the frozen 15 m/s trigger. No commands were issued. This nonactivating probe is
+preserved in reports/m6/preflight_seed41.json. The full window will be evaluated
+without changing thresholds or geography; final acceptance still requires
+nonzero lane-limit actuation. All 120 tests and lint pass before that matrix.

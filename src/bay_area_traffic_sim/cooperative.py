@@ -26,6 +26,11 @@ DEFAULT_CONTROLLER = {
 
 def validate_controller(config: dict, human_parameters: dict) -> None:
     """Require explicit finite settings compatible with the frozen safety layer."""
+    if isinstance(config, dict) and config.get("policy") == "central_vsl":
+        from bay_area_traffic_sim.centralized import validate_controller as validate_central
+
+        validate_central(config)
+        return
     if not isinstance(config, dict) or set(config) != set(DEFAULT_CONTROLLER):
         raise ValueError("Controller requires exactly the documented policy and parameter keys.")
     if config["policy"] != "supervised_cacc":
@@ -93,6 +98,11 @@ def run_controlled(
     min_gap: float,
 ) -> dict:
     """Subscribe to bounded leaders and command passengers from one snapshot per step."""
+    if config.get("policy") == "central_vsl":
+        from bay_area_traffic_sim.centralized import run_controlled as run_central
+
+        return run_central(command, end_seconds, config, diagnostics_path)
+
     import traci
     from traci import constants as tc
 

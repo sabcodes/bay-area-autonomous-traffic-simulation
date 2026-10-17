@@ -1,0 +1,6168 @@
+{
+  "seed": 43,
+  "period_seconds": 300,
+  "detectors": [
+    {
+      "station_id": 401507,
+      "station_name": "SHORELINE BLVD",
+      "edge_id": "509747406-AddedOffRampEdge",
+      "lane_ids": [
+        "509747406-AddedOffRampEdge_1",
+        "509747406-AddedOffRampEdge_2",
+        "509747406-AddedOffRampEdge_3",
+        "509747406-AddedOffRampEdge_4",
+        "509747406-AddedOffRampEdge_5",
+        "509747406-AddedOffRampEdge_6"
+      ],
+      "position_meters": 70.23549720996022,
+      "reported_lane_count": 6,
+      "recorded_lane_ids": null
+    },
+    {
+      "station_id": 401534,
+      "station_name": "MOFFETT BLVD",
+      "edge_id": "850032296",
+      "lane_ids": [
+        "850032296_0",
+        "850032296_1",
+        "850032296_2",
+        "850032296_3"
+      ],
+      "position_meters": 189.0179244361562,
+      "reported_lane_count": 4,
+      "recorded_lane_ids": null
+    },
+    {
+      "station_id": 401948,
+      "station_name": "MOFFETT BLVD",
+      "edge_id": "617335302",
+      "lane_ids": [
+        "617335302_0",
+        "617335302_1",
+        "617335302_2",
+        "617335302_3"
+      ],
+      "position_meters": 241.25651834168184,
+      "reported_lane_count": 5,
+      "recorded_lane_ids": null
+    },
+    {
+      "station_id": 401996,
+      "station_name": "FAIR OAKS",
+      "edge_id": "509747310-AddedOnRampEdge",
+      "lane_ids": [
+        "509747310-AddedOnRampEdge_1",
+        "509747310-AddedOnRampEdge_2",
+        "509747310-AddedOnRampEdge_3",
+        "509747310-AddedOnRampEdge_4"
+      ],
+      "position_meters": 81.4867393181649,
+      "reported_lane_count": 4,
+      "recorded_lane_ids": null
+    },
+    {
+      "station_id": 401997,
+      "station_name": "MATHILDA AVE",
+      "edge_id": "867208766",
+      "lane_ids": [
+        "867208766_0",
+        "867208766_1",
+        "867208766_2",
+        "867208766_3"
+      ],
+      "position_meters": 201.47980808580664,
+      "reported_lane_count": 4,
+      "recorded_lane_ids": null
+    },
+    {
+      "station_id": 401998,
+      "station_name": "Ellis Street rm-n-diag",
+      "edge_id": "867246178",
+      "lane_ids": [
+        "867246178_0",
+        "867246178_1",
+        "867246178_2",
+        "867246178_3"
+      ],
+      "position_meters": 371.23960104796254,
+      "reported_lane_count": 4,
+      "recorded_lane_ids": null
+    },
+    {
+      "station_id": 402370,
+      "station_name": "4A5324 LOC 70",
+      "edge_id": "509747302",
+      "lane_ids": [
+        "509747302_0",
+        "509747302_1",
+        "509747302_2",
+        "509747302_3"
+      ],
+      "position_meters": 285.25298271005886,
+      "reported_lane_count": 4,
+      "recorded_lane_ids": null
+    },
+    {
+      "station_id": 402372,
+      "station_name": "4A5324 loc 72",
+      "edge_id": "867246178",
+      "lane_ids": [
+        "867246178_0",
+        "867246178_1",
+        "867246178_2",
+        "867246178_3"
+      ],
+      "position_meters": 824.1568700694513,
+      "reported_lane_count": 4,
+      "recorded_lane_ids": null
+    },
+    {
+      "station_id": 402376,
+      "station_name": "4A5324 LOC 75",
+      "edge_id": "700010299",
+      "lane_ids": [
+        "700010299_0",
+        "700010299_1",
+        "700010299_2",
+        "700010299_3",
+        "700010299_4",
+        "700010299_5"
+      ],
+      "position_meters": 648.6167501995562,
+      "reported_lane_count": 6,
+      "recorded_lane_ids": null
+    },
+    {
+      "station_id": 402377,
+      "station_name": "4A5324 loc 76",
+      "edge_id": "861090931",
+      "lane_ids": [
+        "861090931_1",
+        "861090931_2",
+        "861090931_3",
+        "861090931_4"
+      ],
+      "position_meters": 161.42101284270623,
+      "reported_lane_count": 4,
+      "recorded_lane_ids": [
+        "861090931_0",
+        "861090931_1",
+        "861090931_2",
+        "861090931_3",
+        "861090931_4"
+      ]
+    },
+    {
+      "station_id": 402379,
+      "station_name": "4A5324 LOC 77",
+      "edge_id": "361615812",
+      "lane_ids": [
+        "361615812_0",
+        "361615812_1",
+        "361615812_2",
+        "361615812_3"
+      ],
+      "position_meters": 509.7103496444871,
+      "reported_lane_count": 4,
+      "recorded_lane_ids": null
+    },
+    {
+      "station_id": 404522,
+      "station_name": "NB 101 to WB 237 I/C",
+      "edge_id": "509747346",
+      "lane_ids": [
+        "509747346_0",
+        "509747346_1",
+        "509747346_2",
+        "509747346_3"
+      ],
+      "position_meters": 124.8968349300161,
+      "reported_lane_count": 4,
+      "recorded_lane_ids": null
+    },
+    {
+      "station_id": 425892,
+      "station_name": "Rengstorff Ave rm-n-diag",
+      "edge_id": "867254754",
+      "lane_ids": [
+        "867254754_0",
+        "867254754_1",
+        "867254754_2",
+        "867254754_3",
+        "867254754_4"
+      ],
+      "position_meters": 605.8494430056932,
+      "reported_lane_count": 5,
+      "recorded_lane_ids": null
+    }
+  ],
+  "intervals": [
+    {
+      "station_id": 401507,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 226,
+      "flow_vehicles_per_hour": 2712.0,
+      "speed_mph": 62.37469197712361,
+      "mean_lane_occupancy_percent": 2.4433333333333334
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 644,
+      "flow_vehicles_per_hour": 7728.0,
+      "speed_mph": 50.278859813755794,
+      "mean_lane_occupancy_percent": 9.246666666666668
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 677,
+      "flow_vehicles_per_hour": 8124.0,
+      "speed_mph": 45.35046348619408,
+      "mean_lane_occupancy_percent": 12.07
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 641,
+      "flow_vehicles_per_hour": 7692.0,
+      "speed_mph": 40.68421774176514,
+      "mean_lane_occupancy_percent": 16.30666666666667
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 607,
+      "flow_vehicles_per_hour": 7284.0,
+      "speed_mph": 39.279679981083206,
+      "mean_lane_occupancy_percent": 19.365
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 642,
+      "flow_vehicles_per_hour": 7704.0,
+      "speed_mph": 40.134051718227674,
+      "mean_lane_occupancy_percent": 17.96
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 589,
+      "flow_vehicles_per_hour": 7068.0,
+      "speed_mph": 38.762422023241825,
+      "mean_lane_occupancy_percent": 20.656666666666666
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 608,
+      "flow_vehicles_per_hour": 7296.0,
+      "speed_mph": 36.54005999773086,
+      "mean_lane_occupancy_percent": 19.92833333333333
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 574,
+      "flow_vehicles_per_hour": 6888.0,
+      "speed_mph": 41.37922944721811,
+      "mean_lane_occupancy_percent": 19.916666666666668
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 604,
+      "flow_vehicles_per_hour": 7248.0,
+      "speed_mph": 40.39292156405963,
+      "mean_lane_occupancy_percent": 20.82166666666667
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 585,
+      "flow_vehicles_per_hour": 7020.0,
+      "speed_mph": 42.86153479154234,
+      "mean_lane_occupancy_percent": 19.845
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 594,
+      "flow_vehicles_per_hour": 7128.0,
+      "speed_mph": 41.10690537044909,
+      "mean_lane_occupancy_percent": 15.483333333333333
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 634,
+      "flow_vehicles_per_hour": 7608.0,
+      "speed_mph": 38.06584609052661,
+      "mean_lane_occupancy_percent": 17.728333333333335
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 608,
+      "flow_vehicles_per_hour": 7296.0,
+      "speed_mph": 36.33667539538333,
+      "mean_lane_occupancy_percent": 18.423333333333336
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 555,
+      "flow_vehicles_per_hour": 6660.0,
+      "speed_mph": 40.28673895882,
+      "mean_lane_occupancy_percent": 21.498333333333335
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 564,
+      "flow_vehicles_per_hour": 6768.0,
+      "speed_mph": 37.87545627231644,
+      "mean_lane_occupancy_percent": 23.40833333333333
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 561,
+      "flow_vehicles_per_hour": 6732.0,
+      "speed_mph": 38.68464318193684,
+      "mean_lane_occupancy_percent": 24.44666666666667
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 561,
+      "flow_vehicles_per_hour": 6732.0,
+      "speed_mph": 40.82739688006286,
+      "mean_lane_occupancy_percent": 20.286666666666665
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 652,
+      "flow_vehicles_per_hour": 7824.0,
+      "speed_mph": 39.08099246492879,
+      "mean_lane_occupancy_percent": 16.918333333333333
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 572,
+      "flow_vehicles_per_hour": 6864.0,
+      "speed_mph": 37.00635665412244,
+      "mean_lane_occupancy_percent": 18.676666666666666
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 548,
+      "flow_vehicles_per_hour": 6576.0,
+      "speed_mph": 35.89890876769329,
+      "mean_lane_occupancy_percent": 23.95
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 528,
+      "flow_vehicles_per_hour": 6336.0,
+      "speed_mph": 38.46653441706574,
+      "mean_lane_occupancy_percent": 25.95
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 538,
+      "flow_vehicles_per_hour": 6456.0,
+      "speed_mph": 33.75158498231351,
+      "mean_lane_occupancy_percent": 26.376666666666665
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 576,
+      "flow_vehicles_per_hour": 6912.0,
+      "speed_mph": 36.10690908915961,
+      "mean_lane_occupancy_percent": 22.5
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 565,
+      "flow_vehicles_per_hour": 6780.0,
+      "speed_mph": 33.741392744937464,
+      "mean_lane_occupancy_percent": 23.811666666666667
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 529,
+      "flow_vehicles_per_hour": 6348.0,
+      "speed_mph": 35.087212607259346,
+      "mean_lane_occupancy_percent": 23.493333333333336
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 517,
+      "flow_vehicles_per_hour": 6204.0,
+      "speed_mph": 35.148369884233084,
+      "mean_lane_occupancy_percent": 21.83666666666667
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 535,
+      "flow_vehicles_per_hour": 6420.0,
+      "speed_mph": 37.60285725830768,
+      "mean_lane_occupancy_percent": 21.918333333333333
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 606,
+      "flow_vehicles_per_hour": 7272.0,
+      "speed_mph": 35.90312279332607,
+      "mean_lane_occupancy_percent": 19.465
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 561,
+      "flow_vehicles_per_hour": 6732.0,
+      "speed_mph": 36.96622951982736,
+      "mean_lane_occupancy_percent": 22.901666666666667
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 486,
+      "flow_vehicles_per_hour": 5832.0,
+      "speed_mph": 35.46529011386955,
+      "mean_lane_occupancy_percent": 26.820000000000004
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 569,
+      "flow_vehicles_per_hour": 6828.0,
+      "speed_mph": 37.75335170974171,
+      "mean_lane_occupancy_percent": 20.941666666666666
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 599,
+      "flow_vehicles_per_hour": 7188.0,
+      "speed_mph": 37.99412018198797,
+      "mean_lane_occupancy_percent": 21.39
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 190,
+      "flow_vehicles_per_hour": 2280.0,
+      "speed_mph": 47.77577892573745,
+      "mean_lane_occupancy_percent": 7.558333333333334
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 128,
+      "flow_vehicles_per_hour": 1536.0,
+      "speed_mph": 63.45943595780751,
+      "mean_lane_occupancy_percent": 1.33
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 127,
+      "flow_vehicles_per_hour": 1524.0,
+      "speed_mph": 63.1960923025637,
+      "mean_lane_occupancy_percent": 1.3399999999999999
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 124,
+      "flow_vehicles_per_hour": 1488.0,
+      "speed_mph": 64.13386548494735,
+      "mean_lane_occupancy_percent": 1.3283333333333334
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 127,
+      "flow_vehicles_per_hour": 1524.0,
+      "speed_mph": 64.30698656982943,
+      "mean_lane_occupancy_percent": 1.325
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 123,
+      "flow_vehicles_per_hour": 1476.0,
+      "speed_mph": 63.513350328069215,
+      "mean_lane_occupancy_percent": 1.375
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 127,
+      "flow_vehicles_per_hour": 1524.0,
+      "speed_mph": 64.23917393420277,
+      "mean_lane_occupancy_percent": 1.2933333333333332
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 30,
+      "flow_vehicles_per_hour": 360.0,
+      "speed_mph": 65.2655989037403,
+      "mean_lane_occupancy_percent": 0.28833333333333333
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401507,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 132,
+      "flow_vehicles_per_hour": 1584.0,
+      "speed_mph": 61.53218612519951,
+      "mean_lane_occupancy_percent": 2.21
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 539,
+      "flow_vehicles_per_hour": 6468.0,
+      "speed_mph": 54.2850901027423,
+      "mean_lane_occupancy_percent": 9.74
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 563,
+      "flow_vehicles_per_hour": 6756.0,
+      "speed_mph": 52.00423929332678,
+      "mean_lane_occupancy_percent": 10.5825
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 560,
+      "flow_vehicles_per_hour": 6720.0,
+      "speed_mph": 49.271477785031344,
+      "mean_lane_occupancy_percent": 11.6775
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 512,
+      "flow_vehicles_per_hour": 6144.0,
+      "speed_mph": 37.507436066329156,
+      "mean_lane_occupancy_percent": 19.4775
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 496,
+      "flow_vehicles_per_hour": 5952.0,
+      "speed_mph": 37.12908349187837,
+      "mean_lane_occupancy_percent": 21.805
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 512,
+      "flow_vehicles_per_hour": 6144.0,
+      "speed_mph": 36.171434603904814,
+      "mean_lane_occupancy_percent": 21.2075
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 477,
+      "flow_vehicles_per_hour": 5724.0,
+      "speed_mph": 36.037887792633676,
+      "mean_lane_occupancy_percent": 23.7
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 486,
+      "flow_vehicles_per_hour": 5832.0,
+      "speed_mph": 35.286887540450216,
+      "mean_lane_occupancy_percent": 23.33
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 470,
+      "flow_vehicles_per_hour": 5640.0,
+      "speed_mph": 35.22113305178482,
+      "mean_lane_occupancy_percent": 26.2225
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 484,
+      "flow_vehicles_per_hour": 5808.0,
+      "speed_mph": 36.57649656658619,
+      "mean_lane_occupancy_percent": 22.1075
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 474,
+      "flow_vehicles_per_hour": 5688.0,
+      "speed_mph": 35.63236584495552,
+      "mean_lane_occupancy_percent": 24.8025
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 474,
+      "flow_vehicles_per_hour": 5688.0,
+      "speed_mph": 33.3639047966715,
+      "mean_lane_occupancy_percent": 24.244999999999997
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 481,
+      "flow_vehicles_per_hour": 5772.0,
+      "speed_mph": 32.590301537816245,
+      "mean_lane_occupancy_percent": 23.7375
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 479,
+      "flow_vehicles_per_hour": 5748.0,
+      "speed_mph": 33.21444102625676,
+      "mean_lane_occupancy_percent": 23.8475
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 454,
+      "flow_vehicles_per_hour": 5448.0,
+      "speed_mph": 32.70041175461382,
+      "mean_lane_occupancy_percent": 27.065
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 450,
+      "flow_vehicles_per_hour": 5400.0,
+      "speed_mph": 32.557862086084796,
+      "mean_lane_occupancy_percent": 26.6975
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 447,
+      "flow_vehicles_per_hour": 5364.0,
+      "speed_mph": 33.06091753088806,
+      "mean_lane_occupancy_percent": 27.1025
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 455,
+      "flow_vehicles_per_hour": 5460.0,
+      "speed_mph": 33.33949515119836,
+      "mean_lane_occupancy_percent": 25.4525
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 490,
+      "flow_vehicles_per_hour": 5880.0,
+      "speed_mph": 32.74436474728192,
+      "mean_lane_occupancy_percent": 23.0425
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 459,
+      "flow_vehicles_per_hour": 5508.0,
+      "speed_mph": 32.94329741826259,
+      "mean_lane_occupancy_percent": 26.2175
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 449,
+      "flow_vehicles_per_hour": 5388.0,
+      "speed_mph": 32.84664441687799,
+      "mean_lane_occupancy_percent": 26.0175
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 425,
+      "flow_vehicles_per_hour": 5100.0,
+      "speed_mph": 30.996884079961497,
+      "mean_lane_occupancy_percent": 28.485
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 440,
+      "flow_vehicles_per_hour": 5280.0,
+      "speed_mph": 30.90764706902333,
+      "mean_lane_occupancy_percent": 26.9375
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 435,
+      "flow_vehicles_per_hour": 5220.0,
+      "speed_mph": 30.012639976257454,
+      "mean_lane_occupancy_percent": 28.267500000000002
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 431,
+      "flow_vehicles_per_hour": 5172.0,
+      "speed_mph": 29.428168498890027,
+      "mean_lane_occupancy_percent": 28.23
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 425,
+      "flow_vehicles_per_hour": 5100.0,
+      "speed_mph": 30.639763780152116,
+      "mean_lane_occupancy_percent": 28.4825
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 428,
+      "flow_vehicles_per_hour": 5136.0,
+      "speed_mph": 30.009650185587528,
+      "mean_lane_occupancy_percent": 28.7575
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 430,
+      "flow_vehicles_per_hour": 5160.0,
+      "speed_mph": 30.800896023667246,
+      "mean_lane_occupancy_percent": 28.23
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 475,
+      "flow_vehicles_per_hour": 5700.0,
+      "speed_mph": 30.1321440687301,
+      "mean_lane_occupancy_percent": 24.1075
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 463,
+      "flow_vehicles_per_hour": 5556.0,
+      "speed_mph": 31.576602362075356,
+      "mean_lane_occupancy_percent": 25.525
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 406,
+      "flow_vehicles_per_hour": 4872.0,
+      "speed_mph": 30.723934293322447,
+      "mean_lane_occupancy_percent": 30.1025
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 272,
+      "flow_vehicles_per_hour": 3264.0,
+      "speed_mph": 33.761289949738675,
+      "mean_lane_occupancy_percent": 11.7175
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401534,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 98,
+      "flow_vehicles_per_hour": 1176.0,
+      "speed_mph": 64.29160336420185,
+      "mean_lane_occupancy_percent": 1.5525
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 537,
+      "flow_vehicles_per_hour": 6444.0,
+      "speed_mph": 55.82947264069952,
+      "mean_lane_occupancy_percent": 9.5425
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 574,
+      "flow_vehicles_per_hour": 6888.0,
+      "speed_mph": 52.744073912567906,
+      "mean_lane_occupancy_percent": 10.6425
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 519,
+      "flow_vehicles_per_hour": 6228.0,
+      "speed_mph": 45.82874739936433,
+      "mean_lane_occupancy_percent": 16.85
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 499,
+      "flow_vehicles_per_hour": 5988.0,
+      "speed_mph": 39.104784372690496,
+      "mean_lane_occupancy_percent": 21.215
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 523,
+      "flow_vehicles_per_hour": 6276.0,
+      "speed_mph": 37.57762126238778,
+      "mean_lane_occupancy_percent": 19.955000000000002
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 507,
+      "flow_vehicles_per_hour": 6084.0,
+      "speed_mph": 37.3904563039986,
+      "mean_lane_occupancy_percent": 21.5475
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 489,
+      "flow_vehicles_per_hour": 5868.0,
+      "speed_mph": 35.383620393821865,
+      "mean_lane_occupancy_percent": 22.4525
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 483,
+      "flow_vehicles_per_hour": 5796.0,
+      "speed_mph": 35.22512378712219,
+      "mean_lane_occupancy_percent": 23.425
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 513,
+      "flow_vehicles_per_hour": 6156.0,
+      "speed_mph": 36.81800914314837,
+      "mean_lane_occupancy_percent": 20.98
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 508,
+      "flow_vehicles_per_hour": 6096.0,
+      "speed_mph": 37.88938543863411,
+      "mean_lane_occupancy_percent": 21.64
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 496,
+      "flow_vehicles_per_hour": 5952.0,
+      "speed_mph": 36.489933065837214,
+      "mean_lane_occupancy_percent": 22.79
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 481,
+      "flow_vehicles_per_hour": 5772.0,
+      "speed_mph": 33.41308484093128,
+      "mean_lane_occupancy_percent": 23.535
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 468,
+      "flow_vehicles_per_hour": 5616.0,
+      "speed_mph": 33.53325234545163,
+      "mean_lane_occupancy_percent": 25.017500000000002
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 467,
+      "flow_vehicles_per_hour": 5604.0,
+      "speed_mph": 34.09929161518253,
+      "mean_lane_occupancy_percent": 24.7325
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 497,
+      "flow_vehicles_per_hour": 5964.0,
+      "speed_mph": 33.81761578847259,
+      "mean_lane_occupancy_percent": 22.5375
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 479,
+      "flow_vehicles_per_hour": 5748.0,
+      "speed_mph": 34.79967698524077,
+      "mean_lane_occupancy_percent": 24.0225
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 484,
+      "flow_vehicles_per_hour": 5808.0,
+      "speed_mph": 34.451961701395014,
+      "mean_lane_occupancy_percent": 23.835
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 473,
+      "flow_vehicles_per_hour": 5676.0,
+      "speed_mph": 35.02143675509998,
+      "mean_lane_occupancy_percent": 25.1825
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 457,
+      "flow_vehicles_per_hour": 5484.0,
+      "speed_mph": 34.422631569756334,
+      "mean_lane_occupancy_percent": 25.575
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 473,
+      "flow_vehicles_per_hour": 5676.0,
+      "speed_mph": 33.44512970326096,
+      "mean_lane_occupancy_percent": 24.322499999999998
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 496,
+      "flow_vehicles_per_hour": 5952.0,
+      "speed_mph": 34.24280428176111,
+      "mean_lane_occupancy_percent": 22.48
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 442,
+      "flow_vehicles_per_hour": 5304.0,
+      "speed_mph": 31.337756732096302,
+      "mean_lane_occupancy_percent": 26.18
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 454,
+      "flow_vehicles_per_hour": 5448.0,
+      "speed_mph": 31.888167376303937,
+      "mean_lane_occupancy_percent": 25.46
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 399,
+      "flow_vehicles_per_hour": 4788.0,
+      "speed_mph": 30.936604665478125,
+      "mean_lane_occupancy_percent": 30.145
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 433,
+      "flow_vehicles_per_hour": 5196.0,
+      "speed_mph": 29.966267207972034,
+      "mean_lane_occupancy_percent": 27.732499999999998
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 441,
+      "flow_vehicles_per_hour": 5292.0,
+      "speed_mph": 31.13049383500916,
+      "mean_lane_occupancy_percent": 26.905
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 478,
+      "flow_vehicles_per_hour": 5736.0,
+      "speed_mph": 31.81948279851492,
+      "mean_lane_occupancy_percent": 24.1975
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 423,
+      "flow_vehicles_per_hour": 5076.0,
+      "speed_mph": 32.365083656788784,
+      "mean_lane_occupancy_percent": 29.052500000000002
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 450,
+      "flow_vehicles_per_hour": 5400.0,
+      "speed_mph": 30.92693669036238,
+      "mean_lane_occupancy_percent": 26.2575
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 482,
+      "flow_vehicles_per_hour": 5784.0,
+      "speed_mph": 32.30660432765443,
+      "mean_lane_occupancy_percent": 23.26
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 431,
+      "flow_vehicles_per_hour": 5172.0,
+      "speed_mph": 32.4862835848092,
+      "mean_lane_occupancy_percent": 28.73
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 369,
+      "flow_vehicles_per_hour": 4428.0,
+      "speed_mph": 33.104171638311,
+      "mean_lane_occupancy_percent": 24.6075
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401948,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 430,
+      "flow_vehicles_per_hour": 5160.0,
+      "speed_mph": 50.39687411665712,
+      "mean_lane_occupancy_percent": 8.6225
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 551,
+      "flow_vehicles_per_hour": 6612.0,
+      "speed_mph": 48.375432123488665,
+      "mean_lane_occupancy_percent": 11.4025
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 545,
+      "flow_vehicles_per_hour": 6540.0,
+      "speed_mph": 49.57046718823339,
+      "mean_lane_occupancy_percent": 10.92
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 554,
+      "flow_vehicles_per_hour": 6648.0,
+      "speed_mph": 46.190432890914636,
+      "mean_lane_occupancy_percent": 12.067499999999999
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 564,
+      "flow_vehicles_per_hour": 6768.0,
+      "speed_mph": 46.063039721312386,
+      "mean_lane_occupancy_percent": 12.2025
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 553,
+      "flow_vehicles_per_hour": 6636.0,
+      "speed_mph": 46.440698617589646,
+      "mean_lane_occupancy_percent": 11.969999999999999
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 561,
+      "flow_vehicles_per_hour": 6732.0,
+      "speed_mph": 46.80787197514889,
+      "mean_lane_occupancy_percent": 12.0725
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 537,
+      "flow_vehicles_per_hour": 6444.0,
+      "speed_mph": 48.434961057467724,
+      "mean_lane_occupancy_percent": 11.14
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 509,
+      "flow_vehicles_per_hour": 6108.0,
+      "speed_mph": 50.05687707271342,
+      "mean_lane_occupancy_percent": 10.1175
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 522,
+      "flow_vehicles_per_hour": 6264.0,
+      "speed_mph": 51.11116596423062,
+      "mean_lane_occupancy_percent": 10.3875
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 510,
+      "flow_vehicles_per_hour": 6120.0,
+      "speed_mph": 43.935183236680935,
+      "mean_lane_occupancy_percent": 14.1475
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 491,
+      "flow_vehicles_per_hour": 5892.0,
+      "speed_mph": 33.02182666735922,
+      "mean_lane_occupancy_percent": 20.7325
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 478,
+      "flow_vehicles_per_hour": 5736.0,
+      "speed_mph": 27.041939092987793,
+      "mean_lane_occupancy_percent": 23.55
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 462,
+      "flow_vehicles_per_hour": 5544.0,
+      "speed_mph": 22.781791997539127,
+      "mean_lane_occupancy_percent": 25.134999999999998
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 480,
+      "flow_vehicles_per_hour": 5760.0,
+      "speed_mph": 23.456513958960596,
+      "mean_lane_occupancy_percent": 24.09
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 470,
+      "flow_vehicles_per_hour": 5640.0,
+      "speed_mph": 22.312915975416367,
+      "mean_lane_occupancy_percent": 24.69
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 482,
+      "flow_vehicles_per_hour": 5784.0,
+      "speed_mph": 24.330487752852065,
+      "mean_lane_occupancy_percent": 23.634999999999998
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 475,
+      "flow_vehicles_per_hour": 5700.0,
+      "speed_mph": 22.11020796488576,
+      "mean_lane_occupancy_percent": 24.4175
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 456,
+      "flow_vehicles_per_hour": 5472.0,
+      "speed_mph": 22.560483618237313,
+      "mean_lane_occupancy_percent": 25.7875
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 465,
+      "flow_vehicles_per_hour": 5580.0,
+      "speed_mph": 20.851902310290267,
+      "mean_lane_occupancy_percent": 25.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 479,
+      "flow_vehicles_per_hour": 5748.0,
+      "speed_mph": 22.327706403827698,
+      "mean_lane_occupancy_percent": 23.8175
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 464,
+      "flow_vehicles_per_hour": 5568.0,
+      "speed_mph": 21.342830928161952,
+      "mean_lane_occupancy_percent": 25.1925
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 461,
+      "flow_vehicles_per_hour": 5532.0,
+      "speed_mph": 22.382949518869584,
+      "mean_lane_occupancy_percent": 25.095
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 445,
+      "flow_vehicles_per_hour": 5340.0,
+      "speed_mph": 22.655288620538535,
+      "mean_lane_occupancy_percent": 26.86
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 434,
+      "flow_vehicles_per_hour": 5208.0,
+      "speed_mph": 20.814073690259963,
+      "mean_lane_occupancy_percent": 27.619999999999997
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 423,
+      "flow_vehicles_per_hour": 5076.0,
+      "speed_mph": 19.684669191897378,
+      "mean_lane_occupancy_percent": 28.525
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 439,
+      "flow_vehicles_per_hour": 5268.0,
+      "speed_mph": 21.09945571663288,
+      "mean_lane_occupancy_percent": 27.3825
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 431,
+      "flow_vehicles_per_hour": 5172.0,
+      "speed_mph": 20.579398678727497,
+      "mean_lane_occupancy_percent": 27.7775
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 416,
+      "flow_vehicles_per_hour": 4992.0,
+      "speed_mph": 18.98793258945153,
+      "mean_lane_occupancy_percent": 29.4925
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 250,
+      "flow_vehicles_per_hour": 3000.0,
+      "speed_mph": 19.741410165040914,
+      "mean_lane_occupancy_percent": 16.7025
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401996,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 305,
+      "flow_vehicles_per_hour": 3660.0,
+      "speed_mph": 56.401891642488856,
+      "mean_lane_occupancy_percent": 5.4
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 485,
+      "flow_vehicles_per_hour": 5820.0,
+      "speed_mph": 53.56309359635118,
+      "mean_lane_occupancy_percent": 8.885
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 480,
+      "flow_vehicles_per_hour": 5760.0,
+      "speed_mph": 53.304048110129735,
+      "mean_lane_occupancy_percent": 8.8475
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 484,
+      "flow_vehicles_per_hour": 5808.0,
+      "speed_mph": 52.827376551772836,
+      "mean_lane_occupancy_percent": 9.105
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 494,
+      "flow_vehicles_per_hour": 5928.0,
+      "speed_mph": 52.05740177872814,
+      "mean_lane_occupancy_percent": 9.4475
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 499,
+      "flow_vehicles_per_hour": 5988.0,
+      "speed_mph": 51.012099360818794,
+      "mean_lane_occupancy_percent": 9.657499999999999
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 498,
+      "flow_vehicles_per_hour": 5976.0,
+      "speed_mph": 52.60308413431244,
+      "mean_lane_occupancy_percent": 9.3625
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 495,
+      "flow_vehicles_per_hour": 5940.0,
+      "speed_mph": 49.43412290506614,
+      "mean_lane_occupancy_percent": 10.067499999999999
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 449,
+      "flow_vehicles_per_hour": 5388.0,
+      "speed_mph": 48.348762382353186,
+      "mean_lane_occupancy_percent": 11.6325
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 412,
+      "flow_vehicles_per_hour": 4944.0,
+      "speed_mph": 43.00520880476289,
+      "mean_lane_occupancy_percent": 27.5925
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 418,
+      "flow_vehicles_per_hour": 5016.0,
+      "speed_mph": 40.88787747580545,
+      "mean_lane_occupancy_percent": 30.785
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 419,
+      "flow_vehicles_per_hour": 5028.0,
+      "speed_mph": 37.46932354268706,
+      "mean_lane_occupancy_percent": 29.9725
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 421,
+      "flow_vehicles_per_hour": 5052.0,
+      "speed_mph": 35.66638172811366,
+      "mean_lane_occupancy_percent": 31.66
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 419,
+      "flow_vehicles_per_hour": 5028.0,
+      "speed_mph": 35.84645028714396,
+      "mean_lane_occupancy_percent": 34.082499999999996
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 404,
+      "flow_vehicles_per_hour": 4848.0,
+      "speed_mph": 35.30212150223982,
+      "mean_lane_occupancy_percent": 28.7325
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 409,
+      "flow_vehicles_per_hour": 4908.0,
+      "speed_mph": 34.55897023555979,
+      "mean_lane_occupancy_percent": 30.6175
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 399,
+      "flow_vehicles_per_hour": 4788.0,
+      "speed_mph": 34.48341011869653,
+      "mean_lane_occupancy_percent": 35.875
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 403,
+      "flow_vehicles_per_hour": 4836.0,
+      "speed_mph": 33.555931623036756,
+      "mean_lane_occupancy_percent": 30.7125
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 400,
+      "flow_vehicles_per_hour": 4800.0,
+      "speed_mph": 33.38549123189026,
+      "mean_lane_occupancy_percent": 35.81
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 409,
+      "flow_vehicles_per_hour": 4908.0,
+      "speed_mph": 34.19236427062222,
+      "mean_lane_occupancy_percent": 33.28
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 405,
+      "flow_vehicles_per_hour": 4860.0,
+      "speed_mph": 35.3175786745978,
+      "mean_lane_occupancy_percent": 31.642500000000002
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 402,
+      "flow_vehicles_per_hour": 4824.0,
+      "speed_mph": 34.09541635129703,
+      "mean_lane_occupancy_percent": 27.06
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 381,
+      "flow_vehicles_per_hour": 4572.0,
+      "speed_mph": 32.33840748050445,
+      "mean_lane_occupancy_percent": 34.5625
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 391,
+      "flow_vehicles_per_hour": 4692.0,
+      "speed_mph": 31.398404418583475,
+      "mean_lane_occupancy_percent": 34.3375
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 371,
+      "flow_vehicles_per_hour": 4452.0,
+      "speed_mph": 32.20579283358495,
+      "mean_lane_occupancy_percent": 37.660000000000004
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 380,
+      "flow_vehicles_per_hour": 4560.0,
+      "speed_mph": 30.4701333691175,
+      "mean_lane_occupancy_percent": 33.0125
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 386,
+      "flow_vehicles_per_hour": 4632.0,
+      "speed_mph": 32.22799318368051,
+      "mean_lane_occupancy_percent": 38.865
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 350,
+      "flow_vehicles_per_hour": 4200.0,
+      "speed_mph": 30.851122303522818,
+      "mean_lane_occupancy_percent": 29.935
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 356,
+      "flow_vehicles_per_hour": 4272.0,
+      "speed_mph": 30.439613277063575,
+      "mean_lane_occupancy_percent": 34.98
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 356,
+      "flow_vehicles_per_hour": 4272.0,
+      "speed_mph": 29.79674543424124,
+      "mean_lane_occupancy_percent": 35.325
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 52,
+      "flow_vehicles_per_hour": 624.0,
+      "speed_mph": 28.221962585234714,
+      "mean_lane_occupancy_percent": 4.3225
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401997,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 215,
+      "flow_vehicles_per_hour": 2580.0,
+      "speed_mph": 58.408279370603445,
+      "mean_lane_occupancy_percent": 3.76
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 561,
+      "flow_vehicles_per_hour": 6732.0,
+      "speed_mph": 52.60424840961771,
+      "mean_lane_occupancy_percent": 10.485
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 568,
+      "flow_vehicles_per_hour": 6816.0,
+      "speed_mph": 51.39857352882857,
+      "mean_lane_occupancy_percent": 10.795
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 557,
+      "flow_vehicles_per_hour": 6684.0,
+      "speed_mph": 51.649774652813655,
+      "mean_lane_occupancy_percent": 10.682500000000001
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 569,
+      "flow_vehicles_per_hour": 6828.0,
+      "speed_mph": 49.06344313108177,
+      "mean_lane_occupancy_percent": 11.74
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 545,
+      "flow_vehicles_per_hour": 6540.0,
+      "speed_mph": 43.71605603183553,
+      "mean_lane_occupancy_percent": 14.51
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 508,
+      "flow_vehicles_per_hour": 6096.0,
+      "speed_mph": 35.93171390961479,
+      "mean_lane_occupancy_percent": 21.3825
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 501,
+      "flow_vehicles_per_hour": 6012.0,
+      "speed_mph": 34.59290259923035,
+      "mean_lane_occupancy_percent": 21.849999999999998
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 480,
+      "flow_vehicles_per_hour": 5760.0,
+      "speed_mph": 33.26081931587722,
+      "mean_lane_occupancy_percent": 23.7125
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 482,
+      "flow_vehicles_per_hour": 5784.0,
+      "speed_mph": 33.66268894290676,
+      "mean_lane_occupancy_percent": 23.627499999999998
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 481,
+      "flow_vehicles_per_hour": 5772.0,
+      "speed_mph": 34.65056171819717,
+      "mean_lane_occupancy_percent": 23.9575
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 488,
+      "flow_vehicles_per_hour": 5856.0,
+      "speed_mph": 33.320082847998385,
+      "mean_lane_occupancy_percent": 23.16
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 474,
+      "flow_vehicles_per_hour": 5688.0,
+      "speed_mph": 33.25569182372244,
+      "mean_lane_occupancy_percent": 24.07
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 473,
+      "flow_vehicles_per_hour": 5676.0,
+      "speed_mph": 31.87837574087236,
+      "mean_lane_occupancy_percent": 24.5225
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 471,
+      "flow_vehicles_per_hour": 5652.0,
+      "speed_mph": 32.06698042731861,
+      "mean_lane_occupancy_percent": 24.455
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 471,
+      "flow_vehicles_per_hour": 5652.0,
+      "speed_mph": 31.154205934794838,
+      "mean_lane_occupancy_percent": 24.555
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 460,
+      "flow_vehicles_per_hour": 5520.0,
+      "speed_mph": 31.246936370497814,
+      "mean_lane_occupancy_percent": 26.11
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 454,
+      "flow_vehicles_per_hour": 5448.0,
+      "speed_mph": 31.216840130051462,
+      "mean_lane_occupancy_percent": 26.19
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 454,
+      "flow_vehicles_per_hour": 5448.0,
+      "speed_mph": 31.575686099552875,
+      "mean_lane_occupancy_percent": 26.455
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 454,
+      "flow_vehicles_per_hour": 5448.0,
+      "speed_mph": 32.00651805854236,
+      "mean_lane_occupancy_percent": 26.095
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 473,
+      "flow_vehicles_per_hour": 5676.0,
+      "speed_mph": 31.45974233584764,
+      "mean_lane_occupancy_percent": 24.22
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 467,
+      "flow_vehicles_per_hour": 5604.0,
+      "speed_mph": 31.315671085357963,
+      "mean_lane_occupancy_percent": 24.555
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 457,
+      "flow_vehicles_per_hour": 5484.0,
+      "speed_mph": 29.564319212292578,
+      "mean_lane_occupancy_percent": 25.8675
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 424,
+      "flow_vehicles_per_hour": 5088.0,
+      "speed_mph": 30.149311277474677,
+      "mean_lane_occupancy_percent": 28.83
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 439,
+      "flow_vehicles_per_hour": 5268.0,
+      "speed_mph": 30.20628323364191,
+      "mean_lane_occupancy_percent": 27.035
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 421,
+      "flow_vehicles_per_hour": 5052.0,
+      "speed_mph": 28.976932671039894,
+      "mean_lane_occupancy_percent": 30.177500000000002
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 432,
+      "flow_vehicles_per_hour": 5184.0,
+      "speed_mph": 28.385323461566436,
+      "mean_lane_occupancy_percent": 28.085
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 426,
+      "flow_vehicles_per_hour": 5112.0,
+      "speed_mph": 28.969217656802172,
+      "mean_lane_occupancy_percent": 28.1625
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 443,
+      "flow_vehicles_per_hour": 5316.0,
+      "speed_mph": 29.677883194356152,
+      "mean_lane_occupancy_percent": 27.1925
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 423,
+      "flow_vehicles_per_hour": 5076.0,
+      "speed_mph": 30.45374586942778,
+      "mean_lane_occupancy_percent": 28.925
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 468,
+      "flow_vehicles_per_hour": 5616.0,
+      "speed_mph": 29.590078557217154,
+      "mean_lane_occupancy_percent": 24.884999999999998
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 395,
+      "flow_vehicles_per_hour": 4740.0,
+      "speed_mph": 34.332554842449326,
+      "mean_lane_occupancy_percent": 20.6425
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 39,
+      "flow_vehicles_per_hour": 468.0,
+      "speed_mph": 62.76843235632599,
+      "mean_lane_occupancy_percent": 0.6325
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 401998,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 449,
+      "flow_vehicles_per_hour": 5388.0,
+      "speed_mph": 49.628499187145444,
+      "mean_lane_occupancy_percent": 9.0775
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 549,
+      "flow_vehicles_per_hour": 6588.0,
+      "speed_mph": 48.56352019062344,
+      "mean_lane_occupancy_percent": 11.2975
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 547,
+      "flow_vehicles_per_hour": 6564.0,
+      "speed_mph": 48.497228653664244,
+      "mean_lane_occupancy_percent": 11.2375
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 554,
+      "flow_vehicles_per_hour": 6648.0,
+      "speed_mph": 45.43835391299669,
+      "mean_lane_occupancy_percent": 12.21
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 562,
+      "flow_vehicles_per_hour": 6744.0,
+      "speed_mph": 47.03329707628791,
+      "mean_lane_occupancy_percent": 11.835
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 554,
+      "flow_vehicles_per_hour": 6648.0,
+      "speed_mph": 46.0581144752249,
+      "mean_lane_occupancy_percent": 12.035
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 563,
+      "flow_vehicles_per_hour": 6756.0,
+      "speed_mph": 46.273828339008446,
+      "mean_lane_occupancy_percent": 12.25
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 535,
+      "flow_vehicles_per_hour": 6420.0,
+      "speed_mph": 48.14944741499951,
+      "mean_lane_occupancy_percent": 11.059999999999999
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 507,
+      "flow_vehicles_per_hour": 6084.0,
+      "speed_mph": 48.93419471805106,
+      "mean_lane_occupancy_percent": 10.2975
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 523,
+      "flow_vehicles_per_hour": 6276.0,
+      "speed_mph": 50.12978507720941,
+      "mean_lane_occupancy_percent": 10.5175
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 521,
+      "flow_vehicles_per_hour": 6252.0,
+      "speed_mph": 47.17290753382951,
+      "mean_lane_occupancy_percent": 11.4275
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 499,
+      "flow_vehicles_per_hour": 5988.0,
+      "speed_mph": 35.1845423136896,
+      "mean_lane_occupancy_percent": 18.9775
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 478,
+      "flow_vehicles_per_hour": 5736.0,
+      "speed_mph": 28.198547470796402,
+      "mean_lane_occupancy_percent": 23.267500000000002
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 467,
+      "flow_vehicles_per_hour": 5604.0,
+      "speed_mph": 23.53438999801191,
+      "mean_lane_occupancy_percent": 24.552500000000002
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 478,
+      "flow_vehicles_per_hour": 5736.0,
+      "speed_mph": 23.657426404342267,
+      "mean_lane_occupancy_percent": 24.134999999999998
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 465,
+      "flow_vehicles_per_hour": 5580.0,
+      "speed_mph": 22.057490706340122,
+      "mean_lane_occupancy_percent": 25.18
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 484,
+      "flow_vehicles_per_hour": 5808.0,
+      "speed_mph": 24.27112851082088,
+      "mean_lane_occupancy_percent": 23.365
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 477,
+      "flow_vehicles_per_hour": 5724.0,
+      "speed_mph": 22.470048502114018,
+      "mean_lane_occupancy_percent": 24.02
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 462,
+      "flow_vehicles_per_hour": 5544.0,
+      "speed_mph": 22.419960289511785,
+      "mean_lane_occupancy_percent": 25.462500000000002
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 459,
+      "flow_vehicles_per_hour": 5508.0,
+      "speed_mph": 20.71827000945194,
+      "mean_lane_occupancy_percent": 25.3525
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 480,
+      "flow_vehicles_per_hour": 5760.0,
+      "speed_mph": 22.403149979578593,
+      "mean_lane_occupancy_percent": 23.66
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 461,
+      "flow_vehicles_per_hour": 5532.0,
+      "speed_mph": 21.107022408223823,
+      "mean_lane_occupancy_percent": 25.427500000000002
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 469,
+      "flow_vehicles_per_hour": 5628.0,
+      "speed_mph": 22.6603077265823,
+      "mean_lane_occupancy_percent": 24.3975
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 443,
+      "flow_vehicles_per_hour": 5316.0,
+      "speed_mph": 22.45889086785989,
+      "mean_lane_occupancy_percent": 27.055
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 434,
+      "flow_vehicles_per_hour": 5208.0,
+      "speed_mph": 20.8398448456989,
+      "mean_lane_occupancy_percent": 27.6675
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 428,
+      "flow_vehicles_per_hour": 5136.0,
+      "speed_mph": 19.904708604958888,
+      "mean_lane_occupancy_percent": 27.84
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 433,
+      "flow_vehicles_per_hour": 5196.0,
+      "speed_mph": 21.00855139974813,
+      "mean_lane_occupancy_percent": 27.9075
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 440,
+      "flow_vehicles_per_hour": 5280.0,
+      "speed_mph": 20.73334906009595,
+      "mean_lane_occupancy_percent": 26.919999999999998
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 408,
+      "flow_vehicles_per_hour": 4896.0,
+      "speed_mph": 18.849477873136763,
+      "mean_lane_occupancy_percent": 30.13
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 208,
+      "flow_vehicles_per_hour": 2496.0,
+      "speed_mph": 19.41703719548417,
+      "mean_lane_occupancy_percent": 13.252500000000001
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402370,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 187,
+      "flow_vehicles_per_hour": 2244.0,
+      "speed_mph": 59.86268799956657,
+      "mean_lane_occupancy_percent": 3.1425
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 552,
+      "flow_vehicles_per_hour": 6624.0,
+      "speed_mph": 52.864640068302386,
+      "mean_lane_occupancy_percent": 10.265
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 566,
+      "flow_vehicles_per_hour": 6792.0,
+      "speed_mph": 50.28494458191641,
+      "mean_lane_occupancy_percent": 11.0975
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 561,
+      "flow_vehicles_per_hour": 6732.0,
+      "speed_mph": 51.53725771014705,
+      "mean_lane_occupancy_percent": 10.7875
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 560,
+      "flow_vehicles_per_hour": 6720.0,
+      "speed_mph": 48.22926519936739,
+      "mean_lane_occupancy_percent": 11.9425
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 503,
+      "flow_vehicles_per_hour": 6036.0,
+      "speed_mph": 37.67987991953748,
+      "mean_lane_occupancy_percent": 20.4975
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 514,
+      "flow_vehicles_per_hour": 6168.0,
+      "speed_mph": 35.37649465714162,
+      "mean_lane_occupancy_percent": 20.807499999999997
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 493,
+      "flow_vehicles_per_hour": 5916.0,
+      "speed_mph": 34.460253136587646,
+      "mean_lane_occupancy_percent": 22.627499999999998
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 483,
+      "flow_vehicles_per_hour": 5796.0,
+      "speed_mph": 33.49337385266664,
+      "mean_lane_occupancy_percent": 23.8075
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 475,
+      "flow_vehicles_per_hour": 5700.0,
+      "speed_mph": 33.699657160766805,
+      "mean_lane_occupancy_percent": 23.965
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 495,
+      "flow_vehicles_per_hour": 5940.0,
+      "speed_mph": 34.36309226912558,
+      "mean_lane_occupancy_percent": 22.697499999999998
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 491,
+      "flow_vehicles_per_hour": 5892.0,
+      "speed_mph": 33.34743529627244,
+      "mean_lane_occupancy_percent": 23.0575
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 475,
+      "flow_vehicles_per_hour": 5700.0,
+      "speed_mph": 33.305956373357205,
+      "mean_lane_occupancy_percent": 24.247500000000002
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 473,
+      "flow_vehicles_per_hour": 5676.0,
+      "speed_mph": 31.98048029593883,
+      "mean_lane_occupancy_percent": 24.235
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 461,
+      "flow_vehicles_per_hour": 5532.0,
+      "speed_mph": 32.442515105076254,
+      "mean_lane_occupancy_percent": 25.68
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 453,
+      "flow_vehicles_per_hour": 5436.0,
+      "speed_mph": 31.61724272037977,
+      "mean_lane_occupancy_percent": 26.35
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 467,
+      "flow_vehicles_per_hour": 5604.0,
+      "speed_mph": 31.20578817627708,
+      "mean_lane_occupancy_percent": 24.965
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 462,
+      "flow_vehicles_per_hour": 5544.0,
+      "speed_mph": 31.308295916128085,
+      "mean_lane_occupancy_percent": 25.5875
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 463,
+      "flow_vehicles_per_hour": 5556.0,
+      "speed_mph": 32.02930415596255,
+      "mean_lane_occupancy_percent": 25.3325
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 461,
+      "flow_vehicles_per_hour": 5532.0,
+      "speed_mph": 32.19072633241449,
+      "mean_lane_occupancy_percent": 26.2025
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 445,
+      "flow_vehicles_per_hour": 5340.0,
+      "speed_mph": 32.421551398922,
+      "mean_lane_occupancy_percent": 27.7575
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 461,
+      "flow_vehicles_per_hour": 5532.0,
+      "speed_mph": 31.025529994405876,
+      "mean_lane_occupancy_percent": 25.055
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 473,
+      "flow_vehicles_per_hour": 5676.0,
+      "speed_mph": 29.420630663406296,
+      "mean_lane_occupancy_percent": 25.03
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 428,
+      "flow_vehicles_per_hour": 5136.0,
+      "speed_mph": 30.394424133775384,
+      "mean_lane_occupancy_percent": 28.447499999999998
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 441,
+      "flow_vehicles_per_hour": 5292.0,
+      "speed_mph": 30.46367377841173,
+      "mean_lane_occupancy_percent": 27.235
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 399,
+      "flow_vehicles_per_hour": 4788.0,
+      "speed_mph": 29.482540012046904,
+      "mean_lane_occupancy_percent": 30.985
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 426,
+      "flow_vehicles_per_hour": 5112.0,
+      "speed_mph": 29.235759643156623,
+      "mean_lane_occupancy_percent": 28.779999999999998
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 425,
+      "flow_vehicles_per_hour": 5100.0,
+      "speed_mph": 28.985115163334527,
+      "mean_lane_occupancy_percent": 28.215
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 469,
+      "flow_vehicles_per_hour": 5628.0,
+      "speed_mph": 29.53061159138512,
+      "mean_lane_occupancy_percent": 24.9125
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 427,
+      "flow_vehicles_per_hour": 5124.0,
+      "speed_mph": 30.793916455929207,
+      "mean_lane_occupancy_percent": 28.825
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 454,
+      "flow_vehicles_per_hour": 5448.0,
+      "speed_mph": 30.089355258418774,
+      "mean_lane_occupancy_percent": 25.92
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 460,
+      "flow_vehicles_per_hour": 5520.0,
+      "speed_mph": 30.810442019239343,
+      "mean_lane_occupancy_percent": 24.185
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 70,
+      "flow_vehicles_per_hour": 840.0,
+      "speed_mph": 43.953241641145446,
+      "mean_lane_occupancy_percent": 3.6975
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402372,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 116,
+      "flow_vehicles_per_hour": 1392.0,
+      "speed_mph": 63.814778590889325,
+      "mean_lane_occupancy_percent": 1.1900000000000002
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 374,
+      "flow_vehicles_per_hour": 4488.0,
+      "speed_mph": 61.0335506962016,
+      "mean_lane_occupancy_percent": 4.121666666666667
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 497,
+      "flow_vehicles_per_hour": 5964.0,
+      "speed_mph": 57.74729803418547,
+      "mean_lane_occupancy_percent": 5.711666666666667
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 509,
+      "flow_vehicles_per_hour": 6108.0,
+      "speed_mph": 55.44569615328335,
+      "mean_lane_occupancy_percent": 5.986666666666667
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 546,
+      "flow_vehicles_per_hour": 6552.0,
+      "speed_mph": 55.48585273107824,
+      "mean_lane_occupancy_percent": 6.426666666666667
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 553,
+      "flow_vehicles_per_hour": 6636.0,
+      "speed_mph": 52.771673284435415,
+      "mean_lane_occupancy_percent": 7.081666666666667
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 516,
+      "flow_vehicles_per_hour": 6192.0,
+      "speed_mph": 55.86826422181101,
+      "mean_lane_occupancy_percent": 6.095
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 530,
+      "flow_vehicles_per_hour": 6360.0,
+      "speed_mph": 56.3982708916022,
+      "mean_lane_occupancy_percent": 6.2683333333333335
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 567,
+      "flow_vehicles_per_hour": 6804.0,
+      "speed_mph": 54.278095289700374,
+      "mean_lane_occupancy_percent": 6.8999999999999995
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 561,
+      "flow_vehicles_per_hour": 6732.0,
+      "speed_mph": 52.82423374871781,
+      "mean_lane_occupancy_percent": 7.19
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 515,
+      "flow_vehicles_per_hour": 6180.0,
+      "speed_mph": 53.94986482933774,
+      "mean_lane_occupancy_percent": 6.318333333333334
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 528,
+      "flow_vehicles_per_hour": 6336.0,
+      "speed_mph": 55.18602328424241,
+      "mean_lane_occupancy_percent": 6.343333333333334
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 518,
+      "flow_vehicles_per_hour": 6216.0,
+      "speed_mph": 55.1055436647378,
+      "mean_lane_occupancy_percent": 6.28
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 514,
+      "flow_vehicles_per_hour": 6168.0,
+      "speed_mph": 53.60121501436451,
+      "mean_lane_occupancy_percent": 6.425
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 557,
+      "flow_vehicles_per_hour": 6684.0,
+      "speed_mph": 53.93161031250015,
+      "mean_lane_occupancy_percent": 6.94
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 523,
+      "flow_vehicles_per_hour": 6276.0,
+      "speed_mph": 55.391290200970055,
+      "mean_lane_occupancy_percent": 6.1499999999999995
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 531,
+      "flow_vehicles_per_hour": 6372.0,
+      "speed_mph": 54.0100474258354,
+      "mean_lane_occupancy_percent": 6.5683333333333325
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 563,
+      "flow_vehicles_per_hour": 6756.0,
+      "speed_mph": 51.422039870802074,
+      "mean_lane_occupancy_percent": 7.53
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 500,
+      "flow_vehicles_per_hour": 6000.0,
+      "speed_mph": 55.187902649657524,
+      "mean_lane_occupancy_percent": 6.196666666666666
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 496,
+      "flow_vehicles_per_hour": 5952.0,
+      "speed_mph": 55.732275528187095,
+      "mean_lane_occupancy_percent": 5.916666666666667
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 518,
+      "flow_vehicles_per_hour": 6216.0,
+      "speed_mph": 53.296907259607835,
+      "mean_lane_occupancy_percent": 6.5249999999999995
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 465,
+      "flow_vehicles_per_hour": 5580.0,
+      "speed_mph": 57.70732791583213,
+      "mean_lane_occupancy_percent": 5.3566666666666665
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 520,
+      "flow_vehicles_per_hour": 6240.0,
+      "speed_mph": 55.74212942682866,
+      "mean_lane_occupancy_percent": 6.166666666666667
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 480,
+      "flow_vehicles_per_hour": 5760.0,
+      "speed_mph": 56.7985620239447,
+      "mean_lane_occupancy_percent": 5.581666666666667
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 456,
+      "flow_vehicles_per_hour": 5472.0,
+      "speed_mph": 54.60371300140187,
+      "mean_lane_occupancy_percent": 5.5616666666666665
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 507,
+      "flow_vehicles_per_hour": 6084.0,
+      "speed_mph": 54.92035977459859,
+      "mean_lane_occupancy_percent": 6.043333333333333
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 531,
+      "flow_vehicles_per_hour": 6372.0,
+      "speed_mph": 53.17715726705745,
+      "mean_lane_occupancy_percent": 6.626666666666666
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 455,
+      "flow_vehicles_per_hour": 5460.0,
+      "speed_mph": 55.30527543435553,
+      "mean_lane_occupancy_percent": 5.441666666666666
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 437,
+      "flow_vehicles_per_hour": 5244.0,
+      "speed_mph": 55.30418033852897,
+      "mean_lane_occupancy_percent": 5.2
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 425,
+      "flow_vehicles_per_hour": 5100.0,
+      "speed_mph": 58.81237104840082,
+      "mean_lane_occupancy_percent": 4.961666666666667
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 433,
+      "flow_vehicles_per_hour": 5196.0,
+      "speed_mph": 56.185846941388405,
+      "mean_lane_occupancy_percent": 5.011666666666667
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 464,
+      "flow_vehicles_per_hour": 5568.0,
+      "speed_mph": 55.831133680450876,
+      "mean_lane_occupancy_percent": 5.371666666666666
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 625,
+      "flow_vehicles_per_hour": 7500.0,
+      "speed_mph": 47.95221904177917,
+      "mean_lane_occupancy_percent": 9.028333333333334
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 601,
+      "flow_vehicles_per_hour": 7212.0,
+      "speed_mph": 44.08696225779096,
+      "mean_lane_occupancy_percent": 11.125
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 125,
+      "flow_vehicles_per_hour": 1500.0,
+      "speed_mph": 63.74749463265232,
+      "mean_lane_occupancy_percent": 1.3299999999999998
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 125,
+      "flow_vehicles_per_hour": 1500.0,
+      "speed_mph": 62.3981746612576,
+      "mean_lane_occupancy_percent": 1.3216666666666668
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 131,
+      "flow_vehicles_per_hour": 1572.0,
+      "speed_mph": 63.99499063007823,
+      "mean_lane_occupancy_percent": 1.3866666666666667
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 125,
+      "flow_vehicles_per_hour": 1500.0,
+      "speed_mph": 63.65390121819085,
+      "mean_lane_occupancy_percent": 1.3550000000000002
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 120,
+      "flow_vehicles_per_hour": 1440.0,
+      "speed_mph": 63.644192914683146,
+      "mean_lane_occupancy_percent": 1.2983333333333333
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 129,
+      "flow_vehicles_per_hour": 1548.0,
+      "speed_mph": 63.58760189461128,
+      "mean_lane_occupancy_percent": 1.385
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 85,
+      "flow_vehicles_per_hour": 1020.0,
+      "speed_mph": 64.46903027627307,
+      "mean_lane_occupancy_percent": 0.8483333333333333
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402376,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 90,
+      "flow_vehicles_per_hour": 1080.0,
+      "speed_mph": 63.10596118795619,
+      "mean_lane_occupancy_percent": 1.4175
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 357,
+      "flow_vehicles_per_hour": 4284.0,
+      "speed_mph": 61.39174531784618,
+      "mean_lane_occupancy_percent": 5.885
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 490,
+      "flow_vehicles_per_hour": 5880.0,
+      "speed_mph": 57.40088089755151,
+      "mean_lane_occupancy_percent": 8.51
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 518,
+      "flow_vehicles_per_hour": 6216.0,
+      "speed_mph": 53.954644260862175,
+      "mean_lane_occupancy_percent": 9.485
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 536,
+      "flow_vehicles_per_hour": 6432.0,
+      "speed_mph": 54.699936699156645,
+      "mean_lane_occupancy_percent": 9.56
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 540,
+      "flow_vehicles_per_hour": 6480.0,
+      "speed_mph": 50.333386358034396,
+      "mean_lane_occupancy_percent": 11.3375
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 518,
+      "flow_vehicles_per_hour": 6216.0,
+      "speed_mph": 54.92032706711584,
+      "mean_lane_occupancy_percent": 9.28
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 550,
+      "flow_vehicles_per_hour": 6600.0,
+      "speed_mph": 54.57945597820632,
+      "mean_lane_occupancy_percent": 10.0975
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 540,
+      "flow_vehicles_per_hour": 6480.0,
+      "speed_mph": 53.9959967136328,
+      "mean_lane_occupancy_percent": 9.94
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 550,
+      "flow_vehicles_per_hour": 6600.0,
+      "speed_mph": 49.42917453084422,
+      "mean_lane_occupancy_percent": 12.2275
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 534,
+      "flow_vehicles_per_hour": 6408.0,
+      "speed_mph": 52.07147840985072,
+      "mean_lane_occupancy_percent": 10.3675
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 505,
+      "flow_vehicles_per_hour": 6060.0,
+      "speed_mph": 55.11983777230225,
+      "mean_lane_occupancy_percent": 9.155000000000001
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 520,
+      "flow_vehicles_per_hour": 6240.0,
+      "speed_mph": 54.17257447387557,
+      "mean_lane_occupancy_percent": 9.565000000000001
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 506,
+      "flow_vehicles_per_hour": 6072.0,
+      "speed_mph": 53.07515964583163,
+      "mean_lane_occupancy_percent": 9.6375
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 553,
+      "flow_vehicles_per_hour": 6636.0,
+      "speed_mph": 50.636673329696926,
+      "mean_lane_occupancy_percent": 11.4025
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 517,
+      "flow_vehicles_per_hour": 6204.0,
+      "speed_mph": 54.12901229464756,
+      "mean_lane_occupancy_percent": 9.435
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 544,
+      "flow_vehicles_per_hour": 6528.0,
+      "speed_mph": 52.27670770454786,
+      "mean_lane_occupancy_percent": 10.525
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 513,
+      "flow_vehicles_per_hour": 6156.0,
+      "speed_mph": 50.40480262039699,
+      "mean_lane_occupancy_percent": 11.58
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 515,
+      "flow_vehicles_per_hour": 6180.0,
+      "speed_mph": 53.13944235675519,
+      "mean_lane_occupancy_percent": 10.265
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 503,
+      "flow_vehicles_per_hour": 6036.0,
+      "speed_mph": 54.63274398104221,
+      "mean_lane_occupancy_percent": 9.3025
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 514,
+      "flow_vehicles_per_hour": 6168.0,
+      "speed_mph": 52.184546722916274,
+      "mean_lane_occupancy_percent": 9.8925
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 462,
+      "flow_vehicles_per_hour": 5544.0,
+      "speed_mph": 56.95544836453704,
+      "mean_lane_occupancy_percent": 8.175
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 526,
+      "flow_vehicles_per_hour": 6312.0,
+      "speed_mph": 55.351585146918694,
+      "mean_lane_occupancy_percent": 9.325
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 484,
+      "flow_vehicles_per_hour": 5808.0,
+      "speed_mph": 56.30280833600927,
+      "mean_lane_occupancy_percent": 8.5325
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 445,
+      "flow_vehicles_per_hour": 5340.0,
+      "speed_mph": 54.69852131082357,
+      "mean_lane_occupancy_percent": 8.09
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 495,
+      "flow_vehicles_per_hour": 5940.0,
+      "speed_mph": 53.83035798320901,
+      "mean_lane_occupancy_percent": 9.275
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 523,
+      "flow_vehicles_per_hour": 6276.0,
+      "speed_mph": 51.67643619114112,
+      "mean_lane_occupancy_percent": 10.185
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 470,
+      "flow_vehicles_per_hour": 5640.0,
+      "speed_mph": 54.68676228808224,
+      "mean_lane_occupancy_percent": 8.565
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 443,
+      "flow_vehicles_per_hour": 5316.0,
+      "speed_mph": 54.17223460249936,
+      "mean_lane_occupancy_percent": 8.182500000000001
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 436,
+      "flow_vehicles_per_hour": 5232.0,
+      "speed_mph": 57.62681376658284,
+      "mean_lane_occupancy_percent": 7.71
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 434,
+      "flow_vehicles_per_hour": 5208.0,
+      "speed_mph": 55.95778602385554,
+      "mean_lane_occupancy_percent": 7.61
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 441,
+      "flow_vehicles_per_hour": 5292.0,
+      "speed_mph": 56.29166484174367,
+      "mean_lane_occupancy_percent": 7.609999999999999
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 561,
+      "flow_vehicles_per_hour": 6732.0,
+      "speed_mph": 46.71699893041278,
+      "mean_lane_occupancy_percent": 13.872499999999999
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 525,
+      "flow_vehicles_per_hour": 6300.0,
+      "speed_mph": 41.88652554879668,
+      "mean_lane_occupancy_percent": 19.345
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 202,
+      "flow_vehicles_per_hour": 2424.0,
+      "speed_mph": 53.353920530935824,
+      "mean_lane_occupancy_percent": 4.3275
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 131,
+      "flow_vehicles_per_hour": 1572.0,
+      "speed_mph": 62.52629680959333,
+      "mean_lane_occupancy_percent": 2.0700000000000003
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 127,
+      "flow_vehicles_per_hour": 1524.0,
+      "speed_mph": 63.6422466039723,
+      "mean_lane_occupancy_percent": 1.9975
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 125,
+      "flow_vehicles_per_hour": 1500.0,
+      "speed_mph": 62.85415175503927,
+      "mean_lane_occupancy_percent": 2.1075
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 123,
+      "flow_vehicles_per_hour": 1476.0,
+      "speed_mph": 63.32584778195905,
+      "mean_lane_occupancy_percent": 2.0324999999999998
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 127,
+      "flow_vehicles_per_hour": 1524.0,
+      "speed_mph": 62.61607409706091,
+      "mean_lane_occupancy_percent": 2.145
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 95,
+      "flow_vehicles_per_hour": 1140.0,
+      "speed_mph": 64.93637682383806,
+      "mean_lane_occupancy_percent": 1.3800000000000001
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402377,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 72,
+      "flow_vehicles_per_hour": 864.0,
+      "speed_mph": 64.3529288965635,
+      "mean_lane_occupancy_percent": 1.105
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 319,
+      "flow_vehicles_per_hour": 3828.0,
+      "speed_mph": 62.19328027269577,
+      "mean_lane_occupancy_percent": 5.15
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 494,
+      "flow_vehicles_per_hour": 5928.0,
+      "speed_mph": 58.16645667960877,
+      "mean_lane_occupancy_percent": 8.4975
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 503,
+      "flow_vehicles_per_hour": 6036.0,
+      "speed_mph": 54.67668221278367,
+      "mean_lane_occupancy_percent": 9.0825
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 541,
+      "flow_vehicles_per_hour": 6492.0,
+      "speed_mph": 55.24868777542998,
+      "mean_lane_occupancy_percent": 9.525
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 548,
+      "flow_vehicles_per_hour": 6576.0,
+      "speed_mph": 53.04424986653851,
+      "mean_lane_occupancy_percent": 10.469999999999999
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 511,
+      "flow_vehicles_per_hour": 6132.0,
+      "speed_mph": 54.84044121775906,
+      "mean_lane_occupancy_percent": 9.13
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 563,
+      "flow_vehicles_per_hour": 6756.0,
+      "speed_mph": 54.71597822646755,
+      "mean_lane_occupancy_percent": 10.215
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 527,
+      "flow_vehicles_per_hour": 6324.0,
+      "speed_mph": 55.07961116301885,
+      "mean_lane_occupancy_percent": 9.4575
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 577,
+      "flow_vehicles_per_hour": 6924.0,
+      "speed_mph": 53.75652549705207,
+      "mean_lane_occupancy_percent": 10.505
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 540,
+      "flow_vehicles_per_hour": 6480.0,
+      "speed_mph": 52.518624566939195,
+      "mean_lane_occupancy_percent": 10.3325
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 511,
+      "flow_vehicles_per_hour": 6132.0,
+      "speed_mph": 55.958252728889654,
+      "mean_lane_occupancy_percent": 8.9775
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 517,
+      "flow_vehicles_per_hour": 6204.0,
+      "speed_mph": 55.38191295635625,
+      "mean_lane_occupancy_percent": 9.285
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 508,
+      "flow_vehicles_per_hour": 6096.0,
+      "speed_mph": 53.358680582085185,
+      "mean_lane_occupancy_percent": 9.7625
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 559,
+      "flow_vehicles_per_hour": 6708.0,
+      "speed_mph": 53.750337742460665,
+      "mean_lane_occupancy_percent": 10.175
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 510,
+      "flow_vehicles_per_hour": 6120.0,
+      "speed_mph": 54.980779893607426,
+      "mean_lane_occupancy_percent": 9.26
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 544,
+      "flow_vehicles_per_hour": 6528.0,
+      "speed_mph": 53.25146091786091,
+      "mean_lane_occupancy_percent": 10.065000000000001
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 536,
+      "flow_vehicles_per_hour": 6432.0,
+      "speed_mph": 53.82035331683762,
+      "mean_lane_occupancy_percent": 9.9675
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 547,
+      "flow_vehicles_per_hour": 6564.0,
+      "speed_mph": 53.88125213579802,
+      "mean_lane_occupancy_percent": 10.2325
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 492,
+      "flow_vehicles_per_hour": 5904.0,
+      "speed_mph": 55.08351047071212,
+      "mean_lane_occupancy_percent": 9.1675
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 512,
+      "flow_vehicles_per_hour": 6144.0,
+      "speed_mph": 53.21160264011026,
+      "mean_lane_occupancy_percent": 9.5275
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 473,
+      "flow_vehicles_per_hour": 5676.0,
+      "speed_mph": 57.10624057103516,
+      "mean_lane_occupancy_percent": 8.4025
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 518,
+      "flow_vehicles_per_hour": 6216.0,
+      "speed_mph": 55.5670089392046,
+      "mean_lane_occupancy_percent": 9.085
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 487,
+      "flow_vehicles_per_hour": 5844.0,
+      "speed_mph": 55.964012059835035,
+      "mean_lane_occupancy_percent": 8.629999999999999
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 428,
+      "flow_vehicles_per_hour": 5136.0,
+      "speed_mph": 56.255916384049996,
+      "mean_lane_occupancy_percent": 7.675
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 502,
+      "flow_vehicles_per_hour": 6024.0,
+      "speed_mph": 54.895664301683375,
+      "mean_lane_occupancy_percent": 8.945
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 521,
+      "flow_vehicles_per_hour": 6252.0,
+      "speed_mph": 53.56260227330386,
+      "mean_lane_occupancy_percent": 9.535
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 483,
+      "flow_vehicles_per_hour": 5796.0,
+      "speed_mph": 53.873160248359724,
+      "mean_lane_occupancy_percent": 8.865
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 452,
+      "flow_vehicles_per_hour": 5424.0,
+      "speed_mph": 54.10040320392044,
+      "mean_lane_occupancy_percent": 8.3175
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 444,
+      "flow_vehicles_per_hour": 5328.0,
+      "speed_mph": 57.52488239072032,
+      "mean_lane_occupancy_percent": 7.795
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 410,
+      "flow_vehicles_per_hour": 4920.0,
+      "speed_mph": 57.29906856271973,
+      "mean_lane_occupancy_percent": 7.0225
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 440,
+      "flow_vehicles_per_hour": 5280.0,
+      "speed_mph": 56.35279739166082,
+      "mean_lane_occupancy_percent": 7.6325
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 571,
+      "flow_vehicles_per_hour": 6852.0,
+      "speed_mph": 51.590802533874644,
+      "mean_lane_occupancy_percent": 11.055
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 600,
+      "flow_vehicles_per_hour": 7200.0,
+      "speed_mph": 49.656630280181844,
+      "mean_lane_occupancy_percent": 11.93
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 273,
+      "flow_vehicles_per_hour": 3276.0,
+      "speed_mph": 54.860985472339976,
+      "mean_lane_occupancy_percent": 5.205
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 130,
+      "flow_vehicles_per_hour": 1560.0,
+      "speed_mph": 62.48623423947646,
+      "mean_lane_occupancy_percent": 2.0549999999999997
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 125,
+      "flow_vehicles_per_hour": 1500.0,
+      "speed_mph": 63.76002147588809,
+      "mean_lane_occupancy_percent": 1.94
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 122,
+      "flow_vehicles_per_hour": 1464.0,
+      "speed_mph": 63.830427028772164,
+      "mean_lane_occupancy_percent": 2.02
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 126,
+      "flow_vehicles_per_hour": 1512.0,
+      "speed_mph": 63.743274989653074,
+      "mean_lane_occupancy_percent": 2.0425
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 126,
+      "flow_vehicles_per_hour": 1512.0,
+      "speed_mph": 63.22966731560185,
+      "mean_lane_occupancy_percent": 2.04
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 109,
+      "flow_vehicles_per_hour": 1308.0,
+      "speed_mph": 64.62303724363863,
+      "mean_lane_occupancy_percent": 1.6175
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 402379,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 272,
+      "flow_vehicles_per_hour": 3264.0,
+      "speed_mph": 56.56685544769817,
+      "mean_lane_occupancy_percent": 4.797499999999999
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 503,
+      "flow_vehicles_per_hour": 6036.0,
+      "speed_mph": 54.00235487685698,
+      "mean_lane_occupancy_percent": 9.1625
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 506,
+      "flow_vehicles_per_hour": 6072.0,
+      "speed_mph": 53.359418546191385,
+      "mean_lane_occupancy_percent": 9.3275
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 503,
+      "flow_vehicles_per_hour": 6036.0,
+      "speed_mph": 52.4754568519472,
+      "mean_lane_occupancy_percent": 9.575
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 516,
+      "flow_vehicles_per_hour": 6192.0,
+      "speed_mph": 52.01726568111668,
+      "mean_lane_occupancy_percent": 9.9125
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 524,
+      "flow_vehicles_per_hour": 6288.0,
+      "speed_mph": 45.260606494116836,
+      "mean_lane_occupancy_percent": 13.5325
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 501,
+      "flow_vehicles_per_hour": 6012.0,
+      "speed_mph": 44.0736279775864,
+      "mean_lane_occupancy_percent": 17.47
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 461,
+      "flow_vehicles_per_hour": 5532.0,
+      "speed_mph": 37.06627697791609,
+      "mean_lane_occupancy_percent": 25.4025
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 449,
+      "flow_vehicles_per_hour": 5388.0,
+      "speed_mph": 37.17065721562951,
+      "mean_lane_occupancy_percent": 25.8275
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 430,
+      "flow_vehicles_per_hour": 5160.0,
+      "speed_mph": 41.12009122622148,
+      "mean_lane_occupancy_percent": 25.09
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 433,
+      "flow_vehicles_per_hour": 5196.0,
+      "speed_mph": 37.51605634717513,
+      "mean_lane_occupancy_percent": 28.0325
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 443,
+      "flow_vehicles_per_hour": 5316.0,
+      "speed_mph": 35.723317137902164,
+      "mean_lane_occupancy_percent": 27.884999999999998
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 441,
+      "flow_vehicles_per_hour": 5292.0,
+      "speed_mph": 35.56708414767416,
+      "mean_lane_occupancy_percent": 28.495
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 436,
+      "flow_vehicles_per_hour": 5232.0,
+      "speed_mph": 34.81698988072783,
+      "mean_lane_occupancy_percent": 24.92
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 430,
+      "flow_vehicles_per_hour": 5160.0,
+      "speed_mph": 33.77779003248423,
+      "mean_lane_occupancy_percent": 29.465
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 422,
+      "flow_vehicles_per_hour": 5064.0,
+      "speed_mph": 33.26870248433473,
+      "mean_lane_occupancy_percent": 29.425
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 422,
+      "flow_vehicles_per_hour": 5064.0,
+      "speed_mph": 32.483442431463416,
+      "mean_lane_occupancy_percent": 25.8375
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 425,
+      "flow_vehicles_per_hour": 5100.0,
+      "speed_mph": 32.86364689106527,
+      "mean_lane_occupancy_percent": 26.2925
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 420,
+      "flow_vehicles_per_hour": 5040.0,
+      "speed_mph": 32.99917766028338,
+      "mean_lane_occupancy_percent": 30.8275
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 423,
+      "flow_vehicles_per_hour": 5076.0,
+      "speed_mph": 33.74040285652033,
+      "mean_lane_occupancy_percent": 31.115
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 423,
+      "flow_vehicles_per_hour": 5076.0,
+      "speed_mph": 33.58191354050559,
+      "mean_lane_occupancy_percent": 30.36
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 419,
+      "flow_vehicles_per_hour": 5028.0,
+      "speed_mph": 32.46824938606492,
+      "mean_lane_occupancy_percent": 28.045
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 414,
+      "flow_vehicles_per_hour": 4968.0,
+      "speed_mph": 30.928453916717018,
+      "mean_lane_occupancy_percent": 27.4775
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 419,
+      "flow_vehicles_per_hour": 5028.0,
+      "speed_mph": 30.89961783154267,
+      "mean_lane_occupancy_percent": 27.035
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 384,
+      "flow_vehicles_per_hour": 4608.0,
+      "speed_mph": 31.428663636258626,
+      "mean_lane_occupancy_percent": 32.275
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 406,
+      "flow_vehicles_per_hour": 4872.0,
+      "speed_mph": 30.689994570269892,
+      "mean_lane_occupancy_percent": 31.92
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 375,
+      "flow_vehicles_per_hour": 4500.0,
+      "speed_mph": 30.545872107518374,
+      "mean_lane_occupancy_percent": 32.475
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 386,
+      "flow_vehicles_per_hour": 4632.0,
+      "speed_mph": 29.519040153260445,
+      "mean_lane_occupancy_percent": 32.1775
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 388,
+      "flow_vehicles_per_hour": 4656.0,
+      "speed_mph": 30.744094950039642,
+      "mean_lane_occupancy_percent": 33.4825
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 403,
+      "flow_vehicles_per_hour": 4836.0,
+      "speed_mph": 30.502263802352154,
+      "mean_lane_occupancy_percent": 31.18
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 348,
+      "flow_vehicles_per_hour": 4176.0,
+      "speed_mph": 32.709858050346284,
+      "mean_lane_occupancy_percent": 30.7775
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 57,
+      "flow_vehicles_per_hour": 684.0,
+      "speed_mph": 63.12908927780667,
+      "mean_lane_occupancy_percent": 0.8725
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 404522,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 0.0,
+      "end_seconds": 300.0,
+      "contributing_vehicles": 157,
+      "flow_vehicles_per_hour": 1884.0,
+      "speed_mph": 63.946457150152916,
+      "mean_lane_occupancy_percent": 1.948
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 300.0,
+      "end_seconds": 600.0,
+      "contributing_vehicles": 511,
+      "flow_vehicles_per_hour": 6132.0,
+      "speed_mph": 52.04322023676301,
+      "mean_lane_occupancy_percent": 8.35
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 600.0,
+      "end_seconds": 900.0,
+      "contributing_vehicles": 603,
+      "flow_vehicles_per_hour": 7236.0,
+      "speed_mph": 41.237122963930155,
+      "mean_lane_occupancy_percent": 14.852
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 900.0,
+      "end_seconds": 1200.0,
+      "contributing_vehicles": 614,
+      "flow_vehicles_per_hour": 7368.0,
+      "speed_mph": 37.69321446218986,
+      "mean_lane_occupancy_percent": 17.478
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 1200.0,
+      "end_seconds": 1500.0,
+      "contributing_vehicles": 612,
+      "flow_vehicles_per_hour": 7344.0,
+      "speed_mph": 35.3797425980703,
+      "mean_lane_occupancy_percent": 18.286
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 1500.0,
+      "end_seconds": 1800.0,
+      "contributing_vehicles": 613,
+      "flow_vehicles_per_hour": 7356.0,
+      "speed_mph": 35.028962669495066,
+      "mean_lane_occupancy_percent": 19.247999999999998
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 1800.0,
+      "end_seconds": 2100.0,
+      "contributing_vehicles": 589,
+      "flow_vehicles_per_hour": 7068.0,
+      "speed_mph": 34.58219954787913,
+      "mean_lane_occupancy_percent": 20.116
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 2100.0,
+      "end_seconds": 2400.0,
+      "contributing_vehicles": 605,
+      "flow_vehicles_per_hour": 7260.0,
+      "speed_mph": 35.48694220864234,
+      "mean_lane_occupancy_percent": 18.137999999999998
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 2400.0,
+      "end_seconds": 2700.0,
+      "contributing_vehicles": 611,
+      "flow_vehicles_per_hour": 7332.0,
+      "speed_mph": 34.45694655557153,
+      "mean_lane_occupancy_percent": 18.704
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 2700.0,
+      "end_seconds": 3000.0,
+      "contributing_vehicles": 614,
+      "flow_vehicles_per_hour": 7368.0,
+      "speed_mph": 36.53598246899337,
+      "mean_lane_occupancy_percent": 18.076
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 3000.0,
+      "end_seconds": 3300.0,
+      "contributing_vehicles": 596,
+      "flow_vehicles_per_hour": 7152.0,
+      "speed_mph": 33.236444467007544,
+      "mean_lane_occupancy_percent": 20.166
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 3300.0,
+      "end_seconds": 3600.0,
+      "contributing_vehicles": 582,
+      "flow_vehicles_per_hour": 6984.0,
+      "speed_mph": 33.62645654600715,
+      "mean_lane_occupancy_percent": 21.054
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 3600.0,
+      "end_seconds": 3900.0,
+      "contributing_vehicles": 575,
+      "flow_vehicles_per_hour": 6900.0,
+      "speed_mph": 33.156686689543314,
+      "mean_lane_occupancy_percent": 20.654000000000003
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 3900.0,
+      "end_seconds": 4200.0,
+      "contributing_vehicles": 579,
+      "flow_vehicles_per_hour": 6948.0,
+      "speed_mph": 31.1054297829334,
+      "mean_lane_occupancy_percent": 21.09
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 4200.0,
+      "end_seconds": 4500.0,
+      "contributing_vehicles": 583,
+      "flow_vehicles_per_hour": 6996.0,
+      "speed_mph": 31.600581251081557,
+      "mean_lane_occupancy_percent": 20.718
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 4500.0,
+      "end_seconds": 4800.0,
+      "contributing_vehicles": 577,
+      "flow_vehicles_per_hour": 6924.0,
+      "speed_mph": 31.6666439231881,
+      "mean_lane_occupancy_percent": 21.594
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 4800.0,
+      "end_seconds": 5100.0,
+      "contributing_vehicles": 577,
+      "flow_vehicles_per_hour": 6924.0,
+      "speed_mph": 32.61697354759447,
+      "mean_lane_occupancy_percent": 21.532
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 5100.0,
+      "end_seconds": 5400.0,
+      "contributing_vehicles": 604,
+      "flow_vehicles_per_hour": 7248.0,
+      "speed_mph": 34.426264358573626,
+      "mean_lane_occupancy_percent": 19.669999999999998
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 5400.0,
+      "end_seconds": 5700.0,
+      "contributing_vehicles": 554,
+      "flow_vehicles_per_hour": 6648.0,
+      "speed_mph": 32.50728740611371,
+      "mean_lane_occupancy_percent": 23.556
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 5700.0,
+      "end_seconds": 6000.0,
+      "contributing_vehicles": 573,
+      "flow_vehicles_per_hour": 6876.0,
+      "speed_mph": 31.85588571186548,
+      "mean_lane_occupancy_percent": 21.174
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 6000.0,
+      "end_seconds": 6300.0,
+      "contributing_vehicles": 556,
+      "flow_vehicles_per_hour": 6672.0,
+      "speed_mph": 29.741798008155833,
+      "mean_lane_occupancy_percent": 23.254
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 6300.0,
+      "end_seconds": 6600.0,
+      "contributing_vehicles": 530,
+      "flow_vehicles_per_hour": 6360.0,
+      "speed_mph": 27.660687997754582,
+      "mean_lane_occupancy_percent": 26.316000000000003
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 6600.0,
+      "end_seconds": 6900.0,
+      "contributing_vehicles": 566,
+      "flow_vehicles_per_hour": 6792.0,
+      "speed_mph": 27.782748747881993,
+      "mean_lane_occupancy_percent": 24.596
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 6900.0,
+      "end_seconds": 7200.0,
+      "contributing_vehicles": 514,
+      "flow_vehicles_per_hour": 6168.0,
+      "speed_mph": 26.94616068673339,
+      "mean_lane_occupancy_percent": 26.746
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 7200.0,
+      "end_seconds": 7500.0,
+      "contributing_vehicles": 539,
+      "flow_vehicles_per_hour": 6468.0,
+      "speed_mph": 28.009804006770295,
+      "mean_lane_occupancy_percent": 25.646000000000004
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 7500.0,
+      "end_seconds": 7800.0,
+      "contributing_vehicles": 537,
+      "flow_vehicles_per_hour": 6444.0,
+      "speed_mph": 26.826239788120358,
+      "mean_lane_occupancy_percent": 25.833999999999996
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 7800.0,
+      "end_seconds": 8100.0,
+      "contributing_vehicles": 572,
+      "flow_vehicles_per_hour": 6864.0,
+      "speed_mph": 28.5478044241469,
+      "mean_lane_occupancy_percent": 23.174
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 8100.0,
+      "end_seconds": 8400.0,
+      "contributing_vehicles": 561,
+      "flow_vehicles_per_hour": 6732.0,
+      "speed_mph": 28.682547399709602,
+      "mean_lane_occupancy_percent": 24.008000000000003
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 8400.0,
+      "end_seconds": 8700.0,
+      "contributing_vehicles": 536,
+      "flow_vehicles_per_hour": 6432.0,
+      "speed_mph": 29.81297710239298,
+      "mean_lane_occupancy_percent": 24.982
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 8700.0,
+      "end_seconds": 9000.0,
+      "contributing_vehicles": 541,
+      "flow_vehicles_per_hour": 6492.0,
+      "speed_mph": 27.754673336748247,
+      "mean_lane_occupancy_percent": 25.366
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 9000.0,
+      "end_seconds": 9300.0,
+      "contributing_vehicles": 541,
+      "flow_vehicles_per_hour": 6492.0,
+      "speed_mph": 27.43687126020332,
+      "mean_lane_occupancy_percent": 25.688
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 9300.0,
+      "end_seconds": 9600.0,
+      "contributing_vehicles": 596,
+      "flow_vehicles_per_hour": 7152.0,
+      "speed_mph": 30.201980334792896,
+      "mean_lane_occupancy_percent": 23.178
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 9600.0,
+      "end_seconds": 9900.0,
+      "contributing_vehicles": 675,
+      "flow_vehicles_per_hour": 8100.0,
+      "speed_mph": 41.35674328672015,
+      "mean_lane_occupancy_percent": 15.016
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 9900.0,
+      "end_seconds": 10200.0,
+      "contributing_vehicles": 432,
+      "flow_vehicles_per_hour": 5184.0,
+      "speed_mph": 50.96470984554693,
+      "mean_lane_occupancy_percent": 7.296000000000001
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 10200.0,
+      "end_seconds": 10500.0,
+      "contributing_vehicles": 125,
+      "flow_vehicles_per_hour": 1500.0,
+      "speed_mph": 63.562276307666444,
+      "mean_lane_occupancy_percent": 1.58
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 10500.0,
+      "end_seconds": 10800.0,
+      "contributing_vehicles": 127,
+      "flow_vehicles_per_hour": 1524.0,
+      "speed_mph": 62.44627830292041,
+      "mean_lane_occupancy_percent": 1.6079999999999999
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 10800.0,
+      "end_seconds": 11100.0,
+      "contributing_vehicles": 122,
+      "flow_vehicles_per_hour": 1464.0,
+      "speed_mph": 64.380676685542,
+      "mean_lane_occupancy_percent": 1.5619999999999998
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 11100.0,
+      "end_seconds": 11400.0,
+      "contributing_vehicles": 129,
+      "flow_vehicles_per_hour": 1548.0,
+      "speed_mph": 63.41020764447034,
+      "mean_lane_occupancy_percent": 1.6640000000000001
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 11400.0,
+      "end_seconds": 11700.0,
+      "contributing_vehicles": 121,
+      "flow_vehicles_per_hour": 1452.0,
+      "speed_mph": 63.20361814406182,
+      "mean_lane_occupancy_percent": 1.654
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 11700.0,
+      "end_seconds": 12000.0,
+      "contributing_vehicles": 128,
+      "flow_vehicles_per_hour": 1536.0,
+      "speed_mph": 64.36259898574289,
+      "mean_lane_occupancy_percent": 1.554
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 12000.0,
+      "end_seconds": 12300.0,
+      "contributing_vehicles": 54,
+      "flow_vehicles_per_hour": 648.0,
+      "speed_mph": 65.33635237016449,
+      "mean_lane_occupancy_percent": 0.624
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 12300.0,
+      "end_seconds": 12600.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 12600.0,
+      "end_seconds": 12900.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 12900.0,
+      "end_seconds": 13200.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 13200.0,
+      "end_seconds": 13500.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 13500.0,
+      "end_seconds": 13800.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 13800.0,
+      "end_seconds": 14100.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 14100.0,
+      "end_seconds": 14400.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 14400.0,
+      "end_seconds": 14700.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 14700.0,
+      "end_seconds": 15000.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    },
+    {
+      "station_id": 425892,
+      "begin_seconds": 15000.0,
+      "end_seconds": 15300.0,
+      "contributing_vehicles": 0,
+      "flow_vehicles_per_hour": 0.0,
+      "speed_mph": null,
+      "mean_lane_occupancy_percent": 0.0
+    }
+  ]
+}

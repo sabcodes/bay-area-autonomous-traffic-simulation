@@ -38,6 +38,9 @@ LIMITATIONS = [
     "M5 uses supervised passenger CACC during steady lane following with ideal acceleration "
     "messages and native maneuver/cooperation handoff. It retains 1.5 s headway; trucks are human. "
     "Policy comparisons do not establish real-world safety or string stability.",
+    "M6 CENTRAL uses ideal simulated downstream sensing and an illustrative upstream lane VSL. "
+    "Lane speed factors still apply; actuation exposure is not a compliance measure. "
+    "The inlet-adjacent intervention may shift delay into insertion backlogs.",
     "Unknown gross ramp movements and the annual truck proxy remain M3 assumptions.",
 ]
 METRIC_CONTRACT = {
@@ -365,8 +368,14 @@ def _run_job(job: tuple) -> dict:
             run["accepted"] = run["accepted"] and (
                 diagnostics["completed"]
                 and diagnostics["commands"] > 0
-                and diagnostics["cooperative_commands"] > 0
-                and diagnostics["native_fallbacks"] == 0
+                and (
+                    diagnostics["restored"]
+                    and diagnostics["updates"] > 0
+                    and diagnostics["limited_lane_seconds"] > 0
+                    if policy["policy"] == "central_vsl"
+                    else diagnostics["cooperative_commands"] > 0
+                    and diagnostics["native_fallbacks"] == 0
+                )
                 and diagnostics["engine_version"].split()[-1]
                 == prepared.provenance["sumo_version"].split()[-1]
             )
