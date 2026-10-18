@@ -167,6 +167,18 @@ are -17.50 +/- 42.97 veh/h and +10.93 +/- 18.01 s. Its RMS acceleration falls
 on all five seeds. These are descriptive results, without significance tests,
 confidence intervals or a common benefit score.
 
+The other question-level indicators also have mixed interpretations:
+
+| Base policy minus H0 | Mean on-road stopped vehicles | Temporal SD of mean speed |
+| --- | ---: | ---: |
+| CACC | -1.888% | -2.066% |
+| CENTRAL | +0.554% | -2.953% |
+
+These values use the same five paired seeds. Lower domain speed variability
+can reflect traffic composition as well as dynamics. CENTRAL's on-road stopped
+proxy rises while insertion backlog falls; report both. The complete 30-metric
+paired distributions and spreads remain in the accepted M7 machine report.
+
 M7 is a predeclared one-factor-at-a-time (OFAT) screen on October 8, 2025.
 The base has seeds 41-45; each sensitivity uses 41-43. Demand 0.8x and 1.2x each
 repeat H0/CACC/CENTRAL. Seven additional cases change passenger equipment to

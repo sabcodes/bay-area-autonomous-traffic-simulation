@@ -198,3 +198,14 @@ def test_final_report_headline_table_matches_computed_data():
             + " |"
         )
         assert expected in report
+
+    raw = m8.read(ROOT, "reports/m7/report.json")["runs"]
+    for policy in ("CACC", "CENTRAL"):
+        percentages = []
+        for metric in ("mean_stopped_vehicles", "temporal_mean_speed_stddev_mph"):
+            a = [
+                r["metrics"][metric] for r in raw if r["case"] == "base" and r["scenario"] == policy
+            ]
+            b = [r["metrics"][metric] for r in raw if r["case"] == "base" and r["scenario"] == "H0"]
+            percentages.append(100 * (m8.mean(a) - m8.mean(b)) / m8.mean(b))
+        assert f"| {policy} | " + " | ".join(f"{v:+.3f}%" for v in percentages) + " |" in report

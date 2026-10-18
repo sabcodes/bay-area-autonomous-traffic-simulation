@@ -4,11 +4,19 @@ An open, local research testbed for asking a narrow question:
 
 > Under clearly stated assumptions, how do different autonomous-vehicle coordination strategies change traffic on a small stretch of US-101?
 
-This is a simulation research project, not a prediction system or a safety-critical driving controller. Results will only be meaningful after the model has been calibrated against observed traffic data.
+This is a simulation research project, not a prediction system or a safety-critical driving controller. The final comparison remains conditional on a baseline with a documented held-out fidelity failure.
+
+M0-M8 are complete at the documented practical experiment standard as of
+2026-10-18. The [final research report](docs/final-research-report.md),
+[data-derived tables](reports/m8/results.md), and
+[reproduction guide](docs/reproduction.md) are the final package entry points.
+M3's held-out fidelity failure, about 2% supervised CACC engagement and the M7
+one-day OFAT limits remain. The evidence establishes no consistent overall
+traffic benefit. M8 adds packaging checks without changing the simulator.
 
 For the current milestone state and handoff context, see the
 [project memory](docs/project-memory.md), [roadmap](docs/project-roadmap.md),
-and [domain glossary](CONTEXT.md). M0–M7 experiment work is complete at the documented practical standards. M3's
+and [domain glossary](CONTEXT.md). M0-M8 work is complete at the documented practical standards. M3's
 held-out speed target was missed; see the [closeout record](docs/m3-human-baseline-report.md).
 M4 is complete; see the [harness closeout](docs/m4-experiment-harness-report.md).
 See the [M4 plan](docs/m4-experiment-harness-plan.md) and
@@ -38,7 +46,7 @@ M6 centralized control is complete for the fixed VSL comparison. See the
 [plan](docs/m6-centralized-control-plan.md), [frozen specification](docs/m6-centralized-control-spec.md),
 [closeout](docs/m6-centralized-control-report.md), and [three-policy results](reports/m6/README.md).
 Nine clean runs, 125 tests and the independent raw-output audit pass. H0 and
-supervised CACC exactly replay M5. M7 sensitivity is complete; M8 packaging remains;
+supervised CACC exactly replay M5. M7 sensitivity and M8 research packaging are complete;
 M3 fidelity and M5 low-engagement limitations remain in force.
 
 
@@ -475,7 +483,7 @@ lane-level merge has been confirmed. See the [SR-85 lane sensitivity notes](docs
 frozen human baseline, supervised CACC, fixed centralized VSL and conditional
 sensitivity screen are documented. M3's held-out fidelity failure and CACC's
 roughly 2% command exposure remain; no consistent overall traffic benefit is
-established. M8 final research packaging is next.
+established. M8 final research packaging is complete; see the final report linked above.
 
 See the [roadmap](docs/project-roadmap.md), [current project memory](docs/project-memory.md)
 and [M7 closeout](docs/m7-sensitivity-uncertainty-report.md).
@@ -488,7 +496,7 @@ See [local feasibility research](research/local-feasibility.md) for the source-b
 ## M7 sensitivity and uncertainty
 
 [PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3) merged into main at [ad33a7f](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ad33a7f999793b687ffcafbbe6fff91ea10ede29)
-on 2026-10-18 02:29:47 PDT. M8 research synthesis is next.
+on 2026-10-18 02:29:47 PDT. M8 research synthesis is complete; see the final report linked above.
 
 The [plan](docs/m7-sensitivity-uncertainty-plan.md) and
 [frozen specification](docs/m7-sensitivity-uncertainty-spec.md) preceded runtime
@@ -525,4 +533,20 @@ variation, not interactions, confidence intervals or total uncertainty. Range
 also changes sensed following; delay/loss affect acceleration feedforward
 with current local gap/speed retained. M3 fidelity, low CACC engagement and
 ideal VSL sensing/actuation remain limits. [Methodology](research/m7-methodology.md)
-records sources and illustrative assumptions. M8 research packaging is next.
+records sources and illustrative assumptions. M8 research packaging is complete; see the final report linked above.
+
+## Final research package (M8)
+
+Plan 071de85 -> frozen spec 974ecb6 -> implementation bedffd1. The
+[acceptance record](docs/m8-research-package-report.md) records numerical checks,
+regression and publication. The standard-library checker recomputes all 52
+headline paired records and M3 station scores; it requires no SUMO installation:
+
+```sh
+python3 scripts/build_m8_package.py --check
+python3 scripts/build_m8_package.py --check-local-inputs
+```
+
+The second command separately checks local runtime prerequisites and can fail
+on a clone lacking ignored data; see the reproduction guide. No fresh full
+simulation campaign or raw-trajectory audit was run for M8.
