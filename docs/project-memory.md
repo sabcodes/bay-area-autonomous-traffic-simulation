@@ -290,3 +290,19 @@ completed case reports, and assembles remaining reports from retained and new
 outcomes. Campaign session 75309 and audit session 24202 are the current local
 sessions. Earlier paused-process identities are historical and must not be
 resumed. CLI-only user preference remains. Final acceptance is still pending.
+
+## Higher-demand checkpoint, 2026-10-17
+
+All nine demand x1.2 outcomes pass and are independently audited, taking the
+campaign to 33/54. A separate calculation checks all 90 higher-demand group/paired
+metric records. CENTRAL minus matching H0: throughput -7.83 +/- 38.79 veh/h
+(-0.0924%), scheduled total time +2.45 +/- 18.72 s (+0.0932%), RMS acceleration
+-0.0154%, and peak insertion backlog -0.3238%. All three CENTRAL runs activate
+(140 lane-limit commands; 63,000-64,260 limited-lane seconds) and restore limits.
+The base mean throughput/time improvements do not persist in this demand case;
+seed spreads exceed these small mean effects. This is not a significance claim.
+
+Higher-demand CACC changes throughput -0.3853%, scheduled total time +0.2698%,
+RMS acceleration -0.7409%, and peak backlog +0.4458%. Active passenger command
+share remains 2.1095-2.1391%. CACC's traffic tradeoffs remain mixed. Equipment
+and communication sensitivity results are pending; no settings were retuned.
