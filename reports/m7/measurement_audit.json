@@ -1,0 +1,331 @@
+{
+  "accepted": true,
+  "runs_checked": 54,
+  "runs": [
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 44,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 45,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 44,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 45,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 44,
+      "accepted": true
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 45,
+      "accepted": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CACC",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CACC",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CACC",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "H0",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "H0",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "H0",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CACC",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CACC",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CACC",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "H0",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "H0",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "H0",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "penetration_000",
+      "scenario": "CACC",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "penetration_000",
+      "scenario": "CACC",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "penetration_000",
+      "scenario": "CACC",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "penetration_050",
+      "scenario": "CACC",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "penetration_050",
+      "scenario": "CACC",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "penetration_050",
+      "scenario": "CACC",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "range_050",
+      "scenario": "CACC",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "range_050",
+      "scenario": "CACC",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "range_050",
+      "scenario": "CACC",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "delay_1000",
+      "scenario": "CACC",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "delay_1000",
+      "scenario": "CACC",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "delay_1000",
+      "scenario": "CACC",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "loss_020",
+      "scenario": "CACC",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "loss_020",
+      "scenario": "CACC",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "loss_020",
+      "scenario": "CACC",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "headway_2000",
+      "scenario": "CACC",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "headway_2000",
+      "scenario": "CACC",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "headway_2000",
+      "scenario": "CACC",
+      "seed": 43,
+      "accepted": true
+    },
+    {
+      "case": "vsl_220",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "accepted": true
+    },
+    {
+      "case": "vsl_220",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "accepted": true
+    },
+    {
+      "case": "vsl_220",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "accepted": true
+    }
+  ],
+  "report_sha256": "ea33403dfff8d82c071b4b62e3cd6b800c18a5836241c95a364a4fbac97725a0"
+}

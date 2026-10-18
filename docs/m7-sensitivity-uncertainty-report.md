@@ -1,229 +1,244 @@
 # M7 sensitivity and uncertainty closeout
 
-**In progress, 2026-10-18: 48/54 valid and independently audited. Headway and VSL cases remain; final acceptance pending.**
+M7 is complete at the documented conditional sensitivity standard, 2026-10-18:
+**54/54 valid runs**, with all planned outcomes retained. The expanded base
+comparison has small, seed-dependent effects. CENTRAL's base mean throughput
+and total-time improvements do not persist at 1.2x demand; at 0.8x demand its
+fixed trigger never activates and its outcomes exactly equal H0. The CACC
+sensitivity cases show tradeoffs between acceleration smoothness and traffic
+metrics. This screen does not establish a consistent overall traffic benefit.
 
 The [plan](m7-sensitivity-uncertainty-plan.md) at 655758b and
-[specification](m7-sensitivity-uncertainty-spec.md) at b4e968e precede runtime
-implementation 1fb436c. [PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3)
-is the publication surface. The frozen config is
-`configs/us101_m7_sensitivity.json`.
+[frozen specification](m7-sensitivity-uncertainty-spec.md) at b4e968e precede
+runtime implementation 1fb436c. Runtime source has not changed since that
+implementation. The [machine report](../reports/m7/report.json),
+[results, figure and activity table](../reports/m7/README.md), and
+[independent raw audit](../reports/m7/independent_audit.json) are the primary
+result artifacts. [PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3)
+publishes the package; acceptance does not imply it has been merged.
 
-## Question and design
+## Question and frozen design
 
-Evaluate whether the fixed M6 comparison is sensitive to operating demand,
-passenger equipment, acceleration-message assumptions, requested controller
-settings and random seeds. This is a bounded OFAT screen on 2025-10-08, not an
-optimizer or a model of total uncertainty. Fifty-four fresh full-window runs
-use the unchanged M3/M6 network, observed inputs, native behavior, physical
-limits, fleet mix, measurement window [900,8100), 0.5 s step and 7200 s clearance.
+Evaluate whether the fixed M6 comparison depends on operating demand, passenger
+equipment, acceleration-message assumptions, requested controller settings and
+random seeds. This is a bounded one-factor-at-a-time screen on calibration date
+2025-10-08, not policy optimization or a probabilistic model of total uncertainty.
 
-The base comparison uses H0/CACC/CENTRAL seeds 41-45. Demand x0.8/x1.2 uses all
-three policies on 41-43. Other factors use 41-43: passenger equipment 0/50%,
-leader range 50 m, extra acceleration-message delay 1 s, 20% message loss,
-requested CACC headway 2 s, and congested VSL target 22 m/s. Every policy pairs
-with H0 at the same demand, date and seed. Non-demand factors also compare
-with the same base policy using the identical three-seed subset.
+| Case | Change from fixed M6 settings | Policies | Seeds | Runs |
+| --- | --- | --- | --- | ---: |
+| base | None | H0, CACC, CENTRAL | 41-45 | 15 |
+| demand_080 | Generated flow rates x0.8 | H0, CACC, CENTRAL | 41-43 | 9 |
+| demand_120 | Generated flow rates x1.2 | H0, CACC, CENTRAL | 41-43 | 9 |
+| penetration_000 | 0% equipped passengers | CACC | 41-43 | 3 |
+| penetration_050 | 50% equipped passengers | CACC | 41-43 | 3 |
+| range_050 | Leader query and message range 50 m | CACC | 41-43 | 3 |
+| delay_1000 | Extra acceleration-message age 1 s | CACC | 41-43 | 3 |
+| loss_020 | Deterministic 20% message loss | CACC | 41-43 | 3 |
+| headway_2000 | Requested CACC headway 2 s | CACC | 41-43 | 3 |
+| vsl_220 | Congested VSL target 22 m/s | CENTRAL | 41-43 | 3 |
 
-Equipment is selected by a stable SHA-256 rule on passenger ID; trucks remain
-native. Messages use a separate hash of follower, leader and simulation step.
-These selections do not consume SUMO RNG. A delayed message must belong to the
-current leader; unavailable or dropped acceleration uses ACC, without stale
-hold. Current local gap and speed remain available. The range case changes
-both sensed leader following and communication, so it is not a pure packet
-range experiment. Requested headway changes leave native Krauss tau at 1.5 s.
-VSL still controls the original 14 lane segments using nine downstream lanes.
+All 54 full-window outcomes use the unchanged network, native vehicle types and
+physical limits, 4% truck proxy, observed inputs, 0.5 s engine step, measurement
+window [900,8100), one-second trajectory sampling and 7200 s clearance. No
+settings were retuned after viewing results. Demand scaling occurs after measured
+exit subtraction and before writing flow rates; observed speed profiles and
+input hashes remain unchanged. Rounded emitted counts need not scale exactly.
 
-## Acceptance traceability
+Treatments pair by demand, date and exact seed. Non-demand sensitivities use
+base H0 seeds 41-43, not the five-seed base mean. Their separate factor contrasts
+subtract the corresponding base CACC/CENTRAL outcome on the same three seeds.
+No dates, demand levels or factors are pooled.
 
-| AC | Evidence | Status |
+## Results
+
+Percentages below are mean paired differences divided by the mean of the exact
+matching H0 seeds. Throughput is all modeled exits; total time includes scheduled
+cohort insertion delay. Negative RMS acceleration indicates smoother exported
+longitudinal acceleration. Metric directions alone do not define overall benefit.
+
+| Case / policy | n | Throughput | Scheduled total time | RMS acceleration | Peak insertion backlog |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| base / CACC | 5 | -0.212% | +0.709% | -0.775% | +0.810% |
+| base / CENTRAL | 5 | +0.523% | -1.146% | +0.487% | -2.331% |
+| demand_080 / CACC | 3 | -0.120% | +1.595% | -0.583% | -5.933% |
+| demand_080 / CENTRAL | 3 | +0.000% | +0.000% | +0.000% | +0.000% |
+| demand_120 / CACC | 3 | -0.385% | +0.270% | -0.741% | +0.446% |
+| demand_120 / CENTRAL | 3 | -0.092% | +0.093% | -0.015% | -0.324% |
+| penetration_000 / CACC | 3 | +0.000% | +0.000% | +0.000% | +0.000% |
+| penetration_050 / CACC | 3 | -0.493% | +1.831% | -0.878% | +3.095% |
+| range_050 / CACC | 3 | +0.002% | +0.029% | -0.452% | -0.797% |
+| delay_1000 / CACC | 3 | -0.050% | +1.213% | -0.527% | +0.678% |
+| loss_020 / CACC | 3 | -0.379% | +1.421% | -1.274% | +2.749% |
+| headway_2000 / CACC | 3 | +0.369% | -0.620% | -0.042% | -0.119% |
+| vsl_220 / CENTRAL | 3 | +0.252% | -0.592% | +0.270% | -2.416% |
+
+The full 30-metric distributions, individual paired differences, sample SDs,
+ranges and positive/negative/zero counts are in the machine report. The plotted
+four-metric comparison shows individual seeds and mean +/- sample SD; these bars
+are descriptive stochastic spread, not confidence intervals.
+
+### Expanded base and demand
+
+The H0 throughput mean/sample SD changes from 8274.50/29.44 veh/h over seeds
+41-43 to 8266.00/46.99 over 41-45. Scheduled total time changes from
+1533.90/6.49 s to 1540.50/13.99. The extra seeds expose more observed variation.
+
+Five-seed CENTRAL minus H0 is +43.20 +/- 91.50 veh/h throughput and
+-17.65 +/- 38.24 s scheduled total time. Both directions improve on only 3/5
+seeds; their sample spreads exceed their mean effects. Five-seed CACC changes
+throughput -0.212%, total time +0.709%, RMS acceleration -0.775% and backlog
++0.810%. RMS acceleration falls on all five seeds, with mixed traffic effects.
+
+At 0.8x demand, all three CENTRAL controllers complete and restore native limits
+with zero commands and zero limited-lane seconds. Every one of the 90 reported
+metrics exactly matches same-demand H0. Retaining this inactive null result is
+required by the frozen M7 acceptance rule; it is not a reason to tune the trigger.
+
+At 1.2x demand, CENTRAL changes throughput -7.83 +/- 38.79 veh/h and total time
++2.45 +/- 18.72 s. All three activate (140 lane-limit commands each,
+63,000-64,260 limited-lane seconds) and restore limits. The base mean improvements
+do not persist in this operating condition. These small, dispersed differences
+are not a statistical-significance or universal-harm claim.
+
+### Equipment, messages and requested settings
+
+Zero-equipped CACC has zero commands, equipped vehicles and equipped samples.
+All 90 metrics, legacy whole-run metrics and detector-summary hashes exactly
+match H0. Stable SHA-256 selection realizes approximately half of eligible
+passenger vehicles at penetration 0.5; trucks stay native. Equipment is distinct
+from command exposure because the native maneuver supervisor remains active.
+
+Delay/loss affect acceleration feedforward only. A message must refer to the
+current leader at the required history step; unavailable/dropped messages use
+ACC with zero feedforward and no stale hold. Current local gap and speed remain
+available. Deterministic hashes consume no simulator RNG. Realized packet loss
+is 19.89-20.02% of message opportunities. The loss case has lower RMS acceleration
+but longer scheduled total time and higher backlog than H0; it does not isolate
+a benefit of V2V. The range case changes sensed following as well as messages,
+so it is not a pure communication-range experiment.
+
+Requested CACC headway 2 s leaves native Krauss tau fixed at 1.5 s. Its three-seed
+mean changes versus H0 are +0.369% throughput, -0.620% scheduled total time,
+-0.042% RMS acceleration and -0.119% peak backlog. Against base CACC on the same
+seeds, throughput increases 55.00 +/- 31.43 veh/h and total time falls
+19.97 +/- 31.89 s, while RMS acceleration increases 0.00615 +/- 0.00621 m/s².
+These are favorable mean traffic changes within this case, with less smoothing
+than base CACC; the settings were frozen before seeing them. Three seeds and
+one calibration day do not identify an optimal headway.
+
+VSL target 22 m/s changes the congested target while retaining the same trigger,
+release, rate limit and original control/observation geography. Against H0,
+throughput changes +20.83 +/- 73.62 veh/h and total time -9.08 +/- 32.71 s;
+throughput improves on only 1/3 seeds and total time on 2/3. All controllers
+complete and restore limits (224 commands each; 67,200-70,560 limited-lane
+seconds). Against the base CENTRAL policy on identical seeds, the lower target
+reduces throughput 8.67 +/- 5.25 veh/h and increases total time 6.00 +/- 4.87 s,
+while reducing RMS acceleration 0.00160 +/- 0.00120 m/s² and peak backlog
+22.00 +/- 19.31 vehicles. Each of those factor directions occurs on all three
+seeds: the stronger intervention produces a tradeoff, not a uniform improvement.
+The [paired factor contrasts](../reports/m7/factor_effects.json) show these changes
+relative to their own base policy, with individual seeds and sample spread.
+These are sensitivity observations, not settings selected for deployment.
+
+## Validity, activity and acceptance evidence
+
+All planned outcomes remain visible. The result table contains 0 rejected
+outcomes; valid inactive/null controls are retained separately from failures.
+Warnings, collisions, teleports, incomplete clearance, engine mismatch, CACC
+native fallbacks or VSL restoration failures still reject a run. Default M6
+actuation gates remain strict; only an explicit M7 configuration permits
+inactivity. Aggregate means are null if any planned seed is absent, failed or
+nonfinite; no surviving-seed means are reported.
+
+| AC | Verified evidence | Status |
 | --- | --- | --- |
-| AC1 | Plan 655758b, spec b4e968e, runtime 1fb436c; frozen 54-run config | Verified |
-| AC2 | Hand calculations, hash/message/delay boundaries, invalid settings, real SUMO deterministic and zero-equipment tests | Verified |
-| AC3 | Existing strict M6 gates, valid-inactive M7 versus failed restoration, nonfinite/missing/failed aggregation checks | Tests pass; final regression pending |
-| AC4 | Fresh matrix, matching-demand route/fleet/schedule checks, exact M6 and zero-equipment replay | In progress |
-| AC5 | Independent raw trips/summary/trajectory metrics, VSL ledger, equipment/message accounting, inputs, aggregates and fingerprints | In progress |
-| AC6 | Machine report, plots, validity/activity table, interpretation, context/Obsidian/GitHub | In progress |
+| AC1 | Plan 655758b -> spec b4e968e -> runtime 1fb436c; frozen config exactly 54 outcomes | Pass |
+| AC2 | Hand calculations, deterministic equipment/message boundaries, runtime message age, invalid inputs, real-SUMO native/null and deterministic degraded replay | Pass |
+| AC3 | Full 145-test regression, lint, unchanged strict M6 gates and missing/failed/nonfinite suppression | Pass |
+| AC4 | All 54 outcomes retained; matching-demand route/fleet/schedule checks; nine M6 and three zero-equipment exact replays | Pass |
+| AC5 | 1620 independently recalculated raw metrics; 480 group/paired metric records; 28 factor records; 54 native metadata checks | Pass |
+| AC6 | Versioned report, figure, failure/activity table, closeout, context/Obsidian/GitHub publication | Pass; final SHA recorded in publication handoff |
 
-M7 distinguishes execution validity from activity. Zero equipment and
-nonactivating VSL are intentional null cases, while warnings, collisions,
-teleports, incomplete clearance, wrong engines, CACC native fallbacks or VSL
-restoration failures still reject the run. Means are null unless every planned
-seed and metric qualifies. Individual outcomes and failure reasons remain.
+The raw auditor imports no production metric/controller implementation. It
+independently reconstructs trips, summary health, one-second trajectories,
+VSL decisions from interval totals, equipment selection and message accounting.
+Matching routes, exported vehicle IDs/types/speed factors/reconstructed schedules,
+frozen input/source hashes, every group/pair and percentage denominator are checked.
+It exactly replays all 270 M6 values and all 90 zero-equipment values.
+Fingerprint caches are reused only when run metadata, every raw XML/gzip/log and
+controller diagnostic, and both auditor sources match; the final pass rehashes
+that evidence. Full-corridor packet and live sensor histories are not exported,
+so message timing also has hand-checked runtime and real-engine tests.
 
-## Preliminary H0 seed expansion
+The separate [native metadata audit](../reports/m7/native_metadata_audit.json)
+checks every native summary step (30,600 per completed run, 0-15,299.5 s), 0.5 s
+grid, 7200 s clearance, scenario hash, frozen fleet, observation date, network
+and engine provenance. The [measurement audit](../reports/m7/measurement_audit.json)
+checks [900,8100), one-second samples, the 0.1 m/s stop threshold and finite metrics.
+The [factor audit](../reports/m7/factor_audit.json) checks the four presentation
+contrasts separately from their producer. The [verification record](../reports/m7/verification.json)
+saves final counts, fingerprints, regression summary and plot inspection.
 
-All five H0 seeds are clean and independently audited; original seeds 41-43
-match all 90 M6 metrics exactly. Throughput mean/sample SD changes from
-8274.50/29.44 to 8266.00/46.99 veh/h. Scheduled total time changes from
-1533.90/6.49 to 1540.50/13.99 s. These describe H0 only; controller and full
-sensitivity results remain pending. The wider observed spread illustrates
-why three seeds should not be mistaken for a complete uncertainty estimate.
+## Reproduce
 
-## Expanded base comparison checkpoint
-
-All 15 base runs pass clean clearance. All nine original M6 runs match every
-one of their 270 metric values exactly. Five-seed paired CENTRAL minus H0:
-throughput +43.20 +/- 91.50 veh/h (+0.52%), scheduled total time -17.65 +/-
-38.24 s (-1.15%), RMS acceleration +0.49%, peak insertion backlog -2.33%.
-Throughput improves on 3/5 seeds and total time falls on 3/5; spreads exceed
-mean effects. Five-seed CACC changes throughput -0.21%, scheduled total time
-+0.71%, RMS acceleration -0.77% and peak backlog +0.81%. RMS acceleration
-falls on all five CACC seeds, but the traffic tradeoffs remain mixed.
-These are base-case findings; sensitivity conclusions remain pending. A
-separate calculation checked all 90 base group/paired metric summaries.
-
-## Reduced-demand checkpoint
-
-All nine demand x0.8 runs pass clean clearance. The VSL never activates in
-any of the three CENTRAL seeds: zero commands and zero limited-lane exposure,
-with completed/restored controllers. All 90 CENTRAL metric values exactly
-match same-demand H0. This is a valid inactive/null control under the frozen
-M7 rule, not a reason to change the trigger. CACC minus H0 changes throughput
--0.12%, scheduled total time +1.59%, RMS acceleration -0.58% and peak insertion
-backlog -5.93%. Active commands remain 2.13-2.19% of passenger timesteps.
-Higher-demand and other sensitivity outcomes remain pending.
-
-## Higher-demand checkpoint, 2026-10-17
-
-All nine demand x1.2 outcomes pass and are independently audited, taking the
-campaign to 33/54. A separate calculation checks all 90 higher-demand group/paired
-metric records. CENTRAL minus matching H0: throughput -7.83 +/- 38.79 veh/h
-(-0.0924%), scheduled total time +2.45 +/- 18.72 s (+0.0932%), RMS acceleration
--0.0154%, and peak insertion backlog -0.3238%. All three CENTRAL runs activate
-(140 lane-limit commands; 63,000-64,260 limited-lane seconds) and restore limits.
-The base mean throughput/time improvements do not persist in this demand case;
-seed spreads exceed these small mean effects. This is not a significance claim.
-
-Higher-demand CACC changes throughput -0.3853%, scheduled total time +0.2698%,
-RMS acceleration -0.7409%, and peak backlog +0.4458%. Active passenger command
-share remains 2.1095-2.1391%. CACC's traffic tradeoffs remain mixed. Equipment
-and communication sensitivity results are pending; no settings were retuned.
-
-## Zero-equipment checkpoint, 2026-10-17
-
-All three zero-equipment CACC runs are valid and independently audited, taking
-the campaign to 36/54. Each exactly matches same-seed base H0 on all 30 metrics
-(90 exact values), legacy whole-run metrics and detector-summary SHA-256.
-There are zero equipped vehicles, equipped samples or commands; all eligible
-passengers remain native. This is the specified full-corridor null-control
-check, not an inactive-run rejection. Remaining equipment/communication and
-controller-setting cases are pending.
-
-## Reproduce and audit
-
-Prerequisites remain the project-local SUMO/libsumo 1.27.1 environment, frozen
-M3 observed profiles and metadata, and accepted M2 network. Raw PeMS files are
-local prerequisites and are not published by M7. Use a new campaign ID and
-output/audit directory for an exact replay; existing runs are never overwritten.
+Use the project-local SUMO/libsumo 1.27.1 environment and the accepted M2 network
+and frozen M3 profiles/metadata. Raw PeMS files remain local prerequisites. Copy
+the campaign config with a new campaign ID; never overwrite accepted output.
 
 ```sh
-PYTHONPATH=src .venv/bin/python scripts/run_m7_sensitivity.py --config PATH_TO_NEW_CAMPAIGN_CONFIG
-.venv/bin/python scripts/audit_m7_results.py --config PATH_TO_NEW_CAMPAIGN_CONFIG --report PATH_TO_NEW_REPORT --output PATH_TO_NEW_AUDIT
-.venv/bin/python scripts/summarize_m7_results.py --report PATH_TO_NEW_REPORT --audit PATH_TO_NEW_AUDIT --output PATH_TO_PRESENTATION
+PYTHONPATH=src .venv/bin/python scripts/run_m7_sensitivity.py --config PATH_TO_NEW_CONFIG
+.venv/bin/python scripts/audit_m7_results.py --config PATH_TO_NEW_CONFIG --report PATH_TO_NEW_RAW_REPORT --output PATH_TO_NEW_AUDIT
+.venv/bin/python scripts/summarize_m7_results.py --report PATH_TO_NEW_RAW_REPORT --audit PATH_TO_NEW_AUDIT --output PATH_TO_NEW_PRESENTATION
+PYTHONPATH=src .venv/bin/python -m pytest -q
+.venv/bin/ruff check src tests scripts
 ```
 
-The shipped raw path is `outputs/us101_corridor/m7/m7_ofat_2025_10_08/`.
-The auditor imports no production metric/controller implementation. It reuses
-the independent M6 NumPy trajectory parser, independently reconstructs trips,
-health, VSL decisions from recorded interval totals, equipment selection and
-message accounting, and verifies every group/pair. Full-corridor packet and
-live sensor histories are not exported; communication timing and loss behavior
-also have deterministic real-engine integration checks. Fingerprinted caches
-reuse a raw audit only when run metadata, every raw file and both auditors match.
+Canonical local runtime evidence is under
+`outputs/us101_corridor/m7/m7_ofat_2025_10_08/`. The shipped metadata checker runs
+against `reports/m7/report.json` with `.venv/bin/python scripts/audit_m7_metadata.py`.
+Large raw traces remain local; machine results and audit hashes are versioned.
+The native engine step is 0.5 s, independent of the one-second FCD sample period;
+FCD numerical checks use the exported default precision.
 
-## Local evidence availability
+## Operational provenance
 
-During the sweep, iCloud evicted 86 runtime evidence files and a raw-audit
-fingerprint read timed out. Apple's documented
+The user paused the campaign overnight at 27 completed runs. Suspended processes
+were lost before continuation; three partial higher-demand CACC attempts were
+archived and restarted from time zero with identical settings. All 27 completed
+outcomes were reused. Later durable pause at 39 and live-memory storage pause at
+42 preserved all completed evidence; the three delay runs continued from memory
+on explicit authorization. No completed/rejected outcome was repeated for a
+better result. The [recovery](../reports/m7/operational_recovery.json),
+[durable pause](../reports/m7/paused_checkpoint.json),
+[resume](../reports/m7/resume_checkpoint.json) and
+[storage checkpoint](../reports/m7/storage_pause_checkpoint.json) preserve history.
+The [communication checkpoint](../reports/m7/communication_checkpoint.json)
+records the later 48-run audit.
+
+Cloud-managed storage temporarily evicted runtime/source/Git files; a native
+CLI using Apple's documented
 [FileManager download API](https://developer.apple.com/documentation/foundation/filemanager/startdownloadingubiquitousitem(at:))
-restored them through a native CLI. Cloud-only count returned to zero; raw
-checks and cache fingerprints were retained. No simulation reruns or policy
-changes followed. Mac operations remain CLI-only at the user's request.
-Keep raw evidence locally available when reproducing audits in cloud-managed
-folders; local availability is separate from scientific run acceptance.
-
-## Pause and recovery
-
-The user paused the simulation and audit processes at 27 completed/audited runs.
-On explicit continuation, the suspended processes no longer existed. Their
-partial outputs were retained under the local interruption archive, and the
-three interrupted demand x1.2 CACC seeds were restarted from time zero with
-identical settings. The 27 completed outcomes were reused unchanged; 24 other
-planned runs had not started. These process interruptions are operational
-history, distinct from scientific run rejection. See the
-[recovery record](../reports/m7/operational_recovery.json) for source hashes,
-retained/interrupted/unstarted paths and recovery-driver hash.
-
-## Completed-batch pause and continuation
-
-The user chose to pause at a completed batch boundary after free space fell
-to approximately 2.6 GiB. All 39 completed outcomes have independent raw checks
-(1,170 metric values); 15 runs remain unstarted and none is incomplete.
-All M7 processes have stopped. Results and caches are durable on disk; see the
-[paused checkpoint](../reports/m7/paused_checkpoint.json). Final acceptance,
-full campaign-level statistics/replay auditing and plots remain pending.
-The user subsequently freed space and explicitly resumed. The measured restart
-space was about 7.1 GiB. The CLI storage guard initially paused below 2 GiB;
-the user subsequently raised the threshold to pause at or below 5 GiB. All 39 result
-hashes matched, no completed runs were repeated, and the final 15 continue.
-See the [resume checkpoint](../reports/m7/resume_checkpoint.json).
-
-## Storage threshold pause and explicit resume
-
-The user's 5 GiB threshold triggered on 2026-10-18. The guard sampled a rapid
-space drop at about 0.23 GiB and suspended all M7 process trees. Space recovered
-to about 7.6 GiB, but the run remains paused. Forty-two outcomes and all their
-raw checks are complete (1,260 metric values); three delay cases are suspended
-in memory and nine runs have not started. See the
-[storage pause checkpoint](../reports/m7/storage_pause_checkpoint.json).
-
-The user subsequently authorized continuation with 11.7 GiB free. All ten
-process identities matched, the delay runs resumed from memory, and the 5 GiB
-storage guard remains active. No completed outcomes were rerun.
-
-The completed range case changes throughput +0.0020%, scheduled total time
-+0.0292%, RMS acceleration -0.4524% and peak insertion backlog -0.7974% versus
-matching three-seed H0. Active passenger share is 2.0303-2.0620%. A separate
-calculation checked all 30 range group/paired metric records. This factor
-alters sensed leader following as well as acceleration-message range.
-
-## Communication checkpoint, 2026-10-18
-
-All three extra-delay and all three packet-loss runs are valid and independently
-raw-audited, taking the campaign to 48/54. A separate stdlib calculation checked
-all 60 delay/loss group and paired metric records, including same-seed H0
-references, sample SDs, ranges, signs and percentage denominators. Runtime
-source remains unchanged since 1fb436c. See the
-[communication checkpoint](../reports/m7/communication_checkpoint.json).
-
-Against matching H0, extra acceleration-message delay 1 s changes throughput
--0.0504%, scheduled total time +1.2132%, RMS acceleration -0.5268% and peak
-insertion backlog +0.6784%. Packet loss 20% changes throughput -0.3787%, total
-time +1.4209%, RMS acceleration -1.2739% and backlog +2.7493%. Packet loss is
-realized at 19.89-20.02% of message opportunities. These are mixed outcomes,
-not an overall benefit or a pure V2V contribution. Only acceleration feedforward
-is delayed or dropped; current local gap and speed remain. The supervisor
-still limits engagement to roughly 2% of passenger timesteps.
-
-The three headway runs are underway; VSL target runs follow. Free space is
-about 29 GiB and the 5 GiB CLI pause guard remains active. The final checker now
-waits for both all 54 outcomes and all 54 incremental raw audits before running
-the full campaign/fleet/replay/statistics checks. Final interpretation and
-publication remain pending.
+restored affected files. The user enabled Keep Downloaded, then freed storage.
+The CLI guard enforced pause at or below 5 GiB; no automatic resume followed a
+threshold pause. These interruptions concern evidence availability, not changes
+to scientific acceptance. All work followed the user's CLI-only preference.
 
 ## Limits and next milestone
 
-M3 failed held-out fidelity remains (combined speed MAE 14.90 mph; October 15
-missed both targets). Supervised CACC remains low-engagement; continuous CACC
-and its rejected variants remain unresolved. Demand factors and communication
-settings are illustrative assumptions, not fitted probability distributions.
-OFAT does not identify interactions. One calibration date and five/three seeds
-cannot establish total uncertainty, confidence intervals, an optimal policy,
-field safety or deployment readiness. VSL sensing and actuation remain ideal.
+M3's held-out fidelity failure remains: combined speed MAE 14.90 mph, with
+October 15 missing both fidelity targets. Unknown gross ramp flows remain.
+Supervised CACC remains low-engagement; continuous CACC and rejected variants
+remain unresolved. The chosen demand, communication and controller variations
+are illustrative assumptions, not fitted probability distributions.
+
+OFAT does not measure interactions. One calibration date with five/three seeds
+cannot establish total uncertainty, confidence intervals, optimal policy, field
+safety or deployment readiness. VSL sensing and actuation remain ideal. Seed
+spread describes simulation randomness, not real-world forecast uncertainty.
 
 All-exit throughput is not mainline capacity; stopped counts are queue proxies;
 temporal speed variability is not wave stability; acceleration squared is not
-energy. Scheduled total time and insertion backlog help expose displaced delay.
-[Primary-source notes](../research/m7-methodology.md) explain SUMO semantics,
-not empirical justification for the chosen numerical sensitivities. M8 final
-research packaging follows after M7 acceptance.
+energy. Scheduled total time and insertion backlog expose displaced delay that
+actual-departure travel time can miss. [Primary-source methodology notes](../research/m7-methodology.md)
+explain SUMO semantics, not empirical support for the chosen numeric factors.
+M8 final research packaging is next; no M8 implementation is included here.

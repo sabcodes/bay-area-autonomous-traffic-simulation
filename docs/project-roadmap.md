@@ -25,8 +25,11 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 
 ## Current position
 
-M7 is active as of 2026-10-18: 48/54 valid and independently raw-audited outcomes. Delay and packet-loss cases are complete; three headway runs are underway, followed by three VSL runs. Storage is about 29 GiB free with the user-requested pause at or below 5 GiB. Final campaign acceptance remains pending. See the [M7 draft closeout](m7-sensitivity-uncertainty-report.md).
+M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 145 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain. See the [M7 closeout](m7-sensitivity-uncertainty-report.md).
 
+## Milestone history and observed-data decisions
+
+The dated checkpoints below preserve the work leading to the current M7 closeout.
 
 - M0 is complete.
 - M1 is complete. District 4 Station 5-Minute and Station Metadata exports are
@@ -168,7 +171,7 @@ following the nonactivating short probe. One date and three seeds describe
 seed spread only; M3 fidelity and M5 approximately 2% engagement remain limits.
 M0–M6 practical experiment work is complete. M7 and M8 remain.
 
-## M7 in progress, 2026-10-17
+## Historical M7 implementation checkpoint, 2026-10-17
 
 The [plan](m7-sensitivity-uncertainty-plan.md) and
 [spec](m7-sensitivity-uncertainty-spec.md) freeze a 54-run OFAT campaign before
@@ -188,3 +191,16 @@ final campaign/factor checks. See [current memory](project-memory.md).
 M7 resumed explicitly later on 2026-10-18 with 11.7 GiB free. The three delay
 runs continued from live state; all 42 finished outcomes are retained and the
 5 GiB guard remains active. Final acceptance is still pending.
+
+## M7 closeout, 2026-10-18
+
+M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 145 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain.
+
+Plan and frozen spec precede unchanged runtime source. Every matrix outcome,
+valid inactive/null control, paired difference and seed spread is retained;
+full audits verify native time grids, fleets/schedules, inputs and all metrics.
+The base VSL mean improvements are seed-dependent and do not persist at higher
+demand. No settings were selected for benefit. See the
+[closeout](m7-sensitivity-uncertainty-report.md), [results](../reports/m7/README.md)
+and [PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3).
+M8 is next; no M8 work is included in M7. The PR remains unmerged.

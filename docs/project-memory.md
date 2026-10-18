@@ -10,9 +10,11 @@ This project compares human-like traffic with explainable autonomous-vehicle
 coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
-of truth: **M0–M6 practical experiment work is complete. M3 retains its fidelity limit; M5 is a supervised comparison; M6 is a fixed centralized VSL comparison.**
-M7 is active as of 2026-10-18: 48/54 valid and independently raw-audited outcomes. Delay and packet-loss cases are complete; three headway runs are underway, followed by three VSL runs. Storage is about 29 GiB free with the user-requested pause at or below 5 GiB. Final campaign acceptance remains pending. See the
-[frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md).
+of truth: **M0–M7 practical experiment work is complete; M8 is next.**
+M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 145 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain. See the
+[M7 closeout](m7-sensitivity-uncertainty-report.md) and [frozen specification](m7-sensitivity-uncertainty-spec.md).
+Earlier dated operational entries below are historical; all campaign processes
+have completed and old PID/SIGCONT instructions must not be reused.
 M4 is complete; the [harness closeout](m4-experiment-harness-report.md) records
 its acceptance evidence.
 
@@ -102,7 +104,7 @@ experiment directories are preserved, so repeat with a new experiment ID.
 Queue proxies exclude temporary insertion backlogs, travel-time cohorts use
 actual departures, temporal speed variability is not a wave-stability test,
 and acceleration smoothness is not energy use. M3's held-out failure remains
-unchanged. At the M4 checkpoint, M5–M8 remained. The later M5 closeout below is the current resume point.
+unchanged. At the M4 checkpoint, M5–M8 remained. The later M5 closeout below records that historical checkpoint; the current M7 closeout is at the end.
 
 ## Historical M5 closeout and resume point, 2026-10-16
 
@@ -185,7 +187,7 @@ its false actuation acceptance is preserved without threshold tuning. Full
 H0/CACC/CENTRAL seeds 41-43 are running. Final acceptance is pending; preserve
 M3's held-out failure and M5's low engagement.
 
-## M6 closeout and current resume point, 2026-10-17
+## Historical M6 closeout and resume point, 2026-10-17
 
 Nine of nine runs accepted, each clearing 22,951 vehicles with zero SUMO warnings, collisions, teleports or final running/waiting/discarded vehicles. All 125 tests and lint pass. The independent audit verifies 270 raw metrics, 90 paired metrics, every VSL decision, matching exported fleets/schedules, and exact H0/CACC replay against M5. Every central run has nonzero actuation and restored native limits.
 
@@ -418,3 +420,37 @@ Then inspect plots, finish the closeout and AC1-AC6, synchronize Obsidian/contex
 and publish PR #3 ready for review. Do not merge without user request.
 See reports/m7/communication_checkpoint.json for independently checked delay/loss
 group records. All completed outcomes and frozen runtime settings are retained.
+
+## M7 closeout and current handoff, 2026-10-18
+
+M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 145 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain.
+
+Plan 655758b -> frozen spec b4e968e -> runtime 1fb436c. Source remained unchanged
+through all 54 outcomes. All nine original M6 runs exactly replay 270 metrics;
+zero equipment replays 90 H0 values, legacy metrics and detector summaries.
+The full independent audit verifies matching-demand routes/fleets/schedules,
+raw trips/summary/trajectories, VSL decisions, equipment/message accounting,
+source/input hashes and all statistics. Native grids are 30,600 half-second
+steps per run with unchanged 7200 s clearance. Lint and whitespace pass.
+
+The five-seed base CENTRAL mean throughput/time changes are +0.523%/-1.146%,
+with larger paired seed spreads and favorable directions on 3/5 seeds.
+At demand x0.8 it remains inactive and exactly equals H0; at x1.2 those small
+mean improvements do not persist. CACC sensitivity results have mixed traffic
+tradeoffs. No settings were retuned and no overall benefit is established.
+
+See [final closeout](m7-sensitivity-uncertainty-report.md), [results/plot/activity table](../reports/m7/README.md), [machine report](../reports/m7/report.json),
+[raw audit](../reports/m7/independent_audit.json), [factor audit](../reports/m7/factor_audit.json)
+and [metadata audit](../reports/m7/native_metadata_audit.json).
+Raw evidence remains local under outputs/us101_corridor/m7/m7_ofat_2025_10_08/.
+Prior operational checkpoints retain pause/recovery history. All simulation,
+incremental audit, final-check and storage-guard processes have finished.
+No future run or restart is scheduled. User preference remains CLI-only and
+pause at or below 5 GiB for future authorized long runs.
+
+Branch codex/m7-sensitivity-uncertainty publishes [PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3).
+The final publication SHA is recorded in Obsidian after push. The PR is ready
+for review and unmerged; do not merge or start M8 without a new user request.
+OFAT does not estimate interactions/total uncertainty, and seed SD is not a
+confidence interval. Preserve M3 fidelity, unknown gross ramp flows, native
+supervision and ideal VSL limits; no capacity/energy/field-safety claim follows.
