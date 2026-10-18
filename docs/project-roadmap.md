@@ -174,3 +174,10 @@ settings are varied; base seeds expand to 41-45. Implementation and initial
 140-test regression pass are complete; full measured results and independent
 audit are pending. [PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3)
 tracks publication. No policy-benefit or general-uncertainty claim is implied.
+
+### M7 storage pause, 2026-10-18
+
+42/54 outcomes are valid and independently audited (1260 raw metric values).
+Three delay runs are suspended and nine runs unstarted after the user's 5 GiB
+storage threshold triggered. M7 remains unaccepted pending completion and
+final campaign/factor checks. See [current memory](project-memory.md).

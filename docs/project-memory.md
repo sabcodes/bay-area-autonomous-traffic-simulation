@@ -1,6 +1,6 @@
 # Project memory and handoff
 
-**Updated:** 2026-10-17
+**Updated:** 2026-10-18
 **Repository:** `sabcodes/bay-area-autonomous-traffic-simulation`
 **Local Obsidian vault:** `Auto-Car Traffic Research`
 
@@ -11,10 +11,10 @@ coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
 of truth: **M0–M6 practical experiment work is complete. M3 retains its fidelity limit; M5 is a supervised comparison; M6 is a fixed centralized VSL comparison.**
-M7 resumed by user on 2026-10-17 from 39/54 valid, independently audited
-outcomes. The remaining 15 run under a CLI storage guard. See the
-[resume checkpoint](../reports/m7/resume_checkpoint.json) and
-[frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md).
+M7 is paused by the user-requested storage rule as of 2026-10-18:
+42/54 valid and independently audited; three suspended in memory; nine
+unstarted. See the [storage pause checkpoint](../reports/m7/storage_pause_checkpoint.json)
+and [frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md).
 M4 is complete; the [harness closeout](m4-experiment-harness-report.md) records
 its acceptance evidence.
 
@@ -369,3 +369,31 @@ final-check process trees at or below 5 GiB. This supersedes the earlier 2 GiB
 threshold. Measured space immediately after the change was about 6.5 GiB.
 The replacement guard session is 71913; campaign7414, audit12972 and final
 checks14302 continue. Do not automatically resume a threshold-triggered pause.
+
+## Storage-triggered user pause, 2026-10-18
+
+The user's 5 GiB rule triggered. Available space dropped sharply between
+five-second samples; the guard observed about 0.23 GiB and suspended all ten
+M7 simulation/audit/final-check processes. Storage subsequently recovered to
+about 7.6 GiB. Do not automatically resume: the user-requested pause remains.
+All ten suspended process commands/start times and T states were verified.
+
+Completed: 42/54 valid and independently audited, covering 1,260 raw metric
+values. The range_050 case is complete. Three delay_1000 seeds are suspended
+at summary times 3645.5/3563.0/3623.5 s (41/42/43); nine runs in loss_020,
+headway_2000 and vsl_220 are unstarted. Completed outputs/caches are on disk;
+the three unfinished runs depend on live memory. Keep Codex and this Mac
+session open to preserve their exact state. This supersedes the earlier
+completed-batch pause's safe-to-close guidance.
+
+Use outputs/resume_m7_storage.py WITHOUT --resume for read-only identity/state
+verification. On explicit user request, --resume verifies all identities and
+free space >5 GiB before SIGCONT; immediately restart the 5 GiB disk guard.
+It archives the old pause record. Old outputs/resume_m7.py identities are stale.
+If these processes are lost, archive the three partial runs and resume with
+outputs/recover_m7.py, retaining all 42 completed outcomes and frozen settings.
+Current live paused sessions: campaign7414, audit12972, final-check14302; guard
+71913 exited after suspending them. Final native metadata check is prepared
+in outputs/m7_native_metadata_audit.py for after the full 54-run report exists.
+Final campaign/fleet/replay/group/factor checks, plots, 145-test regression,
+closeout and final publication remain pending. No M7 acceptance claim yet.

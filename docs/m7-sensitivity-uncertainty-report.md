@@ -1,6 +1,6 @@
 # M7 sensitivity and uncertainty closeout
 
-**In progress after explicit resume, 2026-10-17: 39/54 valid and independently audited at restart. Final acceptance pending.**
+**Paused under user storage rule, 2026-10-18: 42/54 valid and independently audited; three runs suspended and nine unstarted. Final acceptance pending.**
 
 The [plan](m7-sensitivity-uncertainty-plan.md) at 655758b and
 [specification](m7-sensitivity-uncertainty-spec.md) at b4e968e precede runtime
@@ -167,6 +167,21 @@ space was about 7.1 GiB. The CLI storage guard initially paused below 2 GiB;
 the user subsequently raised the threshold to pause at or below 5 GiB. All 39 result
 hashes matched, no completed runs were repeated, and the final 15 continue.
 See the [resume checkpoint](../reports/m7/resume_checkpoint.json).
+
+## Latest storage pause
+
+The user's 5 GiB threshold triggered on 2026-10-18. The guard sampled a rapid
+space drop at about 0.23 GiB and suspended all M7 process trees. Space recovered
+to about 7.6 GiB, but the run remains paused. Forty-two outcomes and all their
+raw checks are complete (1,260 metric values); three delay cases are suspended
+in memory and nine runs have not started. See the
+[storage pause checkpoint](../reports/m7/storage_pause_checkpoint.json).
+
+The completed range case changes throughput +0.0020%, scheduled total time
++0.0292%, RMS acceleration -0.4524% and peak insertion backlog -0.7974% versus
+matching three-seed H0. Active passenger share is 2.0303-2.0620%. A separate
+calculation checked all 30 range group/paired metric records. This factor
+alters sensed leader following as well as acceleration-message range.
 
 ## Limits and next milestone
 
