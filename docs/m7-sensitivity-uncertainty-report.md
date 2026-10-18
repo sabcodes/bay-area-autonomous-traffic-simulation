@@ -116,6 +116,18 @@ changes followed. Mac operations remain CLI-only at the user's request.
 Keep raw evidence locally available when reproducing audits in cloud-managed
 folders; local availability is separate from scientific run acceptance.
 
+## Pause and recovery
+
+The user paused the simulation and audit processes at 27 completed/audited runs.
+On explicit continuation, the suspended processes no longer existed. Their
+partial outputs were retained under the local interruption archive, and the
+three interrupted demand x1.2 CACC seeds were restarted from time zero with
+identical settings. The 27 completed outcomes were reused unchanged; 24 other
+planned runs had not started. These process interruptions are operational
+history, distinct from scientific run rejection. See the
+[recovery record](../reports/m7/operational_recovery.json) for source hashes,
+retained/interrupted/unstarted paths and recovery-driver hash.
+
 ## Limits and next milestone
 
 M3 failed held-out fidelity remains (combined speed MAE 14.90 mph; October 15

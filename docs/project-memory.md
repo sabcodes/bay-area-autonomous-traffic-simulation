@@ -11,8 +11,9 @@ coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
 of truth: **M0–M6 practical experiment work is complete. M3 retains its fidelity limit; M5 is a supervised comparison; M6 is a fixed centralized VSL comparison.**
-M7 is paused by user at 27/54 valid, independently audited runs under the
-[frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md), as of 2026-10-17.
+M7 resumed by user on 2026-10-17 under the
+[frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md). The 27 completed
+valid, independently audited outcomes were retained; unfinished runs continue.
 M4 is complete; the [harness closeout](m4-experiment-harness-report.md) records
 its acceptance evidence.
 
@@ -270,3 +271,22 @@ than invoking the non-resumable runner against its existing directory.
 Fresh regression: 145 tests pass (16.45 s), lint and whitespace pass. Runtime
 source remains unchanged. Final audit, remaining 27 runs and closeout/publication
 remain pending. Draft PR #3 stays unmerged. No automatic morning restart set.
+
+## M7 explicit resume and interruption recovery, 2026-10-17
+
+The user requested continuation. The guarded SIGCONT helper found the paused
+processes no longer existed; it sent no signals. All 27 completed outcomes and
+raw-audit caches remained intact. No serialized SUMO state had been saved.
+The recovery dry run verified source/input/campaign hashes and identified 27
+completed, three interrupted, and 24 unstarted planned runs. Partial evidence
+was moved into outputs/m7_interruptions/20261018T033611876447Z/ before restarting
+the same three case/policy/date/seed combinations. No rejected/completed outcome
+was retried and no controller, matrix, sampling or validity setting changed.
+
+The operational driver is outputs/recover_m7.py, with SHA recorded in the
+[versioned recovery record](../reports/m7/operational_recovery.json). It reuses
+the unchanged harness job runner and statistical functions, keeps existing
+completed case reports, and assembles remaining reports from retained and new
+outcomes. Campaign session 75309 and audit session 24202 are the current local
+sessions. Earlier paused-process identities are historical and must not be
+resumed. CLI-only user preference remains. Final acceptance is still pending.
