@@ -25,6 +25,9 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 
 ## Current position
 
+M7 is active as of 2026-10-18: 48/54 valid and independently raw-audited outcomes. Delay and packet-loss cases are complete; three headway runs are underway, followed by three VSL runs. Storage is about 29 GiB free with the user-requested pause at or below 5 GiB. Final campaign acceptance remains pending. See the [M7 draft closeout](m7-sensitivity-uncertainty-report.md).
+
+
 - M0 is complete.
 - M1 is complete. District 4 Station 5-Minute and Station Metadata exports are
   available locally. The reproducible inventory contains 19 candidates: 13

@@ -7,9 +7,7 @@ As of 2026-10-18, M0–M6 are complete at their documented practical standards.
 M3 retains its held-out fidelity limit. M5 accepts a supervised comparison
 with about 2% active passenger timesteps; continuous CACC remains unresolved.
 M6 accepts the fixed centralized VSL comparison and is merged into main at
-`ef8d20c` (2026-10-17). M7 resumed on explicit user request, 2026-10-18, from 42/54 valid and
-independently audited outcomes. Three delay runs continued from live memory;
-the user-requested 5 GiB storage guard remains active. Final acceptance is pending.
+`ef8d20c` (2026-10-17). M7 is active as of 2026-10-18: 48/54 valid and independently raw-audited outcomes. Delay and packet-loss cases are complete; three headway runs are underway, followed by three VSL runs. Storage is about 29 GiB free with the user-requested pause at or below 5 GiB. Final campaign acceptance remains pending.
 See [project memory](docs/project-memory.md), the [roadmap](docs/project-roadmap.md),
 and the [M6 closeout](docs/m6-centralized-control-report.md).
 

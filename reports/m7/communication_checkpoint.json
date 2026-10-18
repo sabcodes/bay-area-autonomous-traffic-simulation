@@ -1,0 +1,318 @@
+{
+  "checkpoint": "communication cases complete; final acceptance pending",
+  "observed_at_utc": "2026-10-18T08:39:43.338451+00:00",
+  "completed_runs": 48,
+  "accepted_runs": 48,
+  "independently_audited_runs": 48,
+  "independent_group_and_pair_records_checked": 60,
+  "checks": [
+    {
+      "case": "delay_1000",
+      "metric": "window_exit_vehicles",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "cohort_completed_vehicles",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "cohort_unfinished_vehicles",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "cohort_mean_travel_time_seconds",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "cohort_p95_travel_time_seconds",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "cohort_mean_waiting_time_seconds",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "cohort_mean_time_loss_seconds",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "window_actual_departures",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "unreconstructed_scheduled_departures",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "scheduled_cohort_vehicles",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "scheduled_cohort_completed_vehicles",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "scheduled_cohort_mean_depart_delay_seconds",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "whole_run_mean_depart_delay_seconds",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "whole_run_max_depart_delay_seconds",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "peak_insertion_backlog_vehicles",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "window_peak_insertion_backlog_vehicles",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "trajectory_timesteps",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "populated_timesteps",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "vehicle_samples",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "mean_stopped_vehicles",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "peak_stopped_vehicles",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "stopped_vehicle_seconds",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "mean_ramp_stopped_vehicles",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "peak_ramp_stopped_vehicles",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "mean_timestep_speed_mph",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "temporal_mean_speed_stddev_mph",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "mean_squared_acceleration_m2_per_s4",
+      "verified": true
+    },
+    {
+      "case": "delay_1000",
+      "metric": "rms_acceleration_m_per_s2",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "window_exit_vehicles",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "cohort_completed_vehicles",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "cohort_unfinished_vehicles",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "cohort_mean_travel_time_seconds",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "cohort_p95_travel_time_seconds",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "cohort_mean_waiting_time_seconds",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "cohort_mean_time_loss_seconds",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "window_actual_departures",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "unreconstructed_scheduled_departures",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "scheduled_cohort_vehicles",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "scheduled_cohort_completed_vehicles",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "scheduled_cohort_mean_depart_delay_seconds",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "whole_run_mean_depart_delay_seconds",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "whole_run_max_depart_delay_seconds",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "peak_insertion_backlog_vehicles",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "window_peak_insertion_backlog_vehicles",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "trajectory_timesteps",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "populated_timesteps",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "vehicle_samples",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "mean_stopped_vehicles",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "peak_stopped_vehicles",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "stopped_vehicle_seconds",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "mean_ramp_stopped_vehicles",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "peak_ramp_stopped_vehicles",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "mean_timestep_speed_mph",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "temporal_mean_speed_stddev_mph",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "mean_squared_acceleration_m2_per_s4",
+      "verified": true
+    },
+    {
+      "case": "loss_020",
+      "metric": "rms_acceleration_m_per_s2",
+      "verified": true
+    }
+  ],
+  "campaign_report_sha256": "4ab9c02e660fe1c8fec94582cd75e3ecdccf72201ade6efcfce31e49d68dbec9",
+  "runtime_source_unchanged_since": "1fb436c",
+  "free_gib": 29.155487060546875,
+  "pause_at_or_below_gib": 5,
+  "remaining_cases": [
+    "headway_2000",
+    "vsl_220"
+  ]
+}

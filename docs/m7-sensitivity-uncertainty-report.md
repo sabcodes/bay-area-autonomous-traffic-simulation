@@ -1,6 +1,6 @@
 # M7 sensitivity and uncertainty closeout
 
-**In progress after explicit resume, 2026-10-18: 42/54 valid and independently audited at restart. Final acceptance pending.**
+**In progress, 2026-10-18: 48/54 valid and independently audited. Headway and VSL cases remain; final acceptance pending.**
 
 The [plan](m7-sensitivity-uncertainty-plan.md) at 655758b and
 [specification](m7-sensitivity-uncertainty-spec.md) at b4e968e precede runtime
@@ -186,6 +186,30 @@ The completed range case changes throughput +0.0020%, scheduled total time
 matching three-seed H0. Active passenger share is 2.0303-2.0620%. A separate
 calculation checked all 30 range group/paired metric records. This factor
 alters sensed leader following as well as acceleration-message range.
+
+## Communication checkpoint, 2026-10-18
+
+All three extra-delay and all three packet-loss runs are valid and independently
+raw-audited, taking the campaign to 48/54. A separate stdlib calculation checked
+all 60 delay/loss group and paired metric records, including same-seed H0
+references, sample SDs, ranges, signs and percentage denominators. Runtime
+source remains unchanged since 1fb436c. See the
+[communication checkpoint](../reports/m7/communication_checkpoint.json).
+
+Against matching H0, extra acceleration-message delay 1 s changes throughput
+-0.0504%, scheduled total time +1.2132%, RMS acceleration -0.5268% and peak
+insertion backlog +0.6784%. Packet loss 20% changes throughput -0.3787%, total
+time +1.4209%, RMS acceleration -1.2739% and backlog +2.7493%. Packet loss is
+realized at 19.89-20.02% of message opportunities. These are mixed outcomes,
+not an overall benefit or a pure V2V contribution. Only acceleration feedforward
+is delayed or dropped; current local gap and speed remain. The supervisor
+still limits engagement to roughly 2% of passenger timesteps.
+
+The three headway runs are underway; VSL target runs follow. Free space is
+about 29 GiB and the 5 GiB CLI pause guard remains active. The final checker now
+waits for both all 54 outcomes and all 54 incremental raw audits before running
+the full campaign/fleet/replay/statistics checks. Final interpretation and
+publication remain pending.
 
 ## Limits and next milestone
 

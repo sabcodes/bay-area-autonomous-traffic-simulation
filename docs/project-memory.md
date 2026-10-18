@@ -11,9 +11,7 @@ coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
 of truth: **M0–M6 practical experiment work is complete. M3 retains its fidelity limit; M5 is a supervised comparison; M6 is a fixed centralized VSL comparison.**
-M7 resumed on explicit user request, 2026-10-18, retaining 42/54 valid and
-independently audited outcomes. Three delay runs continued from memory under
-the active 5 GiB storage guard. Final acceptance is pending. See the
+M7 is active as of 2026-10-18: 48/54 valid and independently raw-audited outcomes. Delay and packet-loss cases are complete; three headway runs are underway, followed by three VSL runs. Storage is about 29 GiB free with the user-requested pause at or below 5 GiB. Final campaign acceptance remains pending. See the
 [frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md).
 M4 is complete; the [harness closeout](m4-experiment-harness-report.md) records
 its acceptance evidence.
@@ -408,3 +406,15 @@ The 5 GiB guard restarted as session89111. Campaign7414, audit12972 and final
 checks14302 remain active; 42 completed valid/audited outcomes are retained.
 No scientific settings changed. The remaining 12 outcomes and full final
 verification, native metadata audit, plots and closeout are still pending.
+
+## Communication and live-process checkpoint, 2026-10-18
+
+M7 is active as of 2026-10-18: 48/54 valid and independently raw-audited outcomes. Delay and packet-loss cases are complete; three headway runs are underway, followed by three VSL runs. Storage is about 29 GiB free with the user-requested pause at or below 5 GiB. Final campaign acceptance remains pending.
+
+Campaign session7414, independent audit12972 and storage guard89111 continue.
+Final checker74488 supersedes14302 and waits for both 54 outcomes and 54 raw
+audits. Run outputs/m7_native_metadata_audit.py after the final report exists.
+Then inspect plots, finish the closeout and AC1-AC6, synchronize Obsidian/context
+and publish PR #3 ready for review. Do not merge without user request.
+See reports/m7/communication_checkpoint.json for independently checked delay/loss
+group records. All completed outcomes and frozen runtime settings are retained.
