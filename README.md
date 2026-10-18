@@ -487,6 +487,9 @@ See [local feasibility research](research/local-feasibility.md) for the source-b
 
 ## M7 sensitivity and uncertainty
 
+[PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3) merged into main at [ad33a7f](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ad33a7f999793b687ffcafbbe6fff91ea10ede29)
+on 2026-10-18 02:29:47 PDT. M8 research synthesis is next.
+
 The [plan](docs/m7-sensitivity-uncertainty-plan.md) and
 [frozen specification](docs/m7-sensitivity-uncertainty-spec.md) preceded runtime
 implementation. All 54/54 runs are valid, including zero-equipment and

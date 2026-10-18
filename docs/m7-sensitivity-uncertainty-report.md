@@ -15,7 +15,7 @@ implementation. The [machine report](../reports/m7/report.json),
 [results, figure and activity table](../reports/m7/README.md), and
 [independent raw audit](../reports/m7/independent_audit.json) are the primary
 result artifacts. [PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3)
-publishes the package; acceptance does not imply it has been merged.
+merged the package into main at [ad33a7f](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ad33a7f999793b687ffcafbbe6fff91ea10ede29) on 2026-10-18 02:29:47 PDT.
 
 ## Question and frozen design
 
@@ -243,7 +243,7 @@ actual-departure travel time can miss. [Primary-source methodology notes](../res
 explain SUMO semantics, not empirical support for the chosen numeric factors.
 M8 final research packaging is next; no M8 implementation is included here.
 
-## Post-review reporting closeout, 2026-10-18
+## Post-review reporting closeout before merge, 2026-10-18
 
 Both P2 findings from the independent PR reviews are resolved. M6 presentation
 now rejects a report whose SHA-256 does not match the accepted audit, before
@@ -266,3 +266,17 @@ function updated. Current-code raw re-audits will correctly invalidate old
 caches; their fingerprints were not rewritten. M7's experiment, findings,
 analysis and review fixes are complete. PR #3 remains unmerged; M8 synthesis
 is next and no further experiment is required for these reporting fixes.
+
+## M7 merged checkpoint, 2026-10-18
+
+[PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3) merged into main at [ad33a7f](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ad33a7f999793b687ffcafbbe6fff91ea10ede29) on 2026-10-18 02:29:47 PDT
+(2026-10-18T09:29:47Z), on explicit user request. The complete merged tree exactly
+matches reviewed head c6722f8, including both reporting fixes. The 165-test,
+independent-review and unchanged-results evidence therefore remains applicable;
+no experiment or regression rerun was necessary for this merge.
+
+Local main is synchronized. See the [merge checkpoint](../reports/m7/merge_checkpoint.json).
+M0-M7 practical experiment work is complete, including M7 findings and analysis.
+M8 research synthesis is next; no M8 work has started. Preserve M3 fidelity,
+M5 low engagement, all accepted outputs and original raw-audit provenance.
+Earlier unmerged/pending statements above are historical checkpoints.

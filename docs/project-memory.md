@@ -11,6 +11,7 @@ coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
 of truth: **M0–M7 practical experiment work is complete; M8 is next.**
+M7 PR #3 is merged into main at [ad33a7f](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ad33a7f999793b687ffcafbbe6fff91ea10ede29) on 2026-10-18 02:29:47 PDT.
 M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 165 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain. See the
 [M7 closeout](m7-sensitivity-uncertainty-report.md) and [frozen specification](m7-sensitivity-uncertainty-spec.md).
 Earlier dated operational entries below are historical; all campaign processes
@@ -455,7 +456,7 @@ OFAT does not estimate interactions/total uncertainty, and seed SD is not a
 confidence interval. Preserve M3 fidelity, unknown gross ramp flows, native
 supervision and ideal VSL limits; no capacity/energy/field-safety claim follows.
 
-## Post-review reporting closeout, 2026-10-18
+## Post-review reporting closeout before merge, 2026-10-18
 
 Both P2 findings from the independent PR reviews are resolved. M6 presentation
 now rejects a report whose SHA-256 does not match the accepted audit, before
@@ -478,3 +479,17 @@ function updated. Current-code raw re-audits will correctly invalidate old
 caches; their fingerprints were not rewritten. M7's experiment, findings,
 analysis and review fixes are complete. PR #3 remains unmerged; M8 synthesis
 is next and no further experiment is required for these reporting fixes.
+
+## M7 merged checkpoint, 2026-10-18
+
+[PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3) merged into main at [ad33a7f](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ad33a7f999793b687ffcafbbe6fff91ea10ede29) on 2026-10-18 02:29:47 PDT
+(2026-10-18T09:29:47Z), on explicit user request. The complete merged tree exactly
+matches reviewed head c6722f8, including both reporting fixes. The 165-test,
+independent-review and unchanged-results evidence therefore remains applicable;
+no experiment or regression rerun was necessary for this merge.
+
+Local main is synchronized. See the [merge checkpoint](../reports/m7/merge_checkpoint.json).
+M0-M7 practical experiment work is complete, including M7 findings and analysis.
+M8 research synthesis is next; no M8 work has started. Preserve M3 fidelity,
+M5 low engagement, all accepted outputs and original raw-audit provenance.
+Earlier unmerged/pending statements above are historical checkpoints.
