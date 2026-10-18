@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 from statistics import mean, stdev
 
@@ -20,6 +21,48 @@ METRICS = {
     "rms_acceleration_m_per_s2": ("RMS acceleration", "m/s²"),
     "peak_insertion_backlog_vehicles": ("Peak insertion backlog", "vehicles"),
 }
+
+
+def factor_effects(report):
+    """Retain every planned pair and suppress an incomplete metric population."""
+    index = {(r["case"], r["scenario"], r["seed"]): r for r in report["runs"]}
+    effects = []
+    for group in report["groups"]:
+        if (
+            group["scenario"] == "H0"
+            or group["case"] == "base"
+            or group["case"].startswith("demand_")
+        ):
+            continue
+        for metric in METRICS:
+            pairs = []
+            for seed in group["planned_seeds"]:
+                rows = [
+                    index.get((case, group["scenario"], seed), {})
+                    for case in (group["case"], "base")
+                ]
+                values = [r.get("metrics", {}).get(metric) for r in rows]
+                difference = None
+                if all(r.get("accepted", False) for r in rows) and all(
+                    type(v) in (int, float) and math.isfinite(v) for v in values
+                ):
+                    candidate = values[0] - values[1]
+                    if math.isfinite(candidate):
+                        difference = candidate
+                pairs.append({"seed": seed, "difference": difference})
+            complete = all(p["difference"] is not None for p in pairs)
+            values = [p["difference"] for p in pairs]
+            effects.append(
+                {
+                    "case": group["case"],
+                    "scenario": group["scenario"],
+                    "metric": metric,
+                    "pairs": pairs,
+                    "mean": mean(values) if complete else None,
+                    "sample_standard_deviation": stdev(values) if complete else None,
+                }
+            )
+    return effects
 
 
 def render(report_path, audit_path, output):
@@ -148,8 +191,6 @@ def render(report_path, audit_path, output):
             f"{equipment} | {fmt(share)} | {messages} | {fmt(d.get('limited_lane_seconds'))} | "
             f"{len(r.get('health', {}).get('warning_lines', []))} | {r.get('error', '')} |"
         )
-    effects = []
-    index = {(r["case"], r["scenario"], r["seed"]): r for r in report["runs"]}
     lines += [
         "",
         "## Factor minus base policy (same seeds)",
@@ -161,39 +202,13 @@ def render(report_path, audit_path, output):
         "| Case/policy | Metric | Factor minus base mean +/- SD |",
         "| --- | --- | ---: |",
     ]
-    for group in groups:
-        if group["case"] == "base" or group["case"].startswith("demand_"):
-            continue
-        for metric, (title, _) in METRICS.items():
-            pairs = []
-            for seed in group["planned_seeds"]:
-                after, before = (
-                    index[group["case"], group["scenario"], seed],
-                    index["base", group["scenario"], seed],
-                )
-                pairs.append(
-                    {
-                        "seed": seed,
-                        "difference": after["metrics"][metric] - before["metrics"][metric]
-                        if after["accepted"] and before["accepted"]
-                        else None,
-                    }
-                )
-            complete = all(p["difference"] is not None for p in pairs)
-            values = [p["difference"] for p in pairs]
-            item = {
-                "case": group["case"],
-                "scenario": group["scenario"],
-                "metric": metric,
-                "pairs": pairs,
-                "mean": mean(values) if complete else None,
-                "sample_standard_deviation": stdev(values) if complete else None,
-            }
-            effects.append(item)
-            lines.append(
-                f"| {group['case']}/{group['scenario']} | {title} | "
-                f"{fmt(item['mean'])} +/- {fmt(item['sample_standard_deviation'])} |"
-            )
+    effects = factor_effects(report)
+    for item in effects:
+        title = METRICS[item["metric"]][0]
+        lines.append(
+            f"| {item['case']}/{item['scenario']} | {title} | "
+            f"{fmt(item['mean'])} +/- {fmt(item['sample_standard_deviation'])} |"
+        )
     lines += [
         "",
         "## Audit and limitations",
@@ -217,7 +232,9 @@ def render(report_path, audit_path, output):
         "",
     ]
     (output / "README.md").write_text("\n".join(lines))
-    (output / "factor_effects.json").write_text(json.dumps(effects, indent=2) + "\n")
+    (output / "factor_effects.json").write_text(
+        json.dumps(effects, indent=2, allow_nan=False) + "\n"
+    )
 
 
 if __name__ == "__main__":

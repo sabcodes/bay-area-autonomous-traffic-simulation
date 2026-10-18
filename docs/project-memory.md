@@ -11,7 +11,7 @@ coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
 of truth: **M0–M7 practical experiment work is complete; M8 is next.**
-M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 145 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain. See the
+M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 165 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain. See the
 [M7 closeout](m7-sensitivity-uncertainty-report.md) and [frozen specification](m7-sensitivity-uncertainty-spec.md).
 Earlier dated operational entries below are historical; all campaign processes
 have completed and old PID/SIGCONT instructions must not be reused.
@@ -421,7 +421,7 @@ and publish PR #3 ready for review. Do not merge without user request.
 See reports/m7/communication_checkpoint.json for independently checked delay/loss
 group records. All completed outcomes and frozen runtime settings are retained.
 
-## M7 closeout and current handoff, 2026-10-18
+## Initial M7 closeout, 2026-10-18
 
 M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 145 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain.
 
@@ -454,3 +454,27 @@ for review and unmerged; do not merge or start M8 without a new user request.
 OFAT does not estimate interactions/total uncertainty, and seed SD is not a
 confidence interval. Preserve M3 fidelity, unknown gross ramp flows, native
 supervision and ideal VSL limits; no capacity/energy/field-safety claim follows.
+
+## Post-review reporting closeout, 2026-10-18
+
+Both P2 findings from the independent PR reviews are resolved. M6 presentation
+now rejects a report whose SHA-256 does not match the accepted audit, before
+creating or changing outputs. M7 factor reporting and its independent checker
+retain planned seed pairs and suppress aggregates for missing/failed runs,
+missing/null/non-numeric/nonfinite metrics or nonfinite subtraction. The full
+renderer is covered by a regression that previously reproduced the crash.
+
+All 165 tests pass (20 added review regressions), with lint and whitespace clean.
+Independent follow-up reviews found no residual issue in either fix. Regenerated
+M6/M7 tables and figures and all 28 factor records are byte-identical to the
+published artifacts. All 54 outcomes, findings and scientific interpretations
+remain unchanged; no full-window simulation was rerun.
+
+The [post-review verification](../reports/m7/post_review_verification.json)
+records hashes, numeric boundary checks and independent follow-up reviews.
+The original raw audit retains its original auditor fingerprint at 4c1d656;
+its raw-auditor code is unchanged, with only the separate factor-validation
+function updated. Current-code raw re-audits will correctly invalidate old
+caches; their fingerprints were not rewritten. M7's experiment, findings,
+analysis and review fixes are complete. PR #3 remains unmerged; M8 synthesis
+is next and no further experiment is required for these reporting fixes.

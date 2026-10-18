@@ -479,13 +479,23 @@ def audit_factor_effects(report, effects):
         case = next(c for c in report["campaign"]["cases"] if c["id"] == effect["case"])
         delta = []
         for seed in case["seeds"]:
-            a = index[case["id"], effect["scenario"], seed]
-            b = index["base", effect["scenario"], seed]
-            delta.append(
-                a["metrics"][effect["metric"]] - b["metrics"][effect["metric"]]
-                if a["accepted"] and b["accepted"]
-                else None
-            )
+            a = index.get((case["id"], effect["scenario"], seed), {})
+            b = index.get(("base", effect["scenario"], seed), {})
+            after = a.get("metrics", {}).get(effect["metric"])
+            before = b.get("metrics", {}).get(effect["metric"])
+            value = None
+            if (
+                a.get("accepted")
+                and b.get("accepted")
+                and type(after) in (int, float)
+                and type(before) in (int, float)
+                and math.isfinite(after)
+                and math.isfinite(before)
+            ):
+                calculated = after - before
+                if math.isfinite(calculated):
+                    value = calculated
+            delta.append(value)
         assert effect["pairs"] == [
             {"seed": seed, "difference": value}
             for seed, value in zip(case["seeds"], delta, strict=True)

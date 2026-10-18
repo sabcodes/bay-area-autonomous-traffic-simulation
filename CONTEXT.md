@@ -3,7 +3,7 @@
 This glossary names the project-specific concepts used in the corridor model,
 observed-data audit, and scenario comparisons.
 
-M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 145 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain.
+M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 165 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain.
 M5 remains a supervised comparison with about 2% active passenger timesteps;
 continuous CACC is unresolved. M6 fixed VSL is merged at ef8d20c. M7 is published
 through PR #3, ready for review and unmerged. See [project memory](docs/project-memory.md),

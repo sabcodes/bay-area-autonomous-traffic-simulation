@@ -1,6 +1,6 @@
 {
   "accepted": true,
-  "verified_at_utc": "2026-10-18T09:05:01.821071+00:00",
+  "verified_at_utc": "2026-10-18T09:26:30.266266+00:00",
   "valid_runs": 54,
   "warnings": 0,
   "raw_metric_values": 1620,
@@ -13,9 +13,9 @@
   "low_demand_inactive_central_exact_metric_values": 90,
   "regression": {
     "command": "PYTHONPATH=src .venv/bin/python -m pytest -q",
-    "passed": 145,
+    "passed": 165,
     "failed": 0,
-    "seconds": 9.14
+    "seconds": 10.11
   },
   "lint": {
     "command": ".venv/bin/ruff check src tests scripts",
@@ -49,6 +49,8 @@
     "factor_audit.json": "9fba3d22bd56273336b269c18795f86f70385442e0532191ba54c5a3d1a3b3c2",
     "measurement_audit.json": "c592952ef7b9ae6aa9a4e222fa18360cde3cf9ddded73712f8df15d8411d5d64",
     "native_metadata_audit.json": "656bde719f07a2aac61ad15c85a08701f8289c91b78cdd9209b0506c72c7180c",
-    "paired_sensitivity.png": "e533b374763b5392466dd226116a47d0309a91177465400e808721293cc793d4"
-  }
+    "paired_sensitivity.png": "e533b374763b5392466dd226116a47d0309a91177465400e808721293cc793d4",
+    "post_review_verification.json": "8ef27138f9bf26ddaafc695f03fb4a6d511956de534eb4253415fca60ce96ec0"
+  },
+  "post_review_fixes_verified": true
 }

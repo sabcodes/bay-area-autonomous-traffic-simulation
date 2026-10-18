@@ -154,7 +154,7 @@ nonfinite; no surviving-seed means are reported.
 | --- | --- | --- |
 | AC1 | Plan 655758b -> spec b4e968e -> runtime 1fb436c; frozen config exactly 54 outcomes | Pass |
 | AC2 | Hand calculations, deterministic equipment/message boundaries, runtime message age, invalid inputs, real-SUMO native/null and deterministic degraded replay | Pass |
-| AC3 | Full 145-test regression, lint, unchanged strict M6 gates and missing/failed/nonfinite suppression | Pass |
+| AC3 | Full 165-test regression, lint, unchanged strict M6 gates and missing/failed/nonfinite suppression | Pass |
 | AC4 | All 54 outcomes retained; matching-demand route/fleet/schedule checks; nine M6 and three zero-equipment exact replays | Pass |
 | AC5 | 1620 independently recalculated raw metrics; 480 group/paired metric records; 28 factor records; 54 native metadata checks | Pass |
 | AC6 | Versioned report, figure, failure/activity table, closeout, context/Obsidian/GitHub publication | Pass; final SHA recorded in publication handoff |
@@ -242,3 +242,27 @@ energy. Scheduled total time and insertion backlog expose displaced delay that
 actual-departure travel time can miss. [Primary-source methodology notes](../research/m7-methodology.md)
 explain SUMO semantics, not empirical support for the chosen numeric factors.
 M8 final research packaging is next; no M8 implementation is included here.
+
+## Post-review reporting closeout, 2026-10-18
+
+Both P2 findings from the independent PR reviews are resolved. M6 presentation
+now rejects a report whose SHA-256 does not match the accepted audit, before
+creating or changing outputs. M7 factor reporting and its independent checker
+retain planned seed pairs and suppress aggregates for missing/failed runs,
+missing/null/non-numeric/nonfinite metrics or nonfinite subtraction. The full
+renderer is covered by a regression that previously reproduced the crash.
+
+All 165 tests pass (20 added review regressions), with lint and whitespace clean.
+Independent follow-up reviews found no residual issue in either fix. Regenerated
+M6/M7 tables and figures and all 28 factor records are byte-identical to the
+published artifacts. All 54 outcomes, findings and scientific interpretations
+remain unchanged; no full-window simulation was rerun.
+
+The [post-review verification](../reports/m7/post_review_verification.json)
+records hashes, numeric boundary checks and independent follow-up reviews.
+The original raw audit retains its original auditor fingerprint at 4c1d656;
+its raw-auditor code is unchanged, with only the separate factor-validation
+function updated. Current-code raw re-audits will correctly invalidate old
+caches; their fingerprints were not rewritten. M7's experiment, findings,
+analysis and review fixes are complete. PR #3 remains unmerged; M8 synthesis
+is next and no further experiment is required for these reporting fixes.

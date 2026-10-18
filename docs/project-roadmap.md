@@ -25,7 +25,7 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 
 ## Current position
 
-M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 145 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain. See the [M7 closeout](m7-sensitivity-uncertainty-report.md).
+M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 165 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain. See the [M7 closeout](m7-sensitivity-uncertainty-report.md).
 
 ## Milestone history and observed-data decisions
 
@@ -192,7 +192,7 @@ M7 resumed explicitly later on 2026-10-18 with 11.7 GiB free. The three delay
 runs continued from live state; all 42 finished outcomes are retained and the
 5 GiB guard remains active. Final acceptance is still pending.
 
-## M7 closeout, 2026-10-18
+## Initial M7 closeout, 2026-10-18
 
 M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 145 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain.
 
@@ -204,3 +204,27 @@ demand. No settings were selected for benefit. See the
 [closeout](m7-sensitivity-uncertainty-report.md), [results](../reports/m7/README.md)
 and [PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3).
 M8 is next; no M8 work is included in M7. The PR remains unmerged.
+
+## Post-review reporting closeout, 2026-10-18
+
+Both P2 findings from the independent PR reviews are resolved. M6 presentation
+now rejects a report whose SHA-256 does not match the accepted audit, before
+creating or changing outputs. M7 factor reporting and its independent checker
+retain planned seed pairs and suppress aggregates for missing/failed runs,
+missing/null/non-numeric/nonfinite metrics or nonfinite subtraction. The full
+renderer is covered by a regression that previously reproduced the crash.
+
+All 165 tests pass (20 added review regressions), with lint and whitespace clean.
+Independent follow-up reviews found no residual issue in either fix. Regenerated
+M6/M7 tables and figures and all 28 factor records are byte-identical to the
+published artifacts. All 54 outcomes, findings and scientific interpretations
+remain unchanged; no full-window simulation was rerun.
+
+The [post-review verification](../reports/m7/post_review_verification.json)
+records hashes, numeric boundary checks and independent follow-up reviews.
+The original raw audit retains its original auditor fingerprint at 4c1d656;
+its raw-auditor code is unchanged, with only the separate factor-validation
+function updated. Current-code raw re-audits will correctly invalidate old
+caches; their fingerprints were not rewritten. M7's experiment, findings,
+analysis and review fixes are complete. PR #3 remains unmerged; M8 synthesis
+is next and no further experiment is required for these reporting fixes.

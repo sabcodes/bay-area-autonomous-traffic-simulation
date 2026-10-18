@@ -492,7 +492,7 @@ The [plan](docs/m7-sensitivity-uncertainty-plan.md) and
 implementation. All 54/54 runs are valid, including zero-equipment and
 nonactivating VSL controls. The independent audit checks 1620 raw metrics,
 480 group/paired records, 28 factor records, matching fleets/schedules
-and exact M6/null-control replays. All 145 tests and lint pass.
+and exact M6/null-control replays. All 165 tests and lint pass.
 
 The OFAT screen varies demand, passenger equipment, acceleration-message
 range/delay/loss, requested CACC headway, VSL target and seeds. Base seeds are
