@@ -69,3 +69,32 @@ standard. It cannot remove the M3 held-out fidelity failure, about 2% supervised
 CACC engagement, M5 rejected variants, M7 OFAT/interactions limitations, ideal
 sensing/actuation, missing field evidence, or raw data distribution boundary.
 No fresh full-window simulation or controller change is required.
+
+
+## Post-council addendum - 2026-10-18
+
+The user requested an adversarial M1-M7 review extending to this package.
+The council record is `docs/m1-m8-adversarial-council.md` and its machine findings
+are `reports/m8/council_review.json`. The original M8 plan/spec/implementation
+sequence and original verification record remain historical evidence.
+
+Corrections must preserve simulator source, frozen configs and accepted M3-M7
+numerical records. Exact replay needs the original byte-identical derived-input
+snapshots: legacy raw preparation embeds absolute provenance paths and cannot
+promise portable frozen-byte reconstruction. Guide M3 replay into fresh runtime
+AND report directories. Describe local engine agreement precisely, retain the
+explicit 1.27.1 installation requirement, label all-run overlay engagement, and
+qualify held-out dates as a frozen phase split rather than certified blinding.
+
+Extend the manifest input selection to versioned M8 artifacts, including the
+council machine findings. Exclude `reports/m8/manifest.json`, the original
+`reports/m8/verification.json` and the later `reports/m8/council_verification.json`
+observation record from content hashes. Generated headline JSON/table bytes must
+remain identical; the manifest changes with these publication corrections.
+A focused regression must detect tampered council findings while allowing the
+explicitly excluded verification observation records to be added/updated.
+
+The post-council record must store actual regression/lint/package/input/link
+checks, clean-checkout verification and reviewed baseline/final publication.
+Completion is saved-evidence research packaging, with portable full runtime
+replay conditional on archived exact inputs and the recorded environment.
