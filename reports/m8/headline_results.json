@@ -1,0 +1,1695 @@
+{
+  "m3_scores": [
+    {
+      "date": "2025-10-07",
+      "mean_station_flow_mape_percent": 10.209558659984562,
+      "mean_station_speed_mae_mph": 7.245302690029718,
+      "phase": "calibration",
+      "runs": 3
+    },
+    {
+      "date": "2025-10-08",
+      "mean_station_flow_mape_percent": 8.217113008719275,
+      "mean_station_speed_mae_mph": 5.8464567658588456,
+      "phase": "calibration",
+      "runs": 3
+    },
+    {
+      "date": "2025-10-09",
+      "mean_station_flow_mape_percent": 7.781346963215857,
+      "mean_station_speed_mae_mph": 6.787045594048552,
+      "phase": "calibration",
+      "runs": 3
+    },
+    {
+      "date": "2025-10-10",
+      "mean_station_flow_mape_percent": 7.183477829592829,
+      "mean_station_speed_mae_mph": 13.426220048311317,
+      "phase": "calibration",
+      "runs": 3
+    },
+    {
+      "date": "2025-10-14",
+      "mean_station_flow_mape_percent": 8.216731563893358,
+      "mean_station_speed_mae_mph": 7.452823812364856,
+      "phase": "calibration",
+      "runs": 3
+    },
+    {
+      "date": "combined",
+      "mean_station_flow_mape_percent": 8.321645605081176,
+      "mean_station_speed_mae_mph": 8.151569782122657,
+      "phase": "calibration",
+      "runs": 15
+    },
+    {
+      "date": "2025-10-15",
+      "mean_station_flow_mape_percent": 29.95478496716808,
+      "mean_station_speed_mae_mph": 21.503452038032478,
+      "phase": "validation",
+      "runs": 3
+    },
+    {
+      "date": "2025-10-16",
+      "mean_station_flow_mape_percent": 8.793262950283607,
+      "mean_station_speed_mae_mph": 8.304751601223012,
+      "phase": "validation",
+      "runs": 3
+    },
+    {
+      "date": "combined",
+      "mean_station_flow_mape_percent": 19.374023958725843,
+      "mean_station_speed_mae_mph": 14.904101819627744,
+      "phase": "validation",
+      "runs": 6
+    }
+  ],
+  "m7_paired_metrics": [
+    {
+      "case": "base",
+      "h0_mean": 8266.0,
+      "maximum": 41.0,
+      "mean": -17.5,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": -55.5,
+      "negative_count": 3,
+      "pairs": [
+        {
+          "difference": -31.0,
+          "seed": 41
+        },
+        {
+          "difference": -55.5,
+          "seed": 42
+        },
+        {
+          "difference": 13.0,
+          "seed": 43
+        },
+        {
+          "difference": 41.0,
+          "seed": 44
+        },
+        {
+          "difference": -55.0,
+          "seed": 45
+        }
+      ],
+      "percent_of_reference_mean": -0.21171062182434067,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 42.968011357287644,
+      "scenario": "CACC",
+      "valid_seed_count": 5,
+      "zero_count": 0
+    },
+    {
+      "case": "base",
+      "h0_mean": 1540.5033273020686,
+      "maximum": 29.454863318499747,
+      "mean": 10.925502469558387,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": -10.43063230475832,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": 12.370482664189012,
+          "seed": 41
+        },
+        {
+          "difference": 29.454863318499747,
+          "seed": 42
+        },
+        {
+          "difference": -10.43063230475832,
+          "seed": 43
+        },
+        {
+          "difference": -4.125458457626337,
+          "seed": 44
+        },
+        {
+          "difference": 27.358257127487832,
+          "seed": 45
+        }
+      ],
+      "percent_of_reference_mean": 0.7092164149163221,
+      "positive_count": 3,
+      "reference_case": "base",
+      "sample_standard_deviation": 18.014414535388585,
+      "scenario": "CACC",
+      "valid_seed_count": 5,
+      "zero_count": 0
+    },
+    {
+      "case": "base",
+      "h0_mean": 0.8145775718915168,
+      "maximum": -0.0017123155437379634,
+      "mean": -0.006312557470804991,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": -0.008970227911006656,
+      "negative_count": 5,
+      "pairs": [
+        {
+          "difference": -0.00879165564374873,
+          "seed": 41
+        },
+        {
+          "difference": -0.008970227911006656,
+          "seed": 42
+        },
+        {
+          "difference": -0.0017123155437379634,
+          "seed": 43
+        },
+        {
+          "difference": -0.003741510700580042,
+          "seed": 44
+        },
+        {
+          "difference": -0.008347077554951565,
+          "seed": 45
+        }
+      ],
+      "percent_of_reference_mean": -0.7749485977310556,
+      "positive_count": 0,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.0033586053346158426,
+      "scenario": "CACC",
+      "valid_seed_count": 5,
+      "zero_count": 0
+    },
+    {
+      "case": "base",
+      "h0_mean": 2814.2,
+      "maximum": 80,
+      "mean": 22.8,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": -87,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": 62,
+          "seed": 41
+        },
+        {
+          "difference": 70,
+          "seed": 42
+        },
+        {
+          "difference": -87,
+          "seed": 43
+        },
+        {
+          "difference": -11,
+          "seed": 44
+        },
+        {
+          "difference": 80,
+          "seed": 45
+        }
+      ],
+      "percent_of_reference_mean": 0.8101769597043565,
+      "positive_count": 3,
+      "reference_case": "base",
+      "sample_standard_deviation": 71.12453866282719,
+      "scenario": "CACC",
+      "valid_seed_count": 5,
+      "zero_count": 0
+    },
+    {
+      "case": "base",
+      "h0_mean": 8266.0,
+      "maximum": 163.0,
+      "mean": 43.2,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": -35.5,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": 3.0,
+          "seed": 41
+        },
+        {
+          "difference": -32.5,
+          "seed": 42
+        },
+        {
+          "difference": 118.0,
+          "seed": 43
+        },
+        {
+          "difference": 163.0,
+          "seed": 44
+        },
+        {
+          "difference": -35.5,
+          "seed": 45
+        }
+      ],
+      "percent_of_reference_mean": 0.5226227921606581,
+      "positive_count": 3,
+      "reference_case": "base",
+      "sample_standard_deviation": 91.49767756615465,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 5,
+      "zero_count": 0
+    },
+    {
+      "case": "base",
+      "h0_mean": 1540.5033273020686,
+      "maximum": 21.458873294537625,
+      "mean": -17.64726881510105,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": -60.30461147244364,
+      "negative_count": 3,
+      "pairs": [
+        {
+          "difference": -13.513765954325436,
+          "seed": 41
+        },
+        {
+          "difference": 21.458873294537625,
+          "seed": 42
+        },
+        {
+          "difference": -53.1806689813684,
+          "seed": 43
+        },
+        {
+          "difference": -60.30461147244364,
+          "seed": 44
+        },
+        {
+          "difference": 17.30382903809459,
+          "seed": 45
+        }
+      ],
+      "percent_of_reference_mean": -1.1455521388588794,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 38.24338781967734,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 5,
+      "zero_count": 0
+    },
+    {
+      "case": "base",
+      "h0_mean": 0.8145775718915168,
+      "maximum": 0.011302417363806994,
+      "mean": 0.003964006291052602,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": -0.0028673000522463354,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": 0.0024429883170711264,
+          "seed": 41
+        },
+        {
+          "difference": -0.0006017190824283425,
+          "seed": 42
+        },
+        {
+          "difference": 0.009543644909059568,
+          "seed": 43
+        },
+        {
+          "difference": 0.011302417363806994,
+          "seed": 44
+        },
+        {
+          "difference": -0.0028673000522463354,
+          "seed": 45
+        }
+      ],
+      "percent_of_reference_mean": 0.486633370207806,
+      "positive_count": 3,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.006221148093388745,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 5,
+      "zero_count": 0
+    },
+    {
+      "case": "base",
+      "h0_mean": 2814.2,
+      "maximum": 68,
+      "mean": -65.6,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": -171,
+      "negative_count": 4,
+      "pairs": [
+        {
+          "difference": -38,
+          "seed": 41
+        },
+        {
+          "difference": 68,
+          "seed": 42
+        },
+        {
+          "difference": -167,
+          "seed": 43
+        },
+        {
+          "difference": -171,
+          "seed": 44
+        },
+        {
+          "difference": -20,
+          "seed": 45
+        }
+      ],
+      "percent_of_reference_mean": -2.3310354630090253,
+      "positive_count": 1,
+      "reference_case": "base",
+      "sample_standard_deviation": 102.5685136871935,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 5,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_080",
+      "h0_mean": 8081.0,
+      "maximum": 4.5,
+      "mean": -9.666666666666666,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": -32.5,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -32.5,
+          "seed": 41
+        },
+        {
+          "difference": -1.0,
+          "seed": 42
+        },
+        {
+          "difference": 4.5,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.11962215897372437,
+      "positive_count": 1,
+      "reference_case": "demand_080",
+      "sample_standard_deviation": 19.964551919172475,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_080",
+      "h0_mean": 528.1513295479984,
+      "maximum": 13.050338848525598,
+      "mean": 8.423998209088913,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": 5.573936137737405,
+      "negative_count": 0,
+      "pairs": [
+        {
+          "difference": 13.050338848525598,
+          "seed": 41
+        },
+        {
+          "difference": 6.647719641003732,
+          "seed": 42
+        },
+        {
+          "difference": 5.573936137737405,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 1.5949970657649057,
+      "positive_count": 3,
+      "reference_case": "demand_080",
+      "sample_standard_deviation": 4.04234134346041,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_080",
+      "h0_mean": 0.9420169420888266,
+      "maximum": -0.0010445490801177515,
+      "mean": -0.005492838113472787,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": -0.008236320352276727,
+      "negative_count": 3,
+      "pairs": [
+        {
+          "difference": -0.007197644908023881,
+          "seed": 41
+        },
+        {
+          "difference": -0.008236320352276727,
+          "seed": 42
+        },
+        {
+          "difference": -0.0010445490801177515,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.5830933466327026,
+      "positive_count": 0,
+      "reference_case": "demand_080",
+      "sample_standard_deviation": 0.0038871799756151587,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_080",
+      "h0_mean": 269.6666666666667,
+      "maximum": -1,
+      "mean": -16,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": -31,
+      "negative_count": 3,
+      "pairs": [
+        {
+          "difference": -1,
+          "seed": 41
+        },
+        {
+          "difference": -16,
+          "seed": 42
+        },
+        {
+          "difference": -31,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -5.933250927070457,
+      "positive_count": 0,
+      "reference_case": "demand_080",
+      "sample_standard_deviation": 15.0,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_080",
+      "h0_mean": 8081.0,
+      "maximum": 0.0,
+      "mean": 0.0,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": 0.0,
+      "negative_count": 0,
+      "pairs": [
+        {
+          "difference": 0.0,
+          "seed": 41
+        },
+        {
+          "difference": 0.0,
+          "seed": 42
+        },
+        {
+          "difference": 0.0,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.0,
+      "positive_count": 0,
+      "reference_case": "demand_080",
+      "sample_standard_deviation": 0.0,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 3
+    },
+    {
+      "case": "demand_080",
+      "h0_mean": 528.1513295479984,
+      "maximum": 0.0,
+      "mean": 0.0,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": 0.0,
+      "negative_count": 0,
+      "pairs": [
+        {
+          "difference": 0.0,
+          "seed": 41
+        },
+        {
+          "difference": 0.0,
+          "seed": 42
+        },
+        {
+          "difference": 0.0,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.0,
+      "positive_count": 0,
+      "reference_case": "demand_080",
+      "sample_standard_deviation": 0.0,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 3
+    },
+    {
+      "case": "demand_080",
+      "h0_mean": 0.9420169420888266,
+      "maximum": 0.0,
+      "mean": 0.0,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": 0.0,
+      "negative_count": 0,
+      "pairs": [
+        {
+          "difference": 0.0,
+          "seed": 41
+        },
+        {
+          "difference": 0.0,
+          "seed": 42
+        },
+        {
+          "difference": 0.0,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.0,
+      "positive_count": 0,
+      "reference_case": "demand_080",
+      "sample_standard_deviation": 0.0,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 3
+    },
+    {
+      "case": "demand_080",
+      "h0_mean": 269.6666666666667,
+      "maximum": 0,
+      "mean": 0,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": 0,
+      "negative_count": 0,
+      "pairs": [
+        {
+          "difference": 0,
+          "seed": 41
+        },
+        {
+          "difference": 0,
+          "seed": 42
+        },
+        {
+          "difference": 0,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.0,
+      "positive_count": 0,
+      "reference_case": "demand_080",
+      "sample_standard_deviation": 0.0,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 3
+    },
+    {
+      "case": "demand_120",
+      "h0_mean": 8477.833333333334,
+      "maximum": 35.5,
+      "mean": -32.666666666666664,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": -107.5,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -26.0,
+          "seed": 41
+        },
+        {
+          "difference": -107.5,
+          "seed": 42
+        },
+        {
+          "difference": 35.5,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.38531857589399804,
+      "positive_count": 1,
+      "reference_case": "demand_120",
+      "sample_standard_deviation": 71.73272149677115,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_120",
+      "h0_mean": 2634.640437780498,
+      "maximum": 71.20053039575714,
+      "mean": 7.109261525907793,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": -28.10440636474914,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -28.10440636474914,
+          "seed": 41
+        },
+        {
+          "difference": 71.20053039575714,
+          "seed": 42
+        },
+        {
+          "difference": -21.768339453284625,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.2698380175131926,
+      "positive_count": 1,
+      "reference_case": "demand_120",
+      "sample_standard_deviation": 55.595004226882914,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_120",
+      "h0_mean": 0.8271928935967415,
+      "maximum": -0.00037388739258803483,
+      "mean": -0.0061288606882747105,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": -0.013228531465989679,
+      "negative_count": 3,
+      "pairs": [
+        {
+          "difference": -0.004784163206246417,
+          "seed": 41
+        },
+        {
+          "difference": -0.013228531465989679,
+          "seed": 42
+        },
+        {
+          "difference": -0.00037388739258803483,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.7409227927026347,
+      "positive_count": 0,
+      "reference_case": "demand_120",
+      "sample_standard_deviation": 0.006531969615061748,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_120",
+      "h0_mean": 7103.333333333333,
+      "maximum": 165,
+      "mean": 31.666666666666668,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": -56,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -14,
+          "seed": 41
+        },
+        {
+          "difference": 165,
+          "seed": 42
+        },
+        {
+          "difference": -56,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.4458000938526514,
+      "positive_count": 1,
+      "reference_case": "demand_120",
+      "sample_standard_deviation": 117.36410581320565,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_120",
+      "h0_mean": 8477.833333333334,
+      "maximum": 36.5,
+      "mean": -7.833333333333333,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": -35.5,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -35.5,
+          "seed": 41
+        },
+        {
+          "difference": -24.5,
+          "seed": 42
+        },
+        {
+          "difference": 36.5,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.09239782177049952,
+      "positive_count": 1,
+      "reference_case": "demand_120",
+      "sample_standard_deviation": 38.785736209763165,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_120",
+      "h0_mean": 2634.640437780498,
+      "maximum": 22.03361893104875,
+      "mean": 2.4542363661090953,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": -15.276764585883484,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": 0.6058547531620206,
+          "seed": 41
+        },
+        {
+          "difference": 22.03361893104875,
+          "seed": 42
+        },
+        {
+          "difference": -15.276764585883484,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.09315261129813295,
+      "positive_count": 2,
+      "reference_case": "demand_120",
+      "sample_standard_deviation": 18.723743361984344,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_120",
+      "h0_mean": 0.8271928935967415,
+      "maximum": 0.003135226469362151,
+      "mean": -0.00012723881779252988,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": -0.003446601863159593,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -0.003446601863159593,
+          "seed": 41
+        },
+        {
+          "difference": -7.034105958014791e-05,
+          "seed": 42
+        },
+        {
+          "difference": 0.003135226469362151,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.015382000834083458,
+      "positive_count": 1,
+      "reference_case": "demand_120",
+      "sample_standard_deviation": 0.0032912830425023743,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "demand_120",
+      "h0_mean": 7103.333333333333,
+      "maximum": 41,
+      "mean": -23,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": -81,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": 41,
+          "seed": 41
+        },
+        {
+          "difference": -29,
+          "seed": 42
+        },
+        {
+          "difference": -81,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.32379164711403097,
+      "positive_count": 1,
+      "reference_case": "demand_120",
+      "sample_standard_deviation": 61.220911460055866,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "penetration_000",
+      "h0_mean": 8274.5,
+      "maximum": 0.0,
+      "mean": 0.0,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": 0.0,
+      "negative_count": 0,
+      "pairs": [
+        {
+          "difference": 0.0,
+          "seed": 41
+        },
+        {
+          "difference": 0.0,
+          "seed": 42
+        },
+        {
+          "difference": 0.0,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.0,
+      "positive_count": 0,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.0,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 3
+    },
+    {
+      "case": "penetration_000",
+      "h0_mean": 1533.9019824930315,
+      "maximum": 0.0,
+      "mean": 0.0,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": 0.0,
+      "negative_count": 0,
+      "pairs": [
+        {
+          "difference": 0.0,
+          "seed": 41
+        },
+        {
+          "difference": 0.0,
+          "seed": 42
+        },
+        {
+          "difference": 0.0,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.0,
+      "positive_count": 0,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.0,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 3
+    },
+    {
+      "case": "penetration_000",
+      "h0_mean": 0.8146384006099582,
+      "maximum": 0.0,
+      "mean": 0.0,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": 0.0,
+      "negative_count": 0,
+      "pairs": [
+        {
+          "difference": 0.0,
+          "seed": 41
+        },
+        {
+          "difference": 0.0,
+          "seed": 42
+        },
+        {
+          "difference": 0.0,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.0,
+      "positive_count": 0,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.0,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 3
+    },
+    {
+      "case": "penetration_000",
+      "h0_mean": 2800.6666666666665,
+      "maximum": 0,
+      "mean": 0,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": 0,
+      "negative_count": 0,
+      "pairs": [
+        {
+          "difference": 0,
+          "seed": 41
+        },
+        {
+          "difference": 0,
+          "seed": 42
+        },
+        {
+          "difference": 0,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.0,
+      "positive_count": 0,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.0,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 3
+    },
+    {
+      "case": "penetration_050",
+      "h0_mean": 8274.5,
+      "maximum": 76.5,
+      "mean": -40.833333333333336,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": -146.5,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -146.5,
+          "seed": 41
+        },
+        {
+          "difference": -52.5,
+          "seed": 42
+        },
+        {
+          "difference": 76.5,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.49348399701895385,
+      "positive_count": 1,
+      "reference_case": "base",
+      "sample_standard_deviation": 111.9568369209015,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "penetration_050",
+      "h0_mean": 1533.9019824930315,
+      "maximum": 66.13570345738185,
+      "mean": 28.07970234893317,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": -26.869480170179486,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": 66.13570345738185,
+          "seed": 41
+        },
+        {
+          "difference": 44.97288375959715,
+          "seed": 42
+        },
+        {
+          "difference": -26.869480170179486,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 1.8306060406347207,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 48.74962286038019,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "penetration_050",
+      "h0_mean": 0.8146384006099582,
+      "maximum": 0.0018305120522760232,
+      "mean": -0.0071538982943141205,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": -0.016902401507255083,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -0.016902401507255083,
+          "seed": 41
+        },
+        {
+          "difference": -0.006389805427963302,
+          "seed": 42
+        },
+        {
+          "difference": 0.0018305120522760232,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.878168557848201,
+      "positive_count": 1,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.00938980250263669,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "penetration_050",
+      "h0_mean": 2800.6666666666665,
+      "maximum": 177,
+      "mean": 86.66666666666667,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": -57,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": 177,
+          "seed": 41
+        },
+        {
+          "difference": 140,
+          "seed": 42
+        },
+        {
+          "difference": -57,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 3.094501309212093,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 125.786856759096,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "range_050",
+      "h0_mean": 8274.5,
+      "maximum": 48.5,
+      "mean": 0.16666666666666666,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": -75.0,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": -75.0,
+          "seed": 41
+        },
+        {
+          "difference": 27.0,
+          "seed": 42
+        },
+        {
+          "difference": 48.5,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.0020142203959957294,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 65.97790034044228,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "range_050",
+      "h0_mean": 1533.9019824930315,
+      "maximum": 38.190058193554705,
+      "mean": 0.44719383180919675,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": -24.330798572057347,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": 38.190058193554705,
+          "seed": 41
+        },
+        {
+          "difference": -12.517678126069768,
+          "seed": 42
+        },
+        {
+          "difference": -24.330798572057347,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.02915400311839863,
+      "positive_count": 1,
+      "reference_case": "base",
+      "sample_standard_deviation": 33.21566364442673,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "range_050",
+      "h0_mean": 0.8146384006099582,
+      "maximum": 0.0005571561389461355,
+      "mean": -0.003685171734398677,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": -0.011728163919428325,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": -0.011728163919428325,
+          "seed": 41
+        },
+        {
+          "difference": 0.00011549257728615814,
+          "seed": 42
+        },
+        {
+          "difference": 0.0005571561389461355,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.45236901816062375,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.00696893529470324,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "range_050",
+      "h0_mean": 2800.6666666666665,
+      "maximum": 92,
+      "mean": -22.333333333333332,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": -148,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": 92,
+          "seed": 41
+        },
+        {
+          "difference": -11,
+          "seed": 42
+        },
+        {
+          "difference": -148,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.7974291835277314,
+      "positive_count": 1,
+      "reference_case": "base",
+      "sample_standard_deviation": 120.4007198206611,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "delay_1000",
+      "h0_mean": 8274.5,
+      "maximum": 40.0,
+      "mean": -4.166666666666667,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": -72.0,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": 19.5,
+          "seed": 41
+        },
+        {
+          "difference": -72.0,
+          "seed": 42
+        },
+        {
+          "difference": 40.0,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.05035550989989325,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 59.63290478698261,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "delay_1000",
+      "h0_mean": 1533.9019824930315,
+      "maximum": 51.61531126216437,
+      "mean": 18.609720116713106,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": -6.969851826495187,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": -6.969851826495187,
+          "seed": 41
+        },
+        {
+          "difference": 51.61531126216437,
+          "seed": 42
+        },
+        {
+          "difference": 11.183700914470137,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 1.2132274636262588,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 29.990242653657713,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "delay_1000",
+      "h0_mean": 0.8146384006099582,
+      "maximum": -0.002239735803896692,
+      "mean": -0.004291224573129249,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": -0.0066525035349696005,
+      "negative_count": 3,
+      "pairs": [
+        {
+          "difference": -0.003981434380521454,
+          "seed": 41
+        },
+        {
+          "difference": -0.0066525035349696005,
+          "seed": 42
+        },
+        {
+          "difference": -0.002239735803896692,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.5267643373938924,
+      "positive_count": 0,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.0022226352005393435,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "delay_1000",
+      "h0_mean": 2800.6666666666665,
+      "maximum": 120,
+      "mean": 19,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": -56,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -56,
+          "seed": 41
+        },
+        {
+          "difference": 120,
+          "seed": 42
+        },
+        {
+          "difference": -7,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.6784099024041895,
+      "positive_count": 1,
+      "reference_case": "base",
+      "sample_standard_deviation": 90.83501527494779,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "loss_020",
+      "h0_mean": 8274.5,
+      "maximum": 65.5,
+      "mean": -31.333333333333332,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": -103.0,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -103.0,
+          "seed": 41
+        },
+        {
+          "difference": -56.5,
+          "seed": 42
+        },
+        {
+          "difference": 65.5,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.3786734344471972,
+      "positive_count": 1,
+      "reference_case": "base",
+      "sample_standard_deviation": 87.02346426874382,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "loss_020",
+      "h0_mean": 1533.9019824930315,
+      "maximum": 52.966404225145425,
+      "mean": 21.795091854532455,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": -24.665656022299345,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": 52.966404225145425,
+          "seed": 41
+        },
+        {
+          "difference": 37.08452736075128,
+          "seed": 42
+        },
+        {
+          "difference": -24.665656022299345,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 1.420892084584777,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 41.01230697168646,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "loss_020",
+      "h0_mean": 0.8146384006099582,
+      "maximum": -0.003273558827674994,
+      "mean": -0.010377822759118546,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": -0.015528435344447256,
+      "negative_count": 3,
+      "pairs": [
+        {
+          "difference": -0.012331474105233386,
+          "seed": 41
+        },
+        {
+          "difference": -0.015528435344447256,
+          "seed": 42
+        },
+        {
+          "difference": -0.003273558827674994,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -1.2739176978826656,
+      "positive_count": 0,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.006356733815173191,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "loss_020",
+      "h0_mean": 2800.6666666666665,
+      "maximum": 165,
+      "mean": 77,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": -76,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": 142,
+          "seed": 41
+        },
+        {
+          "difference": 165,
+          "seed": 42
+        },
+        {
+          "difference": -76,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 2.7493453939538206,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 133.0,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "headway_2000",
+      "h0_mean": 8274.5,
+      "maximum": 52.0,
+      "mean": 30.5,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": 5.5,
+      "negative_count": 0,
+      "pairs": [
+        {
+          "difference": 52.0,
+          "seed": 41
+        },
+        {
+          "difference": 5.5,
+          "seed": 42
+        },
+        {
+          "difference": 34.0,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.3686023324672186,
+      "positive_count": 3,
+      "reference_case": "base",
+      "sample_standard_deviation": 23.44674817538671,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "headway_2000",
+      "h0_mean": 1533.9019824930315,
+      "maximum": 6.423883808499113,
+      "mean": -9.506878901983859,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": -25.989632744877554,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -25.989632744877554,
+          "seed": 41
+        },
+        {
+          "difference": -8.954887769573133,
+          "seed": 42
+        },
+        {
+          "difference": 6.423883808499113,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.6197839894914569,
+      "positive_count": 1,
+      "reference_case": "base",
+      "sample_standard_deviation": 16.21380690944298,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "headway_2000",
+      "h0_mean": 0.8146384006099582,
+      "maximum": 0.0013468284399538177,
+      "mean": -0.0003441832240572336,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": -0.002721153894476913,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": 0.0013468284399538177,
+          "seed": 41
+        },
+        {
+          "difference": 0.0003417757823513945,
+          "seed": 42
+        },
+        {
+          "difference": -0.002721153894476913,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.04224981584461614,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.002118967882523225,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "headway_2000",
+      "h0_mean": 2800.6666666666665,
+      "maximum": 8,
+      "mean": -3.3333333333333335,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": -21,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": -21,
+          "seed": 41
+        },
+        {
+          "difference": 8,
+          "seed": 42
+        },
+        {
+          "difference": 3,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.11901928112354203,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 15.50268793897798,
+      "scenario": "CACC",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "vsl_220",
+      "h0_mean": 8274.5,
+      "maximum": 104.0,
+      "mean": 20.833333333333332,
+      "metric": "network_exit_throughput_vehicles_per_hour",
+      "minimum": -36.0,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -5.5,
+          "seed": 41
+        },
+        {
+          "difference": -36.0,
+          "seed": 42
+        },
+        {
+          "difference": 104.0,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.2517775494994662,
+      "positive_count": 1,
+      "reference_case": "base",
+      "sample_standard_deviation": 73.62121523944938,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "vsl_220",
+      "h0_mean": 1533.9019824930315,
+      "maximum": 23.745488776957245,
+      "mean": -9.080541835786638,
+      "metric": "scheduled_cohort_mean_total_time_seconds",
+      "minimum": -41.664726881510205,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -9.322387402806953,
+          "seed": 41
+        },
+        {
+          "difference": 23.745488776957245,
+          "seed": 42
+        },
+        {
+          "difference": -41.664726881510205,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -0.5919897059542324,
+      "positive_count": 1,
+      "reference_case": "base",
+      "sample_standard_deviation": 32.70577846620564,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "vsl_220",
+      "h0_mean": 0.8146384006099582,
+      "maximum": 0.0071031255695491735,
+      "mean": 0.0021999629448130977,
+      "metric": "rms_acceleration_m_per_s2",
+      "minimum": -0.0008290546298939105,
+      "negative_count": 1,
+      "pairs": [
+        {
+          "difference": 0.00032581789478403067,
+          "seed": 41
+        },
+        {
+          "difference": -0.0008290546298939105,
+          "seed": 42
+        },
+        {
+          "difference": 0.0071031255695491735,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": 0.27005392124479793,
+      "positive_count": 2,
+      "reference_case": "base",
+      "sample_standard_deviation": 0.004285345427211274,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    },
+    {
+      "case": "vsl_220",
+      "h0_mean": 2800.6666666666665,
+      "maximum": 42,
+      "mean": -67.66666666666667,
+      "metric": "peak_insertion_backlog_vehicles",
+      "minimum": -168,
+      "negative_count": 2,
+      "pairs": [
+        {
+          "difference": -77,
+          "seed": 41
+        },
+        {
+          "difference": 42,
+          "seed": 42
+        },
+        {
+          "difference": -168,
+          "seed": 43
+        }
+      ],
+      "percent_of_reference_mean": -2.416091406807903,
+      "positive_count": 1,
+      "reference_case": "base",
+      "sample_standard_deviation": 105.31065156636974,
+      "scenario": "CENTRAL",
+      "valid_seed_count": 3,
+      "zero_count": 0
+    }
+  ],
+  "schema_version": 1,
+  "scope": "Saved-evidence packaging check; no fresh raw-trajectory audit or simulation."
+}

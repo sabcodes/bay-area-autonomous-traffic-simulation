@@ -1,0 +1,151 @@
+{
+  "reviewed_baseline": "e64242422a8abb34c6ba46d4d11b12dc3a43e8a9",
+  "date_america_los_angeles": "2026-10-18",
+  "scope": "M1-M7 and M8 report, packaging and reproduction",
+  "method": "Three same-model reviewers and coordinating chair; separate initial analyses, cross-rebuttal, chair adjudication, targeted correction review. Shared model/context; not external or fully blinded peer review.",
+  "verdict": "Numerical synthesis survives the scoped review. Three reproduction defects corrected; saved-evidence packaging accepted with explicit archive/portability and scientific limitations.",
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "P2",
+      "title": "Raw regeneration cannot promise frozen-byte inputs in a relocated clone",
+      "baseline_locations": [
+        "docs/reproduction.md:63-83",
+        "scripts/prepare_m3_upstream_proxy.py:15-36",
+        "src/bay_area_traffic_sim/pems.py:341",
+        "configs/us101_human_baseline_m3_frozen.json:141"
+      ],
+      "proof": {
+        "source_file_inventory": 25,
+        "absolute_provenance_paths": 7,
+        "original_profile_sha256": "ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7",
+        "relocated_profile_sha256": "e7752109803518a16eb956311540fa2bb9d360ebfc5dac056c155e8d21596215",
+        "all_profile_values_unchanged": true
+      },
+      "resolution": "Guide now requires exact archived derived snapshots for hash-bound replay, distinguishes 25 scanned files from qualifying dates, and separates legacy regeneration. No hash/input change.",
+      "residual": "Underlying legacy portability is a disclosed limitation, not repaired or claimed portable; original raw-file byte provenance was not archived."
+    },
+    {
+      "id": "F2",
+      "priority": "P2",
+      "title": "M3 replay instructions can overwrite accepted phase reports",
+      "baseline_locations": [
+        "docs/reproduction.md:140-143",
+        "configs/us101_m3_experiment.json:34-35",
+        "scripts/run_m3_baseline.py:206-216"
+      ],
+      "proof": "Changing only output_directory leaves report_directory=reports/m3; runner writes phase reports there and validation reads calibration there.",
+      "resolution": "Concrete guide config now sets both directories to fresh namespaces; same replay config used for both phases. Current README routes to this safe recipe.",
+      "verification": "Config-preparation snippet executed in scratch directory; neither canonical output touched; repeated namespace refused before simulation. Legacy runner overwrite behavior explicitly disclosed."
+    },
+    {
+      "id": "F3",
+      "priority": "P2",
+      "title": "Engine version enforcement claim exceeds actual gate",
+      "baseline_locations": [
+        "docs/reproduction.md:40-43",
+        "src/bay_area_traffic_sim/experiment_harness.py:387-389"
+      ],
+      "proof": "Controlled acceptance compares runtime engine with local SUMO binary; no independent expected 1.27.1 check; H0 has no controller comparison. All accepted provenance inspected reports 1.27.1.",
+      "resolution": "Corrected description; explicit exact-version installation remains required. No actual accepted engine mismatch found."
+    }
+  ],
+  "clarifications": [
+    {
+      "id": "C1",
+      "priority": "P3",
+      "topic": "Exposure denominator",
+      "resolution": "Introduction now says overlay commands over all-run passenger timesteps. About 2% is not window exposure or acceleration-feedforward share."
+    },
+    {
+      "id": "C2",
+      "priority": "P3",
+      "topic": "Held-out phase split vs unseen-data blinding",
+      "resolution": "Report discloses that historical nine-date diagnostic included October 15/16. Frozen formal fitting/evaluation split and no-postfreeze-retuning claim retained; fully unseen/blinded evaluation is not certified."
+    }
+  ],
+  "reviewers": [
+    {
+      "seat": "foundations",
+      "milestones": [
+        "M1",
+        "M2"
+      ],
+      "initial_and_rebuttal": "One P2 reproduction finding; scientific conditional conclusion supported",
+      "correction_review": "PASS",
+      "checks": {
+        "frozen_input_hashes": 9,
+        "saved_M1_station_intervals": 2448,
+        "raw_Oct8_station_intervals": 216,
+        "metadata_station_records": 18,
+        "through_route_edges_NB_SB": [
+          37,
+          36
+        ],
+        "branch_transitions_NB_SB": [
+          19,
+          21
+        ],
+        "unresolved_topology_outcomes": 0,
+        "net_entry_residuals_veh_per_hour": [
+          697.2,
+          2060.4
+        ],
+        "downstream_residual_after_stated_lane_assumption_veh_per_hour": 1484.8
+      }
+    },
+    {
+      "seat": "baseline_and_measurement",
+      "milestones": [
+        "M3",
+        "M4"
+      ],
+      "initial_and_rebuttal": "M3 overwrite and engine claim findings; no accepted numerical defect established",
+      "correction_review": "PASS",
+      "checks": {
+        "native_station_interval_aggregations": 6552,
+        "observed_model_interval_pairs": 3528,
+        "final_M3_runs": 21,
+        "frozen_file_hashes": 3,
+        "calibration_flow_MAPE_percent": 8.321645605081176,
+        "calibration_speed_MAE_mph": 8.151569782122658,
+        "validation_flow_MAPE_percent": 19.374023958725843,
+        "validation_speed_MAE_mph": 14.904101819627746,
+        "seed41_matching_vehicles_per_policy": 22951,
+        "seed41_scheduled_cohort_per_policy": 20449,
+        "accepted_controlled_version_records": 52
+      }
+    },
+    {
+      "seat": "controllers_and_sensitivity",
+      "milestones": [
+        "M5",
+        "M6",
+        "M7"
+      ],
+      "initial_and_rebuttal": "No additional controller/numerical defect established; reproduction corrections and exposure precision supported",
+      "correction_review": "PASS",
+      "checks": {
+        "group_and_paired_metric_records": 480,
+        "factor_contrasts": 28,
+        "exact_null_control_runs": 6,
+        "independently_reconstructed_VSL_ledgers": 14,
+        "raw_seed41_policy_trip_sets": 3,
+        "bounded_tests_passed": 56
+      }
+    }
+  ],
+  "chair_checks": {
+    "relocated_provenance_counterexample": true,
+    "safe_M3_config_snippet": true,
+    "accepted_outcomes_unchanged": true
+  },
+  "limitations": [
+    "Same-model internal review shares project context and is not external peer review.",
+    "No full campaign or all-run trajectory-wide audit rerun.",
+    "Packet and independent live-sensor histories unavailable.",
+    "No field certification of striping, loop wiring, managed-lane eligibility or historical ramp-meter behavior.",
+    "Read-only reviewer environments could not run some real-engine/temp/Matplotlib tests; chair runs the full writable suite separately.",
+    "M3 fidelity failure, conditional demand, low overlay exposure and one-day OFAT/interactions limits remain."
+  ]
+}

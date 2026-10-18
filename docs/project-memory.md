@@ -10,9 +10,20 @@ This project compares human-like traffic with explainable autonomous-vehicle
 coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
-of truth: **M0–M7 practical experiment work is complete; M8 is next.**
+of truth: **M0-M8 work is complete at the documented practical experiment standard.**
 M7 PR #3 is merged into main at [ad33a7f](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ad33a7f999793b687ffcafbbe6fff91ea10ede29) on 2026-10-18 02:29:47 PDT.
-M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 165 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain. See the
+M0-M8 are complete at the documented practical experiment standard as of
+2026-10-18. The [final research report](final-research-report.md),
+[data-derived tables](../reports/m8/results.md), and
+[reproduction guide](reproduction.md) are the final package entry points.
+M3's held-out fidelity failure, about 2% supervised CACC engagement and the M7
+one-day OFAT limits remain. The evidence establishes no consistent overall
+traffic benefit. M8 adds packaging checks without changing the simulator.
+
+The [adversarial council](m1-m8-adversarial-council.md) now covers M1-M7 and M8.
+Three reproduction guidance defects were corrected; saved numerical conclusions
+remain unchanged. Exact full replay requires archived derived-input snapshots;
+portable raw-to-frozen-input reconstruction is not demonstrated.
 [M7 closeout](m7-sensitivity-uncertainty-report.md) and [frozen specification](m7-sensitivity-uncertainty-spec.md).
 Earlier dated operational entries below are historical; all campaign processes
 have completed and old PID/SIGCONT instructions must not be reused.
@@ -493,3 +504,63 @@ M0-M7 practical experiment work is complete, including M7 findings and analysis.
 M8 research synthesis is next; no M8 work has started. Preserve M3 fidelity,
 M5 low engagement, all accepted outputs and original raw-audit provenance.
 Earlier unmerged/pending statements above are historical checkpoints.
+
+
+## M8 research package closeout - 2026-10-18
+
+The user's M8 authorization supersedes earlier instructions to wait before
+starting M8. Plan 071de85 -> frozen specification 974ecb6 -> implementation
+bedffd1 establish the spec-driven sequence. The [final report](final-research-report.md)
+synthesizes frozen M3-M7 evidence, including held-out failure, rejected controller
+variants, low command exposure, inactive controls and mixed sensitivity results.
+The [reproduction guide](reproduction.md) separates saved-evidence checks,
+local prerequisites and costly fresh-ID runtime replay.
+
+M8 independently recomputes 52 headline paired records from saved per-run values
+and M3 scores from six-station errors; it compares M7 aggregates and each pair
+against the accepted audit-bound report. Standard-library build/check commands
+produce deterministic table/data and a SHA-256 manifest. No simulator/config or
+accepted M3-M7 result changed; no fresh full-window simulation/raw audit ran.
+The acceptance record stores current regression and tamper/invalid-data checks.
+
+M0-M8 are complete at their practical scopes. M3 is not successfully field
+validated; continuous CACC remains unresolved and one-day OFAT does not measure
+interactions or total uncertainty. No consistent overall traffic benefit is
+established. Further scientific work requires a new scope, not hidden retuning.
+Publication branch: codex/m8-research-package; reviewable PR, unmerged. Obsidian
+M8 plan/spec/results/handoff and project/daily/index/log are synchronized; the
+exact pushed publication SHA is recorded there after remote verification.
+
+
+## Adversarial council closeout - 2026-10-18
+
+User requested review of M1-M2, M3-M7 and the report. Three same-model reviewers
+plus the chair independently examined fixed e642424, cross-challenged initial
+findings, and all three passed targeted correction review. This is internal
+review sharing context, not external or fully blinded peer review. The
+[council record](m1-m8-adversarial-council.md) and
+[machine findings](../reports/m8/council_review.json) retain proof and scope.
+
+Confirmed guide defects: legacy derived profiles cannot be regenerated to frozen
+bytes in a relocated clone (seven absolute provenance paths and a 25-file scan
+inventory), M3 must use fresh runtime AND report directories, and the engine gate
+checks local controller/binary agreement rather than an expected 1.27.1 version.
+Guide corrected; exact archived derived inputs required; original frozen hashes
+preserved. All-run overlay exposure and previously viewed validation-date history
+are clarified. No accepted engine mismatch or numerical defect was established.
+
+Independent checks reproduce 216 raw PeMS intervals, topology, 6,552 native M3
+detector aggregates, 3,528 observed/model score pairs, all 480 M7 group/paired
+records, 28 factor contrasts, six null-control runs and 14 VSL ledgers. These
+are bounded review checks, not a fresh complete raw audit or full campaign.
+Current full regression has 190 tests, including a council-manifest regression.
+The original 189-test M8 verification remains intact; the
+[post-council verification](../reports/m8/council_verification.json) records new
+checks and artifact hashes. All accepted M3-M7 reports, configs and simulator
+source remain unchanged. Numerical headline JSON/table bytes remain identical.
+
+M0-M8 saved-evidence packaging is complete, with the documented scientific and
+archival replay limitations. Underlying legacy input portability is not repaired
+or silently rehashed. PR #4 remains open and unmerged; final publication SHA is
+recorded in Obsidian after push. No additional campaign, calibration or controller
+optimization was started.

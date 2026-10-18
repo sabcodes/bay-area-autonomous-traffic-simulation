@@ -4,11 +4,25 @@ An open, local research testbed for asking a narrow question:
 
 > Under clearly stated assumptions, how do different autonomous-vehicle coordination strategies change traffic on a small stretch of US-101?
 
-This is a simulation research project, not a prediction system or a safety-critical driving controller. Results will only be meaningful after the model has been calibrated against observed traffic data.
+This is a simulation research project, not a prediction system or a safety-critical driving controller. The final comparison remains conditional on a baseline with a documented held-out fidelity failure.
+
+M0-M8 are complete at the documented practical experiment standard as of
+2026-10-18. The [final research report](docs/final-research-report.md),
+[data-derived tables](reports/m8/results.md), and
+[reproduction guide](docs/reproduction.md) are the final package entry points.
+M3's held-out fidelity failure, about 2% supervised CACC engagement and the M7
+one-day OFAT limits remain. The evidence establishes no consistent overall
+traffic benefit. M8 adds packaging checks without changing the simulator.
+
+The [adversarial council](docs/m1-m8-adversarial-council.md) reviewed M1-M7 and
+this final report. Its numerical checks support the qualified synthesis; three
+reproduction guidance defects were corrected. Exact full replay requires the
+archived derived-profile snapshots: legacy provenance is path-dependent, and
+portable raw-to-frozen-input reconstruction is not demonstrated.
 
 For the current milestone state and handoff context, see the
 [project memory](docs/project-memory.md), [roadmap](docs/project-roadmap.md),
-and [domain glossary](CONTEXT.md). M0–M7 experiment work is complete at the documented practical standards. M3's
+and [domain glossary](CONTEXT.md). M0-M8 work is complete at the documented practical standards. M3's
 held-out speed target was missed; see the [closeout record](docs/m3-human-baseline-report.md).
 M4 is complete; see the [harness closeout](docs/m4-experiment-harness-report.md).
 See the [M4 plan](docs/m4-experiment-harness-plan.md) and
@@ -38,7 +52,7 @@ M6 centralized control is complete for the fixed VSL comparison. See the
 [plan](docs/m6-centralized-control-plan.md), [frozen specification](docs/m6-centralized-control-spec.md),
 [closeout](docs/m6-centralized-control-report.md), and [three-policy results](reports/m6/README.md).
 Nine clean runs, 125 tests and the independent raw-output audit pass. H0 and
-supervised CACC exactly replay M5. M7 sensitivity is complete; M8 packaging remains;
+supervised CACC exactly replay M5. M7 sensitivity and M8 research packaging are complete;
 M3 fidelity and M5 low-engagement limitations remain in force.
 
 
@@ -282,29 +296,15 @@ two separate validation weekdays, three seeds per day, and a 4% truck proxy.
 The accepted M2 network is unchanged; an existing upstream buffer and three
 net-entry/exit hypotheses address missing traffic movements.
 
-Keep the original PeMS downloads and matching metadata available locally.
-Restore the exact accepted network snapshot and prepare inputs:
+For current replay instructions use the [reproduction guide](docs/reproduction.md).
+Exact hash-bound replay requires the original archived derived-profile snapshots;
+legacy raw preparation in a relocated checkout does not reproduce their frozen
+bytes. The guide separates those paths and preserves accepted inputs.
 
-```bash
-mkdir -p outputs/us101_corridor
-gzip -dc network/us101_corridor/accepted_m2.net.xml.gz > outputs/us101_corridor/us101_corridor.net.xml
-PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim summarize-pems-stations \
-  --station-ids-file configs/us101_corridor_station_ids.json \
-  --station-ids-key accepted_corridor_station_ids --lane-types ML \
-  --output outputs/pems_calibration/us101_corridor_m1_station_profiles.json
-PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim summarize-pems-stations
-PYTHONPATH=src .venv/bin/python scripts/prepare_m3_upstream_proxy.py
-```
-
-The frozen input hashes reject changed source files; do not silently replace
-them or recalibrate using the validation dates. Run the fixed experiment:
-
-```bash
-PYTHONPATH=src .venv/bin/python scripts/run_m3_baseline.py calibration --workers 3
-PYTHONPATH=src .venv/bin/python scripts/run_m3_baseline.py validation --workers 3
-PYTHONPATH=src .venv/bin/python scripts/run_m3_baseline.py sensitivity --workers 2
-.venv/bin/python scripts/summarize_m3_baseline.py
-```
+M3 additionally needs fresh runtime **and report** directories. Its historical
+runner otherwise writes phase reports into `reports/m3`, even if only the
+runtime directory is changed. Use the guide's separate replay config for both
+calibration and validation; keep canonical reports and freeze evidence intact.
 
 Install the `reports` optional dependency for Matplotlib when regenerating
 figures. The versioned five-minute series also allow figure regeneration
@@ -475,7 +475,7 @@ lane-level merge has been confirmed. See the [SR-85 lane sensitivity notes](docs
 frozen human baseline, supervised CACC, fixed centralized VSL and conditional
 sensitivity screen are documented. M3's held-out fidelity failure and CACC's
 roughly 2% command exposure remain; no consistent overall traffic benefit is
-established. M8 final research packaging is next.
+established. M8 final research packaging is complete; see the final report linked above.
 
 See the [roadmap](docs/project-roadmap.md), [current project memory](docs/project-memory.md)
 and [M7 closeout](docs/m7-sensitivity-uncertainty-report.md).
@@ -488,7 +488,7 @@ See [local feasibility research](research/local-feasibility.md) for the source-b
 ## M7 sensitivity and uncertainty
 
 [PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3) merged into main at [ad33a7f](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ad33a7f999793b687ffcafbbe6fff91ea10ede29)
-on 2026-10-18 02:29:47 PDT. M8 research synthesis is next.
+on 2026-10-18 02:29:47 PDT. M8 research synthesis is complete; see the final report linked above.
 
 The [plan](docs/m7-sensitivity-uncertainty-plan.md) and
 [frozen specification](docs/m7-sensitivity-uncertainty-spec.md) preceded runtime
@@ -525,4 +525,20 @@ variation, not interactions, confidence intervals or total uncertainty. Range
 also changes sensed following; delay/loss affect acceleration feedforward
 with current local gap/speed retained. M3 fidelity, low CACC engagement and
 ideal VSL sensing/actuation remain limits. [Methodology](research/m7-methodology.md)
-records sources and illustrative assumptions. M8 research packaging is next.
+records sources and illustrative assumptions. M8 research packaging is complete; see the final report linked above.
+
+## Final research package (M8)
+
+Plan 071de85 -> frozen spec 974ecb6 -> implementation bedffd1. The
+[acceptance record](docs/m8-research-package-report.md) records numerical checks,
+regression and publication. The standard-library checker recomputes all 52
+headline paired records and M3 station scores; it requires no SUMO installation:
+
+```sh
+python3 scripts/build_m8_package.py --check
+python3 scripts/build_m8_package.py --check-local-inputs
+```
+
+The second command separately checks local runtime prerequisites and can fail
+on a clone lacking ignored data; see the reproduction guide. No fresh full
+simulation campaign or raw-trajectory audit was run for M8.

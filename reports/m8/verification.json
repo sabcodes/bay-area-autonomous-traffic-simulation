@@ -1,0 +1,68 @@
+{
+  "accepted": true,
+  "date_america_los_angeles": "2026-10-18",
+  "sequence": {
+    "plan": "071de85",
+    "specification": "974ecb6",
+    "implementation": "bedffd1"
+  },
+  "checks": [
+    {
+      "command": "PYTHONPATH=src .venv/bin/python -m pytest -q",
+      "returncode": 0,
+      "output": "........................................................................ [ 38%]\n........................................................................ [ 76%]\n.............................................                            [100%]\n189 passed in 12.89s"
+    },
+    {
+      "command": ".venv/bin/ruff check src tests scripts",
+      "returncode": 0,
+      "output": "All checks passed!"
+    },
+    {
+      "command": "git diff --check",
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "command": ".venv/bin/python scripts/build_m8_package.py --check",
+      "returncode": 0,
+      "output": "M8 package verified: 210 content hashes, 52 paired records and M3 station-score recalculation"
+    },
+    {
+      "command": ".venv/bin/python scripts/build_m8_package.py --check-local-inputs",
+      "returncode": 0,
+      "output": "Local prerequisites: 9 matching input hashes"
+    }
+  ],
+  "regression": {
+    "passed": 189,
+    "new_m8_tests": 24,
+    "prior_tests": 165
+  },
+  "recomputed_m7_metric_records": 52,
+  "m3_runs_recomputed": 21,
+  "m3_scoring_stations": 6,
+  "local_prerequisite_hashes": 9,
+  "manifest_entries": 210,
+  "repeat_build_byte_identical": true,
+  "artifact_sha256": {
+    "headline_results.json": "6813c8183b859d6012645d0a21d63bab2d1a50b918f951471383b4418a810576",
+    "results.md": "a7cd87d391feae65720e6d795cd313a7cf1057fa4315d394e89d962927e16ebc",
+    "manifest.json": "c72c817803d89f28d158a160b66041e69e35ce1323dc6d8af8aa2845f711075e"
+  },
+  "fresh_full_window_simulations": 0,
+  "fresh_raw_trajectory_audits": 0,
+  "reused_figures_visually_inspected": [
+    "reports/m7/paired_sensitivity.png",
+    "reports/m3/validation_speed_profiles.png",
+    "reports/m6/comparison.png"
+  ],
+  "verification_command_correction": "An initial final-suite command omitted documented PYTHONPATH=src and loaded an older installed package, causing two collection errors. Corrected invocation tests current source. No code change required.",
+  "limitations": [
+    "Saved versioned evidence is rechecked; historical M7 raw audit is reused, not rerun.",
+    "Manifest is a content-integrity record, not an authenticity signature.",
+    "M3 held-out fidelity failure and low supervised CACC engagement remain."
+  ],
+  "local_markdown_links_checked": 162,
+  "simulator_configs_and_accepted_reports_unchanged": true,
+  "clean_versioned_checkout_standard_library_only": true
+}

@@ -27,7 +27,24 @@ and limitations. It is not a real-vehicle controller or a deployment claim.
 
 M7 PR #3 is merged into main at [ad33a7f](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/ad33a7f999793b687ffcafbbe6fff91ea10ede29) on 2026-10-18 02:29:47 PDT.
 
-M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 165 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain. See the [M7 closeout](m7-sensitivity-uncertainty-report.md).
+M0-M8 are complete at the documented practical experiment standard as of
+2026-10-18. The [final research report](final-research-report.md),
+[data-derived tables](../reports/m8/results.md), and
+[reproduction guide](reproduction.md) are the final package entry points.
+M3's held-out fidelity failure, about 2% supervised CACC engagement and the M7
+one-day OFAT limits remain. The evidence establishes no consistent overall
+traffic benefit. M8 adds packaging checks without changing the simulator.
+
+The [adversarial council](m1-m8-adversarial-council.md) covers M1-M7 and the final
+report. Numerical checks support the qualified synthesis; three reproduction
+guidance defects were corrected. Completion is saved-evidence packaging. Exact
+full replay requires archived derived snapshots and the recorded engine;
+portable raw-to-frozen-input reconstruction remains unproven.
+
+See the [M8 acceptance record](m8-research-package-report.md). All milestones
+are closed at their documented scope. Further calibration, continuous CACC,
+additional days/interactions or policy optimization would be new research work.
+M8 publication is on codex/m8-research-package for review; it is not yet merged.
 
 ## Milestone history and observed-data decisions
 
