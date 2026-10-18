@@ -13,6 +13,12 @@ traffic benefit. M8 adds packaging checks without changing the simulator.
 
 M7 is merged at ad33a7f; M8 is prepared on codex/m8-research-package for review.
 
+The [adversarial council](docs/m1-m8-adversarial-council.md) corroborated the
+scoped numerical synthesis and corrected three replay guidance defects. Exact
+full replay requires the archived derived profiles; legacy absolute-path
+provenance prevents promising portable raw-to-frozen-input reconstruction.
+Current verification follows the council; the original M8 record is historical.
+
 ## Network and movements
 
 **Study corridor**:

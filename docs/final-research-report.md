@@ -2,8 +2,10 @@
 
 Research package dated 2026-10-18. Study corridor: US-101 northbound from SR-237
 to the Oregon Expressway/Page Mill Road connection. M0-M8 are complete at this
-project's practical experiment standard. The model's held-out traffic fidelity
-remains limited. This report synthesizes frozen M3-M7 experiments; M8 introduces
+project's practical experiment standard for saved-evidence research packaging.
+Full simulation replay requires archived exact derived inputs and the recorded
+environment; portable raw-to-frozen-input reconstruction is not demonstrated.
+The model's held-out traffic fidelity remains limited. This report synthesizes frozen M3-M7 experiments; M8 introduces
 no new simulation or controller tuning.
 
 ## Plain-language conclusion
@@ -19,8 +21,8 @@ exactly matches the human baseline.
 This is useful evidence about two specific simulated policies and their
 measurement tradeoffs. It does not establish that autonomous driving generally
 helps or harms traffic. The human baseline misses severe congestion on one
-held-out day, cooperative commands engage for only about 2% of passenger
-samples, and the policy experiments use one calibration date. Improving those
+held-out day, overlay commands engage for only about 2% of all-run passenger
+timesteps, and the policy experiments use one calibration date. Improving those
 limits is necessary before stronger real-world inference.
 
 ## Question and scope
@@ -71,8 +73,10 @@ selected as the representative day by median upstream flow before fitting.
 October 15 and 16 were held out, with the same seeds and frozen treatment hash.
 Their measured inlet/ramp flows remain inputs, so this is conditional traffic
 propagation validation, not demand forecasting. No held-out result was used to
-retune the model. Mean errors give equal weight to six scoring stations, then
-seeds and dates. The targets are flow MAPE <=20% and speed MAE <=10 mph.
+retune the model. These dates were part of a historical nine-date diagnostic
+before the formal split, so "held out" describes the frozen M3 fitting/evaluation
+phases rather than a certified fully unseen-data blind test. Mean errors give
+equal weight to six scoring stations, then seeds and dates. The targets are flow MAPE <=20% and speed MAE <=10 mph.
 
 | Evaluation | Runs | Flow MAPE | Speed MAE | Interpretation |
 | --- | ---: | ---: | ---: | --- |
@@ -250,6 +254,8 @@ cannot estimate interactions, parameter distributions or total uncertainty.
 Detector imputation, lane mapping, omitted movements, truck composition,
 managed-lane assumptions, initial congestion, model form, sensing, actuation
 and the held-out fidelity failure remain unquantified uncertainty sources.
+The saved road snapshot is newer than the October 2025 observations; exact
+study-day lane eligibility and ramp-meter operation are not reconstructed.
 Clean simulation health does not establish real-world safety. No deployment,
 optimality, energy, fuel, regional benefit or universal policy claim follows.
 
@@ -262,7 +268,11 @@ Git review/history is the trust anchor, not the ability to regenerate hashes.
 The [M8 acceptance record](m8-research-package-report.md) reports current tests,
 checks and their scope. Native raw traces and PeMS downloads remain local,
 outside Git. The final report is reproducible from saved versioned evidence;
-a full simulation replay requires those separate inputs and runtime resources.
+a full simulation replay requires the exact archived derived-input snapshots,
+separate local sources and runtime resources. Legacy absolute-path provenance
+prevents a general promise of rebuilding their frozen bytes from raw downloads
+in a relocated clone. See the [adversarial council review](m1-m8-adversarial-council.md)
+for confirmed reproduction corrections, independent numerical checks and limits.
 
 ## Sources and provenance
 

@@ -1,6 +1,8 @@
 # M8 research package acceptance record
 
-Completed 2026-10-18 at the project's documented practical experiment standard.
+Original acceptance completed 2026-10-18 at the project's practical experiment standard.
+The original checks below are historical; post-council corrections and current
+verification are recorded in the addendum at the end of this document.
 [Final report](final-research-report.md), [tables](../reports/m8/results.md),
 [reproduction](reproduction.md), [manifest](../reports/m8/manifest.json) and
 [verification record](../reports/m8/verification.json) form the final package.
@@ -41,3 +43,28 @@ Completion preserves the M3 held-out fidelity failure (combined speed MAE
 ideal sensing/actuation and local raw-data boundary. Results establish no
 consistent overall traffic benefit or field safety/deployment claim. M8 is
 complete for review; merging the publication PR is a separate user decision.
+
+
+## Post-council acceptance addendum - 2026-10-18
+
+The user extended review to M1-M7 and this report. The
+[adversarial council](m1-m8-adversarial-council.md) found three reproducibility
+wording/instruction defects and established no accepted numerical error in its
+bounded checks. All three reviewers passed targeted correction review. Replay
+guidance now requires exact archived derived profiles, fresh M3 runtime AND
+report directories, and precise local engine-agreement semantics. All-run overlay
+exposure and historical validation-date exposure are clarified.
+
+Saved-evidence research packaging remains accepted; portable raw-to-frozen input
+reconstruction is not demonstrated. The underlying legacy input serialization
+still embeds absolute provenance paths. This limitation is disclosed rather than
+changing accepted input identities or claiming raw regeneration is portable.
+
+Current full regression: 190 tests, with one new regression protecting council
+machine findings through the manifest and explicitly excluding later verification
+observation records. Lint, whitespace, package/input/link, repeated-build and clean
+checkout checks pass. The exact commands, counts and artifact hashes are in
+[post-council verification](../reports/m8/council_verification.json). Accepted
+M3-M7 reports, configs, network and simulator source remain unchanged; headline
+JSON/table bytes are identical. The original `verification.json` and its original
+manifest fingerprint remain historical evidence and are not rewritten.

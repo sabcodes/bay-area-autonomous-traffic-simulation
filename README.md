@@ -14,6 +14,12 @@ M3's held-out fidelity failure, about 2% supervised CACC engagement and the M7
 one-day OFAT limits remain. The evidence establishes no consistent overall
 traffic benefit. M8 adds packaging checks without changing the simulator.
 
+The [adversarial council](docs/m1-m8-adversarial-council.md) reviewed M1-M7 and
+this final report. Its numerical checks support the qualified synthesis; three
+reproduction guidance defects were corrected. Exact full replay requires the
+archived derived-profile snapshots: legacy provenance is path-dependent, and
+portable raw-to-frozen-input reconstruction is not demonstrated.
+
 For the current milestone state and handoff context, see the
 [project memory](docs/project-memory.md), [roadmap](docs/project-roadmap.md),
 and [domain glossary](CONTEXT.md). M0-M8 work is complete at the documented practical standards. M3's
@@ -290,29 +296,15 @@ two separate validation weekdays, three seeds per day, and a 4% truck proxy.
 The accepted M2 network is unchanged; an existing upstream buffer and three
 net-entry/exit hypotheses address missing traffic movements.
 
-Keep the original PeMS downloads and matching metadata available locally.
-Restore the exact accepted network snapshot and prepare inputs:
+For current replay instructions use the [reproduction guide](docs/reproduction.md).
+Exact hash-bound replay requires the original archived derived-profile snapshots;
+legacy raw preparation in a relocated checkout does not reproduce their frozen
+bytes. The guide separates those paths and preserves accepted inputs.
 
-```bash
-mkdir -p outputs/us101_corridor
-gzip -dc network/us101_corridor/accepted_m2.net.xml.gz > outputs/us101_corridor/us101_corridor.net.xml
-PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim summarize-pems-stations \
-  --station-ids-file configs/us101_corridor_station_ids.json \
-  --station-ids-key accepted_corridor_station_ids --lane-types ML \
-  --output outputs/pems_calibration/us101_corridor_m1_station_profiles.json
-PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim summarize-pems-stations
-PYTHONPATH=src .venv/bin/python scripts/prepare_m3_upstream_proxy.py
-```
-
-The frozen input hashes reject changed source files; do not silently replace
-them or recalibrate using the validation dates. Run the fixed experiment:
-
-```bash
-PYTHONPATH=src .venv/bin/python scripts/run_m3_baseline.py calibration --workers 3
-PYTHONPATH=src .venv/bin/python scripts/run_m3_baseline.py validation --workers 3
-PYTHONPATH=src .venv/bin/python scripts/run_m3_baseline.py sensitivity --workers 2
-.venv/bin/python scripts/summarize_m3_baseline.py
-```
+M3 additionally needs fresh runtime **and report** directories. Its historical
+runner otherwise writes phase reports into `reports/m3`, even if only the
+runtime directory is changed. Use the guide's separate replay config for both
+calibration and validation; keep canonical reports and freeze evidence intact.
 
 Install the `reports` optional dependency for Matplotlib when regenerating
 figures. The versioned five-minute series also allow figure regeneration

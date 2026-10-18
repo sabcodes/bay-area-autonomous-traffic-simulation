@@ -35,6 +35,12 @@ M3's held-out fidelity failure, about 2% supervised CACC engagement and the M7
 one-day OFAT limits remain. The evidence establishes no consistent overall
 traffic benefit. M8 adds packaging checks without changing the simulator.
 
+The [adversarial council](m1-m8-adversarial-council.md) covers M1-M7 and the final
+report. Numerical checks support the qualified synthesis; three reproduction
+guidance defects were corrected. Completion is saved-evidence packaging. Exact
+full replay requires archived derived snapshots and the recorded engine;
+portable raw-to-frozen-input reconstruction remains unproven.
+
 See the [M8 acceptance record](m8-research-package-report.md). All milestones
 are closed at their documented scope. Further calibration, continuous CACC,
 additional days/interactions or policy optimization would be new research work.

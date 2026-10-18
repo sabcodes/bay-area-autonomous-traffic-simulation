@@ -1,0 +1,66 @@
+{
+  "accepted": true,
+  "date_america_los_angeles": "2026-10-18",
+  "reviewed_baseline": "e64242422a8abb34c6ba46d4d11b12dc3a43e8a9",
+  "correction_contract_commit": "b8f5255",
+  "scope": "Post-council publication correction verification; bounded scientific review checks are recorded separately in council_review.json.",
+  "checks": [
+    {
+      "command": "PYTHONPATH=src .venv/bin/python -m pytest -q",
+      "returncode": 0,
+      "output": "........................................................................ [ 37%]\n........................................................................ [ 75%]\n..............................................                           [100%]\n190 passed in 13.11s"
+    },
+    {
+      "command": ".venv/bin/ruff check src tests scripts",
+      "returncode": 0,
+      "output": "All checks passed!"
+    },
+    {
+      "command": "git diff --check",
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "command": ".venv/bin/python scripts/build_m8_package.py --check",
+      "returncode": 0,
+      "output": "M8 package verified: 212 content hashes, 52 paired records and M3 station-score recalculation"
+    },
+    {
+      "command": ".venv/bin/python scripts/build_m8_package.py --check-local-inputs",
+      "returncode": 0,
+      "output": "Local prerequisites: 9 matching input hashes"
+    }
+  ],
+  "regression": {
+    "passed": 190,
+    "prior_m8_tests": 189,
+    "new_council_tests": 1
+  },
+  "manifest_entries": 212,
+  "recomputed_headline_records": 52,
+  "local_input_hashes": 9,
+  "repeat_build_byte_identical": true,
+  "headline_JSON_and_table_identical_to_reviewed_baseline": true,
+  "original_M8_verification_preserved_sha256": "47dcfc7a132b11540221d92fdcf8b665d310aa9601a0a17af107893cb9778683",
+  "simulator_configs_network_data_and_accepted_reports_unchanged": true,
+  "artifact_sha256": {
+    "headline_results.json": "6813c8183b859d6012645d0a21d63bab2d1a50b918f951471383b4418a810576",
+    "results.md": "a7cd87d391feae65720e6d795cd313a7cf1057fa4315d394e89d962927e16ebc",
+    "manifest.json": "0d0e69a7da00eec7962b4e179ebf6ce2e8d6b608190845b8085da479a8dfff69"
+  },
+  "council_report_sha256": "7985871f2f3a67f3778261061f93b9ca7e70ae6db85ec10f26f0b15dbc0c5590",
+  "confirmed_reproduction_defects_corrected": 3,
+  "additional_reporting_clarifications": 2,
+  "targeted_correction_reviews_passed": 3,
+  "M3_config_snippet_executed_in_scratch_and_reused_namespace_refused": true,
+  "provenance_only_hash_counterexample_independently_reproduced": true,
+  "fresh_full_window_simulations": 0,
+  "fresh_all_run_trajectory_audits": 0,
+  "limits": [
+    "Exact archived derived profiles required; portable raw-to-frozen serialization remains unproven.",
+    "Council is same-model internal review, not external or fully blinded peer review.",
+    "Scientific limits and no-consistent-overall-benefit conclusion remain."
+  ],
+  "local_markdown_links_checked": 177,
+  "clean_versioned_only_checkout_standard_library_only": true
+}

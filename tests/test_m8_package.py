@@ -209,3 +209,25 @@ def test_final_report_headline_table_matches_computed_data():
             b = [r["metrics"][metric] for r in raw if r["case"] == "base" and r["scenario"] == "H0"]
             percentages.append(100 * (m8.mean(a) - m8.mean(b)) / m8.mean(b))
         assert f"| {policy} | " + " | ".join(f"{v:+.3f}%" for v in percentages) + " |" in report
+
+
+def test_council_findings_are_hashed_and_observation_records_are_excluded(evidence):
+    subprocess.run(["git", "init", "-q", str(evidence)], check=True)
+    directory = evidence / "reports/m8"
+    directory.mkdir()
+    findings = directory / "council_review.json"
+    findings.write_text('{"status":"reviewed"}\n')
+    observed = [directory / name for name in ("verification.json", "council_verification.json")]
+    for path in observed:
+        path.write_text('{"phase":"observation"}\n')
+    subprocess.run(["git", "add", "."], cwd=evidence, check=True)
+    m8.package(evidence)
+    manifest = m8.read(evidence, "reports/m8/manifest.json")["sha256"]
+    assert "reports/m8/council_review.json" in manifest
+    assert not set(m8.EXCLUDED) & manifest.keys()
+    for path in observed:
+        path.write_text('{"phase":"later observation"}\n')
+    m8.package(evidence, check=True)
+    findings.write_text('{"status":"changed"}\n')
+    with pytest.raises(ValueError, match="Stale package artifact"):
+        m8.package(evidence, check=True)

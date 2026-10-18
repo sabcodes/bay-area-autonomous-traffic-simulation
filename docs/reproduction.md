@@ -38,9 +38,13 @@ Do not regenerate the manifest to hide an unexplained difference.
 ## Environment and regression
 
 The measured runtime is SUMO and libsumo 1.27.1 on Apple Silicon macOS. The
-runtime harness rejects an incompatible engine. Project package ranges alone
-are not a complete portable environment lock: use the exact versions below
-for a replay; different platforms/builds can require additional validation.
+controlled-run acceptance check compares the controller engine version against
+the locally installed SUMO executable. It does not independently enforce an
+expected version of 1.27.1, and H0 has no controller-version comparison. Every
+accepted M3-M7 provenance record inspected reports 1.27.1. Install the exact
+versions below for replay; agreement between locally installed components at another version would
+not establish equivalence to the recorded environment. Project dependency ranges
+are not a complete portable environment lock.
 
 ```sh
 python3 -m venv .venv
@@ -55,42 +59,74 @@ The regression suite includes small real-engine integration tests. A clone-only
 package check is lighter and does not require a runtime installation. Nothing
 in these commands launches the full 54-run campaign.
 
-## Local data and accepted input preparation
+## Exact archived inputs required for full replay
 
-PeMS raw files and large generated runtime outputs are ignored by Git. Obtain
-the authorized District 4 Station 5-Minute exports from [PeMS](https://pems.dot.ca.gov/)
-and retain their original names under `data/pems/`. The selected M3 dates are
-2025-10-07, 08, 09, 10, 14, 15 and 16. Full M1 inventory replication uses the
-original 13-date selection recorded in [the sensor audit](us101-sensor-audit.md).
-Station Metadata exports are `d04_text_meta_2025_08_27.txt` and
-`d04_text_meta_2025_10_16.txt` under `data/pems/metadata/`. The frozen config
-also records hashes for the local 2024 Caltrans District 4 ramp and truck Excel
-sources. Follow the [M3 demand ledger](m3-demand-ledger.md) for their provenance.
-The checker enumerates every exact required path; a clone alone lacks them.
+The clean-checkout package check above is independently reproducible without
+local raw data. Exact full simulation replay additionally needs **the original
+byte-identical derived-input snapshots** and the recorded engine. Portable
+raw-to-frozen-input reconstruction has not been demonstrated.
 
-In a fresh local reproduction area, restore the accepted compressed network and
-prepare the profiles using the same raw downloads, filters and file set:
+Restore these two archived files under `outputs/pems_calibration/`:
+
+| Frozen derived input | SHA-256 |
+| --- | --- |
+| `us101_m3_upstream_proxy_profiles.json` | `ee9f7b11d208799167ca1d8bbdb43d6e7ecd4a7eeb541f57080223209c25bab7` |
+| `us101_ramp_station_profiles.json` | `c4d8ebdfbc6a3f9730e768346a1175b7f32071bf5925de7fc4c3a74de1f2f5f9` |
+
+These snapshots remain local and are not distributed by Git. The upstream
+snapshot includes seven absolute source paths in legacy provenance. Regenerating
+identical profile values in a different checkout changes those paths and the
+whole-file hash. Both snapshots also record the complete **25-file scan set**,
+including files with no qualifying measurements: October 1, October 7-16 and
+October 18-31, 2025. The 12/13 qualifying M1 dates and seven M3 dates are not the
+complete source-file inventory. Original per-raw-file byte hashes were not
+archived, so filenames alone cannot certify identical raw re-downloads.
+
+Also restore the local Station Metadata files `d04_text_meta_2025_08_27.txt` and
+`d04_text_meta_2025_10_16.txt` under `data/pems/metadata/`, and the 2024 Caltrans
+District 4 ramp and truck Excel sources under `data/caltrans/`. Their exact
+paths/hashes, plus the two derived inputs, network and config hashes, are in
+`configs/us101_human_baseline_m3_frozen.json`. The [demand ledger](m3-demand-ledger.md)
+and [sensor audit](us101-sensor-audit.md) retain source provenance and limitations.
+
+In a fresh local reproduction area, restore the accepted compressed network
+and verify all nine prerequisites after restoring the archived inputs:
 
 ```sh
 mkdir -p outputs/us101_corridor
 gzip -dc network/us101_corridor/accepted_m2.net.xml.gz > outputs/us101_corridor/us101_corridor.net.xml
+python3 scripts/build_m8_package.py --check-local-inputs
+```
+
+On an existing workspace, preserve accepted inputs before preparation commands:
+network restoration writes its target path. The prerequisite checker only reads
+and hashes. If an archived snapshot is unavailable or any hash differs, full
+hash-bound replay is not ready; do not change frozen hashes or retune on
+validation results. Passing this check does not prove that old raw simulation
+outputs exist.
+
+### Legacy raw-data reconstruction, separate from exact replay
+
+Authorized [PeMS](https://pems.dot.ca.gov/) Station 5-Minute downloads retain
+original filenames under `data/pems/`. The complete accepted scan set is the
+25 files listed above; the M3 inlet subscan uses October 7, 8, 9, 10, 14, 15
+and 16. The following commands describe the legacy derivation in a **separate
+scratch checkout**, after supplying the full source set. They replace generated
+profiles and cannot promise the frozen whole-file hashes at a new path:
+
+```sh
 PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim summarize-pems-stations \
   --station-ids-file configs/us101_corridor_station_ids.json \
   --station-ids-key accepted_corridor_station_ids --lane-types ML \
   --output outputs/pems_calibration/us101_corridor_m1_station_profiles.json
 PYTHONPATH=src .venv/bin/python -m bay_area_traffic_sim summarize-pems-stations
 PYTHONPATH=src .venv/bin/python scripts/prepare_m3_upstream_proxy.py
-python3 scripts/build_m8_package.py --check-local-inputs
 ```
 
-On an existing research workspace, inspect before writing: those preparation
-commands replace generated inputs. Preserve accepted inputs/raw runs. The
-separate prerequisite checker only reads and hashes the nine paths in
-`configs/us101_human_baseline_m3_frozen.json`. If it reports missing or mismatched
-files, stop and restore the original input set; do not change frozen hashes or
-use held-out results for tuning. Matching the raw file set matters because the
-profile provenance includes source names/content. The checker does not prove
-that old raw simulation outputs are available.
+Those reconstructed files are diagnostic evidence, not authorized replacements
+for the accepted snapshots. A future portable preparation contract needs
+canonical provenance and separately reviewed input identities. M8 preserves the
+existing scientific identities and explicitly records this portability limit.
 
 ## Fresh full M7 replay and independent raw audit
 
@@ -137,11 +173,32 @@ The native metadata script currently targets the canonical M7 report; its saved
 [M3](m3-human-baseline-report.md), [M4](m4-experiment-harness-report.md),
 [M5](m5-cooperative-cacc-report.md), [M6](m6-centralized-control-report.md) and
 [M7](m7-sensitivity-uncertainty-report.md) retain their exact commands/contracts.
-For M3 replay copy `configs/us101_m3_experiment.json`, set a new `output_directory`,
-then pass that config with `scripts/run_m3_baseline.py calibration --config PATH`
-and `validation --config PATH`. Historical M3 plotting scripts target canonical
-reports, so preserve those artifacts and compare fresh reports separately.
-M4-M6 likewise need new experiment IDs/output directories before execution.
+For M3 replay, both `output_directory` **and** `report_directory` must be fresh.
+Changing only the runtime directory still overwrites canonical `reports/m3`
+phase reports; validation reads calibration from the configured report directory.
+Create a separate config before either phase (requires the archived inputs):
+
+```sh
+.venv/bin/python - <<'PYCONFIG'
+import json
+from pathlib import Path
+p = Path('outputs/m3_replay_config.json')
+c = json.loads(Path('configs/us101_m3_experiment.json').read_text())
+c['output_directory'] = 'outputs/us101_corridor/m3/replay'
+c['report_directory'] = 'outputs/m3_replay_reports'
+assert not p.exists() and not Path(c['output_directory']).exists()
+assert not Path(c['report_directory']).exists()
+p.parent.mkdir(parents=True, exist_ok=True)
+p.write_text(json.dumps(c, indent=2) + '\n')
+PYCONFIG
+PYTHONPATH=src .venv/bin/python scripts/run_m3_baseline.py calibration --config outputs/m3_replay_config.json
+PYTHONPATH=src .venv/bin/python scripts/run_m3_baseline.py validation --config outputs/m3_replay_config.json
+```
+
+The legacy runner does not refuse an existing phase report or per-run directory;
+use a fresh namespace for each full replay and retain the completed reports.
+Historical M3 plotting scripts target canonical reports, so compare new phase
+reports separately. M4-M6 likewise need fresh experiment IDs/output directories.
 
 The repository includes compact reports, station/profile series, figures,
 configs, source and recorded audit hashes. It does not distribute PeMS raw

@@ -25,7 +25,11 @@ CALIBRATION_DATES = ["2025-10-07", "2025-10-08", "2025-10-09", "2025-10-10", "20
 VALIDATION_DATES = ["2025-10-15", "2025-10-16"]
 STATIONS = {401507, 401534, 401996, 401998, 402370, 402372}
 OUTPUTS = ("reports/m8/headline_results.json", "reports/m8/results.md")
-EXCLUDED = {"reports/m8/manifest.json", "reports/m8/verification.json"}
+EXCLUDED = {
+    "reports/m8/manifest.json",
+    "reports/m8/verification.json",
+    "reports/m8/council_verification.json",
+}
 
 
 def require(condition, message):
@@ -252,6 +256,7 @@ def package(root, check=False):
         "reports/m5/",
         "reports/m6/",
         "reports/m7/",
+        "reports/m8/",
     )
     paths = {
         p

@@ -19,6 +19,11 @@ M0-M8 are complete at the documented practical experiment standard as of
 M3's held-out fidelity failure, about 2% supervised CACC engagement and the M7
 one-day OFAT limits remain. The evidence establishes no consistent overall
 traffic benefit. M8 adds packaging checks without changing the simulator.
+
+The [adversarial council](m1-m8-adversarial-council.md) now covers M1-M7 and M8.
+Three reproduction guidance defects were corrected; saved numerical conclusions
+remain unchanged. Exact full replay requires archived derived-input snapshots;
+portable raw-to-frozen-input reconstruction is not demonstrated.
 [M7 closeout](m7-sensitivity-uncertainty-report.md) and [frozen specification](m7-sensitivity-uncertainty-spec.md).
 Earlier dated operational entries below are historical; all campaign processes
 have completed and old PID/SIGCONT instructions must not be reused.
@@ -525,3 +530,37 @@ established. Further scientific work requires a new scope, not hidden retuning.
 Publication branch: codex/m8-research-package; reviewable PR, unmerged. Obsidian
 M8 plan/spec/results/handoff and project/daily/index/log are synchronized; the
 exact pushed publication SHA is recorded there after remote verification.
+
+
+## Adversarial council closeout - 2026-10-18
+
+User requested review of M1-M2, M3-M7 and the report. Three same-model reviewers
+plus the chair independently examined fixed e642424, cross-challenged initial
+findings, and all three passed targeted correction review. This is internal
+review sharing context, not external or fully blinded peer review. The
+[council record](m1-m8-adversarial-council.md) and
+[machine findings](../reports/m8/council_review.json) retain proof and scope.
+
+Confirmed guide defects: legacy derived profiles cannot be regenerated to frozen
+bytes in a relocated clone (seven absolute provenance paths and a 25-file scan
+inventory), M3 must use fresh runtime AND report directories, and the engine gate
+checks local controller/binary agreement rather than an expected 1.27.1 version.
+Guide corrected; exact archived derived inputs required; original frozen hashes
+preserved. All-run overlay exposure and previously viewed validation-date history
+are clarified. No accepted engine mismatch or numerical defect was established.
+
+Independent checks reproduce 216 raw PeMS intervals, topology, 6,552 native M3
+detector aggregates, 3,528 observed/model score pairs, all 480 M7 group/paired
+records, 28 factor contrasts, six null-control runs and 14 VSL ledgers. These
+are bounded review checks, not a fresh complete raw audit or full campaign.
+Current full regression has 190 tests, including a council-manifest regression.
+The original 189-test M8 verification remains intact; the
+[post-council verification](../reports/m8/council_verification.json) records new
+checks and artifact hashes. All accepted M3-M7 reports, configs and simulator
+source remain unchanged. Numerical headline JSON/table bytes remain identical.
+
+M0-M8 saved-evidence packaging is complete, with the documented scientific and
+archival replay limitations. Underlying legacy input portability is not repaired
+or silently rehashed. PR #4 remains open and unmerged; final publication SHA is
+recorded in Obsidian after push. No additional campaign, calibration or controller
+optimization was started.
