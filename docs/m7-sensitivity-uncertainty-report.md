@@ -99,6 +99,16 @@ RMS acceleration -0.7409%, and peak backlog +0.4458%. Active passenger command
 share remains 2.1095-2.1391%. CACC's traffic tradeoffs remain mixed. Equipment
 and communication sensitivity results are pending; no settings were retuned.
 
+## Zero-equipment checkpoint, 2026-10-17
+
+All three zero-equipment CACC runs are valid and independently audited, taking
+the campaign to 36/54. Each exactly matches same-seed base H0 on all 30 metrics
+(90 exact values), legacy whole-run metrics and detector-summary SHA-256.
+There are zero equipped vehicles, equipped samples or commands; all eligible
+passengers remain native. This is the specified full-corridor null-control
+check, not an inactive-run rejection. Remaining equipment/communication and
+controller-setting cases are pending.
+
 ## Reproduce and audit
 
 Prerequisites remain the project-local SUMO/libsumo 1.27.1 environment, frozen
