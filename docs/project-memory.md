@@ -11,9 +11,9 @@ coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
 of truth: **M0–M6 practical experiment work is complete. M3 retains its fidelity limit; M5 is a supervised comparison; M6 is a fixed centralized VSL comparison.**
-M7 is paused by user at 39/54 valid, independently audited outcomes, as of
-2026-10-17. The remaining 15 runs are unstarted; no simulation is incomplete.
-See the [paused checkpoint](../reports/m7/paused_checkpoint.json) and the
+M7 resumed by user on 2026-10-17 from 39/54 valid, independently audited
+outcomes. The remaining 15 run under a CLI storage guard. See the
+[resume checkpoint](../reports/m7/resume_checkpoint.json) and
 [frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md).
 M4 is complete; the [harness closeout](m4-experiment-harness-report.md) records
 its acceptance evidence.
@@ -344,3 +344,19 @@ without rerunning any completed outcome, before launching the final 15.
 Restart the independent auditor and final-check waiter with PYTHONPATH=src.
 No automatic restart is scheduled. Final campaign/fleet/group/factor audit,
 plots, acceptance closeout and final publication are still pending.
+
+## Explicit continuation after freeing storage, 2026-10-17
+
+The user requested continuation after freeing space, with further iCloud uploads
+expected to release storage. CLI measured about 7.1 GiB free at restart; the
+additional expected space is not counted until available. All 39 result hashes,
+runtime source and frozen config matched the paused checkpoint. Recovery found
+39 retained, zero interrupted and 15 unstarted runs. No completed outcomes were
+rerun. The half-equipment child report was rebuilt from its three existing
+results; the root campaign report now includes all 39 completed outcomes.
+
+The remaining five cases continue unchanged. CLI storage guard suspends M7 if
+free space falls below 2 GiB. Active local sessions: campaign 7414, independent
+audit 12972, storage guard 62935, final-check waiter 14302. These supersede all
+previous session/PID references. Final acceptance remains pending. The versioned
+reports/m7/resume_checkpoint.json records this continuation and recovery hash.

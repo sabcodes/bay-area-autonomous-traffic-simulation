@@ -1,6 +1,6 @@
 # M7 sensitivity and uncertainty closeout
 
-**Paused by user, 2026-10-17: 39/54 valid and independently audited. Final acceptance pending.**
+**In progress after explicit resume, 2026-10-17: 39/54 valid and independently audited at restart. Final acceptance pending.**
 
 The [plan](m7-sensitivity-uncertainty-plan.md) at 655758b and
 [specification](m7-sensitivity-uncertainty-spec.md) at b4e968e precede runtime
@@ -154,7 +154,7 @@ history, distinct from scientific run rejection. See the
 [recovery record](../reports/m7/operational_recovery.json) for source hashes,
 retained/interrupted/unstarted paths and recovery-driver hash.
 
-## Current paused checkpoint
+## Completed-batch pause and continuation
 
 The user chose to pause at a completed batch boundary after free space fell
 to approximately 2.6 GiB. All 39 completed outcomes have independent raw checks
@@ -162,6 +162,10 @@ to approximately 2.6 GiB. All 39 completed outcomes have independent raw checks
 All M7 processes have stopped. Results and caches are durable on disk; see the
 [paused checkpoint](../reports/m7/paused_checkpoint.json). Final acceptance,
 full campaign-level statistics/replay auditing and plots remain pending.
+The user subsequently freed space and explicitly resumed. The measured restart
+space was about 7.1 GiB, with a 2 GiB CLI storage guard active. All 39 result
+hashes matched, no completed runs were repeated, and the final 15 continue.
+See the [resume checkpoint](../reports/m7/resume_checkpoint.json).
 
 ## Limits and next milestone
 
