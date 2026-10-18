@@ -8,6 +8,9 @@ environment; portable raw-to-frozen-input reconstruction is not demonstrated.
 The model's held-out traffic fidelity remains limited. This report synthesizes frozen M3-M7 experiments; M8 introduces
 no new simulation or controller tuning.
 
+Published on main through [PR #4](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/4), merged at
+[bd1eb94](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/bd1eb94515234d6105b8516dc67483a9421c9002) on 2026-10-18.
+
 ## Plain-language conclusion
 
 These experiments do not establish that either tested coordination policy

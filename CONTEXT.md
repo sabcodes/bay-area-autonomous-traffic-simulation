@@ -11,7 +11,7 @@ M3's held-out fidelity failure, about 2% supervised CACC engagement and the M7
 one-day OFAT limits remain. The evidence establishes no consistent overall
 traffic benefit. M8 adds packaging checks without changing the simulator.
 
-M7 is merged at ad33a7f; M8 is prepared on codex/m8-research-package for review.
+M7 is merged at ad33a7f; M8 and the council corrections are merged at bd1eb94.
 
 The [adversarial council](docs/m1-m8-adversarial-council.md) corroborated the
 scoped numerical synthesis and corrected three replay guidance defects. Exact
@@ -230,3 +230,12 @@ sources and storage. Passing one does not imply the others were performed.
 **M8 acceptance**: A complete reproducible methods/results/caveat/source package
 at the project's practical standard. It preserves M3 fidelity, supervised CACC
 exposure and OFAT uncertainty limits; it does not add a field-benefit claim.
+
+## M8 merge checkpoint
+
+[PR #4](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/4) merged into main at [bd1eb94](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/bd1eb94515234d6105b8516dc67483a9421c9002)
+on 2026-10-18 02:58:12 PDT (2026-10-18T09:58:12Z), on explicit user request.
+The merged tree exactly matches verified head 7982817. All 190 tests, lint,
+package checks and nine frozen input hashes passed immediately before merging.
+The context checkpoint changes publication records and their manifest only;
+accepted scientific values and scientific limitations remain unchanged.

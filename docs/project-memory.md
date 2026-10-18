@@ -20,6 +20,9 @@ M3's held-out fidelity failure, about 2% supervised CACC engagement and the M7
 one-day OFAT limits remain. The evidence establishes no consistent overall
 traffic benefit. M8 adds packaging checks without changing the simulator.
 
+Current publication: M8 and the council corrections are merged into main at
+[bd1eb94](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/bd1eb94515234d6105b8516dc67483a9421c9002) through [PR #4](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/4).
+
 The [adversarial council](m1-m8-adversarial-council.md) now covers M1-M7 and M8.
 Three reproduction guidance defects were corrected; saved numerical conclusions
 remain unchanged. Exact full replay requires archived derived-input snapshots;
@@ -564,3 +567,17 @@ archival replay limitations. Underlying legacy input portability is not repaired
 or silently rehashed. PR #4 remains open and unmerged; final publication SHA is
 recorded in Obsidian after push. No additional campaign, calibration or controller
 optimization was started.
+
+
+## M8 merge checkpoint - 2026-10-18
+
+[PR #4](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/4) merged into main at [bd1eb94](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/bd1eb94515234d6105b8516dc67483a9421c9002)
+on 2026-10-18 02:58:12 PDT (2026-10-18T09:58:12Z), on explicit user request.
+The merged tree exactly matches verified head 7982817. All 190 tests, lint,
+package checks and nine frozen input hashes passed immediately before merging.
+The context checkpoint changes publication records and their manifest only;
+accepted scientific values and scientific limitations remain unchanged.
+
+Local main was fast-forwarded to the merge; repository context and Obsidian
+merge records are synchronized. Earlier open/unmerged statements above are
+historical. No further research task is started by this merge request.

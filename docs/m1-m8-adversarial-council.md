@@ -164,4 +164,5 @@ Saved-evidence research packaging is complete after the corrections. Full replay
 is conditional on archived exact inputs and the recorded environment. Original
 accepted outcomes remain unchanged. Publication continues in
 [PR #4](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/4)
-for user review; no merge is performed by this council.
+merged into main at bd1eb94 on explicit user request after the council.
+The council itself did not perform the merge.

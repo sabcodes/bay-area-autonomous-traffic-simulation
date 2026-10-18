@@ -10,8 +10,6 @@ Python >=3.11 standard library and Git; it does not load SUMO, NumPy or Matplotl
 ```sh
 git clone https://github.com/sabcodes/bay-area-autonomous-traffic-simulation.git
 cd bay-area-autonomous-traffic-simulation
-# Until the M8 PR merges, select its published branch:
-git switch codex/m8-research-package
 python3 scripts/build_m8_package.py --check
 ```
 

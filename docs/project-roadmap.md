@@ -44,7 +44,7 @@ portable raw-to-frozen-input reconstruction remains unproven.
 See the [M8 acceptance record](m8-research-package-report.md). All milestones
 are closed at their documented scope. Further calibration, continuous CACC,
 additional days/interactions or policy optimization would be new research work.
-M8 publication is on codex/m8-research-package for review; it is not yet merged.
+M8 publication and the council corrections are merged into main at bd1eb94.
 
 ## Milestone history and observed-data decisions
 
@@ -261,3 +261,15 @@ M0-M7 practical experiment work is complete, including M7 findings and analysis.
 M8 research synthesis is next; no M8 work has started. Preserve M3 fidelity,
 M5 low engagement, all accepted outputs and original raw-audit provenance.
 Earlier unmerged/pending statements above are historical checkpoints.
+
+## M8 merged - 2026-10-18
+
+[PR #4](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/4) merged into main at [bd1eb94](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/bd1eb94515234d6105b8516dc67483a9421c9002)
+on 2026-10-18 02:58:12 PDT (2026-10-18T09:58:12Z), on explicit user request.
+The merged tree exactly matches verified head 7982817. All 190 tests, lint,
+package checks and nine frozen input hashes passed immediately before merging.
+The context checkpoint changes publication records and their manifest only;
+accepted scientific values and scientific limitations remain unchanged.
+
+M0-M8 saved-evidence research packaging is complete. Earlier pending-merge
+statements are historical checkpoints. Further research is a separate scope.

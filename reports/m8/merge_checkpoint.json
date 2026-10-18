@@ -1,0 +1,21 @@
+{
+  "pull_request": "https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/4",
+  "state": "MERGED",
+  "merged_at_utc": "2026-10-18T09:58:12Z",
+  "merged_at_america_los_angeles": "2026-10-18T02:58:12-07:00",
+  "merge_commit": "bd1eb94515234d6105b8516dc67483a9421c9002",
+  "reviewed_head": "79828173e25c112ab54306be8c65d2a736ec8210",
+  "merged_tree_matches_reviewed_head": true,
+  "merged_tree": "53e322a33db8ef49fc0e1c144f683967aca30442",
+  "premerge_verification": {
+    "tests_passed": 190,
+    "seconds": 13.02,
+    "lint": true,
+    "package_content_hashes": 212,
+    "headline_records": 52,
+    "local_input_hashes": 9,
+    "whitespace": true
+  },
+  "postmerge_context": "Publication records and manifest updated; runtime, configs, network and accepted numerical results unchanged.",
+  "project_status": "M0-M8 saved-evidence research package complete; documented scientific and replay limitations remain."
+}

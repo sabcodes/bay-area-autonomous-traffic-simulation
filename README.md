@@ -14,6 +14,9 @@ M3's held-out fidelity failure, about 2% supervised CACC engagement and the M7
 one-day OFAT limits remain. The evidence establishes no consistent overall
 traffic benefit. M8 adds packaging checks without changing the simulator.
 
+M8 and the council corrections are merged in [PR #4](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/4)
+at [bd1eb94](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/bd1eb94515234d6105b8516dc67483a9421c9002).
+
 The [adversarial council](docs/m1-m8-adversarial-council.md) reviewed M1-M7 and
 this final report. Its numerical checks support the qualified synthesis; three
 reproduction guidance defects were corrected. Exact full replay requires the

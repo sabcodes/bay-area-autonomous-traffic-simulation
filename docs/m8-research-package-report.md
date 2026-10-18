@@ -68,3 +68,12 @@ checkout checks pass. The exact commands, counts and artifact hashes are in
 M3-M7 reports, configs, network and simulator source remain unchanged; headline
 JSON/table bytes are identical. The original `verification.json` and its original
 manifest fingerprint remain historical evidence and are not rewritten.
+
+## Publication merge checkpoint
+
+[PR #4](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/4) merged into main at [bd1eb94](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/commit/bd1eb94515234d6105b8516dc67483a9421c9002)
+on 2026-10-18 02:58:12 PDT (2026-10-18T09:58:12Z), on explicit user request.
+The merged tree exactly matches verified head 7982817. All 190 tests, lint,
+package checks and nine frozen input hashes passed immediately before merging.
+The context checkpoint changes publication records and their manifest only;
+accepted scientific values and scientific limitations remain unchanged.
