@@ -11,9 +11,10 @@ coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
 of truth: **M0–M6 practical experiment work is complete. M3 retains its fidelity limit; M5 is a supervised comparison; M6 is a fixed centralized VSL comparison.**
-M7 resumed by user on 2026-10-17 under the
-[frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md). The 27 completed
-valid, independently audited outcomes were retained; unfinished runs continue.
+M7 is paused by user at 39/54 valid, independently audited outcomes, as of
+2026-10-17. The remaining 15 runs are unstarted; no simulation is incomplete.
+See the [paused checkpoint](../reports/m7/paused_checkpoint.json) and the
+[frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md).
 M4 is complete; the [harness closeout](m4-experiment-harness-report.md) records
 its acceptance evidence.
 
@@ -316,3 +317,30 @@ There are zero equipped vehicles, equipped samples or commands; all eligible
 passengers remain native. This is the specified full-corridor null-control
 check, not an inactive-run rejection. Remaining equipment/communication and
 controller-setting cases are pending.
+
+## User-requested storage pause at completed boundary, 2026-10-17
+
+Free space fell from about 13 GiB to 2.6 GiB during the resumed campaign.
+The user chose pause at the next completed batch. The coordinator was suspended
+first so no following case could launch; the half-equipment runs finished and
+all three raw audits completed. Final state: 39/54 valid runs and independent
+raw audits (1,170 metric values); 15 unstarted; zero incomplete runs. Simulation,
+audit, final-check waiter and storage-guard process trees were then stopped
+and terminated. All scientific outputs and caches are durable on disk. Codex
+may close; no live-memory state is required. Previous PID/SIGCONT instructions
+are historical and must not be used.
+
+The versioned reports/m7/paused_checkpoint.json records hashes and remaining
+cases: range_050, delay_1000, loss_020, headway_2000, vsl_220. The coordinator
+stopped before building the completed penetration_050 case report, so the root
+campaign report still lists 36 results; all 39 per-run result files are intact.
+This is report assembly pending, not lost or incomplete simulation evidence.
+
+Resume only on explicit user request, preferably with at least 10 GiB free:
+first dry-run PYTHONPATH=src .venv/bin/python outputs/recover_m7.py. It must
+find 39 retained, zero interrupted and 15 unstarted runs, and matching frozen
+source/input/config hashes. Then --execute rebuilds the completed case report
+without rerunning any completed outcome, before launching the final 15.
+Restart the independent auditor and final-check waiter with PYTHONPATH=src.
+No automatic restart is scheduled. Final campaign/fleet/group/factor audit,
+plots, acceptance closeout and final publication are still pending.

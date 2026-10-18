@@ -7,9 +7,10 @@ As of 2026-10-17, M0–M6 are complete at their documented practical standards.
 M3 retains its held-out fidelity limit. M5 accepts a supervised comparison
 with about 2% active passenger timesteps; continuous CACC remains unresolved.
 M6 accepts the fixed centralized VSL comparison and is merged into main at
-`ef8d20c` (2026-10-17). M7 sensitivity resumed on user request, 2026-10-17. Its 27 completed valid,
-independently audited runs are retained; three interrupted runs restart with
-identical settings after their partial evidence was archived.
+`ef8d20c` (2026-10-17). M7 sensitivity is paused by user at a completed batch boundary, 2026-10-17:
+39/54 valid, independently audited runs; 15 unstarted; no incomplete runs.
+Results are durable on disk and no live processes are required. Resume only
+on user request after freeing storage; see the paused checkpoint and memory.
 See [project memory](docs/project-memory.md), the [roadmap](docs/project-roadmap.md),
 and the [M6 closeout](docs/m6-centralized-control-report.md).
 
