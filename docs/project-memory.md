@@ -360,3 +360,12 @@ free space falls below 2 GiB. Active local sessions: campaign 7414, independent
 audit 12972, storage guard 62935, final-check waiter 14302. These supersede all
 previous session/PID references. Final acceptance remains pending. The versioned
 reports/m7/resume_checkpoint.json records this continuation and recovery hash.
+
+## User storage threshold update, 2026-10-17
+
+The user explicitly instructed: pause if free storage reaches 5 GiB. The CLI
+guard now checks every five seconds and suspends all M7 simulation, audit and
+final-check process trees at or below 5 GiB. This supersedes the earlier 2 GiB
+threshold. Measured space immediately after the change was about 6.5 GiB.
+The replacement guard session is 71913; campaign7414, audit12972 and final
+checks14302 continue. Do not automatically resume a threshold-triggered pause.

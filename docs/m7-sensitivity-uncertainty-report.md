@@ -163,7 +163,8 @@ All M7 processes have stopped. Results and caches are durable on disk; see the
 [paused checkpoint](../reports/m7/paused_checkpoint.json). Final acceptance,
 full campaign-level statistics/replay auditing and plots remain pending.
 The user subsequently freed space and explicitly resumed. The measured restart
-space was about 7.1 GiB, with a 2 GiB CLI storage guard active. All 39 result
+space was about 7.1 GiB. The CLI storage guard initially paused below 2 GiB;
+the user subsequently raised the threshold to pause at or below 5 GiB. All 39 result
 hashes matched, no completed runs were repeated, and the final 15 continue.
 See the [resume checkpoint](../reports/m7/resume_checkpoint.json).
 

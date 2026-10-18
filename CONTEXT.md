@@ -9,7 +9,7 @@ with about 2% active passenger timesteps; continuous CACC remains unresolved.
 M6 accepts the fixed centralized VSL comparison and is merged into main at
 `ef8d20c` (2026-10-17). M7 sensitivity resumed on explicit user request, 2026-10-17, from 39/54 valid
 and independently audited runs. The remaining 15 run unchanged; storage is
-monitored with a 2 GiB suspension guard. Final acceptance is pending.
+monitored with a user-requested 5 GiB suspension guard. Final acceptance is pending.
 See [project memory](docs/project-memory.md), the [roadmap](docs/project-roadmap.md),
 and the [M6 closeout](docs/m6-centralized-control-report.md).
 

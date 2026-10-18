@@ -87,5 +87,7 @@
   "manifest_file": "outputs/m7_interruptions/20261018T061919052513Z/recovery.json",
   "user_facing_date": "2026-10-17",
   "free_disk_gib_at_resume": 7.13,
-  "storage_guard_threshold_gib": 2
+  "storage_guard_threshold_gib": 5,
+  "initial_storage_guard_threshold_gib": 2,
+  "storage_threshold_updated_by_user_request": true
 }
