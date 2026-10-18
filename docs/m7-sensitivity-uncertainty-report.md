@@ -1,6 +1,6 @@
 # M7 sensitivity and uncertainty closeout
 
-**Paused under user storage rule, 2026-10-18: 42/54 valid and independently audited; three runs suspended and nine unstarted. Final acceptance pending.**
+**In progress after explicit resume, 2026-10-18: 42/54 valid and independently audited at restart. Final acceptance pending.**
 
 The [plan](m7-sensitivity-uncertainty-plan.md) at 655758b and
 [specification](m7-sensitivity-uncertainty-spec.md) at b4e968e precede runtime
@@ -168,7 +168,7 @@ the user subsequently raised the threshold to pause at or below 5 GiB. All 39 re
 hashes matched, no completed runs were repeated, and the final 15 continue.
 See the [resume checkpoint](../reports/m7/resume_checkpoint.json).
 
-## Latest storage pause
+## Storage threshold pause and explicit resume
 
 The user's 5 GiB threshold triggered on 2026-10-18. The guard sampled a rapid
 space drop at about 0.23 GiB and suspended all M7 process trees. Space recovered
@@ -176,6 +176,10 @@ to about 7.6 GiB, but the run remains paused. Forty-two outcomes and all their
 raw checks are complete (1,260 metric values); three delay cases are suspended
 in memory and nine runs have not started. See the
 [storage pause checkpoint](../reports/m7/storage_pause_checkpoint.json).
+
+The user subsequently authorized continuation with 11.7 GiB free. All ten
+process identities matched, the delay runs resumed from memory, and the 5 GiB
+storage guard remains active. No completed outcomes were rerun.
 
 The completed range case changes throughput +0.0020%, scheduled total time
 +0.0292%, RMS acceleration -0.4524% and peak insertion backlog -0.7974% versus

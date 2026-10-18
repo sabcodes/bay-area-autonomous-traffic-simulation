@@ -488,10 +488,10 @@ See [local feasibility research](research/local-feasibility.md) for the source-b
 
 ## M7 sensitivity and uncertainty
 
-As of 2026-10-18, the user-requested storage rule has paused M7 at 42/54 valid,
-independently audited runs. Three runs are suspended and nine unstarted; final
-acceptance is pending. See the [storage checkpoint](reports/m7/storage_pause_checkpoint.json)
-and [project memory](docs/project-memory.md) before resuming.
+As of 2026-10-18, M7 resumed by user from 42/54 valid, independently audited
+outcomes. The 5 GiB storage guard remains active; final acceptance is pending.
+See the [project memory](docs/project-memory.md) for current state and the
+[storage checkpoint](reports/m7/storage_pause_checkpoint.json) for pause history.
 
 M7 is in progress under its [plan](docs/m7-sensitivity-uncertainty-plan.md) and
 [frozen specification](docs/m7-sensitivity-uncertainty-spec.md). The bounded

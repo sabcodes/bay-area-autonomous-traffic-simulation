@@ -181,3 +181,7 @@ tracks publication. No policy-benefit or general-uncertainty claim is implied.
 Three delay runs are suspended and nine runs unstarted after the user's 5 GiB
 storage threshold triggered. M7 remains unaccepted pending completion and
 final campaign/factor checks. See [current memory](project-memory.md).
+
+M7 resumed explicitly later on 2026-10-18 with 11.7 GiB free. The three delay
+runs continued from live state; all 42 finished outcomes are retained and the
+5 GiB guard remains active. Final acceptance is still pending.

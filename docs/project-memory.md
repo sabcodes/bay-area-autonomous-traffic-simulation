@@ -11,10 +11,10 @@ coordination policies on a US-101 corridor. The
 [experiment charter](experiment-charter.md) defines the research question and
 fair-comparison rules. The [roadmap](project-roadmap.md) is the milestone source
 of truth: **M0–M6 practical experiment work is complete. M3 retains its fidelity limit; M5 is a supervised comparison; M6 is a fixed centralized VSL comparison.**
-M7 is paused by the user-requested storage rule as of 2026-10-18:
-42/54 valid and independently audited; three suspended in memory; nine
-unstarted. See the [storage pause checkpoint](../reports/m7/storage_pause_checkpoint.json)
-and [frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md).
+M7 resumed on explicit user request, 2026-10-18, retaining 42/54 valid and
+independently audited outcomes. Three delay runs continued from memory under
+the active 5 GiB storage guard. Final acceptance is pending. See the
+[frozen sensitivity spec](m7-sensitivity-uncertainty-spec.md).
 M4 is complete; the [harness closeout](m4-experiment-harness-report.md) records
 its acceptance evidence.
 
@@ -397,3 +397,14 @@ Current live paused sessions: campaign7414, audit12972, final-check14302; guard
 in outputs/m7_native_metadata_audit.py for after the full 54-run report exists.
 Final campaign/fleet/replay/group/factor checks, plots, 145-test regression,
 closeout and final publication remain pending. No M7 acceptance claim yet.
+
+## Explicit live-process resume, 2026-10-18
+
+The user authorized continuation. Free space measured 11.7 GiB. All ten paused
+process commands, start times and stopped states matched before SIGCONT; the
+three delay runs resumed from their preserved positions without rerunning.
+The old local pause record was archived under outputs/m7_storage_pause_history/.
+The 5 GiB guard restarted as session89111. Campaign7414, audit12972 and final
+checks14302 remain active; 42 completed valid/audited outcomes are retained.
+No scientific settings changed. The remaining 12 outcomes and full final
+verification, native metadata audit, plots and closeout are still pending.
