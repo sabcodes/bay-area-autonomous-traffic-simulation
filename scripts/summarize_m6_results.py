@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
@@ -30,6 +31,8 @@ def summarize(report_path, audit_path, output):
     report, audit = json.loads(report_path.read_text()), json.loads(audit_path.read_text())
     if not report["accepted"] or not audit["accepted"]:
         raise ValueError("Refuse performance presentation from a rejected matrix or audit.")
+    if audit.get("report_sha256") != hashlib.sha256(report_path.read_bytes()).hexdigest():
+        raise ValueError("Report does not match the accepted audit.")
     groups = {g["scenario"]: g["metric_summary"] for g in report["groups"]}
     lines = [
         "# M6 centralized VSL results",

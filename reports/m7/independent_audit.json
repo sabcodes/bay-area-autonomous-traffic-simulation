@@ -1,0 +1,1638 @@
+{
+  "accepted": true,
+  "report_sha256": "ea33403dfff8d82c071b4b62e3cd6b800c18a5836241c95a364a4fbac97725a0",
+  "source_sha256": {
+    "src/bay_area_traffic_sim/__init__.py": "13f8d53a1974f4c9d209bb0969a292a156b1a49e9d4730e2db7ba87dedd0855c",
+    "src/bay_area_traffic_sim/__main__.py": "2c64d2271cba4febf206b6e055c2f702950ad1b8489988b39f172a7d0bc20cd2",
+    "src/bay_area_traffic_sim/calibration.py": "77153562702dfcf6f87f946aeff1becc72c0ee590528ddc486d5179f7fd9ff02",
+    "src/bay_area_traffic_sim/centralized.py": "df4183e7b1a9d6ff8613ed23c375d60a116bca35e90dbf4dff6e2d0a211c69b0",
+    "src/bay_area_traffic_sim/cooperative.py": "9e1c5870ce9959f048d3d4398234218e777f3a339d79aa5bb499312f64ebd1dc",
+    "src/bay_area_traffic_sim/corridor_junctions.py": "d8ac1aad46ce4dfd483456ced2a584db1aca68a08dbb666955d46a82c67db9a8",
+    "src/bay_area_traffic_sim/detectors.py": "897fd001642766700b91931f471c57777e21ce5a91f8f789da175dc7a4c902ad",
+    "src/bay_area_traffic_sim/experiment_harness.py": "2399fa5bd441abcd8f283d91c8dc1a972b36b7d84930bde53b295c6fd9189a8a",
+    "src/bay_area_traffic_sim/experiment_metrics.py": "2e8a9cb0333f2e3faa9551b5ff3b29bef78c96a9e4e8804f9bf22d2f6b998310",
+    "src/bay_area_traffic_sim/experiments.py": "eb8b424c72a927ed698f81d4aaa0bca586d6d6b7b4c1b0e851ebfa176c0bc36e",
+    "src/bay_area_traffic_sim/flow_balance.py": "e23ab8e3defef6dcd0af677fdb160e9fd6ced4022f498789eac4b38925df8433",
+    "src/bay_area_traffic_sim/metrics.py": "3aaa9165ce119bdfd295fd0af978c933036e50b6bb9d2668275742cd0f0e5c3a",
+    "src/bay_area_traffic_sim/network_audit.py": "60637da59770737838e6864becc1b86faa80be4dbd1efc3ce1e4aced48dbf4ee",
+    "src/bay_area_traffic_sim/network_variants.py": "6e450deed17016b42b0891cf6de5a5d95976953dd355c90f910eba5a5317c4ae",
+    "src/bay_area_traffic_sim/osm_import.py": "1baf7d0e3014c0ded23e2d681625636fb361f7fd44db3d9478c688463fec7c5b",
+    "src/bay_area_traffic_sim/pems.py": "6ff73a2f12588424889b5dbc69ccd168f063cba333f9b14b899926502c24c9bd",
+    "src/bay_area_traffic_sim/pems_metadata.py": "ff24c0a49aae5f12296f8b975c12b8cf4a54acd3c56f4c4dbec72c9c89ea1813",
+    "src/bay_area_traffic_sim/real_corridor.py": "17dbe466fe3ffc5615d346c0579fedf833861dad86e7b2cad4248389e17fc0e3",
+    "src/bay_area_traffic_sim/sensitivity.py": "246e29a938d8782ca5ffe7722f7fc39d3b368fb9b353ce735f56ab08554cd358",
+    "src/bay_area_traffic_sim/sumo_install.py": "4d6358462ee62684bf4bafad49e8d2976ba46974da0c312a4663184bd853a6ca",
+    "src/bay_area_traffic_sim/toy_corridor.py": "80b1cba33dde23b780cd7dd579181ad30be8beb2057ac4525bbca731eb613a59"
+  },
+  "experiment_reports_sha256": {
+    "outputs/us101_corridor/m7/m7_ofat_2025_10_08/base/report.json": "f9c772fa2fcac5d0d2308b5f7514857cd911ae408f9c4779b7bcd73373046034",
+    "outputs/us101_corridor/m7/m7_ofat_2025_10_08/demand_080/report.json": "1e913f3c788f0c7f6668c77087e7b4dd76b5e974ed69487fd963843db6d02736",
+    "outputs/us101_corridor/m7/m7_ofat_2025_10_08/demand_120/report.json": "9a198b2dc02b2fa4059df8fb4b029a64895d9621144b081b4ce16b25ac59f257",
+    "outputs/us101_corridor/m7/m7_ofat_2025_10_08/penetration_000/report.json": "32ccc4f8e04f27e4c5bd1eb71fe0201180e6779c3d977e0c995fbdbdf266540f",
+    "outputs/us101_corridor/m7/m7_ofat_2025_10_08/penetration_050/report.json": "5a588c50b73eea10bde2a6461d16bb5e995524bbe60f642fbdab48e125f14872",
+    "outputs/us101_corridor/m7/m7_ofat_2025_10_08/range_050/report.json": "2b42f7723aa967e104854b385588060289667227ede8741b4c111fa154207210",
+    "outputs/us101_corridor/m7/m7_ofat_2025_10_08/delay_1000/report.json": "86f80906d82a322c1ce088044d46e3f058067c82ae5cdfe8dbfdaddba2320e55",
+    "outputs/us101_corridor/m7/m7_ofat_2025_10_08/loss_020/report.json": "5a11d407e1ba1ee8287f77bf65cab7c1d05f2d68b386fd1536d16945f8cd56cc",
+    "outputs/us101_corridor/m7/m7_ofat_2025_10_08/headway_2000/report.json": "f4c7202dd8e11034d60aa3500e0e2d5314ef450aef1ce431063f225d4ff8098b",
+    "outputs/us101_corridor/m7/m7_ofat_2025_10_08/vsl_220/report.json": "ad337e399e443f0b59271ea65ab7710f97b651359d5b264f9d3d67fd11da0291"
+  },
+  "auditor_sha256": {
+    "scripts/audit_m7_results.py": "b7d5cfc38a4faa4b7d2949a3518883ea81f96729337c2306ee94325eabaa1a98",
+    "scripts/audit_m6_results.py": "84b4ff097cc9f6c9ebd4ccf8e7ddb913b200d43fc40165a4eadc594dbd8a83bf"
+  },
+  "campaign_config_sha256": "8601b1998b323d67cdeeef8e8775a2bfdd9bccb019206d60bf49c34b4342ffbd",
+  "runs": [
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22018,
+        "eligible_vehicles": 22018,
+        "commands": 759189,
+        "messages_delivered": 663625,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "29da4ac7c12ec69b29ca0438d61644c5dacb24804217d58040550a20b6905c58",
+        "detectors_seed_41.add.xml": "4ae489cd5ce84fa9e4682860ec9a253eea5a124713d94234845e1a8ab96d458c",
+        "detectors_seed_41.xml": "2151530d5c4201cec8c1bd4426cf6db2d950612fa5310aef5828360a8d82941e",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_41.log": "1209906354e0fa623026417aaaf47e01f5ff6f74f74db0a1c9a16bef9dd7e23b",
+        "h0_human_baseline_seed_41.tripinfo.xml": "0eeb7a37da77580c3662e13f1b4b9cfe66bcd6ff60ee5bdaad7526a621005f2f",
+        "h0_summary_seed_41.xml": "e94ec31717e412da96eaa8e4e07b306f4b53183887d6896897ee53e6650df312",
+        "trajectory.fcd.xml.gz": "3cb016be177d65e34d44255cba7c2d4c0869348b99170fefcedfa2e812c59432"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22030,
+        "eligible_vehicles": 22030,
+        "commands": 765666,
+        "messages_delivered": 670598,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "55f7b34912a6f87c0c46fa3a9babef2b5f7de45a382041f2b5a57c629d1a3af8",
+        "detectors_seed_42.add.xml": "fcacfb39cecba2928fa22fc0322d0019ccf8bfba86d6648177124ffa27154c2f",
+        "detectors_seed_42.xml": "ccc63c9393291dac22fca743c3af4a1f067c4a91c305aa6364afa0cc48e9693f",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_42.log": "440dd2c81959bda944e0ff3e28cee8364dbd75420534d99a98dd79dc0b89c3a7",
+        "h0_human_baseline_seed_42.tripinfo.xml": "81fd97f4c652596c535c85082d3221960b2969c329295c8157f39ffa0c64c135",
+        "h0_summary_seed_42.xml": "3b539c07119c9bdb2eff365bbcd5bbecf75bf89d65e611e491abb5c1aefafe0d",
+        "trajectory.fcd.xml.gz": "fc632514025232da059d9048c56c5a912b32f0377ab300e210873a4f957f7d8c"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22060,
+        "eligible_vehicles": 22060,
+        "commands": 737775,
+        "messages_delivered": 644025,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "2b64dfc37117dd91acccd37876253baa6c6d712708e4b9e056ab7061642bfc16",
+        "detectors_seed_43.add.xml": "35fd28d81fe07ee62b9a630e9839fe98c1c685780261378f8de1e363c7e0f0d6",
+        "detectors_seed_43.xml": "8e5177ab8bf2f3e9970ce7125981efe71b26815e535cabd969c08613fac4671d",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_43.log": "d6067e6d90849817a778cc3661b85c8537853cd29325ae9cbe4ec23bc27516f9",
+        "h0_human_baseline_seed_43.tripinfo.xml": "c09eaeb78807f110aad4edc0bdb35907a2b6fdf1f3c4708b632ea75e1f921301",
+        "h0_summary_seed_43.xml": "d5d4d49b9f78c003388ca03fb7f7ab8ae50490b787ddebd17fbb6c238e4c5657",
+        "trajectory.fcd.xml.gz": "bda55c6f9095ca6ceeab16ba7c7f53d7471d97b411b7fc9bd875106227073073"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 44,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22035,
+        "eligible_vehicles": 22035,
+        "commands": 755520,
+        "messages_delivered": 657105,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "cc92c0486ce18ddf8f0323795a950f03805802bbbca249ea2166a300009dd08b",
+        "detectors_seed_44.add.xml": "a5e97ef9ee944945242df60f4a64bfd6e1ae8858c269ffe45177770828db52eb",
+        "detectors_seed_44.xml": "070b5b06aafe581c8da0c9f143971c60d01202d66817bc7a6127d790d8961cb6",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_44.log": "d98d622177594e52d5d7d255498b966c17b7d2ee234f8eb0a0d7b53f206ff036",
+        "h0_human_baseline_seed_44.tripinfo.xml": "377211b2b8abdc5818cd22a62788b4fcc482aee189473758a4cd902a961b969e",
+        "h0_summary_seed_44.xml": "62d40420c710331e406d57792af5bca58af8320d321f85ba733365789c2e2dff",
+        "trajectory.fcd.xml.gz": "35036ce6c57636b5d345121a7d5edbbf68a9491df8177d50595e0338156b7841"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 45,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22032,
+        "eligible_vehicles": 22032,
+        "commands": 765661,
+        "messages_delivered": 673967,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "4245bbec5e88d65db6a653ef48c0729bb88315cb0de9e36cd4e4ec23eb9daf77",
+        "detectors_seed_45.add.xml": "2970cb5f6e6d7f17c4ff6d47fe8f19563884e4693a65b49c55d5e26056d24794",
+        "detectors_seed_45.xml": "682cc2749b808a6aa067cc0714442fdcd699bb299fe37258048354c18d1ac98a",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_45.log": "0cf2301b48b4e089087cd75017537911a7dd16e4aa9955a8fe36905d01b9fb7e",
+        "h0_human_baseline_seed_45.tripinfo.xml": "ae38da6d646513cc44cec56cb1d3d20a608409494af590f728b74d14e5939b9e",
+        "h0_summary_seed_45.xml": "3148f9ede1439e2ca545a8ee3e35360b2aed68d176823cfa51d0a11f104fda38",
+        "trajectory.fcd.xml.gz": "3792c0784e2fdfdb695a7c6e6d414c41d102f516c0116806c46f8e74a0a611c7"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 140,
+        "limited_lane_seconds": 65940.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "ce77dfa99dd75c7961e898f58c45874d759a3526d8f8130e99cb3aa26d170205",
+        "detectors_seed_41.add.xml": "1d1ef432350e63c4fad4cac05f5ac2b7aa2eaadb1dc8447e6580c07dfe9c1325",
+        "detectors_seed_41.xml": "6895fd331ced9a35585b048e2599aab7daf06e88c909b65fb8f723100cf7c547",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_41.log": "12c332cb37d17482e4df2756f08d232fddfe3b9d9f5fa22f6d9aa079e2bf65d5",
+        "h0_human_baseline_seed_41.tripinfo.xml": "9d2474b8d746cd692bf10eb681cbf71c2fbb4f4cf82ac8f21ed87d4bd2b13501",
+        "h0_summary_seed_41.xml": "48949c3f43e3e5749c1256a747c4e306aaee2e46e86672a4173cdcaa54ad7894",
+        "trajectory.fcd.xml.gz": "9bc92767937d07b3428a66a0670f43f99c9a623d800010b6ef3d5500e0d7c6ad"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 140,
+        "limited_lane_seconds": 69300.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "00ebf1d613e4571492de1a2f3ba65ecaf3d46890d44c8cbad6f2042182354a2b",
+        "detectors_seed_42.add.xml": "2686f7c88893088abdf4f12166f39993702819dbdb9804b5293cd3a4da4f8d20",
+        "detectors_seed_42.xml": "ee2d758fc36be63da1c0ef1118a06096f3f1fcef68e6de869e84450c79f7d4c2",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_42.log": "8673c57b0c9f54cbf6eef962be2f341e6eaac6ebd71def9a7e5a4a008118b798",
+        "h0_human_baseline_seed_42.tripinfo.xml": "1319e6fb4df5eb72b6444f5881940845875a5d47896246af6ec9dca9b2ac9c5e",
+        "h0_summary_seed_42.xml": "b1f724b7d7a9f09f99dafde19c03d70226fbb213b5c4af81f3e7441db37714fa",
+        "trajectory.fcd.xml.gz": "382c9809e048327355f3aca05ddd8406665896d77dbcba38862a99da5ab501f6"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 140,
+        "limited_lane_seconds": 68880.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "e0dc0fc5b09d48b62ac451edd9a9aa31e28f073334385903303521dc698b9780",
+        "detectors_seed_43.add.xml": "7c0f4c6a943fa834b0a627ef5c09dfe6cf8ffa990821745a282f989b497e1dd5",
+        "detectors_seed_43.xml": "3e7fe0c4bfa9d3cf9d66b4782cdd5113256da0f984fcc4d22539e0c66934e947",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_43.log": "5e43afde998d7d56b3847efa8f424f2c6fe4598d24581842ca258d71af30e7ac",
+        "h0_human_baseline_seed_43.tripinfo.xml": "d0aa29d2d73fe9fc49e3b708cb2ebe996971a944eb12dabbd16d4b4ca560e1d5",
+        "h0_summary_seed_43.xml": "9ec45d2cd19da533ab6243f6cb3acf84bad9c10de44032323c663fb85923987f",
+        "trajectory.fcd.xml.gz": "31d98dcefea83d28f970cb2021dc4186e61457cd05d342ed43d45176e8842ea4"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 44,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 140,
+        "limited_lane_seconds": 68040.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "741bcae147862165d877005a44764f518ecfd47644f255195d4c1093fac14657",
+        "detectors_seed_44.add.xml": "900a51818f413894abd42697ed72fa3364b2ce1fb231286d90f2b5f2efc55998",
+        "detectors_seed_44.xml": "39d22394725522ab407672bf39f68b83b400a5b4a9d8853d970fefacdcabcc52",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_44.log": "2e7e14a384a45a4461dbd5763faddaba1d96d8b99349db0ab28b07741e416069",
+        "h0_human_baseline_seed_44.tripinfo.xml": "9d92640299e70cd89f5f9433f441abb5f2cea06ee0e399eb7a128a8fa5f4ea06",
+        "h0_summary_seed_44.xml": "2a53a0c8a69249800af3aef267f8b05e1666957072e9a490a6356dadb87e7a66",
+        "trajectory.fcd.xml.gz": "abc51756dfa8e51b7096bf2451e21b9bc58451936408ab1c927b50834c45798d"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 45,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 140,
+        "limited_lane_seconds": 68460.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "c5e39d669be4f3d3da03825aae15f2d5b5dc32987c2b70855903b9230db7b05f",
+        "detectors_seed_45.add.xml": "4caed74640954e8d574ad20f052649696e8ffc3d3b779cf6616e8e2534c60bdc",
+        "detectors_seed_45.xml": "8d22d26f31016a14a393e922340e5e897018f5cde843be5a3e54ebc011019712",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_45.log": "71ef6aa687e3801eae6cc89a1cd7f93b1aaad70d28625f54f84ea47eb3c5344a",
+        "h0_human_baseline_seed_45.tripinfo.xml": "675857a59a488b240c4be5749ab1712bf811095e8c64823ef0ae318597b9aa52",
+        "h0_summary_seed_45.xml": "23ba24414a5581fbb362b53811e6c8d5226dfb9c174d26619325464f8426aca4",
+        "trajectory.fcd.xml.gz": "557b839d1f68187cdd5902d55802c7241473020c3440248b07eaf3309f566da3"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": null,
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "detectors_seed_41.add.xml": "5f78d36d0d8ab3501ebe9a07d3d2c3ee7c2bcc23f67127ed8acbd223bb06d809",
+        "detectors_seed_41.xml": "e92a2fb8955e5d692f8361add3b8cff5ab3ccb87ba24cf1d7a046ee98c836cc5",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_41.log": "052cdae5cb5d1f76b5da42c000e64aaca4afc7bc92d7d691fb58fa54c6b60b83",
+        "h0_human_baseline_seed_41.tripinfo.xml": "2badc2af9121473c4be6ec4398452374f10d0c2870ffad965eb1666f0b2a2186",
+        "h0_summary_seed_41.xml": "a43f0f4510a9c1a6ed2292d4d72f9b64d6dfb83bb4f7f296dd17094ae89141ad",
+        "trajectory.fcd.xml.gz": "fca696b82bc2fccefc8b5b7ed81ad4faf88f381b1fe487e2c37737080c1e2b3f"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": null,
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "detectors_seed_42.add.xml": "8e0cec16102cd4c4527e9fc9d76c1dfd5a52daabb958ce08ff923cb9c435aa6d",
+        "detectors_seed_42.xml": "906f030333f7098bba64dfac8e53c3639d53b9c508a732b3940397498912e969",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_42.log": "1ec21ffa7fdf369db2b7a00b49f8890df7d1f305f5775244306ccceb8c6caf9d",
+        "h0_human_baseline_seed_42.tripinfo.xml": "6951e8167e5654a516f22169744188ce08929b51d15f4267242435eba5fef05d",
+        "h0_summary_seed_42.xml": "6605ab8423b6298d2f411b747dc685074cd730229899d255eaa8765b3785b87b",
+        "trajectory.fcd.xml.gz": "f2dbacb9599e8fe1fbb35ac3f4fa40cc261907f600ff811834e3462264427bc1"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": null,
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "detectors_seed_43.add.xml": "693778245c3ce460234e4d0305882a9ac122dbf438aa8e2073e2351fd79c2d28",
+        "detectors_seed_43.xml": "e5881e9338c1f35688f69253643b86b6c908d4a303b9488c1979615cfe35a236",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_43.log": "26dd7759dd94c2bcf4d7d04b5f820f72e3e8a58ea669011e02519bf7f4dc32e6",
+        "h0_human_baseline_seed_43.tripinfo.xml": "5193a4b60bde363944f1cd1239dbc07ec54e2f7010ef7d9125376b6aa0192601",
+        "h0_summary_seed_43.xml": "3ffcec0201cf651e5afaecfbcd6ffc278c2ee9d7e2430210e486103a13d0f603",
+        "trajectory.fcd.xml.gz": "1ee69a088cd1ad7036cf88d7fa76b115073791a841915159f7d209e5aadd4dfc"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 44,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": null,
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "detectors_seed_44.add.xml": "fe21c95cdb387919fe2c952d51a33937c274d3082fe60c533f7af9e7c2d7d027",
+        "detectors_seed_44.xml": "3e18f0341e2bb5bc0278ad09e0182246eff1b4d5099d276179c2fb6764a7de62",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_44.log": "0eca2de773eb00cb66e44822ab9b82e782f78714782ac70700d86b71c3e6228a",
+        "h0_human_baseline_seed_44.tripinfo.xml": "1a87c764c0534a9cfbccbeeed7bbee1b76191270308b3047f1dbb351f30ba724",
+        "h0_summary_seed_44.xml": "85bd15ae1b64c78027b7a8efdbde7308183b63dd5d39f37b8bc809c9bfbd88e4",
+        "trajectory.fcd.xml.gz": "c1260f46756a82e1e78b5bca371e264c3da372a7431ef4640f8937998f8efe54"
+      }
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 45,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": null,
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "detectors_seed_45.add.xml": "11f4bcd765d0857f86fe00eb0ac18eff8f3258315c89fe36fd588f7055fc4f3c",
+        "detectors_seed_45.xml": "72d5a630c12aa967af97597ffa8bf09109beb1a57df9de2b5518ae83a719c957",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_45.log": "8ec5f714f605a441969de5c9e5d85f58f6871b160e51dcdc1f51e71be64c2bad",
+        "h0_human_baseline_seed_45.tripinfo.xml": "1cdb1d468daa50a9a2b8932dce3f8d3ccb8218be70ffa4dfa7c90f4ec918b3dd",
+        "h0_summary_seed_45.xml": "40a2395f18f733a8b6a27eff988c26e5fd9dbef7c7be4bb4e2baf39db20959da",
+        "trajectory.fcd.xml.gz": "76ba80f88f75c65e5b77f50e1c67a74a352b5cba46ce9ccef9ad5e82cd0d8a07"
+      }
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CACC",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 17641,
+        "eligible_vehicles": 17641,
+        "commands": 352343,
+        "messages_delivered": 272253,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "1edf8b2d8b8b295a8b503eb9c60bca8e7c7665c5449cc07ce8e6ab414cef7076",
+        "detectors_seed_41.add.xml": "4474f987a15de08cefd9ae00426227440d030706b7e53a8cab85a477e25f2b71",
+        "detectors_seed_41.xml": "0aa126b7b3909aee8aa0b70750cdbb9780a8364e78cf5fc3994256dfcecc0f21",
+        "h0.rou.xml": "35de543597197f94f6df5d1f63ab19f49003187ee38650a45a15dc8d1d3c3ca8",
+        "h0_human_baseline_seed_41.log": "200b19fdcf1db74797e226361af4352f92c43222ef9eb66276bed8f0bc9fbcbd",
+        "h0_human_baseline_seed_41.tripinfo.xml": "930be04d15786a3e552d35b3afccfe38efdcd10606047ee0a51c4cf27599f59f",
+        "h0_summary_seed_41.xml": "67047b86f6c9c0aa57f67383fd89ba656ff4a9ebd9a1a7b738dc184f4c80885f",
+        "trajectory.fcd.xml.gz": "86bd84773fbb73c144caa975752ea751fde25562c53844fc95167da37eeec127"
+      }
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CACC",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 17635,
+        "eligible_vehicles": 17635,
+        "commands": 353333,
+        "messages_delivered": 275673,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "cba27485a0b2a303d879374cff0f0d3aaa4bb4f6a0be591a4f00d18fbdfcca27",
+        "detectors_seed_42.add.xml": "e6373d576e483b14dfec7f54a7fd189bc81e19361c40358aecd8932a3fe4cff2",
+        "detectors_seed_42.xml": "61a7192e63f7e9f080b686d55cee0e168a5f840305aa49e70ed5e872c0a87153",
+        "h0.rou.xml": "35de543597197f94f6df5d1f63ab19f49003187ee38650a45a15dc8d1d3c3ca8",
+        "h0_human_baseline_seed_42.log": "44292b86413441fb57e45c3b4ed677478be65839273b824ba92267ed12dffc45",
+        "h0_human_baseline_seed_42.tripinfo.xml": "1b59d5201cb0e0ddb58972967c9f355b6306c7736d85acef213ccf4746499727",
+        "h0_summary_seed_42.xml": "bfd979a4e46e320e148e92bf6a3b8f90b45d6ec1ad6f2de1b7e6d4c9888fd1ed",
+        "trajectory.fcd.xml.gz": "3104d7707c0b1cc24a7cb4d42093166dd55aa5847b82c61b162c58da7d28c949"
+      }
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CACC",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 17672,
+        "eligible_vehicles": 17672,
+        "commands": 357087,
+        "messages_delivered": 277885,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "fe613aea6f9c39fd68dab38db7234815d647a1f470e5e4656202079e649bf0c8",
+        "detectors_seed_43.add.xml": "93bd05a0dc4c28af50ed691af976d46bc12863a23e5307413a397a9a2523d2ad",
+        "detectors_seed_43.xml": "236dfecea4cf23b7b8e1995944f476f391ffa10bd1e6c14834881f1e4f986469",
+        "h0.rou.xml": "35de543597197f94f6df5d1f63ab19f49003187ee38650a45a15dc8d1d3c3ca8",
+        "h0_human_baseline_seed_43.log": "9c1b7085fb072fc4eed61705f93d1f4eb3ad4f662ad00b61bc8aee5a0d64b088",
+        "h0_human_baseline_seed_43.tripinfo.xml": "ca5e44b593090403db5acff8a6b52b46581bb2b04171fcaed6f455d4c46c4efe",
+        "h0_summary_seed_43.xml": "3a36dc8c1de64ca69cdb58865d59feb08adebd63ce492a770b39c8ac0bf3d532",
+        "trajectory.fcd.xml.gz": "c6d043a3497ac12a971dd0d93bfacf4e22903d588dabed8408404ca2b20f0223"
+      }
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 0,
+        "limited_lane_seconds": 0.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "0c46d6ce824292bd9bcdbb8130f9de1325aea0a6d93dd94a54c57f24a28a014e",
+        "detectors_seed_41.add.xml": "2f2cf3f2715f4132d0ec5bd9385fb2e570b7d9dc61609cdce576d8cb9fac3023",
+        "detectors_seed_41.xml": "3754078c412be70212cd124d8d7efa587794d14a6f3c6515e7ebb10a1aa32f32",
+        "h0.rou.xml": "35de543597197f94f6df5d1f63ab19f49003187ee38650a45a15dc8d1d3c3ca8",
+        "h0_human_baseline_seed_41.log": "c8b51280b9b9f0838035abc38dcf38110e5965c24a3ac221de3494731c281c15",
+        "h0_human_baseline_seed_41.tripinfo.xml": "8ca768d6181a311c13056b5622d759ff8c91d8398505527c77293631f3b81c88",
+        "h0_summary_seed_41.xml": "bb1b011d18d9489fe506a04e34ee376a3dca738fd729b2bdcc6b3a5354a5ba02",
+        "trajectory.fcd.xml.gz": "7b387f0ae3228f241b52fbe8c418f6a6e7bd37e69ee12ab430970553ff981d30"
+      }
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 0,
+        "limited_lane_seconds": 0.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "2595344d94ca05148c39f733eebedba527f6db57122f3f0118c5cb92304dcb2f",
+        "detectors_seed_42.add.xml": "2f42e09a4b023b426f4411ef22ba11a8afa0fcfbc19816c6e4acb9801dc58270",
+        "detectors_seed_42.xml": "2f0dec0365c5c3e1ef0b32c6dc441bdd7b39386b8edd3481b7dfb2fa7e7db214",
+        "h0.rou.xml": "35de543597197f94f6df5d1f63ab19f49003187ee38650a45a15dc8d1d3c3ca8",
+        "h0_human_baseline_seed_42.log": "26f14aec26a71ab6d7cee0832b20c79362d91d83bb6ddaafab7d19e6993869f8",
+        "h0_human_baseline_seed_42.tripinfo.xml": "f8c67d72a1a6853855a6210295f2997cebeba1ba317349dbad9afe2532ea5030",
+        "h0_summary_seed_42.xml": "821b6ecb04dd6117effdac91d0c7f73042b40a10ad107ba7a7377d03800f46e6",
+        "trajectory.fcd.xml.gz": "c218e2575500f3fe33603b569338be01da455143936ecb4a9726187b80b072c1"
+      }
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 0,
+        "limited_lane_seconds": 0.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "fd5499ce3d281cf3036035fcfe343d3d9df10514720ef045403f6e6d05ded00f",
+        "detectors_seed_43.add.xml": "d283e545a1b864b4e112212bac4d349cfcf7d488cbb2246389f7de0d7d5db476",
+        "detectors_seed_43.xml": "6a7be7f7ae90f8e1439fe784ccc4505782d301fee0149951418b65eed8ea0459",
+        "h0.rou.xml": "35de543597197f94f6df5d1f63ab19f49003187ee38650a45a15dc8d1d3c3ca8",
+        "h0_human_baseline_seed_43.log": "ad5af1be8f2d0376ac5a45cb005966746d729ff44f8e4226c6a1e1a36cdb5b75",
+        "h0_human_baseline_seed_43.tripinfo.xml": "37e864f024d140bf6d738223c970f79b0363d080d868b40f81c3006551c0820a",
+        "h0_summary_seed_43.xml": "9632bc9d9a3487a19fc7371a43b8cf6148e578faeda5dfa27ffbf377ab1629ee",
+        "trajectory.fcd.xml.gz": "46e953cda649e715ccba5842be344a8d934cdc161d451696493163e31bae72aa"
+      }
+    },
+    {
+      "case": "demand_080",
+      "scenario": "H0",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": null,
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "detectors_seed_41.add.xml": "34b7dfc5a62d04857dc2f47fc9cbd0284342cd3258487b5f7ad178b17b89964f",
+        "detectors_seed_41.xml": "83f5d0c0e8cdfcefcf32b62aacecfb3c0e61690b3a2ad08ba047618a0f2bbaf0",
+        "h0.rou.xml": "35de543597197f94f6df5d1f63ab19f49003187ee38650a45a15dc8d1d3c3ca8",
+        "h0_human_baseline_seed_41.log": "0ccff4826616a6f7f79b1ea69dddb7c55e29923334e03d3c1e53a0d93ef7585d",
+        "h0_human_baseline_seed_41.tripinfo.xml": "38f6404f53e7944d4c0d1005df1df7009f9343d42d67063cbbafcd51b5321828",
+        "h0_summary_seed_41.xml": "26ab9a12ba414ec53bf4d505e0b9a9a8bd0b4f3fe94ea582b1a16a819fb8858e",
+        "trajectory.fcd.xml.gz": "db5a7871b2cbb885ce57b289512208f23f26affe4d049c1b722c04189d7cd606"
+      }
+    },
+    {
+      "case": "demand_080",
+      "scenario": "H0",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": null,
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "detectors_seed_42.add.xml": "bb611cafdaf813bfb554453193c2023e7d4cc9b34e05001fb5162435cf9cd37d",
+        "detectors_seed_42.xml": "092db2f73203beb11c6e05330dd4ca7168f4c094ae2610f1ece1d13fc6ed57a0",
+        "h0.rou.xml": "35de543597197f94f6df5d1f63ab19f49003187ee38650a45a15dc8d1d3c3ca8",
+        "h0_human_baseline_seed_42.log": "f1ecd838f7a4bb30ecad224ca6c9512c281d24ab446266762527dadd6445f13e",
+        "h0_human_baseline_seed_42.tripinfo.xml": "fb84890a4138e204080bd4b19296099e2fbd00d8ce0b543488e096f22f5452d8",
+        "h0_summary_seed_42.xml": "c8a176d8a5cc3a785f7cef9291fa2cc5ba9470387e42a208f737a18001556e6f",
+        "trajectory.fcd.xml.gz": "b2ff093f1299534d0f5ff5329e6a0dd7641e9312e8e18662185a4c200f59c86f"
+      }
+    },
+    {
+      "case": "demand_080",
+      "scenario": "H0",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": null,
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "detectors_seed_43.add.xml": "7f39e6723345c1a521bbd48a8966dff145b3c0de4114f3c1e4865e69b90db187",
+        "detectors_seed_43.xml": "2fcd01c64dddddc8e47c3e8129f9bd0e4a6914a2a4e8dc576abdee5d11d1bd63",
+        "h0.rou.xml": "35de543597197f94f6df5d1f63ab19f49003187ee38650a45a15dc8d1d3c3ca8",
+        "h0_human_baseline_seed_43.log": "7c269d479aba90127e5654a60434a92e1db3ef627cf98432a26912f6e344d2e8",
+        "h0_human_baseline_seed_43.tripinfo.xml": "aa5695df2b53532201ef3268dbbb9dead6325f735be2f6762e7319226192d92a",
+        "h0_summary_seed_43.xml": "797dd825ac6ccae60089d410d571b3fe113a0f6db285673764d212642bd80a4e",
+        "trajectory.fcd.xml.gz": "4363ca46997dbc76bccf2b75613957d3e3c4fe0e776392273ccedde9cfb75fe0"
+      }
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CACC",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 26415,
+        "eligible_vehicles": 26415,
+        "commands": 948424,
+        "messages_delivered": 837461,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "23be176c3093917d1b29fdabe5400ead03e332088386af340a4c08551cb020e7",
+        "detectors_seed_41.add.xml": "008e78bc294ddbce0fe4cd523924c8a2d9ab39dd4a5949cf1be173fd439ccedb",
+        "detectors_seed_41.xml": "1e6032d25685cc7e0143a72d3ecccffa24826218da82d698545ec3c63d1d5ee4",
+        "h0.rou.xml": "fb12aaa78850a0f9a1b5537a7c0af7cd49ba43c8199fefa79a0b06c048aaf3b0",
+        "h0_human_baseline_seed_41.log": "6031ba2965f7130c8ea804401f27811d81d36633f3edd71e9017992680d87907",
+        "h0_human_baseline_seed_41.tripinfo.xml": "1fb31cb9dd16a81a695fe0a8f31e2b5a49c5ffea411c4717ea91b6a2e9872d05",
+        "h0_summary_seed_41.xml": "b5acca024d0faf3fd70696ca4e5e319eb2378c5b9bb375bc257d93ec1c83ef4a",
+        "trajectory.fcd.xml.gz": "aaedac184183d6e5819837e7afda657edd09e48f9d53f7cc4e3a380f00e367f0"
+      }
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CACC",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 26424,
+        "eligible_vehicles": 26424,
+        "commands": 965323,
+        "messages_delivered": 854927,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "3e68b22864f135501905b31843e221a54f4042fc194d951b9d02f9895e697529",
+        "detectors_seed_42.add.xml": "3eaa5d10d8e0fc74953c62e6de8f767e9db8884f9bfac5dc3889617bad13a733",
+        "detectors_seed_42.xml": "4d54b2e5302194c57fa14365033790c7a49a81d1ac493145a94beaa71161ff51",
+        "h0.rou.xml": "fb12aaa78850a0f9a1b5537a7c0af7cd49ba43c8199fefa79a0b06c048aaf3b0",
+        "h0_human_baseline_seed_42.log": "a91f9236c08e706872323eb7f957cebffd053e30e3d7be08b11826efa39f1ee5",
+        "h0_human_baseline_seed_42.tripinfo.xml": "1af7c48dedc9840b2e54e605c31118c505efee5aff6abe0e3055a4037e187d9b",
+        "h0_summary_seed_42.xml": "f9375119706ab5fccb9cc9363ac82671e03e42350c17b6c700401fbdd238d21e",
+        "trajectory.fcd.xml.gz": "044cf316ce422a3e148ec19da833c10e8eac3ea1e67cb781dcc116ca2428a683"
+      }
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CACC",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 26461,
+        "eligible_vehicles": 26461,
+        "commands": 940086,
+        "messages_delivered": 823454,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "e2fef9671ab04bbcf06ca23ed2ca28f58e4214937be53cfcede5da4ab4f263a8",
+        "detectors_seed_43.add.xml": "205d37adf1e402ad41e6df1ac67f21d8c9c7be6764482d8c99fbbaaa0257030c",
+        "detectors_seed_43.xml": "f9dcccbdace6973ea3642da198d016a469e8af7e0505afac7b7870288f768d49",
+        "h0.rou.xml": "fb12aaa78850a0f9a1b5537a7c0af7cd49ba43c8199fefa79a0b06c048aaf3b0",
+        "h0_human_baseline_seed_43.log": "b93c47627c53331d7a7479189666f9f4308678ab7b59ede2196bb8c9a5543cab",
+        "h0_human_baseline_seed_43.tripinfo.xml": "83d928c863f51bc90d6858a5ce434e1f18e0da853b495543a70a0edff8cdd409",
+        "h0_summary_seed_43.xml": "324a292813509c16e511a1aec09ecdf0e31e47792baa0252beeeaedfd6ff3d29",
+        "trajectory.fcd.xml.gz": "75b71269959f93be070bcef0f88255921371862bce82e0fccb82ed6bfac84a38"
+      }
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 140,
+        "limited_lane_seconds": 63420.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "b5691acf299fd8d1bd8d3712e1f5ae9554d20709539cb7c56a9aabe175ddb10c",
+        "detectors_seed_41.add.xml": "fb56ef69f0f2a22100187a1624f1c44a81284b5be35b824dc9ff59f3f214c8a9",
+        "detectors_seed_41.xml": "14a463afbfa216d98a18321416cf78572da6c834670362f4283a716441c008f2",
+        "h0.rou.xml": "fb12aaa78850a0f9a1b5537a7c0af7cd49ba43c8199fefa79a0b06c048aaf3b0",
+        "h0_human_baseline_seed_41.log": "278629b8969c8868b34e97b25d0c99e6a1649f4e30410849bc32cf05d5d78f78",
+        "h0_human_baseline_seed_41.tripinfo.xml": "6ba615b77694a0aea1abfe4c698cf9fb5aaa5eff04aa003764e578c2ff0251ac",
+        "h0_summary_seed_41.xml": "f44a07a89597b9f1c795627426356d727a81ca3f3ad88d1827920ecddce76738",
+        "trajectory.fcd.xml.gz": "213684273eb2d71d5d6e047a1740e6ceaa3ff770884a8ce4e2caf7d0785da4f3"
+      }
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 140,
+        "limited_lane_seconds": 63000.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "b8914a77df2b919c2e06f72ff9e1ca3855f49c8bc61b036ed5f83224eaf5c545",
+        "detectors_seed_42.add.xml": "9491af249f42217f4399f011618f7ea5cdc9e8740054a45c5a6f0ed882e2c6f9",
+        "detectors_seed_42.xml": "e06ae2003d7e25090fd351806f4c2c793401b33699f39346bf0dc6c28a23a6ee",
+        "h0.rou.xml": "fb12aaa78850a0f9a1b5537a7c0af7cd49ba43c8199fefa79a0b06c048aaf3b0",
+        "h0_human_baseline_seed_42.log": "2f1c4101db96a0eb6c46111a103a76af950850b209990b7260eec6b61b394ceb",
+        "h0_human_baseline_seed_42.tripinfo.xml": "1ce187be168329542aea2efe93929ced9c53102adc84c34f0566c7fdff221872",
+        "h0_summary_seed_42.xml": "9a4dd646aa61640561a175c37a7ed21fff0d50d6609a0c3e2e43026e94f7628a",
+        "trajectory.fcd.xml.gz": "6e589d9227e2b944bb40d1de9136312aaedef1448d6dffcfcdc580caba8e528f"
+      }
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 140,
+        "limited_lane_seconds": 64260.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "53243bbd60afde8c28163331b198f0db9e21284141344c7787a9cd9a2db25a3e",
+        "detectors_seed_43.add.xml": "84d4c0b9617d2770c5ee57a094e709a730e05633e6b64b8395b305ed3c5de213",
+        "detectors_seed_43.xml": "706864af773db11cf13fd3b2f21345d8083fbed15f68e9b05543baba2d6808e2",
+        "h0.rou.xml": "fb12aaa78850a0f9a1b5537a7c0af7cd49ba43c8199fefa79a0b06c048aaf3b0",
+        "h0_human_baseline_seed_43.log": "4c616d2019ffe66acbbe530d491045edfb2a4dc34ed0f14d0af294926db9bb84",
+        "h0_human_baseline_seed_43.tripinfo.xml": "792a6be7ecf43ead7c9c7673a4cb3a0f1795c76db8da72f4fa690258bf31f1fe",
+        "h0_summary_seed_43.xml": "042e682cc04950efefe9ecf9269c1922d175e1c97d31c82c27e57048453fbd7a",
+        "trajectory.fcd.xml.gz": "d6ffba27fe1d8a7ed04012810ab2d0d5e737d0e7994edebc6df049baec00af7b"
+      }
+    },
+    {
+      "case": "demand_120",
+      "scenario": "H0",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": null,
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "detectors_seed_41.add.xml": "8002a3c471f32d204d2f5a3ca18d0d3d9a5cfa921872e4934cad0ae206429a36",
+        "detectors_seed_41.xml": "60b3af5052a3b63ce98f256d036d14c9e26dea67b081b454a9338dfa9e40d341",
+        "h0.rou.xml": "fb12aaa78850a0f9a1b5537a7c0af7cd49ba43c8199fefa79a0b06c048aaf3b0",
+        "h0_human_baseline_seed_41.log": "7376b1f923b9e8adcfc3f423c07fb3c6effdc5227b33d05bc07781f5d25b7b17",
+        "h0_human_baseline_seed_41.tripinfo.xml": "1bed4c5be92c07ba91d3c526978aff7f73a2030e28eee927d0baa174a442c045",
+        "h0_summary_seed_41.xml": "8edf8e3586e091be214e23b6c424cdf776f5c00a270f1b49b66890c5b011deba",
+        "trajectory.fcd.xml.gz": "0056b2929e6113feb3e3a27a6874283c41de3fc0f953b0e5cb31972f720ba74a"
+      }
+    },
+    {
+      "case": "demand_120",
+      "scenario": "H0",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": null,
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "detectors_seed_42.add.xml": "127f0a1e5844d099045a0b17d5cce95f44b95a0dbb0bc81f702387c3f6141709",
+        "detectors_seed_42.xml": "eee93a9b3a231a59f7c788773a3101d45f4589474463d06139248644ac815608",
+        "h0.rou.xml": "fb12aaa78850a0f9a1b5537a7c0af7cd49ba43c8199fefa79a0b06c048aaf3b0",
+        "h0_human_baseline_seed_42.log": "4a3dd603562f46a00c5787ad82fb8fff0e71e55ba203649c6ae849d62369c198",
+        "h0_human_baseline_seed_42.tripinfo.xml": "cf9162ce4248449e4ac4bda1c6730ade13cd6ae4cb8615f6fcbad39d586264a5",
+        "h0_summary_seed_42.xml": "45470b916d16a20e0e0ed6d2380f40416185fc477f07703121561afc2e77024e",
+        "trajectory.fcd.xml.gz": "c4f7b2e74ae96add8d55075a16e9155beab812ba90cd34dd9c5546f3ac406ac7"
+      }
+    },
+    {
+      "case": "demand_120",
+      "scenario": "H0",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": null,
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "detectors_seed_43.add.xml": "70f8d8b812f2153cee8a4fdc85462be201eeb63ab10efc037e4fe14aae0fc2a8",
+        "detectors_seed_43.xml": "fae9796ce779a0551b2e24c5d8424ca602126d4da07f560caf6bbf87ab9b87c1",
+        "h0.rou.xml": "fb12aaa78850a0f9a1b5537a7c0af7cd49ba43c8199fefa79a0b06c048aaf3b0",
+        "h0_human_baseline_seed_43.log": "dd36ac5bff0f34a2408be71de989d10323081831f7e88a8cce8a56c6a4f9a121",
+        "h0_human_baseline_seed_43.tripinfo.xml": "b2e93589927c28b9e4bd676bfd1b3c43e4a23b24d1ff97f1ac2c82641c81798a",
+        "h0_summary_seed_43.xml": "8ffcbbb2d427f0a79e1cbb0978e2efb3c588705b35c2fbbdc008c818ff42d77f",
+        "trajectory.fcd.xml.gz": "45bb7050820622c64a87e07ea39029e60b02cf1945d3673d422619bb97735ec6"
+      }
+    },
+    {
+      "case": "penetration_000",
+      "scenario": "CACC",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 0,
+        "eligible_vehicles": 22018,
+        "commands": 0,
+        "messages_delivered": 0,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "6489f4a5b4732b97832c8ae76353a69049a672095d250e7483cc05098600cd4d",
+        "detectors_seed_41.add.xml": "1d07abdbd144c9d3c301dd5b03b3edf701b7ac7948f50bfd05bdd4ee11ef6298",
+        "detectors_seed_41.xml": "af0cb20b425636707a8dc19db17bb595d342be23cb351bf0f98eb541830a62d6",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_41.log": "8aa50abdbb77056e6a0ce3005cf6dca212fb9d48f6cdbb263a640e6578091ac7",
+        "h0_human_baseline_seed_41.tripinfo.xml": "695661ec1163339272dbf5a983c5055a2a27599af629088487c1639b98ff0447",
+        "h0_summary_seed_41.xml": "12e7e8c42ed2d04ce026aac78341d222f8f434b7a2afd3da215ff8d7ff643120",
+        "trajectory.fcd.xml.gz": "96def2f189d05fe3e8b3b78fbf80117123a91e139822f61b547e62e8df219cb4"
+      }
+    },
+    {
+      "case": "penetration_000",
+      "scenario": "CACC",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 0,
+        "eligible_vehicles": 22030,
+        "commands": 0,
+        "messages_delivered": 0,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "a42fb5844ef93e5f2710996a504f95528d60cad7de104b1c0af0f9c538cfbb1a",
+        "detectors_seed_42.add.xml": "7410c0d73c5265079c33dec79ab75a5d80f5eae5ac3aab78e873a778114ca384",
+        "detectors_seed_42.xml": "6e33484b975ace65a51560c2374c2a6b17260ca64f142a3b14115712e3d40dbd",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_42.log": "f485a6620cfdebead5f3c058994aaa0fc5fda2ae6e2bd515a96b4fb88ac1e87b",
+        "h0_human_baseline_seed_42.tripinfo.xml": "4ee3f7140752b84d892db8aec797ea4e60f09c2b6331b25a00ecc5b2d8bd75b2",
+        "h0_summary_seed_42.xml": "cc172d0d592719679d748b3fd8e61d83dde1896a1217bc8e6333f48cbbf21311",
+        "trajectory.fcd.xml.gz": "87bf4b2e9a54ed7120bbccee233825511ba4a474ed2d4002ed96e2833fa9fc56"
+      }
+    },
+    {
+      "case": "penetration_000",
+      "scenario": "CACC",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 0,
+        "eligible_vehicles": 22060,
+        "commands": 0,
+        "messages_delivered": 0,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "346492211142b124604e9cb3b6aac62ad2ae24f829d52971023644bf1a901e34",
+        "detectors_seed_43.add.xml": "6b2bfdee9449d52219c94b06ad2400d2f4d96b3a64be0d9f66fd9d3613b0e334",
+        "detectors_seed_43.xml": "1ca4a0f39a7b53bb81f8ad231404ce0e791acf1a45618e68b0d5a3621bd86f6b",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_43.log": "85a6200be993b6dbcfdd36260b8d901aad0d2ed9de63ffcf912efcf096fd0b75",
+        "h0_human_baseline_seed_43.tripinfo.xml": "138495f0b9b876a7a4a681676a95f28e10f744fcec7efb80aa0f727baf452152",
+        "h0_summary_seed_43.xml": "a403045c2307bff47b920b57e856eacab29eeeec6d820e6a3a6b961dd89b3f02",
+        "trajectory.fcd.xml.gz": "1b43ad4320cb4e262af7eda55cc08398e619226a23423e23e0a3e2ff4376b486"
+      }
+    },
+    {
+      "case": "penetration_050",
+      "scenario": "CACC",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 10986,
+        "eligible_vehicles": 22018,
+        "commands": 389760,
+        "messages_delivered": 177269,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "138c2b20a8163d27a225757f9bb901fac4acdd98ab3d07290cbebe5037e64cc8",
+        "detectors_seed_41.add.xml": "f80fdb450f368d65271651d9956f316ab01c0432d0e60cd60006460131f21936",
+        "detectors_seed_41.xml": "5f543f08808a3a6d45e780bd76c5cf257d4cb3a1c5b0ab71067a264705b63d4a",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_41.log": "c75c8e2fd5509a643d1b102ac0ebb06e24f34556d5a98afea3ac3256e123918b",
+        "h0_human_baseline_seed_41.tripinfo.xml": "5278a6f38786d9fd5e86c5f6bd117e47ae370f7223b3d0b7d34377c5dd057f1c",
+        "h0_summary_seed_41.xml": "5bf0d7424e1bf8c85ded76fae543f9bbfff6a94a9ee85241eb4e7f702e0e219e",
+        "trajectory.fcd.xml.gz": "27cc31a2cf8a11c55710f7964330757d11eb4d235e3cc6cc1c5cd8d8045389ef"
+      }
+    },
+    {
+      "case": "penetration_050",
+      "scenario": "CACC",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 11033,
+        "eligible_vehicles": 22030,
+        "commands": 383795,
+        "messages_delivered": 171311,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "f51da76b8b1614f6becbc28898d1e4a6d3124ef1bf23793b6463e2aba14415b0",
+        "detectors_seed_42.add.xml": "11b2036f449c2b49307ee93ff406aececea5ac5be5223641009d38a4a28b044a",
+        "detectors_seed_42.xml": "d69567fca2ca1f607789a5df354eabeea3b73b7c450cc52ae71cc0d0c4c3759d",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_42.log": "0f6b8ce3ec2221e36785784169db818fd5a347a378afb88c9e6e96a4f03f57d6",
+        "h0_human_baseline_seed_42.tripinfo.xml": "bd267bb45f270dc39b86d92cf69c197215c9a7245d5466e31b981de2eaece379",
+        "h0_summary_seed_42.xml": "5f55ef4c4bd20059d9048ec33919a490259bd00538c85e96a7d900df0e387cbf",
+        "trajectory.fcd.xml.gz": "d3a84565152dc18b9a89050efc18525e0ca57bb9579541a0e9dcf4f44cfe0e66"
+      }
+    },
+    {
+      "case": "penetration_050",
+      "scenario": "CACC",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 11062,
+        "eligible_vehicles": 22060,
+        "commands": 384687,
+        "messages_delivered": 179621,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "d1eb4d97ba87ecdf045c965434ac6080495a7ef8d56baaabbd8b2c44dd2d2041",
+        "detectors_seed_43.add.xml": "f9dfd13ef0d77b669b837c0093bc8c5f09bb0cc9c06cd16c4b10c820acc7972d",
+        "detectors_seed_43.xml": "acac61c5e31d48b0d6295e46af06205bfdd9df0117689564c913cfd24c542a2a",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_43.log": "031d50c6a60390e9ee7ee4f6eea0433f5c155bea29ba8ba5962c391907a2aac8",
+        "h0_human_baseline_seed_43.tripinfo.xml": "9eda3196df5d924536bb261158f3f7b5a276973197360615b4211f7aac88c71b",
+        "h0_summary_seed_43.xml": "bcc12c9edb367c026a5fb6d1e0dac54407ecfdf768dcd69565bbc108761bdd73",
+        "trajectory.fcd.xml.gz": "68e4616b17cb5a4027a458659e49e6d5c6c45719d8dfa37570645efe35276ae3"
+      }
+    },
+    {
+      "case": "range_050",
+      "scenario": "CACC",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22018,
+        "eligible_vehicles": 22018,
+        "commands": 757276,
+        "messages_delivered": 561746,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "1ad047516b5284e862cf20e411fdc1c8a7c5cd0dd23c055ba972f76c5c3111e4",
+        "detectors_seed_41.add.xml": "6d2fb481ca08e94ffff6cfcc603bdf799479d546d9360294ee031680afae0c45",
+        "detectors_seed_41.xml": "3b74e0286b4c751e379c96c709d9879da6e75ca729359193b9e384a5069ef2ef",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_41.log": "ebbff9a4a1ef2bad7992cc9abf5220f782a5909082d8cf73286e7e28cbacc48b",
+        "h0_human_baseline_seed_41.tripinfo.xml": "f72f6d7b49cc3ab77a66aacd3b4df1105310e046ea65afe3336da2dad55cc3dc",
+        "h0_summary_seed_41.xml": "349d0c499619dc422ec8b68d07f857d84e840900c7090642b2fc7c823c144fad",
+        "trajectory.fcd.xml.gz": "13b8271563d1711ad5eef0c104f92f5220c4850f93b33526c1d31ec51f6f1227"
+      }
+    },
+    {
+      "case": "range_050",
+      "scenario": "CACC",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22030,
+        "eligible_vehicles": 22030,
+        "commands": 747461,
+        "messages_delivered": 564046,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "833e1029d70c834ed3b30832bb57b46a501dbd6f5c3a2f3b61000221ecc3eacf",
+        "detectors_seed_42.add.xml": "b01788e09a303c2030ef8f5660d8beda3711bc8dcf1629215af59b504d49d81e",
+        "detectors_seed_42.xml": "e43757475bb031303947b3fb102e476c392f984b9de24ad7fa8c81fe7667c26e",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_42.log": "210b7d4acee47af4f8ff183f05649f65804624288763f021b83036d88f1a1d45",
+        "h0_human_baseline_seed_42.tripinfo.xml": "4bd4e549d67552a4a7499dac5246589c49f21d3664df4d77a770f73835653491",
+        "h0_summary_seed_42.xml": "c8f9c2ba29e1fbd6ee14bd493edb380682dbe8c50716bfd7baa622c6696f9e59",
+        "trajectory.fcd.xml.gz": "c6cf35a956a1689baba5b25f50a74aaecb4adb8683379cd241d51351b95d434b"
+      }
+    },
+    {
+      "case": "range_050",
+      "scenario": "CACC",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22060,
+        "eligible_vehicles": 22060,
+        "commands": 742913,
+        "messages_delivered": 553526,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "2b4d5fb043100ac4c4e379f870270beb6d155100c18b311859c18b9ed319de17",
+        "detectors_seed_43.add.xml": "284850cb31171963c0bc70a6e2b48be7d662df5ef6a89de51b68d8a0d533c52d",
+        "detectors_seed_43.xml": "1e2e5a2038da0dc9dbff98c340b2ca666c5792e5d3a99e04281a83d18fa7338e",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_43.log": "612c8fa4d925656de87b1faa1fd69df5ad407b285001bb2387b2f0eef1bd043d",
+        "h0_human_baseline_seed_43.tripinfo.xml": "878c5906af24cd31c1322f0a9d08cf303648c7133a0b913d6c21122a7bb217da",
+        "h0_summary_seed_43.xml": "3c46d2fa08776b7bbf740412dabbb1455aeb08734606b9731959cb55f2c68232",
+        "trajectory.fcd.xml.gz": "5b09b27df5c080e7c4e10781dad80e1d2a1b2120143c58c5763f64d4dac53a74"
+      }
+    },
+    {
+      "case": "delay_1000",
+      "scenario": "CACC",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22018,
+        "eligible_vehicles": 22018,
+        "commands": 753609,
+        "messages_delivered": 660572,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "27bf86e746803b855f4f068d6e97f3450760ecb63585a49b9cb5b68a04fb69c7",
+        "detectors_seed_41.add.xml": "91d293069d822a292dfa9359fa80429f29bab0fa2977002d2ddda4d1c362db57",
+        "detectors_seed_41.xml": "13f4928d0dd15254f47a745549e4f2dc5cfd56ebdd221907ed858e741118283a",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_41.log": "75fc0a007e958b8b172ab2683ecda558227b5d7806823c34fe2b5750930a1ebf",
+        "h0_human_baseline_seed_41.tripinfo.xml": "b3c59b5aad77531a09ef5061b2854152e4f1e190e26bb2e01c8c8f01ec101714",
+        "h0_summary_seed_41.xml": "ff41740af2ad2b3e35a07a34ac074dee663e8a1e7ea12a873cde2e689e3e1dfb",
+        "trajectory.fcd.xml.gz": "8847a2fb1dbf1571196f7505777594bb744664737712a8050912744b003a02d4"
+      }
+    },
+    {
+      "case": "delay_1000",
+      "scenario": "CACC",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22030,
+        "eligible_vehicles": 22030,
+        "commands": 771349,
+        "messages_delivered": 677164,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "d18b1bf4eea54831d533327d5a5c963589119e528ff78688fd8124db74ec85dd",
+        "detectors_seed_42.add.xml": "8698185d127c25b54d6b70c91117f966c458ecec1610f9faa96c5947912c5512",
+        "detectors_seed_42.xml": "286f12bcc322dd356dcd7fd3e6571f63f72ec6bc8ee2f8c1fdb55105077e3775",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_42.log": "d26a99b4f5f68330c0f79fe0e2218f2bb2657c46c1eb7de89a4d526724f1f013",
+        "h0_human_baseline_seed_42.tripinfo.xml": "66d312faf34fd21cf43df36860e78ebaee41efd3833c5ef3ab2005cef1a656db",
+        "h0_summary_seed_42.xml": "68e7127c3e1a7a7a7ae0e57961052497d045a0f904957a06a08c4b1a5c8336ae",
+        "trajectory.fcd.xml.gz": "1cbf46e2da19c2e113795a8140d0d541e9db40655f537e1478dd31d716b21ec0"
+      }
+    },
+    {
+      "case": "delay_1000",
+      "scenario": "CACC",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22060,
+        "eligible_vehicles": 22060,
+        "commands": 758615,
+        "messages_delivered": 663392,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "1e04ab5f9e07d488a0b6b8f5090f017407d2bf874872f9de9d8962550628fd90",
+        "detectors_seed_43.add.xml": "2d401d717e62340157c810d3587fc40cde5244ebe693c7f8b29356d30bdf9a52",
+        "detectors_seed_43.xml": "c92d6b68793a24536c14388da9a79524eac3a7a3d6765109a375a3fec8607332",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_43.log": "c51bad963e66aca3ff86b3c49072106dbfb3d6c32803c37097408675931ae866",
+        "h0_human_baseline_seed_43.tripinfo.xml": "b2c35049ed6a432010a8c2119b97e298d888edab760a13e782087d30b837f7ab",
+        "h0_summary_seed_43.xml": "5f4a998adf8ff3c93fbb502d95af9310c3fe2244037d893abfb590d977a4b676",
+        "trajectory.fcd.xml.gz": "38c2fe33fbb0b41dd6b11b606d3d06d8aa114b69b601a0593391a7820789704f"
+      }
+    },
+    {
+      "case": "loss_020",
+      "scenario": "CACC",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22018,
+        "eligible_vehicles": 22018,
+        "commands": 754124,
+        "messages_delivered": 524627,
+        "messages_lost": 130842
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "5fe55f11dcb5095a011710c2e85564fd418b66d3df11c3df8023483bd38fa2b8",
+        "detectors_seed_41.add.xml": "e04a2aef15d74fa33f539acad3a1d58f9e2b75a76ce2bf238c3f66f97e91c6d4",
+        "detectors_seed_41.xml": "d997f22c0f97a214a982061016c403bc0e71f79caa54d2be928100722471f87c",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_41.log": "0e6fba1d346ab74ac43bbbe76312485e0a3f73c6a39384a576a0dfb5acdf71a3",
+        "h0_human_baseline_seed_41.tripinfo.xml": "4e4fab6a7af7f478bbe3e1087162300e8d8ea3c79c9f1068ab63ea10c4d75fb1",
+        "h0_summary_seed_41.xml": "9b155e1a71883ee73565b5655205b3b81f49f7b83a41a9d51c215aebc8d3ae04",
+        "trajectory.fcd.xml.gz": "ec99e98e4ce459ca6642f8e0ae1c0c4491e07426723319f84c586161c2a3fc2f"
+      }
+    },
+    {
+      "case": "loss_020",
+      "scenario": "CACC",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22030,
+        "eligible_vehicles": 22030,
+        "commands": 760547,
+        "messages_delivered": 534951,
+        "messages_lost": 132855
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "37b36ef37a449a322a39371a04d8fff42c62e764454706cd1564388987d85fea",
+        "detectors_seed_42.add.xml": "95a2acb4f722f2f8b68102a97e67fda18c38f091a2bf283778b24906c3dc4d6c",
+        "detectors_seed_42.xml": "cdaf2e556f42b05d104b1a2cb4a221f1c81f0e0cbffbcd3df19f2e3e7557c794",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_42.log": "3f44019db0eff270a0102c46994669e0e631f32e0377cf39280cec5be55053ed",
+        "h0_human_baseline_seed_42.tripinfo.xml": "f951b16a8d5586050a583adbe9e0472a8d901ce193c3d9be1cad7aa418df4a42",
+        "h0_summary_seed_42.xml": "7e016a51d41b193dcc82c7732191cdd458c3ec88d30a0e609aba59425683d342",
+        "trajectory.fcd.xml.gz": "c972549e6187f441f91d42fd1a9a791471968d4fbc57e4052a3a962959cb97ad"
+      }
+    },
+    {
+      "case": "loss_020",
+      "scenario": "CACC",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22060,
+        "eligible_vehicles": 22060,
+        "commands": 758809,
+        "messages_delivered": 531462,
+        "messages_lost": 133014
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "f5dc2eeceb477a092f24435e9d6cadb452893c1de988f85728be259bdd0d7c89",
+        "detectors_seed_43.add.xml": "066a13b7e53ce2e509c9e800aa2ea6ce0f99c1f8b0f2b074cdd2ba1934b84aee",
+        "detectors_seed_43.xml": "6f21465494eca855cb9337ced949346337f8ae44d81e14781e788ae67c8da2ba",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_43.log": "58a8a71429e02dea2b97320e05b3f85b1364d2f1ed50228d29235a5a103195a2",
+        "h0_human_baseline_seed_43.tripinfo.xml": "10d5f34596b295c111f0704925ec33c4c639573380bdb35299064643ceb1543f",
+        "h0_summary_seed_43.xml": "bdd6cbee87f6b3a966eddb5f77cb8e78c9193c109e255b7c560aebb79300aefb",
+        "trajectory.fcd.xml.gz": "e8b4d4255a16c20d43ea300b69fd58d9a01a509dc7f231d754783558b6943708"
+      }
+    },
+    {
+      "case": "headway_2000",
+      "scenario": "CACC",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22018,
+        "eligible_vehicles": 22018,
+        "commands": 757272,
+        "messages_delivered": 662353,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "1af6e8dce224ba025592c3b4188276e37ac9dca2f3d36d9af71fdb27699dd230",
+        "detectors_seed_41.add.xml": "b4666bde8d744d6ccf7d7c328efa99a8f11c37d286d093086a710bbc446f319d",
+        "detectors_seed_41.xml": "6fdf625b5d60409c991261c5562b5cd28549ff0b752a1a4583bc97e651fa0bd5",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_41.log": "57c06ea3d9a5a530a3f33f358d34c24bc0b97647c73d3e7363bc245cdb940d82",
+        "h0_human_baseline_seed_41.tripinfo.xml": "ff46e7049222c697d17fd7bf4370ace9f8a2ef405c979dd3e1cb82c1e5551b57",
+        "h0_summary_seed_41.xml": "705bd8a51600e8a7fe56221950a002a2ec41bc730008d1c2eda7eeacf76aea9c",
+        "trajectory.fcd.xml.gz": "e9727e534d8e3069b8b95f78c35fd4b9d255e6da5ab073a93ef7ce92e3ef2c09"
+      }
+    },
+    {
+      "case": "headway_2000",
+      "scenario": "CACC",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22030,
+        "eligible_vehicles": 22030,
+        "commands": 765236,
+        "messages_delivered": 673545,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "340c461a42b61e379230874a593213135eb488e1ea5b213479f42c95b64adead",
+        "detectors_seed_42.add.xml": "e9f3ff979c63aee1823e6479cf8d73108657ad1e0fc9a2dd298d9980937fba24",
+        "detectors_seed_42.xml": "2ac60cb8dd3a7ecb478a2f68edf6ec23a5bc9d0f8ac4477ab1252b5c6f2c82f2",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_42.log": "e07f1011a7cc2b71ffe65eae2c6a5272905109feb69fb6ec769ff2e8bc4459ab",
+        "h0_human_baseline_seed_42.tripinfo.xml": "521861df1eb7a32525243ad6ce39afd4a16a302a27f07d9ba6c58eb23d8e9344",
+        "h0_summary_seed_42.xml": "0ccca587f3a01d02a2582aa198981049f2bb02392c366f7b3b6e4d3adc92ca65",
+        "trajectory.fcd.xml.gz": "c96efcdc305fc31179e38835feee1d0ce7bc5af5ae31eb16fa796b8c5dc3f9dc"
+      }
+    },
+    {
+      "case": "headway_2000",
+      "scenario": "CACC",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "equipped_vehicles": 22060,
+        "eligible_vehicles": 22060,
+        "commands": 751839,
+        "messages_delivered": 657860,
+        "messages_lost": 0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "cb71b6241bda616202396d35084dfbaac5cd6103dc8037ffa9928bbc10bc1e6c",
+        "detectors_seed_43.add.xml": "5c37b6f4a05b946db3aedaea6be8e85331fa92dabb4d0869dd254dbe652b746c",
+        "detectors_seed_43.xml": "0f267dffcee7559979fda6ca2857762707d3299a2ac2b2f2687242d102c27a72",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_43.log": "d9678dbfe098e1c4a9e43f4f1465c7336948fa6539c296ec98441a6f9c276e0d",
+        "h0_human_baseline_seed_43.tripinfo.xml": "ca8ba30715efab3bef61989523e0938a8bb91b67967c33bfbd5aa50661edf382",
+        "h0_summary_seed_43.xml": "411697476ec501afa9839cf4abf25ea5ad65f916071a8b160dd37a7ed1daf509",
+        "trajectory.fcd.xml.gz": "d3545a8d0bf99119ccb3fba88179ce775fb853a54c7e1ccf43c89785e9d1df9d"
+      }
+    },
+    {
+      "case": "vsl_220",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 224,
+        "limited_lane_seconds": 67200.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "5f68ce56a2544287f016ef1c4fdad52018702bda708d9e15773bd12c227cfe35",
+        "detectors_seed_41.add.xml": "1e7e886ebc3ead8f500e1c4e029812af59e1d101956c539f13d7c775151d438b",
+        "detectors_seed_41.xml": "503848cc3fd0540cc99b717c74ebe62c1b6b9b2282ffc424c15d27464eb2f117",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_41.log": "52e9c7879c9cc9655cb55fe90fef3efa3291b6f3f66498de7323a00ea1c512ad",
+        "h0_human_baseline_seed_41.tripinfo.xml": "f89fbaf2acf49b0751d19b502d71354f553211fa296ab08112878944a60964a7",
+        "h0_summary_seed_41.xml": "b727abe572d6bfc2f77ba06e0035aa25b2fa0a281e0975271e95f3e003abf9c1",
+        "trajectory.fcd.xml.gz": "ce8940ee114bc9df485727cc8a200dd31386680d97f4af2bcdb9fc81924a3929"
+      }
+    },
+    {
+      "case": "vsl_220",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 224,
+        "limited_lane_seconds": 70560.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "4f9a6833be0c4364fc5b92febf9d7b9e58a7cc9243e615e229ccadb570639903",
+        "detectors_seed_42.add.xml": "da6eb2728a90267c521cc98af8abc2b9fd17d2d5e6614a93924ea0eac0d84da7",
+        "detectors_seed_42.xml": "0daa8e4b558deeb80c937f822b816fbd86b0ff843c58cb17a6557d03e86099b9",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_42.log": "5ca7f12c8df1a2cd0a249a95bfac94a8e94a15557cd068c394cfe0678c98acb0",
+        "h0_human_baseline_seed_42.tripinfo.xml": "dbefe022067307a7e718ad28ef017ae440ab3de816ad9da6fe233987008d4090",
+        "h0_summary_seed_42.xml": "c396648f26f334c95e36098e76c0f8f56b3ee2ae27df16f7e801c71854d8634c",
+        "trajectory.fcd.xml.gz": "9ffdda26e2a854ceeb32603d91915b2bd90a245200830a47f3306184f89c5eb7"
+      }
+    },
+    {
+      "case": "vsl_220",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "raw_metric_checks": 30,
+      "accepted": true,
+      "policy": {
+        "updates": 510,
+        "commands": 224,
+        "limited_lane_seconds": 70140.0
+      },
+      "fleet_complete": true,
+      "raw_file_sha256": {
+        "controller_diagnostics.json": "cf8d840b48460908c190442d51cde9feb9fb2d489c317276b2b0c11a61589e6f",
+        "detectors_seed_43.add.xml": "b7bdda625fe0ee50bbc9afb9495fd7b247f0aaaa7262dcb4da0d851c52402dc1",
+        "detectors_seed_43.xml": "b76aac62bb944f543969e3aaa17a63c75cf0607b942e9e31c3c0783353a99e7a",
+        "h0.rou.xml": "cdf2c6ac72d6c6f2793dbc552b5f58f3c01478889d1da9ab115cdebf3fb5f932",
+        "h0_human_baseline_seed_43.log": "03105d9439e241313d479d1ca1d999a366e3e3c8327470af23b2de5e276e3db6",
+        "h0_human_baseline_seed_43.tripinfo.xml": "f5375853a0fa3ee43fe2daae42944f2aceeb76d9d66981ffd6377b8ac566341a",
+        "h0_summary_seed_43.xml": "e3f413582db2e34f42b61c1d72bee10dd77f3ef43f1ebcb2d35390c185b81cb0",
+        "trajectory.fcd.xml.gz": "d4d9978af9b02bd4d6c179f6e51c1ee0484f7a13960507cb295aaacb1fc391d0"
+      }
+    }
+  ],
+  "raw_metric_checks": 1620,
+  "aggregate_and_paired_metric_checks": 480,
+  "fleet_checks": [
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 44,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "CACC",
+      "seed": 45,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 44,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "CENTRAL",
+      "seed": 45,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 44,
+      "complete_match": true
+    },
+    {
+      "case": "base",
+      "scenario": "H0",
+      "seed": 45,
+      "complete_match": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CACC",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CACC",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CACC",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "H0",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "H0",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "demand_080",
+      "scenario": "H0",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CACC",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CACC",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CACC",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "H0",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "H0",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "demand_120",
+      "scenario": "H0",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "penetration_000",
+      "scenario": "CACC",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "penetration_000",
+      "scenario": "CACC",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "penetration_000",
+      "scenario": "CACC",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "penetration_050",
+      "scenario": "CACC",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "penetration_050",
+      "scenario": "CACC",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "penetration_050",
+      "scenario": "CACC",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "range_050",
+      "scenario": "CACC",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "range_050",
+      "scenario": "CACC",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "range_050",
+      "scenario": "CACC",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "delay_1000",
+      "scenario": "CACC",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "delay_1000",
+      "scenario": "CACC",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "delay_1000",
+      "scenario": "CACC",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "loss_020",
+      "scenario": "CACC",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "loss_020",
+      "scenario": "CACC",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "loss_020",
+      "scenario": "CACC",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "headway_2000",
+      "scenario": "CACC",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "headway_2000",
+      "scenario": "CACC",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "headway_2000",
+      "scenario": "CACC",
+      "seed": 43,
+      "complete_match": true
+    },
+    {
+      "case": "vsl_220",
+      "scenario": "CENTRAL",
+      "seed": 41,
+      "complete_match": true
+    },
+    {
+      "case": "vsl_220",
+      "scenario": "CENTRAL",
+      "seed": 42,
+      "complete_match": true
+    },
+    {
+      "case": "vsl_220",
+      "scenario": "CENTRAL",
+      "seed": 43,
+      "complete_match": true
+    }
+  ],
+  "exact_replays": [
+    "M6/CACC/41",
+    "M6/CACC/42",
+    "M6/CACC/43",
+    "M6/CENTRAL/41",
+    "M6/CENTRAL/42",
+    "M6/CENTRAL/43",
+    "M6/H0/41",
+    "M6/H0/42",
+    "M6/H0/43",
+    "zero-equipment/H0/41",
+    "zero-equipment/H0/42",
+    "zero-equipment/H0/43"
+  ],
+  "limitations": [
+    "VSL observations checked from interval totals, not an independent live sensor feed.",
+    "Equipment selection and message accounting independently checked; full-corridor packet histories are not exported. Message semantics and deterministic replay are integration-tested.",
+    "FCD uses 1 s sampling and default two-decimal precision. Incomplete fleet schedules permit common-ID checks only, and suppress scheduled-cohort aggregates."
+  ]
+}

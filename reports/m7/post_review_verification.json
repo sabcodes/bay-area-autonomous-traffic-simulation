@@ -1,0 +1,84 @@
+{
+  "accepted": true,
+  "verified_at_utc": "2026-10-18T09:26:30.266266+00:00",
+  "reviewed_original_commit": "4c1d65645e09aa51bc713ea9d9fed2be87f5d836",
+  "resolved_findings": [
+    "M6 report/audit fingerprint binding before output",
+    "M7 missing/failed/null/nonfinite factor population suppression in publisher and independent checker"
+  ],
+  "full_window_simulations_rerun": 0,
+  "simulation_runtime_and_matrix_unchanged": true,
+  "regression": {
+    "passed": 165,
+    "failed": 0,
+    "seconds": 10.11,
+    "new_review_regressions": 20
+  },
+  "lint_passed": true,
+  "whitespace_passed": true,
+  "regenerated_artifacts": [
+    {
+      "stage": "m6",
+      "artifact": "README.md",
+      "byte_identical": true,
+      "sha256": "6099041ceb59ae915c909d9051b12c0907e89df911bca2bcb8d76387c404bc39"
+    },
+    {
+      "stage": "m6",
+      "artifact": "comparison.png",
+      "byte_identical": true,
+      "sha256": "f0bbfb78bcd4af3c5cba8ebd54cf86263e1dba2b50a2f2d4142bdfeac1b65916"
+    },
+    {
+      "stage": "m7",
+      "artifact": "README.md",
+      "byte_identical": true,
+      "sha256": "c15affc079e17d7f9fe49fa0c89b48b168772c6e5985b0189724f568d4501d45"
+    },
+    {
+      "stage": "m7",
+      "artifact": "paired_sensitivity.png",
+      "byte_identical": true,
+      "sha256": "e533b374763b5392466dd226116a47d0309a91177465400e808721293cc793d4"
+    },
+    {
+      "stage": "m7",
+      "artifact": "factor_effects.json",
+      "byte_identical": true,
+      "sha256": "febbe64203e5eb2b7cc8902fcd54eb1f10686b058c97157d2aa932fd08bff575"
+    }
+  ],
+  "independent_factor_check": {
+    "accepted": true,
+    "factor_metric_checks": 28
+  },
+  "raw_audit_provenance": {
+    "retained_original_artifact": true,
+    "original_auditor_revision": "4c1d65645e09aa51bc713ea9d9fed2be87f5d836",
+    "original_auditor_sha256": "b7d5cfc38a4faa4b7d2949a3518883ea81f96729337c2306ee94325eabaa1a98",
+    "current_auditor_sha256": "8510313ecf52e4675e78536e897a56b37cb9339e716bc1edadf3530ce8c0d693",
+    "raw_auditor_ast_unchanged_excluding": "audit_factor_effects",
+    "raw_audit_rerun": false,
+    "note": "Original raw audit and fingerprints retain their historical source. Only factor validation changed; raw re-audits with current code correctly invalidate older caches."
+  },
+  "unchanged_m7_artifact_sha256": {
+    "report.json": "ea33403dfff8d82c071b4b62e3cd6b800c18a5836241c95a364a4fbac97725a0",
+    "independent_audit.json": "b54e32430a3344514e037bc9e745c4a9f2109eeaf00ff46c96900be56a7aa41a",
+    "factor_audit.json": "9fba3d22bd56273336b269c18795f86f70385442e0532191ba54c5a3d1a3b3c2",
+    "factor_effects.json": "febbe64203e5eb2b7cc8902fcd54eb1f10686b058c97157d2aa932fd08bff575",
+    "measurement_audit.json": "c592952ef7b9ae6aa9a4e222fa18360cde3cf9ddded73712f8df15d8411d5d64",
+    "native_metadata_audit.json": "656bde719f07a2aac61ad15c85a08701f8289c91b78cdd9209b0506c72c7180c",
+    "paired_sensitivity.png": "e533b374763b5392466dd226116a47d0309a91177465400e808721293cc793d4",
+    "README.md": "c15affc079e17d7f9fe49fa0c89b48b168772c6e5985b0189724f568d4501d45"
+  },
+  "review_fix_source_sha256": {
+    "scripts/summarize_m6_results.py": "8724a80aa8262e7937d42f42b7fa94a98a99e965c4f07818b685868b5d1600c1",
+    "scripts/summarize_m7_results.py": "182a3729ae284e69ebc41051931155eca41aec03fa22da487cf7a261d36028f4",
+    "scripts/audit_m7_results.py": "8510313ecf52e4675e78536e897a56b37cb9339e716bc1edadf3530ce8c0d693",
+    "tests/test_report_reliability.py": "8905f5e03e2f3877e220cb0da275618f326685cb19e6e6e0b23986d697014760"
+  },
+  "independent_followup_review": {
+    "M6": "Resolved; mismatch and absent hash rejected before writes, valid input supported",
+    "M7": "Resolved; 28 identical factor records, both sides and additional numeric boundary cases checked"
+  }
+}

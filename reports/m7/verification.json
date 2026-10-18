@@ -1,0 +1,56 @@
+{
+  "accepted": true,
+  "verified_at_utc": "2026-10-18T09:26:30.266266+00:00",
+  "valid_runs": 54,
+  "warnings": 0,
+  "raw_metric_values": 1620,
+  "group_and_paired_metric_records": 480,
+  "factor_metric_records": 28,
+  "complete_fleet_matches": 54,
+  "exact_replays": 12,
+  "native_time_grid_runs": 54,
+  "native_steps_per_run": 30600,
+  "low_demand_inactive_central_exact_metric_values": 90,
+  "regression": {
+    "command": "PYTHONPATH=src .venv/bin/python -m pytest -q",
+    "passed": 165,
+    "failed": 0,
+    "seconds": 10.11
+  },
+  "lint": {
+    "command": ".venv/bin/ruff check src tests scripts",
+    "passed": true
+  },
+  "whitespace": {
+    "command": "git diff --check",
+    "passed": true
+  },
+  "plot_visual_inspection": {
+    "accepted": true,
+    "dimensions": [
+      2240,
+      1920
+    ],
+    "checks": [
+      "All 13 treatment/policy labels visible",
+      "Four metric panels and individual seeds visible",
+      "Mean plus/minus sample SD is labeled descriptive",
+      "Base n=5 and sensitivity n=3 visible",
+      "Exact matching H0 denominator verified separately"
+    ]
+  },
+  "source_unchanged_since": "1fb436c",
+  "spec_unchanged_since": "b4e968e",
+  "all_m7_helpers_finished": true,
+  "artifact_sha256": {
+    "report.json": "ea33403dfff8d82c071b4b62e3cd6b800c18a5836241c95a364a4fbac97725a0",
+    "independent_audit.json": "b54e32430a3344514e037bc9e745c4a9f2109eeaf00ff46c96900be56a7aa41a",
+    "factor_effects.json": "febbe64203e5eb2b7cc8902fcd54eb1f10686b058c97157d2aa932fd08bff575",
+    "factor_audit.json": "9fba3d22bd56273336b269c18795f86f70385442e0532191ba54c5a3d1a3b3c2",
+    "measurement_audit.json": "c592952ef7b9ae6aa9a4e222fa18360cde3cf9ddded73712f8df15d8411d5d64",
+    "native_metadata_audit.json": "656bde719f07a2aac61ad15c85a08701f8289c91b78cdd9209b0506c72c7180c",
+    "paired_sensitivity.png": "e533b374763b5392466dd226116a47d0309a91177465400e808721293cc793d4",
+    "post_review_verification.json": "8ef27138f9bf26ddaafc695f03fb4a6d511956de534eb4253415fca60ce96ec0"
+  },
+  "post_review_fixes_verified": true
+}

@@ -96,6 +96,8 @@ def validate_experiment(config: dict, root: Path) -> tuple[Path, dict[str, dict]
 
     if not identifier(config.get("experiment_id")):
         raise ValueError("experiment_id must contain only letters, digits, underscores or dashes.")
+    if type(config.get("allow_inactive_controllers", False)) is not bool:
+        raise ValueError("allow_inactive_controllers must be boolean.")
     workers = config.get("workers", 1)
     if type(workers) is not int or not 1 <= workers <= 8:
         raise ValueError("workers must be an integer from 1 through 8.")
@@ -367,13 +369,19 @@ def _run_job(job: tuple) -> dict:
             run["controller_diagnostics"] = diagnostics
             run["accepted"] = run["accepted"] and (
                 diagnostics["completed"]
-                and diagnostics["commands"] > 0
+                and (config.get("allow_inactive_controllers", False) or diagnostics["commands"] > 0)
                 and (
                     diagnostics["restored"]
                     and diagnostics["updates"] > 0
-                    and diagnostics["limited_lane_seconds"] > 0
+                    and (
+                        config.get("allow_inactive_controllers", False)
+                        or diagnostics["limited_lane_seconds"] > 0
+                    )
                     if policy["policy"] == "central_vsl"
-                    else diagnostics["cooperative_commands"] > 0
+                    else (
+                        config.get("allow_inactive_controllers", False)
+                        or diagnostics["cooperative_commands"] > 0
+                    )
                     and diagnostics["native_fallbacks"] == 0
                 )
                 and diagnostics["engine_version"].split()[-1]

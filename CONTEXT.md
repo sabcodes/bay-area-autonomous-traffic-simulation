@@ -3,13 +3,11 @@
 This glossary names the project-specific concepts used in the corridor model,
 observed-data audit, and scenario comparisons.
 
-As of 2026-10-17, M0–M6 are complete at their documented practical standards.
-M3 retains its held-out fidelity limit. M5 accepts a supervised comparison
-with about 2% active passenger timesteps; continuous CACC remains unresolved.
-M6 accepts the fixed centralized VSL comparison and is merged into main at
-`ef8d20c` (2026-10-17). M7 sensitivity is next.
-See [project memory](docs/project-memory.md), the [roadmap](docs/project-roadmap.md),
-and the [M6 closeout](docs/m6-centralized-control-report.md).
+M0–M7 practical experiment work is complete as of 2026-10-18. M7 is a conditional OFAT screen: 54/54 valid runs, 1620 independently recalculated raw metrics, 480 group/paired records, 28 independently checked factor records, 54 native metadata checks and 165 passing tests. M8 research packaging is next. M3 held-out fidelity and M5 low-engagement limits remain.
+M5 remains a supervised comparison with about 2% active passenger timesteps;
+continuous CACC is unresolved. M6 fixed VSL is merged at ef8d20c. M7 is published
+through PR #3, ready for review and unmerged. See [project memory](docs/project-memory.md),
+the [roadmap](docs/project-roadmap.md) and [M7 closeout](docs/m7-sensitivity-uncertainty-report.md).
 
 ## Network and movements
 
@@ -188,3 +186,22 @@ A clean, fully cleared H0/CACC/CENTRAL comparison with nonzero central actuation
 restored native limits, matching inputs/fleets/schedules, exact reference replay
 and an independent metric/decision audit. Acceptance does not establish a
 traffic benefit, field compliance or an optimized controller.
+
+## M7 sensitivity language
+
+**OFAT screen**: A bounded one-factor-at-a-time sensitivity evaluation around
+M6. It varies demand, equipment, communication and controller settings without
+estimating interactions or total model uncertainty.
+
+**Passenger equipment penetration**: A target fraction of passenger IDs selected
+by a stable SHA-256 rule. Trucks remain native. Equipment does not imply active
+control: the native maneuver supervisor still decides whether commands engage.
+
+**Extra message age**: Added delay for a same-leader acceleration message beyond
+SUMO's previous-step acceleration semantics. Current local gap and speed remain
+available. Missing/dropped messages use ACC, without stale-message hold.
+
+**M7 execution validity**: Clean clearance, complete outputs and completed native
+controller operation. Unlike M5/M6 actuation acceptance, M7 intentionally retains
+valid inactive/null controls. Activity, exposure, failures and all planned seeds
+are reported separately. See docs/m7-sensitivity-uncertainty-spec.md.

@@ -9,7 +9,7 @@ import re
 import subprocess
 from collections import defaultdict
 from copy import deepcopy
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -88,6 +88,13 @@ class PreparedBaseline:
 
     def as_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+
+def scale_demand(points: list[DemandPoint], factor: float) -> list[DemandPoint]:
+    """Scale finalized route demand without modifying observed comparison targets."""
+    if type(factor) not in (int, float) or not math.isfinite(factor) or factor <= 0:
+        raise ValueError("demand_scale must be finite and positive.")
+    return [replace(point, vehicles_per_hour=point.vehicles_per_hour * factor) for point in points]
 
 
 def demand_points_from_report(
@@ -769,6 +776,12 @@ def prepare_human_baseline(config_path: Path) -> PreparedBaseline:
     )
     off_ramp_profiles = [ramp.demand_profile for ramp in ramp_demands if ramp.lane_type == "FR"]
     mainline_through_points = _subtract_demand_profiles(mainline_entry_points, off_ramp_profiles)
+    factor = raw.get("demand_scale", 1.0)
+    mainline_through_points = scale_demand(mainline_through_points, factor)
+    ramp_demands = [
+        replace(ramp, demand_profile=scale_demand(ramp.demand_profile, factor))
+        for ramp in ramp_demands
+    ]
     write_route_file(
         route_file,
         route_edge_ids,

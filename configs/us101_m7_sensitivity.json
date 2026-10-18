@@ -1,0 +1,183 @@
+{
+  "campaign_id": "m7_ofat_2025_10_08",
+  "baseline_config": "configs/us101_human_baseline_m3_frozen.json",
+  "controllers": {
+    "CACC": {
+      "policy": "supervised_cacc",
+      "headway_seconds": 1.5,
+      "cruise_gain": 0.4,
+      "gap_gain": 0.2,
+      "relative_speed_gain": 0.8,
+      "feedforward_gain": 0.5,
+      "max_acceleration": 2.6,
+      "max_deceleration": 4.5,
+      "communication_range_meters": 250.0,
+      "backend": "libsumo",
+      "native_handoff_seconds": 2.0
+    },
+    "CENTRAL": {
+      "policy": "central_vsl",
+      "backend": "libsumo",
+      "control_edge_ids": [
+        "395354963",
+        "28485321",
+        "28485321-AddedOffRampEdge"
+      ],
+      "observation_edge_ids": [
+        "509747302",
+        "509747310-AddedOnRampEdge"
+      ],
+      "update_seconds": 30.0,
+      "activate_below_m_per_s": 15.0,
+      "release_above_m_per_s": 20.0,
+      "congested_limit_m_per_s": 25.0,
+      "max_change_m_per_s": 1.0,
+      "control_end_seconds": 8100.0
+    }
+  },
+  "workers": 3,
+  "cases": [
+    {
+      "id": "base",
+      "demand_scale": 1.0,
+      "seeds": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "policies": {
+        "H0": {},
+        "CACC": {},
+        "CENTRAL": {}
+      }
+    },
+    {
+      "id": "demand_080",
+      "demand_scale": 0.8,
+      "seeds": [
+        41,
+        42,
+        43
+      ],
+      "policies": {
+        "H0": {},
+        "CACC": {},
+        "CENTRAL": {}
+      }
+    },
+    {
+      "id": "demand_120",
+      "demand_scale": 1.2,
+      "seeds": [
+        41,
+        42,
+        43
+      ],
+      "policies": {
+        "H0": {},
+        "CACC": {},
+        "CENTRAL": {}
+      }
+    },
+    {
+      "id": "penetration_000",
+      "demand_scale": 1.0,
+      "seeds": [
+        41,
+        42,
+        43
+      ],
+      "policies": {
+        "CACC": {
+          "penetration": 0
+        }
+      }
+    },
+    {
+      "id": "penetration_050",
+      "demand_scale": 1.0,
+      "seeds": [
+        41,
+        42,
+        43
+      ],
+      "policies": {
+        "CACC": {
+          "penetration": 0.5
+        }
+      }
+    },
+    {
+      "id": "range_050",
+      "demand_scale": 1.0,
+      "seeds": [
+        41,
+        42,
+        43
+      ],
+      "policies": {
+        "CACC": {
+          "communication_range_meters": 50.0
+        }
+      }
+    },
+    {
+      "id": "delay_1000",
+      "demand_scale": 1.0,
+      "seeds": [
+        41,
+        42,
+        43
+      ],
+      "policies": {
+        "CACC": {
+          "message_delay_seconds": 1.0
+        }
+      }
+    },
+    {
+      "id": "loss_020",
+      "demand_scale": 1.0,
+      "seeds": [
+        41,
+        42,
+        43
+      ],
+      "policies": {
+        "CACC": {
+          "message_loss_probability": 0.2
+        }
+      }
+    },
+    {
+      "id": "headway_2000",
+      "demand_scale": 1.0,
+      "seeds": [
+        41,
+        42,
+        43
+      ],
+      "policies": {
+        "CACC": {
+          "headway_seconds": 2.0
+        }
+      }
+    },
+    {
+      "id": "vsl_220",
+      "demand_scale": 1.0,
+      "seeds": [
+        41,
+        42,
+        43
+      ],
+      "policies": {
+        "CENTRAL": {
+          "congested_limit_m_per_s": 22.0
+        }
+      }
+    }
+  ]
+}

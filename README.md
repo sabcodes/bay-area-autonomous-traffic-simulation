@@ -8,7 +8,7 @@ This is a simulation research project, not a prediction system or a safety-criti
 
 For the current milestone state and handoff context, see the
 [project memory](docs/project-memory.md), [roadmap](docs/project-roadmap.md),
-and [domain glossary](CONTEXT.md). M0–M6 experiment work is complete at the documented practical standards. M3's
+and [domain glossary](CONTEXT.md). M0–M7 experiment work is complete at the documented practical standards. M3's
 held-out speed target was missed; see the [closeout record](docs/m3-human-baseline-report.md).
 M4 is complete; see the [harness closeout](docs/m4-experiment-harness-report.md).
 See the [M4 plan](docs/m4-experiment-harness-plan.md) and
@@ -38,7 +38,7 @@ M6 centralized control is complete for the fixed VSL comparison. See the
 [plan](docs/m6-centralized-control-plan.md), [frozen specification](docs/m6-centralized-control-spec.md),
 [closeout](docs/m6-centralized-control-report.md), and [three-policy results](reports/m6/README.md).
 Nine clean runs, 125 tests and the independent raw-output audit pass. H0 and
-supervised CACC exactly replay M5. M7 sensitivity and M8 packaging remain;
+supervised CACC exactly replay M5. M7 sensitivity is complete; M8 packaging remains;
 M3 fidelity and M5 low-engagement limitations remain in force.
 
 
@@ -471,16 +471,55 @@ lane-level merge has been confirmed. See the [SR-85 lane sensitivity notes](docs
 
 ## Status
 
-**M0–M5 complete at their documented practical standards.** The audited corridor
-has a frozen human baseline, a reproducible harness and an accepted supervised
-CACC comparison. The supervisor is active for about 2% of passenger timesteps;
-continuous CACC remains unresolved. Results are mixed rather than evidence of
-an overall traffic benefit. M3's fidelity limitation remains. M6 centralized
-control is next; see the [M5 closeout](docs/m5-cooperative-cacc-report.md).
+**M0–M7 are complete at their documented practical experiment standards.** The
+frozen human baseline, supervised CACC, fixed centralized VSL and conditional
+sensitivity screen are documented. M3's held-out fidelity failure and CACC's
+roughly 2% command exposure remain; no consistent overall traffic benefit is
+established. M8 final research packaging is next.
 
-The full sequence of work and completion criteria live in the
-[project roadmap](docs/project-roadmap.md).
+See the [roadmap](docs/project-roadmap.md), [current project memory](docs/project-memory.md)
+and [M7 closeout](docs/m7-sensitivity-uncertainty-report.md).
 
 ## Research background
 
 See [local feasibility research](research/local-feasibility.md) for the source-backed feasibility assessment and constraints that guide the initial scope.
+
+
+## M7 sensitivity and uncertainty
+
+The [plan](docs/m7-sensitivity-uncertainty-plan.md) and
+[frozen specification](docs/m7-sensitivity-uncertainty-spec.md) preceded runtime
+implementation. All 54/54 runs are valid, including zero-equipment and
+nonactivating VSL controls. The independent audit checks 1620 raw metrics,
+480 group/paired records, 28 factor records, matching fleets/schedules
+and exact M6/null-control replays. All 165 tests and lint pass.
+
+The OFAT screen varies demand, passenger equipment, acceleration-message
+range/delay/loss, requested CACC headway, VSL target and seeds. Base seeds are
+41-45; sensitivities use 41-43. Treatments always pair against matching-demand
+H0 on identical seeds. Incomplete/failed/nonfinite populations suppress means.
+
+Five-seed base CENTRAL changes throughput +0.523% and scheduled total time
+-1.146%, with paired spreads larger than mean effects. At 0.8x demand it is
+inactive and exactly equals H0; at 1.2x demand its small base improvements do
+not persist. CACC traffic effects are mixed. No settings were retuned.
+
+See [results, figure and activity table](reports/m7/README.md),
+[closeout and reproduction](docs/m7-sensitivity-uncertainty-report.md),
+[raw audit](reports/m7/independent_audit.json), and
+[PR #3](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/3).
+Use a new campaign ID and new output/audit paths when replaying; existing
+outputs are preserved. With frozen M3 inputs and accepted network prepared:
+
+```sh
+PYTHONPATH=src .venv/bin/python scripts/run_m7_sensitivity.py --config PATH_TO_NEW_CONFIG
+.venv/bin/python scripts/audit_m7_results.py --config PATH_TO_NEW_CONFIG --report PATH_TO_NEW_RAW_REPORT --output PATH_TO_NEW_AUDIT
+.venv/bin/python scripts/summarize_m7_results.py --report PATH_TO_NEW_RAW_REPORT --audit PATH_TO_NEW_AUDIT --output PATH_TO_NEW_PRESENTATION
+```
+
+One calibration date and five/three seeds describe conditional simulation
+variation, not interactions, confidence intervals or total uncertainty. Range
+also changes sensed following; delay/loss affect acceleration feedforward
+with current local gap/speed retained. M3 fidelity, low CACC engagement and
+ideal VSL sensing/actuation remain limits. [Methodology](research/m7-methodology.md)
+records sources and illustrative assumptions. M8 research packaging is next.
