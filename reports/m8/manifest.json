@@ -3,7 +3,7 @@
   "sha256": {
     ".gitignore": "f80f9a4edb13be050977b27c61ebf194f08518a06d5d0b664a9a36721d446cdc",
     "CONTEXT.md": "b2980c6e8afa381c9a75a89a683eb100ee8d593f39835ef92e9acfd2cd1bb6ca",
-    "README.md": "f0c15e03b79159fe8e7381f49cb28ccf4a0adefca07dfb03586c32fc3724e1da",
+    "README.md": "d4242736beeaef56b1d5de5bf0e9eb2f106de88cd3bce2872e2456aee93b038e",
     "configs/us101_corridor.json": "3756012f0f376ed00e8a3ea7180124bf2850938d8f21249f28880b6225dac774",
     "configs/us101_corridor_station_ids.json": "5c696bd22accb4f66b8fd5d5d591aa9f9f303a00de4916d7f2255b8aefd8c24b",
     "configs/us101_flow_balance_audit.json": "a2c81ec4085adf10fc32203635e48b03274b64632ef0b83e8c8ae8e37117f13e",
@@ -52,7 +52,7 @@
     "docs/m8-research-package-plan.md": "35eff67427ee44b67ee6f7f566d3c826d4fce4be3137c3126fdaf52d0eab50a5",
     "docs/m8-research-package-report.md": "57e9ab5eaeacf13d11b4de5b749ce640ef5458337e3d4c3a72f72917055dc011",
     "docs/m8-research-package-spec.md": "2bf6e48fcd89f1cc0ed4b5ff402bedeb5eedc2eb9f2e809645255acf4430367c",
-    "docs/project-memory.md": "752742411e36743fb06ea386eff0363266e5dbef50eb5b012d80cd9a3ea397d9",
+    "docs/project-memory.md": "9e15a3f9ae0f440e25f719ab531a0edd7a7de41cb4d730fb380359502f37eb73",
     "docs/project-roadmap.md": "f42799b98d15531e6fccaed463cda7584a7a7f0855c02948bf2f96e545e86b56",
     "docs/reproduction.md": "f50b9bac95919f353cd8b2e20ce05183d467900d66d5a7f341e09c79a6ca9961",
     "docs/research-lab-methods.md": "7cdb774a95cdc97b15822f68f2399b458b41b93ceb51a23ae488103cc8f45034",

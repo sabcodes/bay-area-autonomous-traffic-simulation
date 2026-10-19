@@ -187,9 +187,8 @@ the historical PR checkpoint from the merged main state. M6 remains next.
 
 The [plan](m6-centralized-control-plan.md) at f1550ca and
 [spec](m6-centralized-control-spec.md) at b50a22c preceded source 26a71d6.
-M5 PR #1 merged while M6 was starting; use the attached isolated worktree
-`/Users/sabarnoislam/.codex/worktrees/m6-centralized-control/Self Driving Cars Bay Area Traffic Simulation`
-for M6. Do not switch or modify the shared primary checkout.
+M5 PR #1 merged while M6 was starting; use the attached project workspace
+in the `m6-centralized-control` worktree for M6. Do not switch or modify the shared primary checkout.
 [PR #2](https://github.com/sabcodes/bay-area-autonomous-traffic-simulation/pull/2)
 is the M6 publication surface.
 
